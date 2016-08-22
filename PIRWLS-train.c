@@ -630,7 +630,7 @@ int main(int argc, char** argv)
     srand(0);	
     srand48(0);
 
-    properties props = TrainParameters(&argc, &argv);
+    properties props = TrainParameters(&argc, &argv,0);
   
     if (argc != 3) {
         printPIRWLSInstructions();
@@ -656,7 +656,7 @@ int main(int argc, char** argv)
     gettimeofday(&tiempo2, NULL);
     printf("\nWeights calculated in %ld\n\n",((tiempo2.tv_sec-tiempo1.tv_sec)*1000+(tiempo2.tv_usec-tiempo1.tv_usec)/1000));
 
-    model modelo = calculateModel(props, dataset, W);
+    model modelo = calculatePIRWLSModel(props, dataset, W);
 
     printf("Saving model in file: %s\n\n",data_model);	
  
