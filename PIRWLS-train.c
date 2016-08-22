@@ -633,7 +633,7 @@ int main(int argc, char** argv)
     properties props = TrainParameters(&argc, &argv);
   
     if (argc != 3) {
-        printInstructions();
+        printPIRWLSInstructions();
         return 4;
     }
 
