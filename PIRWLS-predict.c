@@ -93,7 +93,7 @@ int main(int argc, char** argv)
     predictProperties props = PredictParameters(&argc, &argv);
   
     if (argc != 4) {
-        printInstructionsPredict();
+        printInstructionsPIRWLSPredict();
         return 4;
     }
 
