@@ -192,43 +192,6 @@ void LinearSystem(double *matrix1,int r1,int c1, int ro1, int co1,double *matrix
         dpotrs_(&s,&n,&ncols, &matrix1[0], &n, &result[0],&n,&info);
     }
        
-		
-        /*        
-	TriangleInversion(matrix1,r1, c1, ro1, co1, n, nCores,posIni,numTh,memaux,blockSize);		
-	#pragma omp barrier			
-        if(numTh==0){
-        gettimeofday(&stop, NULL);
-        printf("Total %ld\n",((stop.tv_sec-start.tv_sec)*1000+(stop.tv_usec-start.tv_usec)/1000));	
-        gettimeofday(&start, NULL);
-	}
-	LNProduct(matrix1 ,r1,ro1,c1,co1,matrix2,r2,ro2,c2,co2,n,m,1.0,result,rr,ror,cr,cor,nCores,posIni,numTh);			
-	#pragma omp barrier			
-        if(numTh==0){
-        gettimeofday(&stop, NULL);
-        printf("Total %ld\n",((stop.tv_sec-start.tv_sec)*1000+(stop.tv_usec-start.tv_usec)/1000));	
-        gettimeofday(&start, NULL);
-	}
-
-	//MoveMatrix(result,rr,ror,cr,cor,matrix2,r2,ro2,c2,co2,n,m, nCores,posIni,numTh);
-	MoveMatrix(result,rr,ror,cr,cor,&memaux[posIni*blockSize],n,0,m,0,n,m, nCores,posIni,numTh);
-	#pragma omp barrier			
-        if(numTh==0){
-        gettimeofday(&stop, NULL);
-        printf("Total %ld\n",((stop.tv_sec-start.tv_sec)*1000+(stop.tv_usec-start.tv_usec)/1000));	
-        gettimeofday(&start, NULL);
-	}
-	//LTNProduct(matrix1,r1,ro1,c1,co1,matrix2,r2,ro2,c2,co2,n,m,1.0,result,rr,ror,cr,cor,nCores,posIni,numTh);				
-	LTNProduct(matrix1,r1,ro1,c1,co1,&memaux[posIni*blockSize],n,0,m,0,n,m,1.0,result,rr,ror,cr,cor,nCores,posIni,numTh);				
-	#pragma omp barrier			
-        if(numTh==0){
-        gettimeofday(&stop, NULL);
-        printf("Total %ld\n",((stop.tv_sec-start.tv_sec)*1000+(stop.tv_usec-start.tv_usec)/1000));	
-        gettimeofday(&totalstop, NULL);
-        printf("Total %ld\n",((totalstop.tv_sec-totalstart.tv_sec)*1000+(totalstop.tv_usec-totalstart.tv_usec)/1000));	
-        
-        }
-        printMatCol(result,n,1);
-        */
 }
 
 void DiagInversion(double *matrix,int r, int c, int ro, int co, int n,int nCores,int posIni,int numTh){
@@ -322,21 +285,17 @@ void NNProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int r
 	if(nCores <= 1){
 		if(n1 >0 & n3>0){			
 			double *mresultT=auxmemory2[numTh];			
-			
-			//double *mresultT = (double *) malloc(n1*n3*sizeof(double));							
 			getSubMatrix(result,rr,cr,ror,cor,mresultT, n1,n3,nCores);
+			
 			if(n2 > 0){
-				//double *m1T = (double *) malloc(n1*n2*sizeof(double));							
-				//double *m2T = (double *) malloc(n2*n3*sizeof(double));											
+											
 				double *m1T=auxmemory1[numTh];
 				double *m2T=auxmemory3[numTh];
 
 				getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n2,nCores);				
 				getSubMatrix(m2,r2,c2,ro2,co2,m2T, n2,n3,nCores);						
 				cblas_dgemm (CblasColMajor, CblasNoTrans, CblasNoTrans, n1,n3,n2,K1, m1T, n1, m2T, n2, K2, mresultT, n1);				
-
-				//free(m1T);
-				//free(m2T);				
+				
 			}else{
 				int i;
 				for(i=0;i<n2*n3;i++) mresultT[i]=K2*mresultT[i];				
@@ -415,25 +374,24 @@ void MoveMatrix(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int 
 void TNNProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int ro2,int c2, int co2,int n1,int n2,int n3,double K1,double K2,double *result,int rr,int ror,int cr, int cor, int nCores,int posIni,int numTh){
 	if(nCores <= 1){
 		if(n2 >0 & n3>0){	
-			//double *mresultT = (double *) malloc(n2*n3*sizeof(double));											
+											
 			double *mresultT=auxmemory2[numTh];		
 			getSubMatrix(result,rr,cr,ror,cor,mresultT, n2,n3,nCores);
+			
 			if(n1 >0){
-				//double *m1T = (double *) malloc(n1*n2*sizeof(double));							
-				//double *m2T = (double *) malloc(n1*n3*sizeof(double));											
+											
 				double *m1T=auxmemory1[numTh];
 				double *m2T=auxmemory3[numTh];		
 				getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n2,nCores);			
 				getSubMatrix(m2,r2,c2,ro2,co2,m2T, n1,n3,nCores);								
 				cblas_dgemm (CblasColMajor, CblasTrans, CblasNoTrans, n2,n3,n1,K1, m1T, n1, m2T, n1, K2, mresultT, n2);				
-				//free(m1T);
-				//free(m2T);				
+			
 			}else{
 				int i;
 				for(i=0;i<n2*n3;i++) mresultT[i]=K2*mresultT[i];				
 			}			
 			putSubMatrix(result,rr,cr,ror,cor,mresultT, n2,n3,nCores);			
-			//free(mresultT);
+
 		}
 	}else{
 		int rows1A=ceil(0.5*n1);
@@ -467,26 +425,22 @@ void TNNProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int 
 void NNTProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int ro2,int c2, int co2,int n1,int n2,int n3,double K1,double K2,double *result,int rr,int ror,int cr, int cor, int nCores,int posIni,int numTh){
 	if(nCores <= 1){
 		if(n1 >0 & n3>0){								
-			//double *mresultT = (double *) malloc(n1*n3*sizeof(double));				
 			double *mresultT=auxmemory2[numTh];		
 			getSubMatrix(result,rr,cr,ror,cor,mresultT, n1,n3,nCores);
 			if(n2 > 0){
-				//double *m1T = (double *) malloc(n1*n2*sizeof(double));							
-				//double *m2T = (double *) malloc(n3*n2*sizeof(double));											
+											
 				double *m1T=auxmemory1[numTh];
 				double *m2T=auxmemory3[numTh];	
 				getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n2,nCores);
 				getSubMatrix(m2,r2,c2,ro2,co2,m2T, n3,n2,nCores);
 				
 				cblas_dgemm (CblasColMajor, CblasNoTrans, CblasTrans, n1,n3,n2,K1, m1T, n1, m2T, n3, K2, mresultT, n1);
-				//free(m1T);
-				//free(m2T);
+
 			}else{
 				int i;
 				for(i=0;i<n1*n3;i++) mresultT[i]=K2*mresultT[i];
 			}						
 			putSubMatrix(result,rr,cr,ror,cor,mresultT, n1,n3,nCores);
-			//free(mresultT);
 		}
 	}else{
 
@@ -524,9 +478,7 @@ void AATProduct(double *m1,int r1,int ro1,int c1, int co1,int n1,int n2,double K
 		if(n1 >0 & n2>0){
 		double *m1T = (double *) malloc(n1*n2*sizeof(double));			
 		double *mresultT = (double *) malloc(n1*n1*sizeof(double));				
-		//double *m1T=auxmemory1[numTh];
 		getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n2,nCores);
-		//double *mresultT=auxmemory2[numTh];		
 		getSubMatrix(result,rr,cr,ror,cor,mresultT, n1,n1,nCores);
 		cblas_dsyrk (CblasColMajor, CblasLower, CblasNoTrans, n1,n2,K1, m1T, n1, K2, mresultT, n1);
 		int i,j;
@@ -564,17 +516,13 @@ void AATProduct(double *m1,int r1,int ro1,int c1, int co1,int n1,int n2,double K
 void LNProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int ro2,int c2, int co2,int n1,int n2,double K1,double *result,int rr,int ror,int cr, int cor, int nCores,int posIni,int numTh){
 	if(nCores <= 1){
 		if(n1 >0 & n2>0){
-		//double *m1T = (double *) malloc(n1*n1*sizeof(double));			
-		//double *mresultT = (double *) malloc(n2*n1*sizeof(double));				
-		double *m1T=auxmemory2[numTh];
-		double *mresultT=auxmemory1[numTh];
-		getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n1,nCores);		
-		getSubMatrix(m2,r2,c2,ro2,co2,mresultT, n1,n2,nCores);		
-		cblas_dtrmm (CblasColMajor, CblasLeft,CblasLower,CblasNoTrans,CblasNonUnit,n1,n2,K1, m1T, n1, mresultT, n1);
-		putSubMatrix(result,rr,cr,ror,cor,mresultT, n1,n2,nCores);
-		//free(m1T);
-		//free(mresultT);
-	 }
+		    double *m1T=auxmemory2[numTh];
+		    double *mresultT=auxmemory1[numTh];
+		    getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n1,nCores);		
+		    getSubMatrix(m2,r2,c2,ro2,co2,mresultT, n1,n2,nCores);		
+		    cblas_dtrmm (CblasColMajor, CblasLeft,CblasLower,CblasNoTrans,CblasNonUnit,n1,n2,K1, m1T, n1, mresultT, n1);
+		    putSubMatrix(result,rr,cr,ror,cor,mresultT, n1,n2,nCores);
+	 	}
 	}else{
 		
 		int rows1A=ceil(0.5*n1);
@@ -606,24 +554,13 @@ void LNProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int r
 void LTNProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int ro2,int c2, int co2,int n1,int n2,double K1,double *result,int rr,int ror,int cr, int cor, int nCores,int posIni,int numTh){	
 	if(nCores <= 1){
 		if(n1 >0 & n2>0){
-		//double *m1T = (double *) malloc(n1*n1*sizeof(double));			
-		//double *m2T = (double *) malloc(n1*n2*sizeof(double));						int in;		
-		int in;
-		double *m1T=auxmemory1[numTh];
-		double *m2T=auxmemory2[numTh];
-		//double *mresultT=auxmemory3[numTh];
-		getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n1,1);
-		//getSubMatrix(m2,n1,n2,0,0,m2T, n1,n2,1);
-		//getSubMatrix(m2,r2,c2,ro2,co2,m2T, n1,n2,nCores);		
-		getSubMatrix(result,rr,cr,ror,cor,m2T, n1,n2,1);
-		//for(in=0;in<n1*n2;in++){if(mresultT[in]!= m2T[in])printf("BO\n");}				
-		//getSubMatrix(m2,r2,c2,ro2,co2,m2T, n1,n2,nCores);		
-		//printf("Valores %d %d %d %d %d %f %f %f %f\n",n1,n2,K1,n1,n1,m1T[0],m1T[n1*n1-1],mresultT[0],mresultT[n1*n2-1]);
-		cblas_dtrmm (CblasColMajor, CblasLeft,CblasLower,CblasTrans,CblasNonUnit,n1,n2,K1, m1T, n1, m2T, n1);
-		//printf("Valores %d %d %d %d %d %f %f %f %f\n",n1,n2,K1,n1,n1,m1T[0],m1T[n1*n1-1],mresultT[0],mresultT[n1*n2-1]);
-		putSubMatrix(result,rr,cr,ror,cor,m2T, n1,n2,1);
-		//free(m1T);
-		//free(m2T);
+			int in;
+			double *m1T=auxmemory1[numTh];
+			double *m2T=auxmemory2[numTh];
+			getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n1,1);
+			getSubMatrix(result,rr,cr,ror,cor,m2T, n1,n2,1);
+			cblas_dtrmm (CblasColMajor, CblasLeft,CblasLower,CblasTrans,CblasNonUnit,n1,n2,K1, m1T, n1, m2T, n1);
+			putSubMatrix(result,rr,cr,ror,cor,m2T, n1,n2,1);
 		}
 	}else{
 		int rows1A=ceil(0.5*n1);
@@ -657,16 +594,12 @@ void LTNProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int 
 void NLProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int ro2,int c2, int co2,int n1,int n2,double K1,double *result,int rr,int ror,int cr, int cor, int nCores,int posIni,int numTh){
 	if(nCores <= 1){
 		if(n1 >0 & n2>0){
-		//double *m1T = (double *) malloc(n1*n1*sizeof(double));			
-		//double *mresultT = (double *) malloc(n2*n1*sizeof(double));	
-		double *m1T=auxmemory1[numTh];
-		double *mresultT=auxmemory2[numTh];
-		getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n1,nCores);		
-		getSubMatrix(m2,r2,c2,ro2,co2,mresultT, n2,n1,nCores);		
-		cblas_dtrmm (CblasColMajor, CblasRight,CblasLower,CblasNoTrans,CblasNonUnit,n2,n1,K1, m1T, n1, mresultT, n2);
-		putSubMatrix(result,rr,cr,ror,cor,mresultT, n2,n1,nCores);
-		//free(m1T);
-		//free(mresultT);
+			double *m1T=auxmemory1[numTh];
+			double *mresultT=auxmemory2[numTh];
+			getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n1,nCores);		
+			getSubMatrix(m2,r2,c2,ro2,co2,mresultT, n2,n1,nCores);		
+			cblas_dtrmm (CblasColMajor, CblasRight,CblasLower,CblasNoTrans,CblasNonUnit,n2,n1,K1, m1T, n1, mresultT, n2);
+			putSubMatrix(result,rr,cr,ror,cor,mresultT, n2,n1,nCores);
 		}
 	}else{
 
@@ -699,22 +632,12 @@ void NLProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int r
 void NLTProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int ro2,int c2, int co2,int n1,int n2,double K1,double *result,int rr,int ror,int cr, int cor, int nCores,int posIni,int numTh){
 	if(nCores <= 1){
 		if(n1 >0 & n2>0){
-		//double *m1T = (double *) malloc(n1*n1*sizeof(double));			
-		//double *m2T = (double *) malloc(n2*n1*sizeof(double));			
-		double *m1T=auxmemory1[numTh];
-		double *m2T=auxmemory2[numTh];
-		getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n1,nCores);		
-		getSubMatrix(m2,r2,c2,ro2,co2,m2T, n2,n1,nCores);	
-		cblas_dtrmm (CblasColMajor, CblasRight,CblasLower,CblasTrans,CblasNonUnit,n2,n1,K1, m1T, n1, m2T, n2);
-		//double *mresultT = (double *) malloc(n2*n1*sizeof(double));					
-		//getSubMatrix(result,rr,cr,ror,cor,mresultT, n2,n1,nCores);
-		//int i;
-		//for(i=0;i<n2*n1;i++)mresultT[i]=mresultT[i]+m2T[i];		
-		putSubMatrix(result,rr,cr,ror,cor,m2T, n2,n1,nCores);
-
-		//free(m1T);
-		//free(m2T);
-		//free(mresultT);		
+			double *m1T=auxmemory1[numTh];
+			double *m2T=auxmemory2[numTh];
+			getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n1,nCores);		
+			getSubMatrix(m2,r2,c2,ro2,co2,m2T, n2,n1,nCores);	
+			cblas_dtrmm (CblasColMajor, CblasRight,CblasLower,CblasTrans,CblasNonUnit,n2,n1,K1, m1T, n1, m2T, n2);
+			putSubMatrix(result,rr,cr,ror,cor,m2T, n2,n1,nCores);
 		}
 	}else{
 		int rows1A=ceil(0.5*n1);
@@ -755,7 +678,6 @@ void getSubMatrix(double *matrix,int size1,int size2,int O1,int O2,double *A, in
 	
 	int j;	
 	for(j=0;j<size4;j++){
-		//printf("En A posicion %d guardo lo de matrix posicion %d de tamaÃ’o %d\n",j*size3,(j+O2)*size1+O1,size3);
 			memcpy(&A[j*size3],&matrix[(j+O2)*size1+O1],size3*sizeof(double));
 	}	
 }
