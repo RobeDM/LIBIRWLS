@@ -96,7 +96,7 @@ int main(int argc, char** argv)
     predictProperties props = PredictParameters(&argc, &argv);
   
     if (argc != 4) {
-        printInstructionsPredict();
+        printInstructionsPSIRWLSPredict();
         return 4;
     }
 
