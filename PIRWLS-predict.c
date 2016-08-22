@@ -90,7 +90,7 @@ void writeOutput (char fileoutput[], double *predictions, int size){
 int main(int argc, char** argv)
 {
 
-    predictProperties props = PredictParameters(&argc, &argv);
+    predictProperties props = PredictParameters(&argc, &argv,0);
   
     if (argc != 4) {
         printInstructionsPIRWLSPredict();
