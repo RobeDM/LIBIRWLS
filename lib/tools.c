@@ -26,6 +26,7 @@ typedef struct properties{
     double C;
     int Threads;
     int MaxSize;
+    int size;
     double Eta;
 }properties;
 
@@ -80,7 +81,7 @@ void printPIRWLSInstructions() {
 }
 
 
-void printPSIRLWSInstructions() {
+void printPSIRWLSInstructions() {
     fprintf(stderr, "PSIRWLS-train: This software train the sparse SVM on the given training set ");
     fprintf(stderr, "and generages a model for futures prediction use.\n\n");
     fprintf(stderr, "Usage: PSIRWLS-train [options] training_set_file model_file\n\n");
@@ -124,7 +125,7 @@ void printInstructionsPSIRWLSPredict() {
 
 
 
-properties TrainParameters(int* argc, char*** argv) {
+properties TrainParameters(int* argc, char*** argv, int semiparametric) {
 
     properties props;
     props.Kgamma = 1.0;
@@ -132,12 +133,16 @@ properties TrainParameters(int* argc, char*** argv) {
     props.Threads=1;
     props.MaxSize=500;
     props.Eta=0.001;
+    props.size=10;
 
     int i,j;
     for (i = 1; i < *argc; ++i) {
         if ((*argv)[i][0] != '-') break;
         if (++i >= *argc) {
-            printInstructions();
+            if (semiparametric==0)
+                printPIRWLSInstructions();
+            else
+                printPSIRWLSInstructions();
             exit(1);
         }
 
@@ -153,9 +158,14 @@ properties TrainParameters(int* argc, char*** argv) {
             props.Threads = atoi(param_value);
         } else if (strcmp(param_name, "w") == 0) {
             props.MaxSize = atoi(param_value);
+        } else if (strcmp(param_name, "s") == 0) {
+            props.size = atoi(param_value);
         } else {
             fprintf(stderr, "Unknown parameter %s\n",param_name);
-            printInstructions();
+            if (semiparametric==0)
+                printPIRWLSInstructions();
+            else
+                printPSIRWLSInstructions();
             exit(2);
         }
     }
@@ -169,7 +179,7 @@ properties TrainParameters(int* argc, char*** argv) {
 
 }
 
-predictProperties PredictParameters(int* argc, char*** argv) {
+predictProperties PredictParameters(int* argc, char*** argv, int semiparametric) {
 
     predictProperties props;
     props.Labels=0;
@@ -180,7 +190,10 @@ predictProperties PredictParameters(int* argc, char*** argv) {
     for (i = 1; i < *argc; ++i) {
         if ((*argv)[i][0] != '-') break;
         if (++i >= *argc) {
-            printInstructionsPredict();
+            if (semiparametric==0)
+                printInstructionsPIRWLSPredict();
+            else
+                printInstructionsPSIRWLSPredict();
             exit(1);
         }
 
@@ -197,7 +210,10 @@ predictProperties PredictParameters(int* argc, char*** argv) {
             }
         } else {
             fprintf(stderr, "Unknown parameter %s\n",param_name);
-            printInstructionsPredict();
+            if (semiparametric==0)
+                printInstructionsPIRWLSPredict();
+            else
+                printInstructionsPSIRWLSPredict();
             exit(2);
         }
     }
@@ -549,7 +565,7 @@ void readModel(model * mod, FILE *Input){
     }
 }
 
-model calculateModel(properties props, svm_dataset dataset, double * beta ){
+model calculatePIRWLSModel(properties props, svm_dataset dataset, double * beta ){
     model classifier;
     classifier.Kgamma = props.Kgamma;
     classifier.bias = beta[dataset.l];
@@ -609,3 +625,55 @@ model calculateModel(properties props, svm_dataset dataset, double * beta ){
     }        
     return classifier;
 }
+
+model calculatePSIRWLSModel(properties props, svm_dataset dataset, int *centroids, double * beta ){
+    model classifier;
+    classifier.Kgamma = props.Kgamma;
+    classifier.sparse = dataset.sparse;
+    classifier.maxdim = dataset.maxdim;
+    classifier.nSVs = props.size;
+    classifier.bias=0.0;
+        
+    int nElem=0;
+    svm_sample *iteratorSample;
+    svm_sample *classifierSample;
+    int i;
+    for (i =0;i<props.size;i++){
+        iteratorSample = dataset.x[centroids[i]];
+        while (iteratorSample->index != -1){
+        	  ++iteratorSample;
+            ++nElem;
+        }
+        ++nElem;
+    }
+
+    classifier.nElem = nElem;
+    classifier.weights = beta;
+    classifier.quadratic_value = (double *) calloc(props.size,sizeof(double));
+
+    classifier.x = (svm_sample **) calloc(props.size,sizeof(svm_sample *));
+    svm_sample* features = (svm_sample *) calloc(nElem,sizeof(svm_sample));
+    
+    int indexIt=0;
+    int featureIt=0;
+    for (i =0;i<props.size;i++){
+        classifier.quadratic_value[i]=dataset.quadratic_value[centroids[i]];
+        classifier.x[i] = &features[featureIt];
+        iteratorSample = dataset.x[centroids[i]];
+        classifierSample = classifier.x[i];
+        while (iteratorSample->index != -1){
+            classifierSample->index = iteratorSample->index;
+            classifierSample->value = iteratorSample->value;
+            ++classifierSample;
+            ++iteratorSample;
+            ++featureIt;
+        }
+
+        classifierSample->index = iteratorSample->index;
+            
+        ++featureIt;
+    }
+
+    return classifier;
+}
+
