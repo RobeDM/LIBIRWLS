@@ -11,23 +11,20 @@ ifeq ($(USE_MKL),1)
 	#LIBRARYPATH = -L/opt/intel/composerxe-2013.1.106/mkl/lib/intel64/
 else
 	LIBS = -fopenmp -lblas -lm -llapack
-	#INCLUDEPATH = -I...
+	INCLUDEPATH = -I/usr/local/atlas/include/
 	#LIBRARYPATH = -L...
 endif
 
-all: PIRWLS-predict PIRWLS-train PSIRWLS-predict PSIRWLS-train
+all: LIBIRWLS-predict PIRWLS-train PSIRWLS-train
 
-PIRWLS-predict: PIRWLS-predict.c
-	$(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -o PIRWLS-predict PIRWLS-predict.c $(LIBS)
+LIBIRWLS-predict: LIBIRWLS-predict.c
+	$(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -o LIBIRWLS-predict LIBIRWLS-predict.c $(LIBS)
 
 PIRWLS-train: PIRWLS-train.c
 	$(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -o PIRWLS-train PIRWLS-train.c $(LIBS)
-
-PSIRWLS-predict: PSIRWLS-predict.c
-	$(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -o PSIRWLS-predict PSIRWLS-predict.c $(LIBS)
 
 PSIRWLS-train: PSIRWLS-train.c
 	$(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -o PSIRWLS-train PSIRWLS-train.c $(LIBS)
 
 clean:
-	rm -f PIRWLS-train PIRWLS-predict PSIRWLS-train PSIRWLS-predict
+	rm -f PIRWLS-train LIBIRWLS-predict PSIRWLS-train
