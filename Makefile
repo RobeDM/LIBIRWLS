@@ -4,6 +4,14 @@ OPTFLAGS = -O3
 
 USE_MKL=0
 
+BINFOLDER=./bin/
+BUILDFOLDER=./build/
+SRCFOLDER=./src/
+
+SRCEXT=c
+SOURCES := $(shell find $(SRCFOLDER) -type f -name *.$(SRCEXT))
+OBJECTS := $(patsubst $(SRCFOLDER)/%,$(BUILDFOLDER)/%,$(SOURCES:.$(SRCEXT)=.o))
+
 ifeq ($(USE_MKL),1)
 	CFLAGS= -DUSE_MKL
 	LIBS = -lmkl_core -fopenmp -lmkl_sequential -lmkl_intel_lp64 -lm
@@ -15,16 +23,17 @@ else
 	#LIBRARYPATH = -L...
 endif
 
-all: LIBIRWLS-predict PIRWLS-train PSIRWLS-train
 
-LIBIRWLS-predict: LIBIRWLS-predict.c
-	$(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -o LIBIRWLS-predict LIBIRWLS-predict.c $(LIBS)
+$(BINFOLDER): $(OBJECTS)
+	@echo " Linking..."
+	@echo " $(CC) $^ -o $(BINFOLDER) $(LIBS)"; $(CC) $^ -o $(BINFOLDER) $(LIBS)
 
-PIRWLS-train: PIRWLS-train.c
-	$(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -o PIRWLS-train PIRWLS-train.c $(LIBS)
-
-PSIRWLS-train: PSIRWLS-train.c
-	$(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -o PSIRWLS-train PSIRWLS-train.c $(LIBS)
+$(BUILDFOLDER)/%.o: $(SRCFOLDER)/%.$(SRCEXT)
+	@mkdir -p $(BUILDFOLDER)
+	@echo " $(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<"; $(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<
 
 clean:
-	rm -f PIRWLS-train LIBIRWLS-predict PSIRWLS-train
+	@echo " Cleaning..."; 
+	@echo " rm -rf $(BINFOLDER) $(BUILDFOLDER)"; rm -rf $(BINFOLDER) $(BUILDFOLDER)
+
+.PHONY: clean
