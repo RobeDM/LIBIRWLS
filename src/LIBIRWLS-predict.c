@@ -38,7 +38,8 @@
 #include "cblas.h"
 #endif
 
-#include "../include/LIBIRWLS-predict.h"
+#include "../include/kernels.h"
+
 
 
 
@@ -72,27 +73,75 @@ double *test(svm_dataset dataset, model mymodel,predictProperties props){
 }
 
 
-void writeOutput (char fileoutput[], double *predictions, int size){
-	
-     FILE *Archivo;
-     Archivo = fopen(fileoutput,"w+"); 
-         
-     if(Archivo !=0){
-          int i;
-          for(i=0;i<size;i++){
-      	      fprintf(Archivo,"%lf\n",predictions[i]);
-          }
-     }
-     fclose(Archivo);
+void printPredictInstructions() {
+    fprintf(stderr, "LIBIRWLS-predict: This software predicts the label of a SVM given a data set of samples and a model obtained with PIRWLS-train or PSIRWLS-train");
+    fprintf(stderr, "and store the results in an output file.\n\n");
+    fprintf(stderr, "Usage: PSIRWLS-predict [options] data_set_file model_file output_file\n\n");
+    fprintf(stderr, "Options:\n");
+    fprintf(stderr, "  -t Number of Threads: (default 1)\n");
+    fprintf(stderr, "  -l type of data set: (default 0)\n");
+    fprintf(stderr, "       0 -- Data set with no target as first dimension.\n");
+    fprintf(stderr, "       1 -- Data set with label as first dimension (obtains accuracy too)\n");
+    fprintf(stderr, "Note:\n");
+    fprintf(stderr, "       The data set file must have the same format as the data set\n");
+    fprintf(stderr, "       given to PIRWLS-train.\n");
 }
+
+
+predictProperties parsePredictParameters(int* argc, char*** argv, int semiparametric) {
+
+    predictProperties props;
+    props.Labels=0;
+    props.Threads=1;
+	
+    int i;
+    for (i = 1; i < *argc; ++i) {
+        if ((*argv)[i][0] != '-') break;
+        if (++i >= *argc) {
+            if (semiparametric==0)
+                printPredictInstructions();
+            else
+                printPredictInstructions();
+            exit(1);
+        }
+
+        char* param_name = &(*argv)[i-1][1];
+        char* param_value = (*argv)[i];
+        
+        if (strcmp(param_name, "t") == 0) {    	
+            props.Threads = atof(param_value);
+        } else if (strcmp(param_name, "l") == 0) {
+            props.Labels = atoi(param_value);
+            if(props.Labels !=0 && props.Labels !=1){
+      	        printf("\nInvalid type of test data set:%d\n",props.Labels);
+                exit(2);
+            }
+        } else {
+            fprintf(stderr, "Unknown parameter %s\n",param_name);
+            if (semiparametric==0)
+                printPredictInstructions();
+            else
+                printPredictInstructions();
+            exit(2);
+        }
+    }
+	  int j;
+    for (j = 1; i + j - 1 < *argc; ++j) {
+        (*argv)[j] = (*argv)[i + j - 1];
+    }
+    *argc -= i - 1;
+    
+    return props;
+}
+
 
 int main(int argc, char** argv)
 {
 
-    predictProperties props = PredictParameters(&argc, &argv,0);
+    predictProperties props = parsePredictParameters(&argc, &argv,0);
   
     if (argc != 4) {
-        printInstructionsPIRWLSPredict();
+        printPredictInstructions();
         return 4;
     }
 

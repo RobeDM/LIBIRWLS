@@ -21,35 +21,43 @@
  */
 
 /**
- * @file kernels.h
+ * @file LIBIRWLS-predict.h
  * @author Roberto Diaz Morales
  * @date 23 Aug 2016
- * @brief kernel function of non linear SVM.
+ * @brief Functions to classify data with a trained model.
  *
- * Implements the kernel function to use in the non linear SVM.
+ * Functions to classify data with a trained model.
  */
 
 
-#ifndef KERNELS_
-#define KERNELS_
+#ifndef LIBIRWLSPREDICT_
+#define LIBIRWLSPREDICT_
 
-#include "IOStructures.h"
 
 /**
- * @brief Kernel function among two elements of the dataset.
+ * @brief Function to classify data in a labeled dataset and to obtain the accuracy.
  *
- * This function returns the kernel function among two elements of the dataset.
+ * Function to classify data in a labeled dataset and to obtain the accuracy.
  */
 
-double kernel(svm_dataset dataset, int index1, int index2, properties props);
+double *test(svm_dataset dataset, model mymodel,predictProperties props);
 
 /**
- * @brief Kernel function among two elements of two different datasets.
+ * @brief It shows the command line instructions in the standard output.
  *
- * This function returns the kernel function among two elements of two different datasets.
+ * It shows the command line instructions in the standard output.
  */
 
-double kernelTest(svm_dataset dataset, int index1, model mymodel, int index2);
+void printPredictInstructions();
+
+
+/**
+ * @brief It parses the prediction parameters from the command line.
+ *
+ * It parses the prediction parameters from the command line.
+ */
+
+predictProperties parsePredictParameters(int* argc, char*** argv, int semiparametric);
 
 
 #endif

@@ -33,7 +33,6 @@
 #ifndef KERNELS_
 #define KERNELS_
 
-#include "IOStructures.h"
 
 /**
  * @brief Kernel function among two elements of the dataset.

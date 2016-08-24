@@ -8,7 +8,7 @@ BINFOLDER := bin
 BUILDFOLDER := build
 SRCFOLDER := src
 
-SRCEXT := c
+SRCEXT=c
 SOURCES := $(shell find $(SRCFOLDER) -type f -name "*.$(SRCEXT)")
 OBJECTS := $(patsubst $(SRCFOLDER)/%,$(BUILDFOLDER)/%,$(SOURCES:.$(SRCEXT)=.o))
 

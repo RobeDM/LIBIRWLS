@@ -38,7 +38,8 @@
 #include "cblas.h"
 #endif
 
-#include "../include/LIBIRWLS-predict.h"
+#include "./lib/tools.c"
+#include "./lib/kernels.c"
 
 
 

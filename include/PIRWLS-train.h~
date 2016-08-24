@@ -21,36 +21,62 @@
  */
 
 /**
- * @file kernels.h
+ * @file PIRWLS-train.h
  * @author Roberto Diaz Morales
  * @date 23 Aug 2016
- * @brief kernel function of non linear SVM.
+ * @brief Functions to train a full SVM using the IRWLS algorithm.
  *
- * Implements the kernel function to use in the non linear SVM.
+ * Functions to train a full SVM using the IRWLS algorithm.
  */
 
 
-#ifndef KERNELS_
-#define KERNELS_
+#ifndef PIRWLSTRAIN_
+#define PIRWLSTRAIN_
 
 #include "IOStructures.h"
 
 /**
- * @brief Kernel function among two elements of the dataset.
+ * @brief It crates a random permutation of n elements.
  *
- * This function returns the kernel function among two elements of the dataset.
+ * It crates a random permutation of n elements.
  */
 
-double kernel(svm_dataset dataset, int index1, int index2, properties props);
+int * rpermute(int n);
 
 /**
- * @brief Kernel function among two elements of two different datasets.
+ * @brief It uses the IRWLS procedure on a Working Set.
  *
- * This function returns the kernel function among two elements of two different datasets.
+ * It uses the IRWLS procedure on a Working Set.
  */
 
-double kernelTest(svm_dataset dataset, int index1, model mymodel, int index2);
+double* subIRWLS(svm_dataset dataset,properties props, double *GIN, double *e, double *beta);
 
+
+/**
+ * @brief It trains a full SVM with a training set.
+ *
+ * It trains a full SVM with a training set.
+ */
+
+double* trainFULL(svm_dataset dataset,properties props);
+
+
+/**
+ * @brief It shows PIRWLS-train command line instructions in the standard output.
+ *
+ *  It shows PIRWLS-train command line instructions in the standard output.
+ */
+
+void printPIRWLSInstructions() ;
+
+
+/**
+ * @brief It parses input command line to extract the parameters.
+ *
+ * It parses input command line to extract the parameters.
+ */
+
+properties parseTrainPIRWLSParameters(int* argc, char*** argv);
 
 #endif
 

@@ -23,7 +23,7 @@
 
 #include "../include/kernels.h"
 #include "../include/IOStructures.h"
-#include <math.h>
+#include "<math.h>"
 
 double kernel(svm_dataset dataset, int index1, int index2, properties props){
 
