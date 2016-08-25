@@ -224,5 +224,21 @@ void getSubMatrix(double *matrix,int size1,int size2,int O1,int O2,double *A, in
 
 void putSubMatrix(double *matrix,int size1,int size2,int O1,int O2,double *A, int size3,int size4,int nCores);
 
+/**
+ * @brief This function performs a product of a vector and the transpose of a matrix in parallel.
+ *
+ * This function performs a product of a vector and the transpose of a matrix in parallel.
+ */
+
+void ParallelVectorMatrixT(double *m1,int size,double *m2,double *result, int numThreads);
+
+/**
+ * @brief This function performs a vector matrix product in parallel.
+ *
+ * This function performs a vector matrix product in parallel.
+ */
+
+void ParallelVectorMatrix(double *m1,int size,double *m2,double *result, int numThreads);
+
 #endif
 

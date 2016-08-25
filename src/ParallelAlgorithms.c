@@ -703,3 +703,45 @@ void putSubMatrix(double *matrix,int size1,int size2,int O1,int O2,double *A, in
 	}
 	
 }
+
+void ParallelVectorMatrixT(double *m1,int size,double *m2,double *result, int numThreads){
+    int i;
+    char transN = 'N';
+    char transY = 'T';
+    int aux=1;
+    double aux2=0;
+    double factor=1.0;
+    #pragma omp parallel default(shared) private(i)
+    {				
+    #pragma omp for schedule(static)	
+    for (i=0;i<numThreads;i++){
+        int InitCol=round(i*size/numThreads);
+        int FinalCol=round((i+1)*size/numThreads)-1;			
+        int lenghtCol=FinalCol-InitCol+1;
+        if(lenghtCol>0){
+            dgemm_(&transN, &transN, &(lenghtCol), &(aux), &(size),&factor, &m2[InitCol], &(size), m1, &size, &aux2, &result[InitCol], &(size));
+        }
+    }
+    }
+}
+
+void ParallelVectorMatrix(double *m1,int size,double *m2,double *result, int numThreads){
+    int i;
+    char transN = 'N';
+    char transY = 'N';
+    int aux=1;
+    double aux2=0;
+    double factor=1.0;
+    #pragma omp parallel default(shared) private(i)
+    {				
+    #pragma omp for schedule(static)	
+    for (i=0;i<numThreads;i++){
+        int InitCol=round(i*size/numThreads);
+        int FinalCol=round((i+1)*size/numThreads)-1;			
+        int lenghtCol=FinalCol-InitCol+1;
+        if(lenghtCol>0){
+            dgemm_(&transN, &transY, &aux, &(lenghtCol), &(size),&factor, m1, &aux, &m2[size*InitCol], &size, &aux2, &result[InitCol], &aux);
+        }
+    }
+    }	
+}

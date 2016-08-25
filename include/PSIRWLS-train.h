@@ -21,44 +21,63 @@
  */
 
 /**
- * @file LIBIRWLS-predict.h
+ * @file PSIRWLS-train.h
  * @author Roberto Diaz Morales
  * @date 23 Aug 2016
- * @brief Functions to classify data with a trained model.
+ * @brief Functions to train a semi parametric SVM using the IRWLS algorithm.
  *
- * Functions to classify data with a trained model.
+ * Functions to train a semi parametric SVM using the IRWLS algorithm.
  */
 
 
-#ifndef LIBIRWLSPREDICT_
-#define LIBIRWLSPREDICT_
+#ifndef PSIRWLSTRAIN_
+#define PSIRWLSTRAIN_
+
+#include "IOStructures.h"
+
+/**
+ * @brief Sparse Greedy Matrix Approximation algorithm
+ *
+ * Sparse Greedy Matrix Approximation algorithm to select the basis elements of the semi parametric model.
+ */
+
+int* SGMA(svm_dataset dataset,properties props);
+
+/**
+ * @brief Iterative Re-Weighted Least Squares Algorithm.
+ *
+ * IRWLS procedure to obtain the weights of the semi parametric model.
+ */
+
+double* IRWLSpar(svm_dataset dataset, int* indexes,properties props);
+
 
 
 /**
- * @brief Function to classify data in a labeled dataset and to obtain the accuracy.
+ * @brief It shows PSIRWLS-train command line instructions in the standard output.
  *
- * Function to classify data in a labeled dataset and to obtain the accuracy.
+ *  It shows PSIRWLS-train command line instructions in the standard output.
  */
 
-double *test(svm_dataset dataset, model mymodel,predictProperties props);
-
-/**
- * @brief It shows the command line instructions in the standard output.
- *
- * It shows the command line instructions in the standard output.
- */
-
-void printPredictInstructions();
+void printPSIRWLSInstructions() ;
 
 
 /**
- * @brief It parses the prediction parameters from the command line.
+ * @brief It parses input command line to extract the parameters.
  *
- * It parses the prediction parameters from the command line.
+ * It parses input command line to extract the parameters.
  */
 
-predictProperties parsePredictParameters(int* argc, char*** argv, int semiparametric);
+properties parseTrainParameters(int* argc, char*** argv);
 
+/**
+ * @brief It converts the result into a model strut.
+ *
+ * It converts the result into a model strut.
+ */
+
+model calculatePSIRWLSModel(properties props, svm_dataset dataset, int *centroids, double * beta );
 
 #endif
+
 

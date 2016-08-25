@@ -677,54 +677,6 @@ properties parseTrainPIRWLSParameters(int* argc, char*** argv) {
 }
 
 
-  
-int main(int argc, char** argv)
-{
-
-    //srand(getpid());	
-    //srand48(getpid());
-
-    srand(0);	
-    srand48(0);
-
-    properties props = parseTrainPIRWLSParameters(&argc, &argv);
-  
-    if (argc != 3) {
-        printPIRWLSInstructions();
-        return 4;
-    }
-
-    char * data_file = argv[1];
-    char * data_model = argv[2];
-  	
-
-    svm_dataset dataset = readTrainFile(data_file);
-    printf("\nDataset Loaded from file: %s\n\nTraining samples: %d\nNumber of features: %d\n\n",data_file, dataset.l,dataset.maxdim);
-
-    struct timeval tiempo1, tiempo2;
-    omp_set_num_threads(props.Threads);
-
-    printf("Running IRWLS\n");	
-    gettimeofday(&tiempo1, NULL);
-
-    initMemory(props.Threads,(props.MaxSize+1));
-    double * W = trainFULL(dataset,props);
-
-    gettimeofday(&tiempo2, NULL);
-    printf("\nWeights calculated in %ld\n\n",((tiempo2.tv_sec-tiempo1.tv_sec)*1000+(tiempo2.tv_usec-tiempo1.tv_usec)/1000));
-
-    model modelo = calculatePIRWLSModel(props, dataset, W);
-
-    printf("Saving model in file: %s\n\n",data_model);	
- 
-    FILE *Out = fopen(data_model, "w+");
-    storeModel(&modelo, Out);
-    fclose(Out);
-
-    return 0;
-}
-
-
 model calculatePIRWLSModel(properties props, svm_dataset dataset, double * beta ){
     model classifier;
     classifier.Kgamma = props.Kgamma;
@@ -785,4 +737,49 @@ model calculatePIRWLSModel(properties props, svm_dataset dataset, double * beta 
     }        
     return classifier;
 }
+
+  
+int main(int argc, char** argv)
+{
+
+    srand(0);	
+    srand48(0);
+
+    properties props = parseTrainPIRWLSParameters(&argc, &argv);
+  
+    if (argc != 3) {
+        printPIRWLSInstructions();
+        return 4;
+    }
+
+    char * data_file = argv[1];
+    char * data_model = argv[2];
+  	
+
+    svm_dataset dataset = readTrainFile(data_file);
+    printf("\nDataset Loaded from file: %s\n\nTraining samples: %d\nNumber of features: %d\n\n",data_file, dataset.l,dataset.maxdim);
+
+    struct timeval tiempo1, tiempo2;
+    omp_set_num_threads(props.Threads);
+
+    printf("Running IRWLS\n");	
+    gettimeofday(&tiempo1, NULL);
+
+    initMemory(props.Threads,(props.MaxSize+1));
+    double * W = trainFULL(dataset,props);
+
+    gettimeofday(&tiempo2, NULL);
+    printf("\nWeights calculated in %ld\n\n",((tiempo2.tv_sec-tiempo1.tv_sec)*1000+(tiempo2.tv_usec-tiempo1.tv_usec)/1000));
+
+    model modelo = calculatePIRWLSModel(props, dataset, W);
+
+    printf("Saving model in file: %s\n\n",data_model);	
+ 
+    FILE *Out = fopen(data_model, "w+");
+    storeModel(&modelo, Out);
+    fclose(Out);
+
+    return 0;
+}
+
 

@@ -12,6 +12,7 @@ SRCEXT := c
 SOURCES := $(shell find $(SRCFOLDER) -type f -name "*.$(SRCEXT)")
 OBJECTS := $(patsubst $(SRCFOLDER)/%,$(BUILDFOLDER)/%,$(SOURCES:.$(SRCEXT)=.o))
 
+
 ifeq ($(USE_MKL),1)
 	CFLAGS= -DUSE_MKL
 	LIBS = -lmkl_core -fopenmp -lmkl_sequential -lmkl_intel_lp64 -lm
@@ -23,12 +24,26 @@ else
 	#LIBRARYPATH = -L...
 endif
 
-$(BINFOLDER): $(OBJECTS)
-	@echo " Linking..."
-	@echo " $(CC) $^ -o $(BINFOLDER) $(LIBS)"; $(CC) $^ -o $(BINFOLDER) $(LIBS)
+COMMONOBJ := $(BUILDFOLDER)/ParallelAlgorithms.o $(BUILDFOLDER)/IOStructures.o $(BUILDFOLDER)/kernels.o
+
+all: LIBIRWLS-predict PIRWLS-train
+
+PIRWLS-train: $(BUILDFOLDER)/PIRWLS-train.o $(COMMONOBJ)
+	@echo " Linking PIRWLS-train"
+	mkdir -p $(BINFOLDER)
+	@echo " $(CC) $^ -o $(BINFOLDER)/$@ $(LIBS)"; $(CC) $^ -o $(BINFOLDER)/$@ $(LIBS)
+
+PSIRWLS-train: $(BUILDFOLDER)/PSIRWLS-train.o $(COMMONOBJ)
+	@echo " Linking PSIRWLS-train"
+	mkdir -p $(BINFOLDER)
+	@echo " $(CC) $^ -o $(BINFOLDER)/$@ $(LIBS)"; $(CC) $^ -o $(BINFOLDER)/$@ $(LIBS)
+
+LIBIRWLS-predict: $(BUILDFOLDER)/LIBIRWLS-predict.o $(COMMONOBJ)
+	@echo " Linking LIBIRWLS-train"
+	mkdir -p $(BINFOLDER)
+	@echo " $(CC) $^ -o $(BINFOLDER)/$@ $(LIBS)"; $(CC) $^ -o $(BINFOLDER)/$@ $(LIBS)
 
 $(BUILDFOLDER)/%.o: $(SRCFOLDER)/%.$(SRCEXT)
-	@echo " PreLinking..."
 	@echo " mkdir -p $(BUILDFOLDER)"; mkdir -p $(BUILDFOLDER)
 	@echo " $(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<"; $(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<
 
