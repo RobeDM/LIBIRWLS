@@ -1,0 +1,99 @@
+\hypertarget{structmodel}{}\section{model Struct Reference}
+\label{structmodel}\index{model@{model}}
+
+
+Structure of a trained model.  
+
+
+
+
+{\ttfamily \#include $<$I\+O\+Structures.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{structmodel_ac5c18eca6ad32bc6da1f2a923965e66c}{Kgamma}
+\item 
+int \hyperlink{structmodel_ad00b5b9bbafcd18eb6367c90d9471231}{sparse}
+\item 
+int \hyperlink{structmodel_a3b73d79940bbdae365676c4fa56e96ea}{n\+S\+Vs}
+\item 
+int \hyperlink{structmodel_a4877089d41daf2186482e0e6f900d65f}{n\+Elem}
+\item 
+double $\ast$ \hyperlink{structmodel_a658dab89d4b4b1a5bd28cdfb4abafe39}{weights}
+\item 
+struct \hyperlink{structsvm__sample}{svm\+\_\+sample} $\ast$$\ast$ \hyperlink{structmodel_a81da41c8731f95de344a068d302eb336}{x}
+\item 
+double $\ast$ \hyperlink{structmodel_a623da3d1f5116fd4d66873b95eb2e720}{quadratic\+\_\+value}
+\item 
+int \hyperlink{structmodel_ac6ba8c1bc138143114cd331583f41387}{maxdim}
+\item 
+double \hyperlink{structmodel_a9aef7cc709fca4e03a021623ce6c7ae6}{bias}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Structure of a trained model. 
+
+Structure of a trained model. 
+
+\subsection{Field Documentation}
+\hypertarget{structmodel_a9aef7cc709fca4e03a021623ce6c7ae6}{}\label{structmodel_a9aef7cc709fca4e03a021623ce6c7ae6} 
+\index{model@{model}!bias@{bias}}
+\index{bias@{bias}!model@{model}}
+\subsubsection{\texorpdfstring{bias}{bias}}
+{\ttfamily double model\+::bias}
+
+The bias term of the classification function. \hypertarget{structmodel_ac5c18eca6ad32bc6da1f2a923965e66c}{}\label{structmodel_ac5c18eca6ad32bc6da1f2a923965e66c} 
+\index{model@{model}!Kgamma@{Kgamma}}
+\index{Kgamma@{Kgamma}!model@{model}}
+\subsubsection{\texorpdfstring{Kgamma}{Kgamma}}
+{\ttfamily double model\+::\+Kgamma}
+
+Gamma parameter of the kernel function. \hypertarget{structmodel_ac6ba8c1bc138143114cd331583f41387}{}\label{structmodel_ac6ba8c1bc138143114cd331583f41387} 
+\index{model@{model}!maxdim@{maxdim}}
+\index{maxdim@{maxdim}!model@{model}}
+\subsubsection{\texorpdfstring{maxdim}{maxdim}}
+{\ttfamily int model\+::maxdim}
+
+Number of dimensions of the dataset. \hypertarget{structmodel_a4877089d41daf2186482e0e6f900d65f}{}\label{structmodel_a4877089d41daf2186482e0e6f900d65f} 
+\index{model@{model}!n\+Elem@{n\+Elem}}
+\index{n\+Elem@{n\+Elem}!model@{model}}
+\subsubsection{\texorpdfstring{n\+Elem}{nElem}}
+{\ttfamily int model\+::n\+Elem}
+
+Number of features distinct than zero in the dataset. \hypertarget{structmodel_a3b73d79940bbdae365676c4fa56e96ea}{}\label{structmodel_a3b73d79940bbdae365676c4fa56e96ea} 
+\index{model@{model}!n\+S\+Vs@{n\+S\+Vs}}
+\index{n\+S\+Vs@{n\+S\+Vs}!model@{model}}
+\subsubsection{\texorpdfstring{n\+S\+Vs}{nSVs}}
+{\ttfamily int model\+::n\+S\+Vs}
+
+To tell if the datasets are sparse or not. \hypertarget{structmodel_a623da3d1f5116fd4d66873b95eb2e720}{}\label{structmodel_a623da3d1f5116fd4d66873b95eb2e720} 
+\index{model@{model}!quadratic\+\_\+value@{quadratic\+\_\+value}}
+\index{quadratic\+\_\+value@{quadratic\+\_\+value}!model@{model}}
+\subsubsection{\texorpdfstring{quadratic\+\_\+value}{quadratic\_value}}
+{\ttfamily double$\ast$ model\+::quadratic\+\_\+value}
+
+Array that contains the norm L2 of every support vector. \hypertarget{structmodel_ad00b5b9bbafcd18eb6367c90d9471231}{}\label{structmodel_ad00b5b9bbafcd18eb6367c90d9471231} 
+\index{model@{model}!sparse@{sparse}}
+\index{sparse@{sparse}!model@{model}}
+\subsubsection{\texorpdfstring{sparse}{sparse}}
+{\ttfamily int model\+::sparse}
+
+To tell if the datasets are sparse or not. \hypertarget{structmodel_a658dab89d4b4b1a5bd28cdfb4abafe39}{}\label{structmodel_a658dab89d4b4b1a5bd28cdfb4abafe39} 
+\index{model@{model}!weights@{weights}}
+\index{weights@{weights}!model@{model}}
+\subsubsection{\texorpdfstring{weights}{weights}}
+{\ttfamily double$\ast$ model\+::weights}
+
+The weight associated to every support vector. \hypertarget{structmodel_a81da41c8731f95de344a068d302eb336}{}\label{structmodel_a81da41c8731f95de344a068d302eb336} 
+\index{model@{model}!x@{x}}
+\index{x@{x}!model@{model}}
+\subsubsection{\texorpdfstring{x}{x}}
+{\ttfamily struct \hyperlink{structsvm__sample}{svm\+\_\+sample}$\ast$$\ast$ model\+::x}
+
+The support vectors. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+L\+I\+B\+I\+R\+W\+L\+S/include/\hyperlink{IOStructures_8h}{I\+O\+Structures.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,98 @@
+\hypertarget{PIRWLS-train_8h}{}\section{L\+I\+B\+I\+R\+W\+L\+S/include/\+P\+I\+R\+W\+L\+S-\/train.h File Reference}
+\label{PIRWLS-train_8h}\index{L\+I\+B\+I\+R\+W\+L\+S/include/\+P\+I\+R\+W\+L\+S-\/train.\+h@{L\+I\+B\+I\+R\+W\+L\+S/include/\+P\+I\+R\+W\+L\+S-\/train.\+h}}
+
+
+Functions to train a full S\+VM using the I\+R\+W\+LS algorithm.  
+
+
+{\ttfamily \#include \char`\"{}I\+O\+Structures.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int $\ast$ \hyperlink{PIRWLS-train_8h_a9e75aabe599f48c66cbda89320d68a71}{rpermute} (int n)
+\begin{DoxyCompactList}\small\item\em It crates a random permutation of n elements. \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{PIRWLS-train_8h_af736cb71af5e7e4cb062977793905f4d}{sub\+I\+R\+W\+LS} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, \hyperlink{structproperties}{properties} props, double $\ast$G\+IN, double $\ast$e, double $\ast$beta)
+\begin{DoxyCompactList}\small\item\em It uses the I\+R\+W\+LS procedure on a Working Set. \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{PIRWLS-train_8h_ad719770a7de382211555ba831af2ea28}{train\+F\+U\+LL} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, \hyperlink{structproperties}{properties} props)
+\begin{DoxyCompactList}\small\item\em It trains a full S\+VM with a training set. \end{DoxyCompactList}\item 
+void \hyperlink{PIRWLS-train_8h_ac4a62e1a98c35f9d7e8996d58fe48523}{print\+P\+I\+R\+W\+L\+S\+Instructions} ()
+\begin{DoxyCompactList}\small\item\em It shows P\+I\+R\+W\+L\+S-\/train command line instructions in the standard output. \end{DoxyCompactList}\item 
+\hyperlink{structproperties}{properties} \hyperlink{PIRWLS-train_8h_a661bbe4aa2899bb306b7b509296068a2}{parse\+Train\+P\+I\+R\+W\+L\+S\+Parameters} (int $\ast$argc, char $\ast$$\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em It parses input command line to extract the parameters. \end{DoxyCompactList}\item 
+\hyperlink{structmodel}{model} \hyperlink{PIRWLS-train_8h_aeaa2f3c1d0f757826017dae7a83d7f8a}{calculate\+P\+I\+R\+W\+L\+S\+Model} (\hyperlink{structproperties}{properties} props, \hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, double $\ast$beta)
+\begin{DoxyCompactList}\small\item\em It converts the result into a model struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions to train a full S\+VM using the I\+R\+W\+LS algorithm. 
+
+\begin{DoxyAuthor}{Author}
+Roberto Diaz Morales 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+23 Aug 2016 Functions to train a full S\+VM using the I\+R\+W\+LS algorithm. 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{PIRWLS-train_8h_aeaa2f3c1d0f757826017dae7a83d7f8a}{}\label{PIRWLS-train_8h_aeaa2f3c1d0f757826017dae7a83d7f8a} 
+\index{P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}!calculate\+P\+I\+R\+W\+L\+S\+Model@{calculate\+P\+I\+R\+W\+L\+S\+Model}}
+\index{calculate\+P\+I\+R\+W\+L\+S\+Model@{calculate\+P\+I\+R\+W\+L\+S\+Model}!P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}}
+\subsubsection{\texorpdfstring{calculate\+P\+I\+R\+W\+L\+S\+Model()}{calculatePIRWLSModel()}}
+{\ttfamily \hyperlink{structmodel}{model} calculate\+P\+I\+R\+W\+L\+S\+Model (\begin{DoxyParamCaption}\item[{\hyperlink{structproperties}{properties}}]{props,  }\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{dataset,  }\item[{double $\ast$}]{beta }\end{DoxyParamCaption})}
+
+
+
+It converts the result into a model struct. 
+
+It converts the result into a model struct. \hypertarget{PIRWLS-train_8h_a661bbe4aa2899bb306b7b509296068a2}{}\label{PIRWLS-train_8h_a661bbe4aa2899bb306b7b509296068a2} 
+\index{P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}!parse\+Train\+P\+I\+R\+W\+L\+S\+Parameters@{parse\+Train\+P\+I\+R\+W\+L\+S\+Parameters}}
+\index{parse\+Train\+P\+I\+R\+W\+L\+S\+Parameters@{parse\+Train\+P\+I\+R\+W\+L\+S\+Parameters}!P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}}
+\subsubsection{\texorpdfstring{parse\+Train\+P\+I\+R\+W\+L\+S\+Parameters()}{parseTrainPIRWLSParameters()}}
+{\ttfamily \hyperlink{structproperties}{properties} parse\+Train\+P\+I\+R\+W\+L\+S\+Parameters (\begin{DoxyParamCaption}\item[{int $\ast$}]{argc,  }\item[{char $\ast$$\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+It parses input command line to extract the parameters. 
+
+It parses input command line to extract the parameters. \hypertarget{PIRWLS-train_8h_ac4a62e1a98c35f9d7e8996d58fe48523}{}\label{PIRWLS-train_8h_ac4a62e1a98c35f9d7e8996d58fe48523} 
+\index{P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}!print\+P\+I\+R\+W\+L\+S\+Instructions@{print\+P\+I\+R\+W\+L\+S\+Instructions}}
+\index{print\+P\+I\+R\+W\+L\+S\+Instructions@{print\+P\+I\+R\+W\+L\+S\+Instructions}!P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}}
+\subsubsection{\texorpdfstring{print\+P\+I\+R\+W\+L\+S\+Instructions()}{printPIRWLSInstructions()}}
+{\ttfamily void print\+P\+I\+R\+W\+L\+S\+Instructions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+It shows P\+I\+R\+W\+L\+S-\/train command line instructions in the standard output. 
+
+It shows P\+I\+R\+W\+L\+S-\/train command line instructions in the standard output. \hypertarget{PIRWLS-train_8h_a9e75aabe599f48c66cbda89320d68a71}{}\label{PIRWLS-train_8h_a9e75aabe599f48c66cbda89320d68a71} 
+\index{P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}!rpermute@{rpermute}}
+\index{rpermute@{rpermute}!P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}}
+\subsubsection{\texorpdfstring{rpermute()}{rpermute()}}
+{\ttfamily int$\ast$ rpermute (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+It crates a random permutation of n elements. 
+
+It crates a random permutation of n elements. \hypertarget{PIRWLS-train_8h_af736cb71af5e7e4cb062977793905f4d}{}\label{PIRWLS-train_8h_af736cb71af5e7e4cb062977793905f4d} 
+\index{P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}!sub\+I\+R\+W\+LS@{sub\+I\+R\+W\+LS}}
+\index{sub\+I\+R\+W\+LS@{sub\+I\+R\+W\+LS}!P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}}
+\subsubsection{\texorpdfstring{sub\+I\+R\+W\+L\+S()}{subIRWLS()}}
+{\ttfamily double$\ast$ sub\+I\+R\+W\+LS (\begin{DoxyParamCaption}\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{dataset,  }\item[{\hyperlink{structproperties}{properties}}]{props,  }\item[{double $\ast$}]{G\+IN,  }\item[{double $\ast$}]{e,  }\item[{double $\ast$}]{beta }\end{DoxyParamCaption})}
+
+
+
+It uses the I\+R\+W\+LS procedure on a Working Set. 
+
+It uses the I\+R\+W\+LS procedure on a Working Set. \hypertarget{PIRWLS-train_8h_ad719770a7de382211555ba831af2ea28}{}\label{PIRWLS-train_8h_ad719770a7de382211555ba831af2ea28} 
+\index{P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}!train\+F\+U\+LL@{train\+F\+U\+LL}}
+\index{train\+F\+U\+LL@{train\+F\+U\+LL}!P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}}
+\subsubsection{\texorpdfstring{train\+F\+U\+L\+L()}{trainFULL()}}
+{\ttfamily double$\ast$ train\+F\+U\+LL (\begin{DoxyParamCaption}\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{dataset,  }\item[{\hyperlink{structproperties}{properties}}]{props }\end{DoxyParamCaption})}
+
+
+
+It trains a full S\+VM with a training set. 
+
+It trains a full S\+VM with a training set. 

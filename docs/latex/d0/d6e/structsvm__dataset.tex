@@ -1,0 +1,75 @@
+\hypertarget{structsvm__dataset}{}\section{svm\+\_\+dataset Struct Reference}
+\label{structsvm__dataset}\index{svm\+\_\+dataset@{svm\+\_\+dataset}}
+
+
+This structure represents a dataset.  
+
+
+
+
+{\ttfamily \#include $<$I\+O\+Structures.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{structsvm__dataset_a899bdc43cdfb5e7063e8d7d1787357b4}{l}
+\item 
+int \hyperlink{structsvm__dataset_a58e8012a38ef5ea1c642db1b8c06b8bc}{sparse}
+\item 
+int \hyperlink{structsvm__dataset_aec1d1ee62ef8204fe90d8c6b7a647177}{maxdim}
+\item 
+double $\ast$ \hyperlink{structsvm__dataset_a2bce5da2f59f28fe18eff3f92f92c011}{y}
+\item 
+struct \hyperlink{structsvm__sample}{svm\+\_\+sample} $\ast$$\ast$ \hyperlink{structsvm__dataset_ad3e266a07c610ed3f10df1bab30fd9e5}{x}
+\item 
+double $\ast$ \hyperlink{structsvm__dataset_a4b1ff8b06358c73f6b55ecae7516d01e}{quadratic\+\_\+value}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This structure represents a dataset. 
+
+This structure represents a dataset. 
+
+\subsection{Field Documentation}
+\hypertarget{structsvm__dataset_a899bdc43cdfb5e7063e8d7d1787357b4}{}\label{structsvm__dataset_a899bdc43cdfb5e7063e8d7d1787357b4} 
+\index{svm\+\_\+dataset@{svm\+\_\+dataset}!l@{l}}
+\index{l@{l}!svm\+\_\+dataset@{svm\+\_\+dataset}}
+\subsubsection{\texorpdfstring{l}{l}}
+{\ttfamily int svm\+\_\+dataset\+::l}
+
+If the dataset is labeled or not. \hypertarget{structsvm__dataset_aec1d1ee62ef8204fe90d8c6b7a647177}{}\label{structsvm__dataset_aec1d1ee62ef8204fe90d8c6b7a647177} 
+\index{svm\+\_\+dataset@{svm\+\_\+dataset}!maxdim@{maxdim}}
+\index{maxdim@{maxdim}!svm\+\_\+dataset@{svm\+\_\+dataset}}
+\subsubsection{\texorpdfstring{maxdim}{maxdim}}
+{\ttfamily int svm\+\_\+dataset\+::maxdim}
+
+The number of features of the dataset. \hypertarget{structsvm__dataset_a4b1ff8b06358c73f6b55ecae7516d01e}{}\label{structsvm__dataset_a4b1ff8b06358c73f6b55ecae7516d01e} 
+\index{svm\+\_\+dataset@{svm\+\_\+dataset}!quadratic\+\_\+value@{quadratic\+\_\+value}}
+\index{quadratic\+\_\+value@{quadratic\+\_\+value}!svm\+\_\+dataset@{svm\+\_\+dataset}}
+\subsubsection{\texorpdfstring{quadratic\+\_\+value}{quadratic\_value}}
+{\ttfamily double$\ast$ svm\+\_\+dataset\+::quadratic\+\_\+value}
+
+The L2 norm of every sample. \hypertarget{structsvm__dataset_a58e8012a38ef5ea1c642db1b8c06b8bc}{}\label{structsvm__dataset_a58e8012a38ef5ea1c642db1b8c06b8bc} 
+\index{svm\+\_\+dataset@{svm\+\_\+dataset}!sparse@{sparse}}
+\index{sparse@{sparse}!svm\+\_\+dataset@{svm\+\_\+dataset}}
+\subsubsection{\texorpdfstring{sparse}{sparse}}
+{\ttfamily int svm\+\_\+dataset\+::sparse}
+
+If the dataset is sparse or not. \hypertarget{structsvm__dataset_ad3e266a07c610ed3f10df1bab30fd9e5}{}\label{structsvm__dataset_ad3e266a07c610ed3f10df1bab30fd9e5} 
+\index{svm\+\_\+dataset@{svm\+\_\+dataset}!x@{x}}
+\index{x@{x}!svm\+\_\+dataset@{svm\+\_\+dataset}}
+\subsubsection{\texorpdfstring{x}{x}}
+{\ttfamily struct \hyperlink{structsvm__sample}{svm\+\_\+sample}$\ast$$\ast$ svm\+\_\+dataset\+::x}
+
+The samples. \hypertarget{structsvm__dataset_a2bce5da2f59f28fe18eff3f92f92c011}{}\label{structsvm__dataset_a2bce5da2f59f28fe18eff3f92f92c011} 
+\index{svm\+\_\+dataset@{svm\+\_\+dataset}!y@{y}}
+\index{y@{y}!svm\+\_\+dataset@{svm\+\_\+dataset}}
+\subsubsection{\texorpdfstring{y}{y}}
+{\ttfamily double$\ast$ svm\+\_\+dataset\+::y}
+
+The label of every sample. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+L\+I\+B\+I\+R\+W\+L\+S/include/\hyperlink{IOStructures_8h}{I\+O\+Structures.\+h}\end{DoxyCompactItemize}

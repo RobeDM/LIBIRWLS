@@ -89,8 +89,8 @@ typedef struct model{
  */
 
 typedef struct svm_sample{
-    int index; /**< The feature index. */   
-    double value; /**< The feature value. */   
+    int index;
+    double value;
 }svm_sample;
 
 
@@ -101,25 +101,19 @@ typedef struct svm_sample{
  */
 
 typedef struct svm_dataset{
-    int l; /**< If the dataset is labeled or not. */   
-    int sparse; /**< If the dataset is sparse or not. */   
-    int maxdim; /**< The number of features of the dataset. */   
-    double *y; /**< The label of every sample. */   
-    struct svm_sample **x; /**< The samples. */   
-    double *quadratic_value; /**< The L2 norm of every sample. */   
+    int l;
+    int sparse;
+    int maxdim;
+    double *y;
+    struct svm_sample **x;
+    double *quadratic_value;
 }svm_dataset;
 
 
 /**
  * @brief A comparator of two data.
  *
- * A function to compare two data and returns:
- *  * 1 if teh first argument is higher than the second one.
- *  * -1 if teh first argument is lower than the second one.
- *  * 0 if both arguments are equal.
- * @param a The first argument to compare.
- * @param b The second argument to compare.
- * @return The result of comparing a and b.
+ * A function to compare two data.
  */
 
 static int compare (const void * a, const void * b);
@@ -129,14 +123,6 @@ static int compare (const void * a, const void * b);
  * @brief It reads a file that contains a labeled dataset in libsvm format.
  *
  * It reads a file that contains a labeled dataset in libsvm format.
- * The format si the following one:
- * +1 1:5 7:2 15:6
- * +1 1:5 7:2 15:6 23:1
- * -1 2:4 3:2 10:6 11:4
- * ...
- *
- * @param filename A string with the name of the file that contains the dataset.
- * @return The struct with the dataset information.
  */
 
 svm_dataset readTrainFile(char filename[]);
@@ -146,14 +132,6 @@ svm_dataset readTrainFile(char filename[]);
  * @brief It reads a file that contains an unlabeled dataset in libsvm format.
  *
  * It reads a file that contains an unlabeled dataset in libsvm format.
- * The format si the following one:
- * 1:5 7:2 15:6
- * 1:5 7:2 15:6 23:1
- * 2:4 3:2 10:6 11:4
- * ...
- *
- * @param filename A string with the name of the file that contains the dataset.
- * @return The struct with the dataset information.
  */
 
 svm_dataset readUnlabeledFile(char filename[]);
@@ -162,9 +140,7 @@ svm_dataset readUnlabeledFile(char filename[]);
 /**
  * @brief It stores a trained model into a file.
  *
- * It stores the strut of a trained model into a file.
- * @param mod The struct with the model to store.
- * @param Output The name of the file.
+ * It stores a trained model into a file.
  */
 
 void storeModel(model * mod, FILE *Output);
@@ -173,8 +149,6 @@ void storeModel(model * mod, FILE *Output);
  * @brief It loads a trained model from a file.
  *
  * It loads a trained model from a file.
- * @param mod The pointer with the struct to load results.
- * @param Input The name of the file.
  */
 
 void readModel(model * mod, FILE *Input);
@@ -184,9 +158,6 @@ void readModel(model * mod, FILE *Input);
  * @brief It writes the content of a double array into a file.
  *
  * It writes the content of a double array into a file.
- * @param fileoutput The name of the file.
- * @param predictions The array with the information to save.
- * @param size The length of the array.
  */
 
 void writeOutput (char fileoutput[], double *predictions, int size);

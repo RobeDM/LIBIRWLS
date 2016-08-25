@@ -1,0 +1,62 @@
+\hypertarget{LIBIRWLS-predict_8h}{}\section{L\+I\+B\+I\+R\+W\+L\+S/include/\+L\+I\+B\+I\+R\+W\+L\+S-\/predict.h File Reference}
+\label{LIBIRWLS-predict_8h}\index{L\+I\+B\+I\+R\+W\+L\+S/include/\+L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S/include/\+L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}}
+
+
+Functions to classify data with a trained model.  
+
+
+{\ttfamily \#include \char`\"{}I\+O\+Structures.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double $\ast$ \hyperlink{LIBIRWLS-predict_8h_ae3fc6988def0487bb4bb47b759ba3d0b}{test} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, \hyperlink{structmodel}{model} mymodel, \hyperlink{structpredictProperties}{predict\+Properties} props)
+\begin{DoxyCompactList}\small\item\em Function to classify data in a labeled dataset and to obtain the accuracy. \end{DoxyCompactList}\item 
+void \hyperlink{LIBIRWLS-predict_8h_a53efcb64ca8e76d4a2cb65991189af91}{print\+Predict\+Instructions} ()
+\begin{DoxyCompactList}\small\item\em It shows the command line instructions in the standard output. \end{DoxyCompactList}\item 
+\hyperlink{structpredictProperties}{predict\+Properties} \hyperlink{LIBIRWLS-predict_8h_ad053dd367164b4b4b39a8f4ce31fe97f}{parse\+Predict\+Parameters} (int $\ast$argc, char $\ast$$\ast$$\ast$argv, int semiparametric)
+\begin{DoxyCompactList}\small\item\em It parses the prediction parameters from the command line. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions to classify data with a trained model. 
+
+\begin{DoxyAuthor}{Author}
+Roberto Diaz Morales 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+23 Aug 2016 Functions to classify data with a trained model. 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{LIBIRWLS-predict_8h_ad053dd367164b4b4b39a8f4ce31fe97f}{}\label{LIBIRWLS-predict_8h_ad053dd367164b4b4b39a8f4ce31fe97f} 
+\index{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}!parse\+Predict\+Parameters@{parse\+Predict\+Parameters}}
+\index{parse\+Predict\+Parameters@{parse\+Predict\+Parameters}!L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}}
+\subsubsection{\texorpdfstring{parse\+Predict\+Parameters()}{parsePredictParameters()}}
+{\ttfamily \hyperlink{structpredictProperties}{predict\+Properties} parse\+Predict\+Parameters (\begin{DoxyParamCaption}\item[{int $\ast$}]{argc,  }\item[{char $\ast$$\ast$$\ast$}]{argv,  }\item[{int}]{semiparametric }\end{DoxyParamCaption})}
+
+
+
+It parses the prediction parameters from the command line. 
+
+It parses the prediction parameters from the command line. \hypertarget{LIBIRWLS-predict_8h_a53efcb64ca8e76d4a2cb65991189af91}{}\label{LIBIRWLS-predict_8h_a53efcb64ca8e76d4a2cb65991189af91} 
+\index{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}!print\+Predict\+Instructions@{print\+Predict\+Instructions}}
+\index{print\+Predict\+Instructions@{print\+Predict\+Instructions}!L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}}
+\subsubsection{\texorpdfstring{print\+Predict\+Instructions()}{printPredictInstructions()}}
+{\ttfamily void print\+Predict\+Instructions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+It shows the command line instructions in the standard output. 
+
+It shows the command line instructions in the standard output. \hypertarget{LIBIRWLS-predict_8h_ae3fc6988def0487bb4bb47b759ba3d0b}{}\label{LIBIRWLS-predict_8h_ae3fc6988def0487bb4bb47b759ba3d0b} 
+\index{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}!test@{test}}
+\index{test@{test}!L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}}
+\subsubsection{\texorpdfstring{test()}{test()}}
+{\ttfamily double$\ast$ test (\begin{DoxyParamCaption}\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{dataset,  }\item[{\hyperlink{structmodel}{model}}]{mymodel,  }\item[{\hyperlink{structpredictProperties}{predict\+Properties}}]{props }\end{DoxyParamCaption})}
+
+
+
+Function to classify data in a labeled dataset and to obtain the accuracy. 
+
+Function to classify data in a labeled dataset and to obtain the accuracy. 

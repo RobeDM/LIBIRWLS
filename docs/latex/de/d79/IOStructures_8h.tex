@@ -1,0 +1,207 @@
+\hypertarget{IOStructures_8h}{}\section{L\+I\+B\+I\+R\+W\+L\+S/include/\+I\+O\+Structures.h File Reference}
+\label{IOStructures_8h}\index{L\+I\+B\+I\+R\+W\+L\+S/include/\+I\+O\+Structures.\+h@{L\+I\+B\+I\+R\+W\+L\+S/include/\+I\+O\+Structures.\+h}}
+
+
+Input and Output structures and procedures.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structproperties}{properties}
+\begin{DoxyCompactList}\small\item\em Structure to save training parameters. \end{DoxyCompactList}\item 
+struct \hyperlink{structpredictProperties}{predict\+Properties}
+\begin{DoxyCompactList}\small\item\em Structure to save predictions parameters. \end{DoxyCompactList}\item 
+struct \hyperlink{structmodel}{model}
+\begin{DoxyCompactList}\small\item\em Structure of a trained model. \end{DoxyCompactList}\item 
+struct \hyperlink{structsvm__sample}{svm\+\_\+sample}
+\begin{DoxyCompactList}\small\item\em This structure represents a single feature of a data. \end{DoxyCompactList}\item 
+struct \hyperlink{structsvm__dataset}{svm\+\_\+dataset}
+\begin{DoxyCompactList}\small\item\em This structure represents a dataset. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structproperties}{properties} \hyperlink{IOStructures_8h_a5bb83871c3e19eb625ad51296d4e532c}{properties}
+\begin{DoxyCompactList}\small\item\em Structure to save training parameters. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{structpredictProperties}{predict\+Properties} \hyperlink{IOStructures_8h_ae83124652adf1509cd37c4c18d028b96}{predict\+Properties}
+\begin{DoxyCompactList}\small\item\em Structure to save predictions parameters. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{structmodel}{model} \hyperlink{IOStructures_8h_ad81f7fac8a46794d554f6e95bd4a5003}{model}
+\begin{DoxyCompactList}\small\item\em Structure of a trained model. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{structsvm__sample}{svm\+\_\+sample} \hyperlink{IOStructures_8h_acbd8739518c9f448c33dfbff28f929fc}{svm\+\_\+sample}
+\begin{DoxyCompactList}\small\item\em This structure represents a single feature of a data. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{structsvm__dataset}{svm\+\_\+dataset} \hyperlink{IOStructures_8h_afbd46f4092eac424ab1434d941f1c766}{svm\+\_\+dataset}
+\begin{DoxyCompactList}\small\item\em This structure represents a dataset. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structsvm__dataset}{svm\+\_\+dataset} \hyperlink{IOStructures_8h_a8edb4ba3a828ebfd3f315794c1fa5936}{read\+Train\+File} (char filename\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em It reads a file that contains a labeled dataset in libsvm format. \end{DoxyCompactList}\item 
+\hyperlink{structsvm__dataset}{svm\+\_\+dataset} \hyperlink{IOStructures_8h_a55bd770c8b94fb281d835b8d96fab13d}{read\+Unlabeled\+File} (char filename\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em It reads a file that contains an unlabeled dataset in libsvm format. \end{DoxyCompactList}\item 
+void \hyperlink{IOStructures_8h_a7fb93dbcd30190fa467ca0ad00a99568}{store\+Model} (\hyperlink{structmodel}{model} $\ast$mod, F\+I\+LE $\ast$Output)
+\begin{DoxyCompactList}\small\item\em It stores a trained model into a file. \end{DoxyCompactList}\item 
+void \hyperlink{IOStructures_8h_a39db6a02819bd37baf33f195ab81d02e}{read\+Model} (\hyperlink{structmodel}{model} $\ast$mod, F\+I\+LE $\ast$Input)
+\begin{DoxyCompactList}\small\item\em It loads a trained model from a file. \end{DoxyCompactList}\item 
+void \hyperlink{IOStructures_8h_a1d182f217a275e4236bc3ef5f9904895}{write\+Output} (char fileoutput\mbox{[}$\,$\mbox{]}, double $\ast$predictions, int size)
+\begin{DoxyCompactList}\small\item\em It writes the content of a double array into a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Input and Output structures and procedures. 
+
+\begin{DoxyAuthor}{Author}
+Roberto Diaz Morales 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+23 Aug 2016 Input and Output structures and procedures. 
+\end{DoxyDate}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{IOStructures_8h_ad81f7fac8a46794d554f6e95bd4a5003}{}\label{IOStructures_8h_ad81f7fac8a46794d554f6e95bd4a5003} 
+\index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!model@{model}}
+\index{model@{model}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
+\subsubsection{\texorpdfstring{model}{model}}
+{\ttfamily typedef struct \hyperlink{structmodel}{model} \hyperlink{structmodel}{model}}
+
+
+
+Structure of a trained model. 
+
+Structure of a trained model. \hypertarget{IOStructures_8h_ae83124652adf1509cd37c4c18d028b96}{}\label{IOStructures_8h_ae83124652adf1509cd37c4c18d028b96} 
+\index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!predict\+Properties@{predict\+Properties}}
+\index{predict\+Properties@{predict\+Properties}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
+\subsubsection{\texorpdfstring{predict\+Properties}{predictProperties}}
+{\ttfamily typedef struct \hyperlink{structpredictProperties}{predict\+Properties} \hyperlink{structpredictProperties}{predict\+Properties}}
+
+
+
+Structure to save predictions parameters. 
+
+Structure to save prediction parameters. \hypertarget{IOStructures_8h_a5bb83871c3e19eb625ad51296d4e532c}{}\label{IOStructures_8h_a5bb83871c3e19eb625ad51296d4e532c} 
+\index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!properties@{properties}}
+\index{properties@{properties}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
+\subsubsection{\texorpdfstring{properties}{properties}}
+{\ttfamily typedef struct \hyperlink{structproperties}{properties} \hyperlink{structproperties}{properties}}
+
+
+
+Structure to save training parameters. 
+
+Structure to save training parameters. \hypertarget{IOStructures_8h_afbd46f4092eac424ab1434d941f1c766}{}\label{IOStructures_8h_afbd46f4092eac424ab1434d941f1c766} 
+\index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!svm\+\_\+dataset@{svm\+\_\+dataset}}
+\index{svm\+\_\+dataset@{svm\+\_\+dataset}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
+\subsubsection{\texorpdfstring{svm\+\_\+dataset}{svm\_dataset}}
+{\ttfamily typedef struct \hyperlink{structsvm__dataset}{svm\+\_\+dataset} \hyperlink{structsvm__dataset}{svm\+\_\+dataset}}
+
+
+
+This structure represents a dataset. 
+
+This structure represents a dataset. \hypertarget{IOStructures_8h_acbd8739518c9f448c33dfbff28f929fc}{}\label{IOStructures_8h_acbd8739518c9f448c33dfbff28f929fc} 
+\index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!svm\+\_\+sample@{svm\+\_\+sample}}
+\index{svm\+\_\+sample@{svm\+\_\+sample}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
+\subsubsection{\texorpdfstring{svm\+\_\+sample}{svm\_sample}}
+{\ttfamily typedef struct \hyperlink{structsvm__sample}{svm\+\_\+sample} \hyperlink{structsvm__sample}{svm\+\_\+sample}}
+
+
+
+This structure represents a single feature of a data. 
+
+This structure represents a single feature of a data. 
+
+\subsection{Function Documentation}
+\hypertarget{IOStructures_8h_a39db6a02819bd37baf33f195ab81d02e}{}\label{IOStructures_8h_a39db6a02819bd37baf33f195ab81d02e} 
+\index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!read\+Model@{read\+Model}}
+\index{read\+Model@{read\+Model}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
+\subsubsection{\texorpdfstring{read\+Model()}{readModel()}}
+{\ttfamily void read\+Model (\begin{DoxyParamCaption}\item[{\hyperlink{structmodel}{model} $\ast$}]{mod,  }\item[{F\+I\+LE $\ast$}]{Input }\end{DoxyParamCaption})}
+
+
+
+It loads a trained model from a file. 
+
+It loads a trained model from a file. 
+\begin{DoxyParams}{Parameters}
+{\em mod} & The pointer with the struct to load results. \\
+\hline
+{\em Input} & The name of the file. \\
+\hline
+\end{DoxyParams}
+\hypertarget{IOStructures_8h_a8edb4ba3a828ebfd3f315794c1fa5936}{}\label{IOStructures_8h_a8edb4ba3a828ebfd3f315794c1fa5936} 
+\index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!read\+Train\+File@{read\+Train\+File}}
+\index{read\+Train\+File@{read\+Train\+File}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
+\subsubsection{\texorpdfstring{read\+Train\+File()}{readTrainFile()}}
+{\ttfamily \hyperlink{structsvm__dataset}{svm\+\_\+dataset} read\+Train\+File (\begin{DoxyParamCaption}\item[{char}]{filename\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+It reads a file that contains a labeled dataset in libsvm format. 
+
+It reads a file that contains a labeled dataset in libsvm format. The format si the following one\+: +1 1\+:5 7\+:2 15\+:6 +1 1\+:5 7\+:2 15\+:6 23\+:1 -\/1 2\+:4 3\+:2 10\+:6 11\+:4 ...
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & A string with the name of the file that contains the dataset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The struct with the dataset information. 
+\end{DoxyReturn}
+\hypertarget{IOStructures_8h_a55bd770c8b94fb281d835b8d96fab13d}{}\label{IOStructures_8h_a55bd770c8b94fb281d835b8d96fab13d} 
+\index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!read\+Unlabeled\+File@{read\+Unlabeled\+File}}
+\index{read\+Unlabeled\+File@{read\+Unlabeled\+File}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
+\subsubsection{\texorpdfstring{read\+Unlabeled\+File()}{readUnlabeledFile()}}
+{\ttfamily \hyperlink{structsvm__dataset}{svm\+\_\+dataset} read\+Unlabeled\+File (\begin{DoxyParamCaption}\item[{char}]{filename\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+It reads a file that contains an unlabeled dataset in libsvm format. 
+
+It reads a file that contains an unlabeled dataset in libsvm format. The format si the following one\+: 1\+:5 7\+:2 15\+:6 1\+:5 7\+:2 15\+:6 23\+:1 2\+:4 3\+:2 10\+:6 11\+:4 ...
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & A string with the name of the file that contains the dataset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The struct with the dataset information. 
+\end{DoxyReturn}
+\hypertarget{IOStructures_8h_a7fb93dbcd30190fa467ca0ad00a99568}{}\label{IOStructures_8h_a7fb93dbcd30190fa467ca0ad00a99568} 
+\index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!store\+Model@{store\+Model}}
+\index{store\+Model@{store\+Model}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
+\subsubsection{\texorpdfstring{store\+Model()}{storeModel()}}
+{\ttfamily void store\+Model (\begin{DoxyParamCaption}\item[{\hyperlink{structmodel}{model} $\ast$}]{mod,  }\item[{F\+I\+LE $\ast$}]{Output }\end{DoxyParamCaption})}
+
+
+
+It stores a trained model into a file. 
+
+It stores the strut of a trained model into a file. 
+\begin{DoxyParams}{Parameters}
+{\em mod} & The struct with the model to store. \\
+\hline
+{\em Output} & The name of the file. \\
+\hline
+\end{DoxyParams}
+\hypertarget{IOStructures_8h_a1d182f217a275e4236bc3ef5f9904895}{}\label{IOStructures_8h_a1d182f217a275e4236bc3ef5f9904895} 
+\index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!write\+Output@{write\+Output}}
+\index{write\+Output@{write\+Output}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
+\subsubsection{\texorpdfstring{write\+Output()}{writeOutput()}}
+{\ttfamily void write\+Output (\begin{DoxyParamCaption}\item[{char}]{fileoutput\mbox{[}$\,$\mbox{]},  }\item[{double $\ast$}]{predictions,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+It writes the content of a double array into a file. 
+
+It writes the content of a double array into a file. 
+\begin{DoxyParams}{Parameters}
+{\em fileoutput} & The name of the file. \\
+\hline
+{\em predictions} & The array with the information to save. \\
+\hline
+{\em size} & The length of the array. \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,50 @@
+\hypertarget{kernels_8h}{}\section{L\+I\+B\+I\+R\+W\+L\+S/include/kernels.h File Reference}
+\label{kernels_8h}\index{L\+I\+B\+I\+R\+W\+L\+S/include/kernels.\+h@{L\+I\+B\+I\+R\+W\+L\+S/include/kernels.\+h}}
+
+
+kernel function of non linear S\+VM.  
+
+
+{\ttfamily \#include \char`\"{}I\+O\+Structures.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{kernels_8h_aef79c6ac1742e54bec17d9fd80cda321}{kernel} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, int index1, int index2, \hyperlink{structproperties}{properties} props)
+\begin{DoxyCompactList}\small\item\em Kernel function among two elements of the dataset. \end{DoxyCompactList}\item 
+double \hyperlink{kernels_8h_afeb0c5c6c8105ff0aec7f01ef47bed32}{kernel\+Test} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, int index1, \hyperlink{structmodel}{model} mymodel, int index2)
+\begin{DoxyCompactList}\small\item\em Kernel function among two elements of two different datasets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+kernel function of non linear S\+VM. 
+
+\begin{DoxyAuthor}{Author}
+Roberto Diaz Morales 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+23 Aug 2016 Implements the kernel function to use in the non linear S\+VM. 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{kernels_8h_aef79c6ac1742e54bec17d9fd80cda321}{}\label{kernels_8h_aef79c6ac1742e54bec17d9fd80cda321} 
+\index{kernels.\+h@{kernels.\+h}!kernel@{kernel}}
+\index{kernel@{kernel}!kernels.\+h@{kernels.\+h}}
+\subsubsection{\texorpdfstring{kernel()}{kernel()}}
+{\ttfamily double kernel (\begin{DoxyParamCaption}\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{dataset,  }\item[{int}]{index1,  }\item[{int}]{index2,  }\item[{\hyperlink{structproperties}{properties}}]{props }\end{DoxyParamCaption})}
+
+
+
+Kernel function among two elements of the dataset. 
+
+This function returns the kernel function among two elements of the dataset. \hypertarget{kernels_8h_afeb0c5c6c8105ff0aec7f01ef47bed32}{}\label{kernels_8h_afeb0c5c6c8105ff0aec7f01ef47bed32} 
+\index{kernels.\+h@{kernels.\+h}!kernel\+Test@{kernel\+Test}}
+\index{kernel\+Test@{kernel\+Test}!kernels.\+h@{kernels.\+h}}
+\subsubsection{\texorpdfstring{kernel\+Test()}{kernelTest()}}
+{\ttfamily double kernel\+Test (\begin{DoxyParamCaption}\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{dataset,  }\item[{int}]{index1,  }\item[{\hyperlink{structmodel}{model}}]{mymodel,  }\item[{int}]{index2 }\end{DoxyParamCaption})}
+
+
+
+Kernel function among two elements of two different datasets. 
+
+This function returns the kernel function among two elements of two different datasets. 
