@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['readmodel',['readModel',['../de/d79/IOStructures_8h.html#a39db6a02819bd37baf33f195ab81d02e',1,'IOStructures.c']]],
-  ['readtrainfile',['readTrainFile',['../de/d79/IOStructures_8h.html#a8edb4ba3a828ebfd3f315794c1fa5936',1,'IOStructures.c']]],
-  ['readunlabeledfile',['readUnlabeledFile',['../de/d79/IOStructures_8h.html#a55bd770c8b94fb281d835b8d96fab13d',1,'IOStructures.c']]],
-  ['rpermute',['rpermute',['../df/d51/PIRWLS-train_8h.html#a9e75aabe599f48c66cbda89320d68a71',1,'PIRWLS-train.c']]]
+  ['writeoutput',['writeOutput',['../de/d79/IOStructures_8h.html#a1d182f217a275e4236bc3ef5f9904895',1,'IOStructures.h']]]
 ];

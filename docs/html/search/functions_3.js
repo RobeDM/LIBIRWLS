@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['getsubmatrix',['getSubMatrix',['../d0/d98/ParallelAlgorithms_8h.html#abc5ce35fa5e4a39916b37ec82708c7ee',1,'ParallelAlgorithms.c']]]
+  ['kernel',['kernel',['../d0/d01/kernels_8h.html#aef79c6ac1742e54bec17d9fd80cda321',1,'kernels.h']]],
+  ['kerneltest',['kernelTest',['../d0/d01/kernels_8h.html#afeb0c5c6c8105ff0aec7f01ef47bed32',1,'kernels.h']]]
 ];

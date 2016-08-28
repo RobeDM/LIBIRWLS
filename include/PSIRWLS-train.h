@@ -39,6 +39,8 @@
  * @brief Sparse Greedy Matrix Approximation algorithm
  *
  * Sparse Greedy Matrix Approximation algorithm to select the basis elements of the semi parametric model.
+ * @param dataset The training set.
+ * @param props The struct with the training parameters.
  */
 
 int* SGMA(svm_dataset dataset,properties props);
@@ -47,6 +49,10 @@ int* SGMA(svm_dataset dataset,properties props);
  * @brief Iterative Re-Weighted Least Squares Algorithm.
  *
  * IRWLS procedure to obtain the weights of the semi parametric model.
+ * @param dataset The training set.
+ * @param indexes The indexes of the centroids selected by the SGMA algorithm.
+ * @param props The struct with the training parameters.
+ * @return The weights of every centroid.
  */
 
 double* IRWLSpar(svm_dataset dataset, int* indexes,properties props);
@@ -54,7 +60,7 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props);
 
 
 /**
- * @brief It shows PSIRWLS-train command line instructions in the standard output.
+ * @brief Print Instructions.
  *
  *  It shows PSIRWLS-train command line instructions in the standard output.
  */
@@ -63,17 +69,26 @@ void printPSIRWLSInstructions() ;
 
 
 /**
- * @brief It parses input command line to extract the parameters.
+ * @brief It parses input command line to extract the parameters of the PSIRWLS algorithm.
  *
  * It parses input command line to extract the parameters.
+ * @param argc The number of words of the command line.
+ * @param argv The list of words of the command line.
+ * @return A struct that contains the values of the training parameters of the PSIRWLS algorithm.
  */
 
 properties parseTrainParameters(int* argc, char*** argv);
 
 /**
- * @brief It converts the result into a model strut.
+ * @brief It converts the result of the PSIRWLS algorithm into a model struct.
  *
- * It converts the result into a model strut.
+ * It converts the result into a model struct.
+ *
+ * @param props The training parameters.
+ * @param dataset The training set.
+ * @param centroids of the selected centroids by the SGMA algorithm.
+ * @param beta The weights of every centroid obtained with the IRWLS algorithm.
+ * @return The struct that storages all the information of the classifier.
  */
 
 model calculatePSIRWLSModel(properties props, svm_dataset dataset, int *centroids, double * beta );

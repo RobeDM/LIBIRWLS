@@ -20,7 +20,21 @@
  ============================================================================
  */
 
-
+/**
+ * @brief Implementation of the training functions of the PSIRWLS algorithm.
+ *
+ * See PSIRWLS-train.h for a detailed description of its functions and parameters.
+ * 
+ * For a detailed description of the algorithm and its parameters read the following paper:
+ *
+ * Díaz-Morales, R., & Navia-Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-186.
+ *
+ * @file PSIRWLS-train.c
+ * @author Roberto Diaz Morales
+ * @date 23 Aug 2016
+ * @see PSIRWLS-train.h
+ * 
+ */
 
 #include <omp.h>
 #include <stdio.h>
@@ -41,6 +55,16 @@
 
 #include "../include/PSIRWLS-train.h"
 
+/**
+ * @brief Sparse Greedy Matrix Approximation algorithm
+ *
+ * Sparse Greedy Matrix Approximation algorithm to select the basis elements of the semi parametric model. For a detailed description read:
+ *
+ * Díaz-Morales, R., & Navia-Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-186.
+ *
+ * @param dataset The training set.
+ * @param props The struct with the training parameters.
+ */
 
 int* SGMA(svm_dataset dataset,properties props){
 
@@ -228,7 +252,18 @@ int* SGMA(svm_dataset dataset,properties props){
     return centroids;
 }
 
-
+/**
+ * @brief Iterative Re-Weighted Least Squares Algorithm.
+ *
+ * IRWLS procedure to obtain the weights of the semi parametric model. For a detailed description of the algorithm and parallelization:
+ *
+ * Díaz-Morales, R., & Navia-Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-186.
+ *
+ * @param dataset The training set.
+ * @param indexes The indexes of the centroids selected by the SGMA algorithm.
+ * @param props The struct with the training parameters.
+ * @return The weights of every centroid.
+ */
 
 double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
 
@@ -405,6 +440,18 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
     return betaBest;
 }
 
+/**
+ * @brief It converts the result into a model struct.
+ *
+ * After the training of a SVM using the PSIRWLS procedure, this function build a struct with the information and returns it.
+ *
+ * @param props The training parameters.
+ * @param dataset The training set.
+ * @param centroids of the selected centroids by the SGMA algorithm.
+ * @param beta The weights of every centroid obtained with the IRWLS algorithm.
+ * @return The struct that storages all the information of the classifier.
+ */
+
 model calculatePSIRWLSModel(properties props, svm_dataset dataset, int *centroids, double * beta ){
     model classifier;
     classifier.Kgamma = props.Kgamma;
@@ -456,6 +503,15 @@ model calculatePSIRWLSModel(properties props, svm_dataset dataset, int *centroid
     return classifier;
 }
 
+/**
+ * @brief It parses input command line to extract the parameters of the PSIRWLS algorithm.
+ *
+ * It parses input command line to extract the parameters.
+ * @param argc The number of words of the command line.
+ * @param argv The list of words of the command line.
+ * @return A struct that contains the values of the training parameters of the PSIRWLS algorithm.
+ */
+
 properties parseTrainParameters(int* argc, char*** argv) {
 
     properties props;
@@ -504,6 +560,12 @@ properties parseTrainParameters(int* argc, char*** argv) {
 
 }
 
+/**
+ * @brief Print Instructios.
+ *
+ *  It shows PSIRWLS-train command line instructions in the standard output.
+ */
+
 void printPSIRWLSInstructions() {
     fprintf(stderr, "PSIRWLS-train: This software train the sparse SVM on the given training set ");
     fprintf(stderr, "and generages a model for futures prediction use.\n\n");
@@ -515,6 +577,10 @@ void printPSIRWLSInstructions() {
     fprintf(stderr, "  -t Threads: Number of threads (default 1)\n");
     fprintf(stderr, "  -s Classifier size: Size of the classifier (default 1)\n");
 }
+
+/**
+ * @brief Is the main function to build the executable file to train a SVM using the PSIRWLS procedure.
+ */
   
 int main(int argc, char** argv)
 {

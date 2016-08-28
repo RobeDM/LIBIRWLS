@@ -2,7 +2,7 @@
 \label{ParallelAlgorithms_8h}\index{L\+I\+B\+I\+R\+W\+L\+S/include/\+Parallel\+Algorithms.\+h@{L\+I\+B\+I\+R\+W\+L\+S/include/\+Parallel\+Algorithms.\+h}}
 
 
-Functions to perform some parallel linear algebra tasks.  
+Functions to perform parallel linear algebra tasks.  
 
 
 \subsection*{Functions}
@@ -12,93 +12,37 @@ void \hyperlink{ParallelAlgorithms_8h_aa6df8c3f4f455d5692b3cb220fc205c7}{init\+M
 \begin{DoxyCompactList}\small\item\em Function to allocate auxiliar memory to be used in the algebra operations. \end{DoxyCompactList}\item 
 void \hyperlink{ParallelAlgorithms_8h_a2f2bfa1b3a76a0a0bb0c1db793205ff2}{update\+Memory} (int Threads, int size)
 \begin{DoxyCompactList}\small\item\em Function to update auxiliar memory to be used in the algebra operations. \end{DoxyCompactList}\item 
+void \hyperlink{ParallelAlgorithms_8h_abc5ce35fa5e4a39916b37ec82708c7ee}{get\+Sub\+Matrix} (double $\ast$matrix, int size1, int size2, int O1, int O2, double $\ast$A, int size3, int size4, int n\+Cores)
+\begin{DoxyCompactList}\small\item\em This function saves a piece of a matrix in the auxiliar memory. \end{DoxyCompactList}\item 
+void \hyperlink{ParallelAlgorithms_8h_a99121d09a1719aa7f13fc1564adbf0f8}{put\+Sub\+Matrix} (double $\ast$matrix, int size1, int size2, int O1, int O2, double $\ast$A, int size3, int size4, int n\+Cores)
+\begin{DoxyCompactList}\small\item\em This function loads a piece of a matrix in the auxiliar memory and storage it in a matrix. \end{DoxyCompactList}\item 
 void \hyperlink{ParallelAlgorithms_8h_aedc9a05cc25e789d22135eda90b8d22c}{Parallel\+Chol} (double $\ast$matrix, int r, int c, int ro, int co, int n, int n\+Cores, int deep)
-\begin{DoxyCompactList}\small\item\em Main function to perform a parallel cholesky factorization. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_ae3a4c3d9072c8ea143e92c2234b8d814}{Chol} (double $\ast$matrix, int r, int c, int ro, int co, int n, int n\+Cores, int num\+Th, int deep, int pos\+Ini, double $\ast$memaux, int block\+Size)
-\begin{DoxyCompactList}\small\item\em Auxiliar function to perform a parallel cholesky factorization. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Main function that performs a parallel cholesky factorization. \end{DoxyCompactList}\item 
 void \hyperlink{ParallelAlgorithms_8h_acd578bbef8ed7d2c5b301d858d6e54cf}{Parallel\+Linear\+System} (double $\ast$matrix1, int r1, int c1, int ro1, int co1, double $\ast$matrix2, int r2, int c2, int ro2, int co2, int n, int m, double $\ast$result, int rr, int cr, int ror, int cor, int n\+Cores)
 \begin{DoxyCompactList}\small\item\em Main function to solve a linear system in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_a0f835d889b5244f5cd8728703df7f0ca}{Linear\+System} (double $\ast$matrix1, int r1, int c1, int ro1, int co1, double $\ast$matrix2, int r2, int c2, int ro2, int co2, int n, int m, double $\ast$result, int rr, int cr, int ror, int cor, int n\+Cores, int num\+Th, int pos\+Ini, double $\ast$memaux, int block\+Size)
-\begin{DoxyCompactList}\small\item\em Auxiliar function to solve a linear system in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_ab91f4f6dad78e2d76b4a0dc512ccbb44}{Diag\+Inversion} (double $\ast$matrix, int r, int c, int ro, int co, int n, int n\+Cores, int pos\+Ini, int num\+Th)
-\begin{DoxyCompactList}\small\item\em This function solves a triangular matrix inverse in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_a1c6ae04648f0659817f49834bf47343c}{Inversion\+N\+L\+Products} (double $\ast$matrix, int r, int c, int ro, int co, int n, int n\+Cores, int pos\+Ini, int deep, int num\+Th, double $\ast$memaux, int block\+Size)
-\begin{DoxyCompactList}\small\item\em This function performs a product of a normal matrix and a lower triangular matrix in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_a805b141facc5279c9e144827b65287ec}{Inversion\+L\+N\+Products} (double $\ast$matrix, int r, int c, int ro, int co, int n, int n\+Cores, int pos\+Ini, int deep, int num\+Th, double $\ast$memaux, int block\+Size)
-\begin{DoxyCompactList}\small\item\em This function performs a product of a lower triangular matrix and a matrix in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_ad5c9d568f3f1916204159b0d366aae9e}{Triangle\+Inversion} (double $\ast$matrix, int r, int c, int ro, int co, int n, int n\+Cores, int pos\+Ini, int num\+Th, double $\ast$memaux, int block\+Size)
-\begin{DoxyCompactList}\small\item\em This function performs a lower triangular matrix inverse in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_aefc7946219da1395b1a990f563acf231}{N\+N\+Product} (double $\ast$m1, int r1, int ro1, int c1, int co1, double $\ast$m2, int r2, int ro2, int c2, int co2, int n1, int n2, int n3, double K1, double K2, double $\ast$result, int rr, int ror, int cr, int cor, int n\+Cores, int pos\+Ini, int num\+Th, int orientation)
-\begin{DoxyCompactList}\small\item\em This function performs a matrix product in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_a843f88b364d956ab64e9a63816fd5b75}{Move\+Matrix} (double $\ast$m1, int r1, int ro1, int c1, int co1, double $\ast$m2, int r2, int ro2, int c2, int co2, int n1, int n2, int n\+Cores, int pos\+Ini, int num\+Th)
-\begin{DoxyCompactList}\small\item\em This function moves a piece of matrix from a matrix to another. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_ad1b6192758d1373a5ac1b370b0d65f9a}{T\+N\+N\+Product} (double $\ast$m1, int r1, int ro1, int c1, int co1, double $\ast$m2, int r2, int ro2, int c2, int co2, int n1, int n2, int n3, double K1, double K2, double $\ast$result, int rr, int ror, int cr, int cor, int n\+Cores, int pos\+Ini, int num\+Th)
-\begin{DoxyCompactList}\small\item\em This function performs a product of the transpose of a matrix and another matrix in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_a9f15f4e0cb27a5d957786bafc4e9bb5d}{N\+N\+T\+Product} (double $\ast$m1, int r1, int ro1, int c1, int co1, double $\ast$m2, int r2, int ro2, int c2, int co2, int n1, int n2, int n3, double K1, double K2, double $\ast$result, int rr, int ror, int cr, int cor, int n\+Cores, int pos\+Ini, int num\+Th)
-\begin{DoxyCompactList}\small\item\em This function performs a product of a matrix and the transpose of another matrix in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_ada2c9285b20b81bb3cac0716bd0fd906}{A\+A\+T\+Product} (double $\ast$m1, int r1, int ro1, int c1, int co1, int n1, int n2, double K1, double K2, double $\ast$result, int rr, int ror, int cr, int cor, int n\+Cores, int pos\+Ini, int num\+Th)
-\begin{DoxyCompactList}\small\item\em This function performs a product of a matrix and its transpose in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_ade5849eee34cf386bd533a33a2e7ddfa}{L\+N\+Product} (double $\ast$m1, int r1, int ro1, int c1, int co1, double $\ast$m2, int r2, int ro2, int c2, int co2, int n1, int n2, double K1, double $\ast$result, int rr, int ror, int cr, int cor, int n\+Cores, int pos\+Ini, int num\+Th)
-\begin{DoxyCompactList}\small\item\em This function performs a product of a lower triangular matrix and another matrix in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_aee7af821f7a4814ac0dd093c3e60d16c}{L\+T\+N\+Product} (double $\ast$m1, int r1, int ro1, int c1, int co1, double $\ast$m2, int r2, int ro2, int c2, int co2, int n1, int n2, double K1, double $\ast$result, int rr, int ror, int cr, int cor, int n\+Cores, int pos\+Ini, int num\+Th)
-\begin{DoxyCompactList}\small\item\em This function performs a product of the transpose of a lower triangular matrix and another matrix in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_a19c96768bea45dc0da5fdd2de9d9f41e}{N\+L\+Product} (double $\ast$m1, int r1, int ro1, int c1, int co1, double $\ast$m2, int r2, int ro2, int c2, int co2, int n1, int n2, double K1, double $\ast$result, int rr, int ror, int cr, int cor, int n\+Cores, int pos\+Ini, int num\+Th)
-\begin{DoxyCompactList}\small\item\em This function performs a product of a matrix and a lower triangular matrix in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_a7ac6bfe83efa8111d10d749923584b6a}{N\+L\+T\+Product} (double $\ast$m1, int r1, int ro1, int c1, int co1, double $\ast$m2, int r2, int ro2, int c2, int co2, int n1, int n2, double K1, double $\ast$result, int rr, int ror, int cr, int cor, int n\+Cores, int pos\+Ini, int num\+Th)
-\begin{DoxyCompactList}\small\item\em This function performs a product of a matrix and the transpose of a lower triangular matrix in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_abc5ce35fa5e4a39916b37ec82708c7ee}{get\+Sub\+Matrix} (double $\ast$matrix, int size1, int size2, int O1, int O2, double $\ast$A, int size3, int size4, int n\+Cores)
-\begin{DoxyCompactList}\small\item\em This function copy a piece of a matrix in parallel. \end{DoxyCompactList}\item 
-void \hyperlink{ParallelAlgorithms_8h_a99121d09a1719aa7f13fc1564adbf0f8}{put\+Sub\+Matrix} (double $\ast$matrix, int size1, int size2, int O1, int O2, double $\ast$A, int size3, int size4, int n\+Cores)
-\begin{DoxyCompactList}\small\item\em This function replace a piece of a matrix in parallel. \end{DoxyCompactList}\item 
 void \hyperlink{ParallelAlgorithms_8h_a043ebcb9d7b0843551be9bda4a518f61}{Parallel\+Vector\+MatrixT} (double $\ast$m1, int size, double $\ast$m2, double $\ast$result, int num\+Threads)
-\begin{DoxyCompactList}\small\item\em This function performs a product of a vector and the transpose of a matrix in parallel. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This function performs a product of a vector and the transpose of a square matrix in parallel. \end{DoxyCompactList}\item 
 void \hyperlink{ParallelAlgorithms_8h_aa173cc47a2219bbaff08572bab6de056}{Parallel\+Vector\+Matrix} (double $\ast$m1, int size, double $\ast$m2, double $\ast$result, int num\+Threads)
-\begin{DoxyCompactList}\small\item\em This function performs a vector matrix product in parallel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This function performs a product of a vector and a square matrix in parallel. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Functions to perform some parallel linear algebra tasks. 
+Functions to perform parallel linear algebra tasks. 
+
+Parallel procedures to solve linear systems, cholesky factorization, matrix products or triangular matrix inversion.
+
+This library also contains many auxiliar functions that are not detailed here with the goal of obtained a readable documentation. Their are only designed to be called by the main functions described here. However, that functions are detailed described in the source code.
 
 \begin{DoxyAuthor}{Author}
 Roberto Diaz Morales 
 \end{DoxyAuthor}
 \begin{DoxyDate}{Date}
-23 Aug 2016 Parallel procedures to solve linear systems, cholesky factorization, matrix products or triangular matrix inversion. 
+23 Aug 2016 
 \end{DoxyDate}
 
 
 \subsection{Function Documentation}
-\hypertarget{ParallelAlgorithms_8h_ada2c9285b20b81bb3cac0716bd0fd906}{}\label{ParallelAlgorithms_8h_ada2c9285b20b81bb3cac0716bd0fd906} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!A\+A\+T\+Product@{A\+A\+T\+Product}}
-\index{A\+A\+T\+Product@{A\+A\+T\+Product}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{A\+A\+T\+Product()}{AATProduct()}}
-{\ttfamily void A\+A\+T\+Product (\begin{DoxyParamCaption}\item[{double $\ast$}]{m1,  }\item[{int}]{r1,  }\item[{int}]{ro1,  }\item[{int}]{c1,  }\item[{int}]{co1,  }\item[{int}]{n1,  }\item[{int}]{n2,  }\item[{double}]{K1,  }\item[{double}]{K2,  }\item[{double $\ast$}]{result,  }\item[{int}]{rr,  }\item[{int}]{ror,  }\item[{int}]{cr,  }\item[{int}]{cor,  }\item[{int}]{n\+Cores,  }\item[{int}]{pos\+Ini,  }\item[{int}]{num\+Th }\end{DoxyParamCaption})}
-
-
-
-This function performs a product of a matrix and its transpose in parallel. 
-
-This function performs a product of a matrix and its transpose in parallel. \hypertarget{ParallelAlgorithms_8h_ae3a4c3d9072c8ea143e92c2234b8d814}{}\label{ParallelAlgorithms_8h_ae3a4c3d9072c8ea143e92c2234b8d814} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!Chol@{Chol}}
-\index{Chol@{Chol}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{Chol()}{Chol()}}
-{\ttfamily void Chol (\begin{DoxyParamCaption}\item[{double $\ast$}]{matrix,  }\item[{int}]{r,  }\item[{int}]{c,  }\item[{int}]{ro,  }\item[{int}]{co,  }\item[{int}]{n,  }\item[{int}]{n\+Cores,  }\item[{int}]{num\+Th,  }\item[{int}]{deep,  }\item[{int}]{pos\+Ini,  }\item[{double $\ast$}]{memaux,  }\item[{int}]{block\+Size }\end{DoxyParamCaption})}
-
-
-
-Auxiliar function to perform a parallel cholesky factorization. 
-
-This function performs a subtask of a Cholesky factorization. \hypertarget{ParallelAlgorithms_8h_ab91f4f6dad78e2d76b4a0dc512ccbb44}{}\label{ParallelAlgorithms_8h_ab91f4f6dad78e2d76b4a0dc512ccbb44} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!Diag\+Inversion@{Diag\+Inversion}}
-\index{Diag\+Inversion@{Diag\+Inversion}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{Diag\+Inversion()}{DiagInversion()}}
-{\ttfamily void Diag\+Inversion (\begin{DoxyParamCaption}\item[{double $\ast$}]{matrix,  }\item[{int}]{r,  }\item[{int}]{c,  }\item[{int}]{ro,  }\item[{int}]{co,  }\item[{int}]{n,  }\item[{int}]{n\+Cores,  }\item[{int}]{pos\+Ini,  }\item[{int}]{num\+Th }\end{DoxyParamCaption})}
-
-
-
-This function solves a triangular matrix inverse in parallel. 
-
-This function solves a triangular matrix inverse in parallel. \hypertarget{ParallelAlgorithms_8h_abc5ce35fa5e4a39916b37ec82708c7ee}{}\label{ParallelAlgorithms_8h_abc5ce35fa5e4a39916b37ec82708c7ee} 
+\hypertarget{ParallelAlgorithms_8h_abc5ce35fa5e4a39916b37ec82708c7ee}{}\label{ParallelAlgorithms_8h_abc5ce35fa5e4a39916b37ec82708c7ee} 
 \index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!get\+Sub\+Matrix@{get\+Sub\+Matrix}}
 \index{get\+Sub\+Matrix@{get\+Sub\+Matrix}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
 \subsubsection{\texorpdfstring{get\+Sub\+Matrix()}{getSubMatrix()}}
@@ -106,9 +50,32 @@ This function solves a triangular matrix inverse in parallel. \hypertarget{Paral
 
 
 
-This function copy a piece of a matrix in parallel. 
+This function saves a piece of a matrix in the auxiliar memory. 
 
-This function copy a piece of a matrix in parallel. \hypertarget{ParallelAlgorithms_8h_aa6df8c3f4f455d5692b3cb220fc205c7}{}\label{ParallelAlgorithms_8h_aa6df8c3f4f455d5692b3cb220fc205c7} 
+This is an auxiliry function of the linear algebra funtions. It is used to save a submatrix of a matrix given as a parameter in the auxiliar memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & The original matrix. \\
+\hline
+{\em size1} & The number of rows fo the original matrix. \\
+\hline
+{\em size2} & The number of columns of the original matrix. \\
+\hline
+{\em O1} & The row where the submatrix starts. \\
+\hline
+{\em O2} & The column where the submatrix starts. \\
+\hline
+{\em A} & The pointer where the submatrix will be storaged. \\
+\hline
+{\em size3} & Number of rows of the submatrix to storage. \\
+\hline
+{\em size4} & Number of columns of the submatrix to storage. \\
+\hline
+{\em n\+Cores} & Number of threads to perform this task. \\
+\hline
+\end{DoxyParams}
+\hypertarget{ParallelAlgorithms_8h_aa6df8c3f4f455d5692b3cb220fc205c7}{}\label{ParallelAlgorithms_8h_aa6df8c3f4f455d5692b3cb220fc205c7} 
 \index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!init\+Memory@{init\+Memory}}
 \index{init\+Memory@{init\+Memory}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
 \subsubsection{\texorpdfstring{init\+Memory()}{initMemory()}}
@@ -118,107 +85,19 @@ This function copy a piece of a matrix in parallel. \hypertarget{ParallelAlgorit
 
 Function to allocate auxiliar memory to be used in the algebra operations. 
 
-This functions has to be called at the beginning and to allocate memory as a function of the number of threads and matrices size. \hypertarget{ParallelAlgorithms_8h_a805b141facc5279c9e144827b65287ec}{}\label{ParallelAlgorithms_8h_a805b141facc5279c9e144827b65287ec} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!Inversion\+L\+N\+Products@{Inversion\+L\+N\+Products}}
-\index{Inversion\+L\+N\+Products@{Inversion\+L\+N\+Products}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{Inversion\+L\+N\+Products()}{InversionLNProducts()}}
-{\ttfamily void Inversion\+L\+N\+Products (\begin{DoxyParamCaption}\item[{double $\ast$}]{matrix,  }\item[{int}]{r,  }\item[{int}]{c,  }\item[{int}]{ro,  }\item[{int}]{co,  }\item[{int}]{n,  }\item[{int}]{n\+Cores,  }\item[{int}]{pos\+Ini,  }\item[{int}]{deep,  }\item[{int}]{num\+Th,  }\item[{double $\ast$}]{memaux,  }\item[{int}]{block\+Size }\end{DoxyParamCaption})}
+The parallel lineal algebra functions of this module require some memory for every thead to allocate temporal results. This function must be called before any other function.
 
 
-
-This function performs a product of a lower triangular matrix and a matrix in parallel. 
-
-This function performs a product of a lower triangular matrix and a matrix in parallel. \hypertarget{ParallelAlgorithms_8h_a1c6ae04648f0659817f49834bf47343c}{}\label{ParallelAlgorithms_8h_a1c6ae04648f0659817f49834bf47343c} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!Inversion\+N\+L\+Products@{Inversion\+N\+L\+Products}}
-\index{Inversion\+N\+L\+Products@{Inversion\+N\+L\+Products}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{Inversion\+N\+L\+Products()}{InversionNLProducts()}}
-{\ttfamily void Inversion\+N\+L\+Products (\begin{DoxyParamCaption}\item[{double $\ast$}]{matrix,  }\item[{int}]{r,  }\item[{int}]{c,  }\item[{int}]{ro,  }\item[{int}]{co,  }\item[{int}]{n,  }\item[{int}]{n\+Cores,  }\item[{int}]{pos\+Ini,  }\item[{int}]{deep,  }\item[{int}]{num\+Th,  }\item[{double $\ast$}]{memaux,  }\item[{int}]{block\+Size }\end{DoxyParamCaption})}
-
-
-
-This function performs a product of a normal matrix and a lower triangular matrix in parallel. 
-
-This function performs a product of a normal matrix and a lower triangular matrix in parallel. \hypertarget{ParallelAlgorithms_8h_a0f835d889b5244f5cd8728703df7f0ca}{}\label{ParallelAlgorithms_8h_a0f835d889b5244f5cd8728703df7f0ca} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!Linear\+System@{Linear\+System}}
-\index{Linear\+System@{Linear\+System}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{Linear\+System()}{LinearSystem()}}
-{\ttfamily void Linear\+System (\begin{DoxyParamCaption}\item[{double $\ast$}]{matrix1,  }\item[{int}]{r1,  }\item[{int}]{c1,  }\item[{int}]{ro1,  }\item[{int}]{co1,  }\item[{double $\ast$}]{matrix2,  }\item[{int}]{r2,  }\item[{int}]{c2,  }\item[{int}]{ro2,  }\item[{int}]{co2,  }\item[{int}]{n,  }\item[{int}]{m,  }\item[{double $\ast$}]{result,  }\item[{int}]{rr,  }\item[{int}]{cr,  }\item[{int}]{ror,  }\item[{int}]{cor,  }\item[{int}]{n\+Cores,  }\item[{int}]{num\+Th,  }\item[{int}]{pos\+Ini,  }\item[{double $\ast$}]{memaux,  }\item[{int}]{block\+Size }\end{DoxyParamCaption})}
-
-
-
-Auxiliar function to solve a linear system in parallel. 
-
-This function performs a subtask to solve a linear system by one of the threads of the processor. \hypertarget{ParallelAlgorithms_8h_ade5849eee34cf386bd533a33a2e7ddfa}{}\label{ParallelAlgorithms_8h_ade5849eee34cf386bd533a33a2e7ddfa} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!L\+N\+Product@{L\+N\+Product}}
-\index{L\+N\+Product@{L\+N\+Product}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{L\+N\+Product()}{LNProduct()}}
-{\ttfamily void L\+N\+Product (\begin{DoxyParamCaption}\item[{double $\ast$}]{m1,  }\item[{int}]{r1,  }\item[{int}]{ro1,  }\item[{int}]{c1,  }\item[{int}]{co1,  }\item[{double $\ast$}]{m2,  }\item[{int}]{r2,  }\item[{int}]{ro2,  }\item[{int}]{c2,  }\item[{int}]{co2,  }\item[{int}]{n1,  }\item[{int}]{n2,  }\item[{double}]{K1,  }\item[{double $\ast$}]{result,  }\item[{int}]{rr,  }\item[{int}]{ror,  }\item[{int}]{cr,  }\item[{int}]{cor,  }\item[{int}]{n\+Cores,  }\item[{int}]{pos\+Ini,  }\item[{int}]{num\+Th }\end{DoxyParamCaption})}
-
-
-
-This function performs a product of a lower triangular matrix and another matrix in parallel. 
-
-This function performs a product of a lower triangular matrix and another matrix in parallel. \hypertarget{ParallelAlgorithms_8h_aee7af821f7a4814ac0dd093c3e60d16c}{}\label{ParallelAlgorithms_8h_aee7af821f7a4814ac0dd093c3e60d16c} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!L\+T\+N\+Product@{L\+T\+N\+Product}}
-\index{L\+T\+N\+Product@{L\+T\+N\+Product}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{L\+T\+N\+Product()}{LTNProduct()}}
-{\ttfamily void L\+T\+N\+Product (\begin{DoxyParamCaption}\item[{double $\ast$}]{m1,  }\item[{int}]{r1,  }\item[{int}]{ro1,  }\item[{int}]{c1,  }\item[{int}]{co1,  }\item[{double $\ast$}]{m2,  }\item[{int}]{r2,  }\item[{int}]{ro2,  }\item[{int}]{c2,  }\item[{int}]{co2,  }\item[{int}]{n1,  }\item[{int}]{n2,  }\item[{double}]{K1,  }\item[{double $\ast$}]{result,  }\item[{int}]{rr,  }\item[{int}]{ror,  }\item[{int}]{cr,  }\item[{int}]{cor,  }\item[{int}]{n\+Cores,  }\item[{int}]{pos\+Ini,  }\item[{int}]{num\+Th }\end{DoxyParamCaption})}
-
-
-
-This function performs a product of the transpose of a lower triangular matrix and another matrix in parallel. 
-
-This function performs a product of the transpose of a lower triangular matrix and another matrix in parallel. \hypertarget{ParallelAlgorithms_8h_a843f88b364d956ab64e9a63816fd5b75}{}\label{ParallelAlgorithms_8h_a843f88b364d956ab64e9a63816fd5b75} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!Move\+Matrix@{Move\+Matrix}}
-\index{Move\+Matrix@{Move\+Matrix}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{Move\+Matrix()}{MoveMatrix()}}
-{\ttfamily void Move\+Matrix (\begin{DoxyParamCaption}\item[{double $\ast$}]{m1,  }\item[{int}]{r1,  }\item[{int}]{ro1,  }\item[{int}]{c1,  }\item[{int}]{co1,  }\item[{double $\ast$}]{m2,  }\item[{int}]{r2,  }\item[{int}]{ro2,  }\item[{int}]{c2,  }\item[{int}]{co2,  }\item[{int}]{n1,  }\item[{int}]{n2,  }\item[{int}]{n\+Cores,  }\item[{int}]{pos\+Ini,  }\item[{int}]{num\+Th }\end{DoxyParamCaption})}
-
-
-
-This function moves a piece of matrix from a matrix to another. 
-
-This function moves a piece of matrix from a matrix to another. \hypertarget{ParallelAlgorithms_8h_a19c96768bea45dc0da5fdd2de9d9f41e}{}\label{ParallelAlgorithms_8h_a19c96768bea45dc0da5fdd2de9d9f41e} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!N\+L\+Product@{N\+L\+Product}}
-\index{N\+L\+Product@{N\+L\+Product}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{N\+L\+Product()}{NLProduct()}}
-{\ttfamily void N\+L\+Product (\begin{DoxyParamCaption}\item[{double $\ast$}]{m1,  }\item[{int}]{r1,  }\item[{int}]{ro1,  }\item[{int}]{c1,  }\item[{int}]{co1,  }\item[{double $\ast$}]{m2,  }\item[{int}]{r2,  }\item[{int}]{ro2,  }\item[{int}]{c2,  }\item[{int}]{co2,  }\item[{int}]{n1,  }\item[{int}]{n2,  }\item[{double}]{K1,  }\item[{double $\ast$}]{result,  }\item[{int}]{rr,  }\item[{int}]{ror,  }\item[{int}]{cr,  }\item[{int}]{cor,  }\item[{int}]{n\+Cores,  }\item[{int}]{pos\+Ini,  }\item[{int}]{num\+Th }\end{DoxyParamCaption})}
-
-
-
-This function performs a product of a matrix and a lower triangular matrix in parallel. 
-
-This function performs a product of a matrix and a lower triangular matrix in parallel. \hypertarget{ParallelAlgorithms_8h_a7ac6bfe83efa8111d10d749923584b6a}{}\label{ParallelAlgorithms_8h_a7ac6bfe83efa8111d10d749923584b6a} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!N\+L\+T\+Product@{N\+L\+T\+Product}}
-\index{N\+L\+T\+Product@{N\+L\+T\+Product}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{N\+L\+T\+Product()}{NLTProduct()}}
-{\ttfamily void N\+L\+T\+Product (\begin{DoxyParamCaption}\item[{double $\ast$}]{m1,  }\item[{int}]{r1,  }\item[{int}]{ro1,  }\item[{int}]{c1,  }\item[{int}]{co1,  }\item[{double $\ast$}]{m2,  }\item[{int}]{r2,  }\item[{int}]{ro2,  }\item[{int}]{c2,  }\item[{int}]{co2,  }\item[{int}]{n1,  }\item[{int}]{n2,  }\item[{double}]{K1,  }\item[{double $\ast$}]{result,  }\item[{int}]{rr,  }\item[{int}]{ror,  }\item[{int}]{cr,  }\item[{int}]{cor,  }\item[{int}]{n\+Cores,  }\item[{int}]{pos\+Ini,  }\item[{int}]{num\+Th }\end{DoxyParamCaption})}
-
-
-
-This function performs a product of a matrix and the transpose of a lower triangular matrix in parallel. 
-
-This function performs a product of a matrix and the transpose of a lower triangular matrix in parallel. \hypertarget{ParallelAlgorithms_8h_aefc7946219da1395b1a990f563acf231}{}\label{ParallelAlgorithms_8h_aefc7946219da1395b1a990f563acf231} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!N\+N\+Product@{N\+N\+Product}}
-\index{N\+N\+Product@{N\+N\+Product}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{N\+N\+Product()}{NNProduct()}}
-{\ttfamily void N\+N\+Product (\begin{DoxyParamCaption}\item[{double $\ast$}]{m1,  }\item[{int}]{r1,  }\item[{int}]{ro1,  }\item[{int}]{c1,  }\item[{int}]{co1,  }\item[{double $\ast$}]{m2,  }\item[{int}]{r2,  }\item[{int}]{ro2,  }\item[{int}]{c2,  }\item[{int}]{co2,  }\item[{int}]{n1,  }\item[{int}]{n2,  }\item[{int}]{n3,  }\item[{double}]{K1,  }\item[{double}]{K2,  }\item[{double $\ast$}]{result,  }\item[{int}]{rr,  }\item[{int}]{ror,  }\item[{int}]{cr,  }\item[{int}]{cor,  }\item[{int}]{n\+Cores,  }\item[{int}]{pos\+Ini,  }\item[{int}]{num\+Th,  }\item[{int}]{orientation }\end{DoxyParamCaption})}
-
-
-
-This function performs a matrix product in parallel. 
-
-This function performs a matrix product in parallel. \hypertarget{ParallelAlgorithms_8h_a9f15f4e0cb27a5d957786bafc4e9bb5d}{}\label{ParallelAlgorithms_8h_a9f15f4e0cb27a5d957786bafc4e9bb5d} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!N\+N\+T\+Product@{N\+N\+T\+Product}}
-\index{N\+N\+T\+Product@{N\+N\+T\+Product}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{N\+N\+T\+Product()}{NNTProduct()}}
-{\ttfamily void N\+N\+T\+Product (\begin{DoxyParamCaption}\item[{double $\ast$}]{m1,  }\item[{int}]{r1,  }\item[{int}]{ro1,  }\item[{int}]{c1,  }\item[{int}]{co1,  }\item[{double $\ast$}]{m2,  }\item[{int}]{r2,  }\item[{int}]{ro2,  }\item[{int}]{c2,  }\item[{int}]{co2,  }\item[{int}]{n1,  }\item[{int}]{n2,  }\item[{int}]{n3,  }\item[{double}]{K1,  }\item[{double}]{K2,  }\item[{double $\ast$}]{result,  }\item[{int}]{rr,  }\item[{int}]{ror,  }\item[{int}]{cr,  }\item[{int}]{cor,  }\item[{int}]{n\+Cores,  }\item[{int}]{pos\+Ini,  }\item[{int}]{num\+Th }\end{DoxyParamCaption})}
-
-
-
-This function performs a product of a matrix and the transpose of another matrix in parallel. 
-
-This function performs a product of a matrix and the transpose of another matrix in parallel. \hypertarget{ParallelAlgorithms_8h_aedc9a05cc25e789d22135eda90b8d22c}{}\label{ParallelAlgorithms_8h_aedc9a05cc25e789d22135eda90b8d22c} 
+\begin{DoxyParams}{Parameters}
+{\em Threads} & The number of threads to parallelize the linear algebra functions. \\
+\hline
+{\em size} & The size of the dimensions of the matrices that will be handle. If a matrix has a rows and b columns, then n=max(a,b). \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{ParallelAlgorithms_8h_a2f2bfa1b3a76a0a0bb0c1db793205ff2}{update\+Memory()} 
+\end{DoxySeeAlso}
+\hypertarget{ParallelAlgorithms_8h_aedc9a05cc25e789d22135eda90b8d22c}{}\label{ParallelAlgorithms_8h_aedc9a05cc25e789d22135eda90b8d22c} 
 \index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!Parallel\+Chol@{Parallel\+Chol}}
 \index{Parallel\+Chol@{Parallel\+Chol}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
 \subsubsection{\texorpdfstring{Parallel\+Chol()}{ParallelChol()}}
@@ -226,9 +105,31 @@ This function performs a product of a matrix and the transpose of another matrix
 
 
 
-Main function to perform a parallel cholesky factorization. 
+Main function that performs a parallel cholesky factorization. 
 
-This function performs a parallel cholesky factorization. It uses openmp to create different threads and every one of them performs a subtask using the function Chol. \hypertarget{ParallelAlgorithms_8h_acd578bbef8ed7d2c5b301d858d6e54cf}{}\label{ParallelAlgorithms_8h_acd578bbef8ed7d2c5b301d858d6e54cf} 
+This function performs a parallel cholesky factorization on a sqaure submatrix of a matrix recived as an argument. It uses openmp to create to parallelize the task using different threads and every one of them performs a subtask using the function Chol. 
+\begin{DoxyParams}{Parameters}
+{\em matrix} & The matrix to perform the cholesky factorization. \\
+\hline
+{\em r} & The number of rows of matrix \\
+\hline
+{\em c} & The number of columns of matrix. \\
+\hline
+{\em ro} & The row where the submatrix starts. \\
+\hline
+{\em co} & The column where the submatrix starts. \\
+\hline
+{\em n} & The order of the square submatrix \\
+\hline
+{\em n\+Cores} & The number of threads to perform the task. \\
+\hline
+{\em deep} & It is a recursive function, this parameter tell the recursion deep to use. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Chol() 
+\end{DoxySeeAlso}
+\hypertarget{ParallelAlgorithms_8h_acd578bbef8ed7d2c5b301d858d6e54cf}{}\label{ParallelAlgorithms_8h_acd578bbef8ed7d2c5b301d858d6e54cf} 
 \index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!Parallel\+Linear\+System@{Parallel\+Linear\+System}}
 \index{Parallel\+Linear\+System@{Parallel\+Linear\+System}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
 \subsubsection{\texorpdfstring{Parallel\+Linear\+System()}{ParallelLinearSystem()}}
@@ -238,7 +139,48 @@ This function performs a parallel cholesky factorization. It uses openmp to crea
 
 Main function to solve a linear system in parallel. 
 
-This function solves a linear system. It uses openmp to create different threads and every one of them performs a subtask using the function Linear\+System. \hypertarget{ParallelAlgorithms_8h_aa173cc47a2219bbaff08572bab6de056}{}\label{ParallelAlgorithms_8h_aa173cc47a2219bbaff08572bab6de056} 
+This function solves a linear system of two submatrices of matrix1 and matrix2. It uses openmp to create different threads and every one of them performs a subtask using the function Linear\+System. If submatrix1 is the submatrix of matrix1 and submatrix2 is the submatrix of matrix2 then it performs (submatrix1)$^\wedge$-\/1$\ast$submatrix2.
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix1} & The first matrix. \\
+\hline
+{\em r1} & The number of rows of matrix1. \\
+\hline
+{\em c1} & The number of columns of matrix1. \\
+\hline
+{\em ro1} & The row where the submatrix starts. \\
+\hline
+{\em co1} & The column where the submatrix starts. \\
+\hline
+{\em matrix2} & The second matrix. \\
+\hline
+{\em r2} & The number of rows of matrix2. \\
+\hline
+{\em c2} & The number of columns of matrix2. \\
+\hline
+{\em ro2} & The row where the second submatrix starts. \\
+\hline
+{\em co2} & The column where the second submatrix starts. \\
+\hline
+{\em n} & The number of rows of the submatrix1 \\
+\hline
+{\em m} & The number of columns of the submatrix2. \\
+\hline
+{\em result} & The matrix where the result should be storaged. \\
+\hline
+{\em rr} & The number of rows of matrix result. \\
+\hline
+{\em cr} & The number of columns of matrix result. \\
+\hline
+{\em ror} & The row where the result submatrix starts. \\
+\hline
+{\em cor} & The column where the result submatrix starts. \\
+\hline
+{\em n\+Cores} & The number of threads to launch to solve the task. \\
+\hline
+\end{DoxyParams}
+\hypertarget{ParallelAlgorithms_8h_aa173cc47a2219bbaff08572bab6de056}{}\label{ParallelAlgorithms_8h_aa173cc47a2219bbaff08572bab6de056} 
 \index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!Parallel\+Vector\+Matrix@{Parallel\+Vector\+Matrix}}
 \index{Parallel\+Vector\+Matrix@{Parallel\+Vector\+Matrix}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
 \subsubsection{\texorpdfstring{Parallel\+Vector\+Matrix()}{ParallelVectorMatrix()}}
@@ -246,9 +188,24 @@ This function solves a linear system. It uses openmp to create different threads
 
 
 
-This function performs a vector matrix product in parallel. 
+This function performs a product of a vector and a square matrix in parallel. 
 
-This function performs a vector matrix product in parallel. \hypertarget{ParallelAlgorithms_8h_a043ebcb9d7b0843551be9bda4a518f61}{}\label{ParallelAlgorithms_8h_a043ebcb9d7b0843551be9bda4a518f61} 
+This function performs a product of a vector and a matrix in parallel.
+
+This function performs a vector matrix product in parallel. 
+\begin{DoxyParams}{Parameters}
+{\em m1} & The vector. \\
+\hline
+{\em size} & The length of the vector and the order of the square matrix. \\
+\hline
+{\em m2} & The square matrix. \\
+\hline
+{\em result} & The matrix to storage the result. \\
+\hline
+{\em num\+Threads} & Number of threads to pefrom this task. \\
+\hline
+\end{DoxyParams}
+\hypertarget{ParallelAlgorithms_8h_a043ebcb9d7b0843551be9bda4a518f61}{}\label{ParallelAlgorithms_8h_a043ebcb9d7b0843551be9bda4a518f61} 
 \index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!Parallel\+Vector\+MatrixT@{Parallel\+Vector\+MatrixT}}
 \index{Parallel\+Vector\+MatrixT@{Parallel\+Vector\+MatrixT}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
 \subsubsection{\texorpdfstring{Parallel\+Vector\+Matrix\+T()}{ParallelVectorMatrixT()}}
@@ -256,9 +213,24 @@ This function performs a vector matrix product in parallel. \hypertarget{Paralle
 
 
 
-This function performs a product of a vector and the transpose of a matrix in parallel. 
+This function performs a product of a vector and the transpose of a square matrix in parallel. 
 
-This function performs a product of a vector and the transpose of a matrix in parallel. \hypertarget{ParallelAlgorithms_8h_a99121d09a1719aa7f13fc1564adbf0f8}{}\label{ParallelAlgorithms_8h_a99121d09a1719aa7f13fc1564adbf0f8} 
+This function performs a product of a vector and the transpose of a matrix in parallel.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m1} & The vector. \\
+\hline
+{\em size} & The length of the vector and the order of the square matrix. \\
+\hline
+{\em m2} & The square matrix. \\
+\hline
+{\em result} & The matrix to storage the result. \\
+\hline
+{\em num\+Threads} & Number of threads to pefrom this task. \\
+\hline
+\end{DoxyParams}
+\hypertarget{ParallelAlgorithms_8h_a99121d09a1719aa7f13fc1564adbf0f8}{}\label{ParallelAlgorithms_8h_a99121d09a1719aa7f13fc1564adbf0f8} 
 \index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!put\+Sub\+Matrix@{put\+Sub\+Matrix}}
 \index{put\+Sub\+Matrix@{put\+Sub\+Matrix}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
 \subsubsection{\texorpdfstring{put\+Sub\+Matrix()}{putSubMatrix()}}
@@ -266,29 +238,32 @@ This function performs a product of a vector and the transpose of a matrix in pa
 
 
 
-This function replace a piece of a matrix in parallel. 
+This function loads a piece of a matrix in the auxiliar memory and storage it in a matrix. 
 
-This function replace a piece of a matrix in parallel. \hypertarget{ParallelAlgorithms_8h_ad1b6192758d1373a5ac1b370b0d65f9a}{}\label{ParallelAlgorithms_8h_ad1b6192758d1373a5ac1b370b0d65f9a} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!T\+N\+N\+Product@{T\+N\+N\+Product}}
-\index{T\+N\+N\+Product@{T\+N\+N\+Product}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{T\+N\+N\+Product()}{TNNProduct()}}
-{\ttfamily void T\+N\+N\+Product (\begin{DoxyParamCaption}\item[{double $\ast$}]{m1,  }\item[{int}]{r1,  }\item[{int}]{ro1,  }\item[{int}]{c1,  }\item[{int}]{co1,  }\item[{double $\ast$}]{m2,  }\item[{int}]{r2,  }\item[{int}]{ro2,  }\item[{int}]{c2,  }\item[{int}]{co2,  }\item[{int}]{n1,  }\item[{int}]{n2,  }\item[{int}]{n3,  }\item[{double}]{K1,  }\item[{double}]{K2,  }\item[{double $\ast$}]{result,  }\item[{int}]{rr,  }\item[{int}]{ror,  }\item[{int}]{cr,  }\item[{int}]{cor,  }\item[{int}]{n\+Cores,  }\item[{int}]{pos\+Ini,  }\item[{int}]{num\+Th }\end{DoxyParamCaption})}
+This is an auxiliry function of the linear algebra funtions. It is used to load a matrix from the auxiliar memory and storage it as a submatrix of another matrix.
 
 
-
-This function performs a product of the transpose of a matrix and another matrix in parallel. 
-
-This function performs a product of the transpose of a matrix and another matrix in parallel. \hypertarget{ParallelAlgorithms_8h_ad5c9d568f3f1916204159b0d366aae9e}{}\label{ParallelAlgorithms_8h_ad5c9d568f3f1916204159b0d366aae9e} 
-\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!Triangle\+Inversion@{Triangle\+Inversion}}
-\index{Triangle\+Inversion@{Triangle\+Inversion}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
-\subsubsection{\texorpdfstring{Triangle\+Inversion()}{TriangleInversion()}}
-{\ttfamily void Triangle\+Inversion (\begin{DoxyParamCaption}\item[{double $\ast$}]{matrix,  }\item[{int}]{r,  }\item[{int}]{c,  }\item[{int}]{ro,  }\item[{int}]{co,  }\item[{int}]{n,  }\item[{int}]{n\+Cores,  }\item[{int}]{pos\+Ini,  }\item[{int}]{num\+Th,  }\item[{double $\ast$}]{memaux,  }\item[{int}]{block\+Size }\end{DoxyParamCaption})}
-
-
-
-This function performs a lower triangular matrix inverse in parallel. 
-
-This function performs a lower triangular matrix inverse in parallel. \hypertarget{ParallelAlgorithms_8h_a2f2bfa1b3a76a0a0bb0c1db793205ff2}{}\label{ParallelAlgorithms_8h_a2f2bfa1b3a76a0a0bb0c1db793205ff2} 
+\begin{DoxyParams}{Parameters}
+{\em matrix} & The original matrix where the submatrix will be allocated. \\
+\hline
+{\em size1} & The number of rows fo the original matrix. \\
+\hline
+{\em size2} & The number of columns of the original matrix. \\
+\hline
+{\em O1} & The row of the original matrix where the submatrix starts. \\
+\hline
+{\em O2} & The column of the original matrix where the submatrix starts. \\
+\hline
+{\em A} & The pointer where the submatrix is storaged. \\
+\hline
+{\em size3} & Number of rows of the submatrix that is storaged. \\
+\hline
+{\em size4} & Number of columns of the submatrix that is storaged. \\
+\hline
+{\em n\+Cores} & Number of threads to perform this task. \\
+\hline
+\end{DoxyParams}
+\hypertarget{ParallelAlgorithms_8h_a2f2bfa1b3a76a0a0bb0c1db793205ff2}{}\label{ParallelAlgorithms_8h_a2f2bfa1b3a76a0a0bb0c1db793205ff2} 
 \index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!update\+Memory@{update\+Memory}}
 \index{update\+Memory@{update\+Memory}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
 \subsubsection{\texorpdfstring{update\+Memory()}{updateMemory()}}
@@ -298,4 +273,15 @@ This function performs a lower triangular matrix inverse in parallel. \hypertarg
 
 Function to update auxiliar memory to be used in the algebra operations. 
 
-If the memory allocated with the function init\+Memory is not enough we can increase it using this function. 
+The parallel lineal algebra functions of this module require some memory for every thead to allocate temporal results. This function must be called if we allocated the memory using the function init\+Memory and we are going to work with bigger matrices.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Threads} & The number of threads to parallelize the linear algebra functions. \\
+\hline
+{\em size} & The size of the dimensions of the matrices that will be handle. If a matrix has a rows and b columns, then n=max(a,b). \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{ParallelAlgorithms_8h_aa6df8c3f4f455d5692b3cb220fc205c7}{init\+Memory()} 
+\end{DoxySeeAlso}

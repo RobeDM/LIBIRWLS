@@ -10,28 +10,28 @@ Input and Output structures and procedures.
 \begin{DoxyCompactItemize}
 \item 
 struct \hyperlink{structproperties}{properties}
-\begin{DoxyCompactList}\small\item\em Structure to save training parameters. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Training parameters of the I\+R\+W\+LS procedures. \end{DoxyCompactList}\item 
 struct \hyperlink{structpredictProperties}{predict\+Properties}
-\begin{DoxyCompactList}\small\item\em Structure to save predictions parameters. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Testing parameters of the I\+R\+W\+LS procedures. \end{DoxyCompactList}\item 
 struct \hyperlink{structmodel}{model}
-\begin{DoxyCompactList}\small\item\em Structure of a trained model. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em It represents a trained model that has been obtained using P\+I\+R\+W\+LS or P\+S\+I\+R\+W\+LS. \end{DoxyCompactList}\item 
 struct \hyperlink{structsvm__sample}{svm\+\_\+sample}
-\begin{DoxyCompactList}\small\item\em This structure represents a single feature of a data. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A single feature of a data. \end{DoxyCompactList}\item 
 struct \hyperlink{structsvm__dataset}{svm\+\_\+dataset}
-\begin{DoxyCompactList}\small\item\em This structure represents a dataset. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A dataset. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 typedef struct \hyperlink{structproperties}{properties} \hyperlink{IOStructures_8h_a5bb83871c3e19eb625ad51296d4e532c}{properties}
-\begin{DoxyCompactList}\small\item\em Structure to save training parameters. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Training parameters of the I\+R\+W\+LS procedures. \end{DoxyCompactList}\item 
 typedef struct \hyperlink{structpredictProperties}{predict\+Properties} \hyperlink{IOStructures_8h_ae83124652adf1509cd37c4c18d028b96}{predict\+Properties}
-\begin{DoxyCompactList}\small\item\em Structure to save predictions parameters. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Testing parameters of the I\+R\+W\+LS procedures. \end{DoxyCompactList}\item 
 typedef struct \hyperlink{structmodel}{model} \hyperlink{IOStructures_8h_ad81f7fac8a46794d554f6e95bd4a5003}{model}
-\begin{DoxyCompactList}\small\item\em Structure of a trained model. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em It represents a trained model that has been obtained using P\+I\+R\+W\+LS or P\+S\+I\+R\+W\+LS. \end{DoxyCompactList}\item 
 typedef struct \hyperlink{structsvm__sample}{svm\+\_\+sample} \hyperlink{IOStructures_8h_acbd8739518c9f448c33dfbff28f929fc}{svm\+\_\+sample}
-\begin{DoxyCompactList}\small\item\em This structure represents a single feature of a data. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A single feature of a data. \end{DoxyCompactList}\item 
 typedef struct \hyperlink{structsvm__dataset}{svm\+\_\+dataset} \hyperlink{IOStructures_8h_afbd46f4092eac424ab1434d941f1c766}{svm\+\_\+dataset}
-\begin{DoxyCompactList}\small\item\em This structure represents a dataset. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A dataset. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -67,9 +67,9 @@ Roberto Diaz Morales
 
 
 
-Structure of a trained model. 
+It represents a trained model that has been obtained using P\+I\+R\+W\+LS or P\+S\+I\+R\+W\+LS. 
 
-Structure of a trained model. \hypertarget{IOStructures_8h_ae83124652adf1509cd37c4c18d028b96}{}\label{IOStructures_8h_ae83124652adf1509cd37c4c18d028b96} 
+This structures saves all the variables of a trained model needed to classify future data. \hypertarget{IOStructures_8h_ae83124652adf1509cd37c4c18d028b96}{}\label{IOStructures_8h_ae83124652adf1509cd37c4c18d028b96} 
 \index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!predict\+Properties@{predict\+Properties}}
 \index{predict\+Properties@{predict\+Properties}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
 \subsubsection{\texorpdfstring{predict\+Properties}{predictProperties}}
@@ -77,9 +77,9 @@ Structure of a trained model. \hypertarget{IOStructures_8h_ae83124652adf1509cd37
 
 
 
-Structure to save predictions parameters. 
+Testing parameters of the I\+R\+W\+LS procedures. 
 
-Structure to save prediction parameters. \hypertarget{IOStructures_8h_a5bb83871c3e19eb625ad51296d4e532c}{}\label{IOStructures_8h_a5bb83871c3e19eb625ad51296d4e532c} 
+This struct stores the testing parameters of the I\+R\+W\+LS procedures. \hypertarget{IOStructures_8h_a5bb83871c3e19eb625ad51296d4e532c}{}\label{IOStructures_8h_a5bb83871c3e19eb625ad51296d4e532c} 
 \index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!properties@{properties}}
 \index{properties@{properties}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
 \subsubsection{\texorpdfstring{properties}{properties}}
@@ -87,9 +87,9 @@ Structure to save prediction parameters. \hypertarget{IOStructures_8h_a5bb83871c
 
 
 
-Structure to save training parameters. 
+Training parameters of the I\+R\+W\+LS procedures. 
 
-Structure to save training parameters. \hypertarget{IOStructures_8h_afbd46f4092eac424ab1434d941f1c766}{}\label{IOStructures_8h_afbd46f4092eac424ab1434d941f1c766} 
+This struct stores the training parameters of the I\+R\+W\+LS procedures. \hypertarget{IOStructures_8h_afbd46f4092eac424ab1434d941f1c766}{}\label{IOStructures_8h_afbd46f4092eac424ab1434d941f1c766} 
 \index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!svm\+\_\+dataset@{svm\+\_\+dataset}}
 \index{svm\+\_\+dataset@{svm\+\_\+dataset}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
 \subsubsection{\texorpdfstring{svm\+\_\+dataset}{svm\_dataset}}
@@ -97,9 +97,9 @@ Structure to save training parameters. \hypertarget{IOStructures_8h_afbd46f4092e
 
 
 
-This structure represents a dataset. 
+A dataset. 
 
-This structure represents a dataset. \hypertarget{IOStructures_8h_acbd8739518c9f448c33dfbff28f929fc}{}\label{IOStructures_8h_acbd8739518c9f448c33dfbff28f929fc} 
+This structure represents a dataset, a collection of samples and its associated labels. \hypertarget{IOStructures_8h_acbd8739518c9f448c33dfbff28f929fc}{}\label{IOStructures_8h_acbd8739518c9f448c33dfbff28f929fc} 
 \index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!svm\+\_\+sample@{svm\+\_\+sample}}
 \index{svm\+\_\+sample@{svm\+\_\+sample}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
 \subsubsection{\texorpdfstring{svm\+\_\+sample}{svm\_sample}}
@@ -107,9 +107,9 @@ This structure represents a dataset. \hypertarget{IOStructures_8h_acbd8739518c9f
 
 
 
-This structure represents a single feature of a data. 
+A single feature of a data. 
 
-This structure represents a single feature of a data. 
+This structure represents a single feature of a data. It is composed of a features index and its value. 
 
 \subsection{Function Documentation}
 \hypertarget{IOStructures_8h_a39db6a02819bd37baf33f195ab81d02e}{}\label{IOStructures_8h_a39db6a02819bd37baf33f195ab81d02e} 
@@ -122,7 +122,7 @@ This structure represents a single feature of a data.
 
 It loads a trained model from a file. 
 
-It loads a trained model from a file. 
+It loads a trained model (that has been obtained using P\+I\+R\+W\+LS or P\+S\+I\+R\+W\+LS) from a file. 
 \begin{DoxyParams}{Parameters}
 {\em mod} & The pointer with the struct to load results. \\
 \hline
@@ -139,7 +139,7 @@ It loads a trained model from a file.
 
 It reads a file that contains a labeled dataset in libsvm format. 
 
-It reads a file that contains a labeled dataset in libsvm format. The format si the following one\+: +1 1\+:5 7\+:2 15\+:6 +1 1\+:5 7\+:2 15\+:6 23\+:1 -\/1 2\+:4 3\+:2 10\+:6 11\+:4 ...
+It reads a file that contains a labeled dataset in libsvm format, the format is the following one\+: +1 1\+:5 7\+:2 15\+:6 +1 1\+:5 7\+:2 15\+:6 23\+:1 -\/1 2\+:4 3\+:2 10\+:6 11\+:4 ...
 
 
 \begin{DoxyParams}{Parameters}
@@ -179,7 +179,7 @@ The struct with the dataset information.
 
 It stores a trained model into a file. 
 
-It stores the strut of a trained model into a file. 
+It stores the struct of a trained model (that has been obtained using P\+I\+R\+W\+LS or P\+S\+I\+R\+W\+LS) into a file. 
 \begin{DoxyParams}{Parameters}
 {\em mod} & The struct with the model to store. \\
 \hline
@@ -196,7 +196,7 @@ It stores the strut of a trained model into a file.
 
 It writes the content of a double array into a file. 
 
-It writes the content of a double array into a file. 
+It writes the content of a double array into a file. It is used to save the predictions of a model on a dataset. 
 \begin{DoxyParams}{Parameters}
 {\em fileoutput} & The name of the file. \\
 \hline

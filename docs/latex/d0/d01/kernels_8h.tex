@@ -2,7 +2,7 @@
 \label{kernels_8h}\index{L\+I\+B\+I\+R\+W\+L\+S/include/kernels.\+h@{L\+I\+B\+I\+R\+W\+L\+S/include/kernels.\+h}}
 
 
-kernel function of non linear S\+VM.  
+Defition of the kernel functions used in the non linear S\+VM.  
 
 
 {\ttfamily \#include \char`\"{}I\+O\+Structures.\+h\char`\"{}}\\*
@@ -10,19 +10,19 @@ kernel function of non linear S\+VM.
 \begin{DoxyCompactItemize}
 \item 
 double \hyperlink{kernels_8h_aef79c6ac1742e54bec17d9fd80cda321}{kernel} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, int index1, int index2, \hyperlink{structproperties}{properties} props)
-\begin{DoxyCompactList}\small\item\em Kernel function among two elements of the dataset. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Radial Basis Function of two elements of the dataset. \end{DoxyCompactList}\item 
 double \hyperlink{kernels_8h_afeb0c5c6c8105ff0aec7f01ef47bed32}{kernel\+Test} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, int index1, \hyperlink{structmodel}{model} mymodel, int index2)
-\begin{DoxyCompactList}\small\item\em Kernel function among two elements of two different datasets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Radial Basis Function of one element of the dataset and Support Vectro of a trained model. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-kernel function of non linear S\+VM. 
+Defition of the kernel functions used in the non linear S\+VM. 
 
 \begin{DoxyAuthor}{Author}
 Roberto Diaz Morales 
 \end{DoxyAuthor}
 \begin{DoxyDate}{Date}
-23 Aug 2016 Implements the kernel function to use in the non linear S\+VM. 
+23 Aug 2016 It defines the kernel function to use in the non linear S\+VM in this library. 
 \end{DoxyDate}
 
 
@@ -35,9 +35,29 @@ Roberto Diaz Morales
 
 
 
-Kernel function among two elements of the dataset. 
+Radial Basis Function of two elements of the dataset. 
 
-This function returns the kernel function among two elements of the dataset. \hypertarget{kernels_8h_afeb0c5c6c8105ff0aec7f01ef47bed32}{}\label{kernels_8h_afeb0c5c6c8105ff0aec7f01ef47bed32} 
+This function returns the kernel function among two elements of the same dataset.
+
+It returns exp(-\/gamma$\vert$$\vert$x1-\/x2$\vert$$\vert$$^\wedge$2)
+
+x1 and x2 are two elements of the dataset and gamma is a parameter whose value can be found in the struct props.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The strut that contains the dataset information. \\
+\hline
+{\em index1} & The index of the first element of the dataset. \\
+\hline
+{\em index2} & The index of the second element of the dataset. \\
+\hline
+{\em props} & The list of properties to extract the kernel parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the Radial Basis Function of both elements. 
+\end{DoxyReturn}
+\hypertarget{kernels_8h_afeb0c5c6c8105ff0aec7f01ef47bed32}{}\label{kernels_8h_afeb0c5c6c8105ff0aec7f01ef47bed32} 
 \index{kernels.\+h@{kernels.\+h}!kernel\+Test@{kernel\+Test}}
 \index{kernel\+Test@{kernel\+Test}!kernels.\+h@{kernels.\+h}}
 \subsubsection{\texorpdfstring{kernel\+Test()}{kernelTest()}}
@@ -45,6 +65,25 @@ This function returns the kernel function among two elements of the dataset. \hy
 
 
 
-Kernel function among two elements of two different datasets. 
+Radial Basis Function of one element of the dataset and Support Vectro of a trained model. 
 
-This function returns the kernel function among two elements of two different datasets. 
+This method returns the R\+BF Kernel function of one element of the dataset and Support Vectro of a trained model.
+
+It returns exp(-\/gamma$\vert$$\vert$x1-\/x2$\vert$$\vert$$^\wedge$2)
+
+x1 is an element of the dataset and x2 is a support vector of a trained model, gamma is a parameter whose value can be found in the struct props.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The strut that contains the dataset information. \\
+\hline
+{\em index1} & The index of the sample of the dataset. \\
+\hline
+{\em mymodel} & The trained S\+VM model. \\
+\hline
+{\em index2} & The index of one of the Support Vectors of the trained model. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the Radial Basis Function of both elements. 
+\end{DoxyReturn}

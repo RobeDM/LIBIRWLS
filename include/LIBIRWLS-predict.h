@@ -38,13 +38,17 @@
 /**
  * @brief Function to classify data in a labeled dataset and to obtain the accuracy.
  *
- * Function to classify data in a labeled dataset and to obtain the accuracy.
+ * Function that uses a trained model on a dataset and obtains the class of every training sample.
+ * @param dataset The test set.
+ * @param mymodel A trained SVM model.
+ * @param props The test properties.
+ * @return The output of the classifier for every test sample (soft output).
  */
 
 double *test(svm_dataset dataset, model mymodel,predictProperties props);
 
 /**
- * @brief It shows the command line instructions in the standard output.
+ * @brief Print instructions.
  *
  * It shows the command line instructions in the standard output.
  */
@@ -55,10 +59,13 @@ void printPredictInstructions();
 /**
  * @brief It parses the prediction parameters from the command line.
  *
- * It parses the prediction parameters from the command line.
+ * It reads the command line, extract the parameters and creates a strict with the value of its values.
+ * @param argc The number of words of the command line.
+ * @param argv The list of words of the command line.
+ * @return A struct that contains the values of the test parameters.
  */
 
-predictProperties parsePredictParameters(int* argc, char*** argv, int semiparametric);
+predictProperties parsePredictParameters(int* argc, char*** argv);
 
 
 #endif

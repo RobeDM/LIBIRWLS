@@ -14,11 +14,11 @@ int $\ast$ \hyperlink{PSIRWLS-train_8h_a50a6e1f36a010feb91db9b9b38679948}{S\+G\+
 double $\ast$ \hyperlink{PSIRWLS-train_8h_ad51d9a46645ad0b0bedb1113a3807d24}{I\+R\+W\+L\+Spar} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, int $\ast$indexes, \hyperlink{structproperties}{properties} props)
 \begin{DoxyCompactList}\small\item\em Iterative Re-\/\+Weighted Least Squares Algorithm. \end{DoxyCompactList}\item 
 void \hyperlink{PSIRWLS-train_8h_af71e97e89750872ce608bffd01d2af41}{print\+P\+S\+I\+R\+W\+L\+S\+Instructions} ()
-\begin{DoxyCompactList}\small\item\em It shows P\+S\+I\+R\+W\+L\+S-\/train command line instructions in the standard output. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Print Instructions. \end{DoxyCompactList}\item 
 \hyperlink{structproperties}{properties} \hyperlink{PSIRWLS-train_8h_a67566f6fd6aec7278ca360186af4e91b}{parse\+Train\+Parameters} (int $\ast$argc, char $\ast$$\ast$$\ast$argv)
-\begin{DoxyCompactList}\small\item\em It parses input command line to extract the parameters. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em It parses input command line to extract the parameters of the P\+S\+I\+R\+W\+LS algorithm. \end{DoxyCompactList}\item 
 \hyperlink{structmodel}{model} \hyperlink{PSIRWLS-train_8h_a71b4329438bbf3210414315619f7b804}{calculate\+P\+S\+I\+R\+W\+L\+S\+Model} (\hyperlink{structproperties}{properties} props, \hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, int $\ast$centroids, double $\ast$beta)
-\begin{DoxyCompactList}\small\item\em It converts the result into a model strut. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em It converts the result of the P\+S\+I\+R\+W\+LS algorithm into a model struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -41,9 +41,43 @@ Roberto Diaz Morales
 
 
 
-It converts the result into a model strut. 
+It converts the result of the P\+S\+I\+R\+W\+LS algorithm into a model struct. 
 
-It converts the result into a model strut. \hypertarget{PSIRWLS-train_8h_ad51d9a46645ad0b0bedb1113a3807d24}{}\label{PSIRWLS-train_8h_ad51d9a46645ad0b0bedb1113a3807d24} 
+It converts the result into a model struct.
+
+
+\begin{DoxyParams}{Parameters}
+{\em props} & The training parameters. \\
+\hline
+{\em dataset} & The training set. \\
+\hline
+{\em centroids} & of the selected centroids by the S\+G\+MA algorithm. \\
+\hline
+{\em beta} & The weights of every centroid obtained with the I\+R\+W\+LS algorithm. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The struct that storages all the information of the classifier.
+\end{DoxyReturn}
+It converts the result of the P\+S\+I\+R\+W\+LS algorithm into a model struct.
+
+After the training of a S\+VM using the P\+S\+I\+R\+W\+LS procedure, this function build a struct with the information and returns it.
+
+
+\begin{DoxyParams}{Parameters}
+{\em props} & The training parameters. \\
+\hline
+{\em dataset} & The training set. \\
+\hline
+{\em centroids} & of the selected centroids by the S\+G\+MA algorithm. \\
+\hline
+{\em beta} & The weights of every centroid obtained with the I\+R\+W\+LS algorithm. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The struct that storages all the information of the classifier. 
+\end{DoxyReturn}
+\hypertarget{PSIRWLS-train_8h_ad51d9a46645ad0b0bedb1113a3807d24}{}\label{PSIRWLS-train_8h_ad51d9a46645ad0b0bedb1113a3807d24} 
 \index{P\+S\+I\+R\+W\+L\+S-\/train.\+h@{P\+S\+I\+R\+W\+L\+S-\/train.\+h}!I\+R\+W\+L\+Spar@{I\+R\+W\+L\+Spar}}
 \index{I\+R\+W\+L\+Spar@{I\+R\+W\+L\+Spar}!P\+S\+I\+R\+W\+L\+S-\/train.\+h@{P\+S\+I\+R\+W\+L\+S-\/train.\+h}}
 \subsubsection{\texorpdfstring{I\+R\+W\+L\+Spar()}{IRWLSpar()}}
@@ -53,7 +87,35 @@ It converts the result into a model strut. \hypertarget{PSIRWLS-train_8h_ad51d9a
 
 Iterative Re-\/\+Weighted Least Squares Algorithm. 
 
-I\+R\+W\+LS procedure to obtain the weights of the semi parametric model. \hypertarget{PSIRWLS-train_8h_a67566f6fd6aec7278ca360186af4e91b}{}\label{PSIRWLS-train_8h_a67566f6fd6aec7278ca360186af4e91b} 
+I\+R\+W\+LS procedure to obtain the weights of the semi parametric model. 
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The training set. \\
+\hline
+{\em indexes} & The indexes of the centroids selected by the S\+G\+MA algorithm. \\
+\hline
+{\em props} & The struct with the training parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The weights of every centroid.
+\end{DoxyReturn}
+I\+R\+W\+LS procedure to obtain the weights of the semi parametric model. For a detailed description of the algorithm and parallelization\+:
+
+Díaz-\/\+Morales, R., \& Navia-\/\+Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-\/186.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The training set. \\
+\hline
+{\em indexes} & The indexes of the centroids selected by the S\+G\+MA algorithm. \\
+\hline
+{\em props} & The struct with the training parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The weights of every centroid. 
+\end{DoxyReturn}
+\hypertarget{PSIRWLS-train_8h_a67566f6fd6aec7278ca360186af4e91b}{}\label{PSIRWLS-train_8h_a67566f6fd6aec7278ca360186af4e91b} 
 \index{P\+S\+I\+R\+W\+L\+S-\/train.\+h@{P\+S\+I\+R\+W\+L\+S-\/train.\+h}!parse\+Train\+Parameters@{parse\+Train\+Parameters}}
 \index{parse\+Train\+Parameters@{parse\+Train\+Parameters}!P\+S\+I\+R\+W\+L\+S-\/train.\+h@{P\+S\+I\+R\+W\+L\+S-\/train.\+h}}
 \subsubsection{\texorpdfstring{parse\+Train\+Parameters()}{parseTrainParameters()}}
@@ -61,9 +123,19 @@ I\+R\+W\+LS procedure to obtain the weights of the semi parametric model. \hyper
 
 
 
-It parses input command line to extract the parameters. 
+It parses input command line to extract the parameters of the P\+S\+I\+R\+W\+LS algorithm. 
 
-It parses input command line to extract the parameters. \hypertarget{PSIRWLS-train_8h_af71e97e89750872ce608bffd01d2af41}{}\label{PSIRWLS-train_8h_af71e97e89750872ce608bffd01d2af41} 
+It parses input command line to extract the parameters. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of words of the command line. \\
+\hline
+{\em argv} & The list of words of the command line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A struct that contains the values of the training parameters of the P\+S\+I\+R\+W\+LS algorithm. 
+\end{DoxyReturn}
+\hypertarget{PSIRWLS-train_8h_af71e97e89750872ce608bffd01d2af41}{}\label{PSIRWLS-train_8h_af71e97e89750872ce608bffd01d2af41} 
 \index{P\+S\+I\+R\+W\+L\+S-\/train.\+h@{P\+S\+I\+R\+W\+L\+S-\/train.\+h}!print\+P\+S\+I\+R\+W\+L\+S\+Instructions@{print\+P\+S\+I\+R\+W\+L\+S\+Instructions}}
 \index{print\+P\+S\+I\+R\+W\+L\+S\+Instructions@{print\+P\+S\+I\+R\+W\+L\+S\+Instructions}!P\+S\+I\+R\+W\+L\+S-\/train.\+h@{P\+S\+I\+R\+W\+L\+S-\/train.\+h}}
 \subsubsection{\texorpdfstring{print\+P\+S\+I\+R\+W\+L\+S\+Instructions()}{printPSIRWLSInstructions()}}
@@ -71,7 +143,11 @@ It parses input command line to extract the parameters. \hypertarget{PSIRWLS-tra
 
 
 
-It shows P\+S\+I\+R\+W\+L\+S-\/train command line instructions in the standard output. 
+Print Instructions. 
+
+It shows P\+S\+I\+R\+W\+L\+S-\/train command line instructions in the standard output.
+
+Print Instructions.
 
 It shows P\+S\+I\+R\+W\+L\+S-\/train command line instructions in the standard output. \hypertarget{PSIRWLS-train_8h_a50a6e1f36a010feb91db9b9b38679948}{}\label{PSIRWLS-train_8h_a50a6e1f36a010feb91db9b9b38679948} 
 \index{P\+S\+I\+R\+W\+L\+S-\/train.\+h@{P\+S\+I\+R\+W\+L\+S-\/train.\+h}!S\+G\+MA@{S\+G\+MA}}
@@ -84,3 +160,20 @@ It shows P\+S\+I\+R\+W\+L\+S-\/train command line instructions in the standard o
 Sparse Greedy Matrix Approximation algorithm. 
 
 Sparse Greedy Matrix Approximation algorithm to select the basis elements of the semi parametric model. 
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The training set. \\
+\hline
+{\em props} & The struct with the training parameters.\\
+\hline
+\end{DoxyParams}
+Sparse Greedy Matrix Approximation algorithm to select the basis elements of the semi parametric model. For a detailed description read\+:
+
+Díaz-\/\+Morales, R., \& Navia-\/\+Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-\/186.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The training set. \\
+\hline
+{\em props} & The struct with the training parameters. \\
+\hline
+\end{DoxyParams}

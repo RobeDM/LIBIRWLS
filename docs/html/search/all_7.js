@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['kernel',['kernel',['../d0/d01/kernels_8h.html#aef79c6ac1742e54bec17d9fd80cda321',1,'kernels.c']]],
-  ['kernels_2eh',['kernels.h',['../d0/d01/kernels_8h.html',1,'']]],
-  ['kerneltest',['kernelTest',['../d0/d01/kernels_8h.html#afeb0c5c6c8105ff0aec7f01ef47bed32',1,'kernels.c']]],
-  ['kgamma',['Kgamma',['../d1/d03/structproperties.html#aab9c0195a446f08fc782701750ddb6ac',1,'properties::Kgamma()'],['../dc/d1b/structmodel.html#ac5c18eca6ad32bc6da1f2a923965e66c',1,'model::Kgamma()']]]
+  ['main',['main',['../d3/d3a/PSIRWLS-train_8c.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'PSIRWLS-train.c']]],
+  ['maxdim',['maxdim',['../dc/d1b/structmodel.html#ac6ba8c1bc138143114cd331583f41387',1,'model::maxdim()'],['../d0/d6e/structsvm__dataset.html#aec1d1ee62ef8204fe90d8c6b7a647177',1,'svm_dataset::maxdim()']]],
+  ['maxsize',['MaxSize',['../d1/d03/structproperties.html#a42219768dd35e1ab628e1785759df400',1,'properties']]],
+  ['model',['model',['../dc/d1b/structmodel.html',1,'model'],['../de/d79/IOStructures_8h.html#ad81f7fac8a46794d554f6e95bd4a5003',1,'model():&#160;IOStructures.h']]]
 ];

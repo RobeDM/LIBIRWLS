@@ -9,6 +9,13 @@
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
@@ -22,7 +29,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">LIBIRWLS
+   &#160;<span id="projectnumber">2.0</span>
    </div>
+   <div id="projectbrief">Parallel SVMs and semi parametric SVMS using the IRWLS procedure</div>
   </td>
  </tr>
  </tbody>
@@ -42,6 +51,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('de/d79/IOStructures_8h.html','../../');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -56,11 +80,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="../../dir_fbf672e6629ab74a24e7d310d431c03b.html">LIBIRWLS</a></li><li class="navelem"><a class="el" href="../../dir_2b8ab67b0898ed06b16a24fa52708771.html">include</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
@@ -80,37 +99,37 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d03/structproperties.html">properties</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure to save training parameters.  <a href="../../d1/d03/structproperties.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Training parameters of the IRWLS procedures.  <a href="../../d1/d03/structproperties.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d38/structpredictProperties.html">predictProperties</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure to save predictions parameters.  <a href="../../d0/d38/structpredictProperties.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Testing parameters of the IRWLS procedures.  <a href="../../d0/d38/structpredictProperties.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d1b/structmodel.html">model</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of a trained model.  <a href="../../dc/d1b/structmodel.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">It represents a trained model that has been obtained using PIRWLS or PSIRWLS.  <a href="../../dc/d1b/structmodel.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d33/structsvm__sample.html">svm_sample</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This structure represents a single feature of a data.  <a href="../../d8/d33/structsvm__sample.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A single feature of a data.  <a href="../../d8/d33/structsvm__sample.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This structure represents a dataset.  <a href="../../d0/d6e/structsvm__dataset.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dataset.  <a href="../../d0/d6e/structsvm__dataset.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a5bb83871c3e19eb625ad51296d4e532c"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../d1/d03/structproperties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d79/IOStructures_8h.html#a5bb83871c3e19eb625ad51296d4e532c">properties</a></td></tr>
-<tr class="memdesc:a5bb83871c3e19eb625ad51296d4e532c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure to save training parameters.  <a href="#a5bb83871c3e19eb625ad51296d4e532c">More...</a><br /></td></tr>
+<tr class="memdesc:a5bb83871c3e19eb625ad51296d4e532c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Training parameters of the IRWLS procedures.  <a href="#a5bb83871c3e19eb625ad51296d4e532c">More...</a><br /></td></tr>
 <tr class="separator:a5bb83871c3e19eb625ad51296d4e532c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae83124652adf1509cd37c4c18d028b96"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../d0/d38/structpredictProperties.html">predictProperties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d79/IOStructures_8h.html#ae83124652adf1509cd37c4c18d028b96">predictProperties</a></td></tr>
-<tr class="memdesc:ae83124652adf1509cd37c4c18d028b96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure to save predictions parameters.  <a href="#ae83124652adf1509cd37c4c18d028b96">More...</a><br /></td></tr>
+<tr class="memdesc:ae83124652adf1509cd37c4c18d028b96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Testing parameters of the IRWLS procedures.  <a href="#ae83124652adf1509cd37c4c18d028b96">More...</a><br /></td></tr>
 <tr class="separator:ae83124652adf1509cd37c4c18d028b96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad81f7fac8a46794d554f6e95bd4a5003"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../dc/d1b/structmodel.html">model</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d79/IOStructures_8h.html#ad81f7fac8a46794d554f6e95bd4a5003">model</a></td></tr>
-<tr class="memdesc:ad81f7fac8a46794d554f6e95bd4a5003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of a trained model.  <a href="#ad81f7fac8a46794d554f6e95bd4a5003">More...</a><br /></td></tr>
+<tr class="memdesc:ad81f7fac8a46794d554f6e95bd4a5003"><td class="mdescLeft">&#160;</td><td class="mdescRight">It represents a trained model that has been obtained using PIRWLS or PSIRWLS.  <a href="#ad81f7fac8a46794d554f6e95bd4a5003">More...</a><br /></td></tr>
 <tr class="separator:ad81f7fac8a46794d554f6e95bd4a5003"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbd8739518c9f448c33dfbff28f929fc"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../d8/d33/structsvm__sample.html">svm_sample</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d79/IOStructures_8h.html#acbd8739518c9f448c33dfbff28f929fc">svm_sample</a></td></tr>
-<tr class="memdesc:acbd8739518c9f448c33dfbff28f929fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This structure represents a single feature of a data.  <a href="#acbd8739518c9f448c33dfbff28f929fc">More...</a><br /></td></tr>
+<tr class="memdesc:acbd8739518c9f448c33dfbff28f929fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">A single feature of a data.  <a href="#acbd8739518c9f448c33dfbff28f929fc">More...</a><br /></td></tr>
 <tr class="separator:acbd8739518c9f448c33dfbff28f929fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbd46f4092eac424ab1434d941f1c766"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d79/IOStructures_8h.html#afbd46f4092eac424ab1434d941f1c766">svm_dataset</a></td></tr>
-<tr class="memdesc:afbd46f4092eac424ab1434d941f1c766"><td class="mdescLeft">&#160;</td><td class="mdescRight">This structure represents a dataset.  <a href="#afbd46f4092eac424ab1434d941f1c766">More...</a><br /></td></tr>
+<tr class="memdesc:afbd46f4092eac424ab1434d941f1c766"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dataset.  <a href="#afbd46f4092eac424ab1434d941f1c766">More...</a><br /></td></tr>
 <tr class="separator:afbd46f4092eac424ab1434d941f1c766"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -148,8 +167,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Structure of a trained model. </p>
-<p>Structure of a trained model. </p>
+<p>It represents a trained model that has been obtained using PIRWLS or PSIRWLS. </p>
+<p>This structures saves all the variables of a trained model needed to classify future data. </p>
 
 </div>
 </div>
@@ -165,8 +184,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Structure to save predictions parameters. </p>
-<p>Structure to save prediction parameters. </p>
+<p>Testing parameters of the IRWLS procedures. </p>
+<p>This struct stores the testing parameters of the IRWLS procedures. </p>
 
 </div>
 </div>
@@ -182,8 +201,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Structure to save training parameters. </p>
-<p>Structure to save training parameters. </p>
+<p>Training parameters of the IRWLS procedures. </p>
+<p>This struct stores the training parameters of the IRWLS procedures. </p>
 
 </div>
 </div>
@@ -199,8 +218,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This structure represents a dataset. </p>
-<p>This structure represents a dataset. </p>
+<p>A dataset. </p>
+<p>This structure represents a dataset, a collection of samples and its associated labels. </p>
 
 </div>
 </div>
@@ -216,8 +235,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This structure represents a single feature of a data. </p>
-<p>This structure represents a single feature of a data. </p>
+<p>A single feature of a data. </p>
+<p>This structure represents a single feature of a data. It is composed of a features index and its value. </p>
 
 </div>
 </div>
@@ -249,7 +268,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>It loads a trained model from a file. </p>
-<p>It loads a trained model from a file. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>It loads a trained model (that has been obtained using PIRWLS or PSIRWLS) from a file. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mod</td><td>The pointer with the struct to load results. </td></tr>
     <tr><td class="paramname">Input</td><td>The name of the file. </td></tr>
@@ -276,7 +295,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>It reads a file that contains a labeled dataset in libsvm format. </p>
-<p>It reads a file that contains a labeled dataset in libsvm format. The format si the following one: +1 1:5 7:2 15:6 +1 1:5 7:2 15:6 23:1 -1 2:4 3:2 10:6 11:4 ...</p>
+<p>It reads a file that contains a labeled dataset in libsvm format, the format is the following one: +1 1:5 7:2 15:6 +1 1:5 7:2 15:6 23:1 -1 2:4 3:2 10:6 11:4 ...</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">filename</td><td>A string with the name of the file that contains the dataset. </td></tr>
@@ -342,7 +361,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>It stores a trained model into a file. </p>
-<p>It stores the strut of a trained model into a file. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>It stores the struct of a trained model (that has been obtained using PIRWLS or PSIRWLS) into a file. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mod</td><td>The struct with the model to store. </td></tr>
     <tr><td class="paramname">Output</td><td>The name of the file. </td></tr>
@@ -385,7 +404,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>It writes the content of a double array into a file. </p>
-<p>It writes the content of a double array into a file. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>It writes the content of a double array into a file. It is used to save the predictions of a model on a dataset. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fileoutput</td><td>The name of the file. </td></tr>
     <tr><td class="paramname">predictions</td><td>The array with the information to save. </td></tr>
@@ -397,11 +416,15 @@ Functions</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="../../doxygen.png" alt="doxygen"/>
-</a> 1.8.12
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dir_fbf672e6629ab74a24e7d310d431c03b.html">LIBIRWLS</a></li><li class="navelem"><a class="el" href="../../dir_2b8ab67b0898ed06b16a24fa52708771.html">include</a></li><li class="navelem"><a class="el" href="../../de/d79/IOStructures_8h.html">IOStructures.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
+  </ul>
+</div>
 </body>
 </html>

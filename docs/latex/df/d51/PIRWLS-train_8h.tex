@@ -10,15 +10,15 @@ Functions to train a full S\+VM using the I\+R\+W\+LS algorithm.
 \begin{DoxyCompactItemize}
 \item 
 int $\ast$ \hyperlink{PIRWLS-train_8h_a9e75aabe599f48c66cbda89320d68a71}{rpermute} (int n)
-\begin{DoxyCompactList}\small\item\em It crates a random permutation of n elements. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Random permutation of n elements. \end{DoxyCompactList}\item 
 double $\ast$ \hyperlink{PIRWLS-train_8h_af736cb71af5e7e4cb062977793905f4d}{sub\+I\+R\+W\+LS} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, \hyperlink{structproperties}{properties} props, double $\ast$G\+IN, double $\ast$e, double $\ast$beta)
-\begin{DoxyCompactList}\small\item\em It uses the I\+R\+W\+LS procedure on a Working Set. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em I\+R\+W\+LS procedure on a Working Set. \end{DoxyCompactList}\item 
 double $\ast$ \hyperlink{PIRWLS-train_8h_ad719770a7de382211555ba831af2ea28}{train\+F\+U\+LL} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, \hyperlink{structproperties}{properties} props)
 \begin{DoxyCompactList}\small\item\em It trains a full S\+VM with a training set. \end{DoxyCompactList}\item 
 void \hyperlink{PIRWLS-train_8h_ac4a62e1a98c35f9d7e8996d58fe48523}{print\+P\+I\+R\+W\+L\+S\+Instructions} ()
-\begin{DoxyCompactList}\small\item\em It shows P\+I\+R\+W\+L\+S-\/train command line instructions in the standard output. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Print Instructions. \end{DoxyCompactList}\item 
 \hyperlink{structproperties}{properties} \hyperlink{PIRWLS-train_8h_a661bbe4aa2899bb306b7b509296068a2}{parse\+Train\+P\+I\+R\+W\+L\+S\+Parameters} (int $\ast$argc, char $\ast$$\ast$$\ast$argv)
-\begin{DoxyCompactList}\small\item\em It parses input command line to extract the parameters. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em It parses the command line. \end{DoxyCompactList}\item 
 \hyperlink{structmodel}{model} \hyperlink{PIRWLS-train_8h_aeaa2f3c1d0f757826017dae7a83d7f8a}{calculate\+P\+I\+R\+W\+L\+S\+Model} (\hyperlink{structproperties}{properties} props, \hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, double $\ast$beta)
 \begin{DoxyCompactList}\small\item\em It converts the result into a model struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -26,11 +26,17 @@ void \hyperlink{PIRWLS-train_8h_ac4a62e1a98c35f9d7e8996d58fe48523}{print\+P\+I\+
 \subsection{Detailed Description}
 Functions to train a full S\+VM using the I\+R\+W\+LS algorithm. 
 
+For a detailed description of the algorithm and its parameters read the following paper\+: ~\newline
+ Pérez-\/\+Cruz, F., Alarcón-\/\+Diana, P. L., Navia-\/\+Vázquez, A., \& Artés-\/\+Rodríguez, A. (2001). Fast Training of Support Vector Classifiers. In Advances in Neural Information Processing Systems (pp. 734-\/740)
+
+For a detailed description about the parallelization read the following paper\+: ~\newline
+Díaz-\/\+Morales, R., \& Navia-\/\+Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-\/186.
+
 \begin{DoxyAuthor}{Author}
 Roberto Diaz Morales 
 \end{DoxyAuthor}
 \begin{DoxyDate}{Date}
-23 Aug 2016 Functions to train a full S\+VM using the I\+R\+W\+LS algorithm. 
+23 Aug 2016 
 \end{DoxyDate}
 
 
@@ -45,7 +51,21 @@ Roberto Diaz Morales
 
 It converts the result into a model struct. 
 
-It converts the result into a model struct. \hypertarget{PIRWLS-train_8h_a661bbe4aa2899bb306b7b509296068a2}{}\label{PIRWLS-train_8h_a661bbe4aa2899bb306b7b509296068a2} 
+After the training of a S\+VM using the I\+R\+W\+LS procedure, this function build a struct with the information and returns it.
+
+
+\begin{DoxyParams}{Parameters}
+{\em props} & The training parameters. \\
+\hline
+{\em dataset} & The training set. \\
+\hline
+{\em beta} & The weights of the classifier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The struct that storages all the information of the classifier. 
+\end{DoxyReturn}
+\hypertarget{PIRWLS-train_8h_a661bbe4aa2899bb306b7b509296068a2}{}\label{PIRWLS-train_8h_a661bbe4aa2899bb306b7b509296068a2} 
 \index{P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}!parse\+Train\+P\+I\+R\+W\+L\+S\+Parameters@{parse\+Train\+P\+I\+R\+W\+L\+S\+Parameters}}
 \index{parse\+Train\+P\+I\+R\+W\+L\+S\+Parameters@{parse\+Train\+P\+I\+R\+W\+L\+S\+Parameters}!P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}}
 \subsubsection{\texorpdfstring{parse\+Train\+P\+I\+R\+W\+L\+S\+Parameters()}{parseTrainPIRWLSParameters()}}
@@ -53,9 +73,19 @@ It converts the result into a model struct. \hypertarget{PIRWLS-train_8h_a661bbe
 
 
 
-It parses input command line to extract the parameters. 
+It parses the command line. 
 
-It parses input command line to extract the parameters. \hypertarget{PIRWLS-train_8h_ac4a62e1a98c35f9d7e8996d58fe48523}{}\label{PIRWLS-train_8h_ac4a62e1a98c35f9d7e8996d58fe48523} 
+It parses input command line to extract the parameters. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of words of the command line. \\
+\hline
+{\em argv} & The list of words of the command line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A struct that contains the values of the training parameters. 
+\end{DoxyReturn}
+\hypertarget{PIRWLS-train_8h_ac4a62e1a98c35f9d7e8996d58fe48523}{}\label{PIRWLS-train_8h_ac4a62e1a98c35f9d7e8996d58fe48523} 
 \index{P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}!print\+P\+I\+R\+W\+L\+S\+Instructions@{print\+P\+I\+R\+W\+L\+S\+Instructions}}
 \index{print\+P\+I\+R\+W\+L\+S\+Instructions@{print\+P\+I\+R\+W\+L\+S\+Instructions}!P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}}
 \subsubsection{\texorpdfstring{print\+P\+I\+R\+W\+L\+S\+Instructions()}{printPIRWLSInstructions()}}
@@ -63,7 +93,7 @@ It parses input command line to extract the parameters. \hypertarget{PIRWLS-trai
 
 
 
-It shows P\+I\+R\+W\+L\+S-\/train command line instructions in the standard output. 
+Print Instructions. 
 
 It shows P\+I\+R\+W\+L\+S-\/train command line instructions in the standard output. \hypertarget{PIRWLS-train_8h_a9e75aabe599f48c66cbda89320d68a71}{}\label{PIRWLS-train_8h_a9e75aabe599f48c66cbda89320d68a71} 
 \index{P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}!rpermute@{rpermute}}
@@ -73,9 +103,19 @@ It shows P\+I\+R\+W\+L\+S-\/train command line instructions in the standard outp
 
 
 
-It crates a random permutation of n elements. 
+Random permutation of n elements. 
 
-It crates a random permutation of n elements. \hypertarget{PIRWLS-train_8h_af736cb71af5e7e4cb062977793905f4d}{}\label{PIRWLS-train_8h_af736cb71af5e7e4cb062977793905f4d} 
+It crates a random permutation of n elements.
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The number of elementos in the permutation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The permutation. 
+\end{DoxyReturn}
+\hypertarget{PIRWLS-train_8h_af736cb71af5e7e4cb062977793905f4d}{}\label{PIRWLS-train_8h_af736cb71af5e7e4cb062977793905f4d} 
 \index{P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}!sub\+I\+R\+W\+LS@{sub\+I\+R\+W\+LS}}
 \index{sub\+I\+R\+W\+LS@{sub\+I\+R\+W\+LS}!P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}}
 \subsubsection{\texorpdfstring{sub\+I\+R\+W\+L\+S()}{subIRWLS()}}
@@ -83,9 +123,31 @@ It crates a random permutation of n elements. \hypertarget{PIRWLS-train_8h_af736
 
 
 
-It uses the I\+R\+W\+LS procedure on a Working Set. 
+I\+R\+W\+LS procedure on a Working Set. 
 
-It uses the I\+R\+W\+LS procedure on a Working Set. \hypertarget{PIRWLS-train_8h_ad719770a7de382211555ba831af2ea28}{}\label{PIRWLS-train_8h_ad719770a7de382211555ba831af2ea28} 
+For a detailed description of the algorithm and its parameters read the following paper\+: ~\newline
+ Pérez-\/\+Cruz, F., Alarcón-\/\+Diana, P. L., Navia-\/\+Vázquez, A., \& Artés-\/\+Rodríguez, A. (2001). Fast Training of Support Vector Classifiers. In Advances in Neural Information Processing Systems (pp. 734-\/740)
+
+For a detailed description about the parallelization read the following paper\+: ~\newline
+Díaz-\/\+Morales, R., \& Navia-\/\+Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-\/186.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The training dataset. \\
+\hline
+{\em props} & The strut of training properties. \\
+\hline
+{\em G\+IN} & The classification effect of the inactive set. \\
+\hline
+{\em e} & The current error on every training data. \\
+\hline
+{\em beta} & The bias term of the classification function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new weights vector of the classifier. 
+\end{DoxyReturn}
+\hypertarget{PIRWLS-train_8h_ad719770a7de382211555ba831af2ea28}{}\label{PIRWLS-train_8h_ad719770a7de382211555ba831af2ea28} 
 \index{P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}!train\+F\+U\+LL@{train\+F\+U\+LL}}
 \index{train\+F\+U\+LL@{train\+F\+U\+LL}!P\+I\+R\+W\+L\+S-\/train.\+h@{P\+I\+R\+W\+L\+S-\/train.\+h}}
 \subsubsection{\texorpdfstring{train\+F\+U\+L\+L()}{trainFULL()}}
@@ -95,4 +157,19 @@ It uses the I\+R\+W\+LS procedure on a Working Set. \hypertarget{PIRWLS-train_8h
 
 It trains a full S\+VM with a training set. 
 
-It trains a full S\+VM with a training set. 
+For a detailed description of the algorithm and its parameters read the following paper\+: ~\newline
+ Pérez-\/\+Cruz, F., Alarcón-\/\+Diana, P. L., Navia-\/\+Vázquez, A., \& Artés-\/\+Rodríguez, A. (2001). Fast Training of Support Vector Classifiers. In Advances in Neural Information Processing Systems (pp. 734-\/740)
+
+For a detailed description about the parallelization read the following paper\+: ~\newline
+Díaz-\/\+Morales, R., \& Navia-\/\+Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-\/186.
+
+It trains a full S\+VM using a training set and the training parameters. 
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The training set. \\
+\hline
+{\em props} & The values of the training parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The weights of every Support Vector of the S\+VM. 
+\end{DoxyReturn}

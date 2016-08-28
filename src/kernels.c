@@ -21,17 +21,52 @@
  ============================================================================
  */
 
+/**
+ * @brief Implementation of the kernel functions used in the non linear SVM.
+ *
+ *It implements the interfaz defined by kernel.h with the kernel functions to use in the non linear SVM in this library. See kernels.h for a detailed description of its functions.
+
+ * @file kernels.c
+ * @author Roberto Diaz Morales
+ * @date 23 Aug 2016
+ *
+ * @see kernels.h
+ */
+
 #include "../include/kernels.h"
 #include "../include/IOStructures.h"
 #include <math.h>
 
+/**
+ * @cond
+ */
+
+/**
+ * @brief Radial Basis Function of two elements of the dataset.
+ *
+ * This function returns the kernel function among two elements of the same dataset.
+ *
+ * It returns exp(-gamma||x1-x2||^2)
+ * x1 and x2 are two elements of the dataset and gamma is a parameter whose value can be found
+ * in the struct props.
+ *  
+ *
+ * @param dataset The strut that contains the dataset information.
+ * @param index1 The index of the first element of the dataset.
+ * @param index2 The index of the second element of the dataset.
+ * @param props The list of properties to extract the kernel parameters.
+ * @return The value of the Radial Basis Function of both elements.
+ */
+
 double kernel(svm_dataset dataset, int index1, int index2, properties props){
 
     double sum = 0.0;   
-    
+
+    // Pointer to both elements.    
     svm_sample *x=dataset.x[index1];
     svm_sample *y=dataset.x[index2];
 
+    // If the dataset is not sparse we iterate directly.
     if (dataset.sparse==0){
         int maxdim = dataset.maxdim;
         int i;
@@ -42,7 +77,7 @@ double kernel(svm_dataset dataset, int index1, int index2, properties props){
 	}
 
     }else{
-
+        // If the dataset is sparse we iterate comparing the indexes of every feature.
         sum += (dataset.quadratic_value[index1])+(dataset.quadratic_value[index2]);
         while(x->index !=-1 && y->index !=-1) {
             if(x->index == y->index){
@@ -62,15 +97,32 @@ double kernel(svm_dataset dataset, int index1, int index2, properties props){
     return exp(-(props.Kgamma)*sum);
 }
 
-
+/**
+ * @brief Radial Basis Function of one element of the dataset and Support Vectro of a trained model.
+ *
+ * This method returns the RBF Kernel function of one element of the dataset and Support Vectro of a trained model.
+ * 
+ * It returns exp(-gamma||x1-x2||^2)
+ *
+ * x1 is an element of the dataset and x2 is a support vector of a trained model, gamma is a parameter whose value can be found
+ * in the struct props. 
+ *
+ * @param dataset The strut that contains the dataset information.
+ * @param index1 The index of the sample of the dataset.
+ * @param mymodel The trained SVM model.
+ * @param index2 The index of one of the Support Vectors of the trained model.
+ * @return The value of the Radial Basis Function of both elements.
+ */
 
 double kernelTest(svm_dataset dataset, int index1, model mymodel, int index2){
 
     double sum = 0.0;
 
+    // Pointer to both elements.  
     svm_sample *x=dataset.x[index1];
     svm_sample *y=mymodel.x[index2];
 
+    // If the dataset is not sparse we iterate directly.
     if (mymodel.sparse==0){
         int maxdim = mymodel.maxdim;
         int i;
@@ -80,7 +132,7 @@ double kernelTest(svm_dataset dataset, int index1, model mymodel, int index2){
             ++y;
         }
     }else{
-
+        // If the dataset is sparse we iterate comparing the indexes of every feature.
         sum += (dataset.quadratic_value[index1])+(mymodel.quadratic_value[index2]);
         while(x->index !=-1 && y->index !=-1) {
             if(x->index == y->index){
@@ -99,4 +151,8 @@ double kernelTest(svm_dataset dataset, int index1, model mymodel, int index2){
 
     return exp(-(mymodel.Kgamma)*sum);
 }
+
+/**
+ * @endcond
+ */
 

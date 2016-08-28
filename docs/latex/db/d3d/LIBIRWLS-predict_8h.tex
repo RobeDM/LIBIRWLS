@@ -12,8 +12,8 @@ Functions to classify data with a trained model.
 double $\ast$ \hyperlink{LIBIRWLS-predict_8h_ae3fc6988def0487bb4bb47b759ba3d0b}{test} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, \hyperlink{structmodel}{model} mymodel, \hyperlink{structpredictProperties}{predict\+Properties} props)
 \begin{DoxyCompactList}\small\item\em Function to classify data in a labeled dataset and to obtain the accuracy. \end{DoxyCompactList}\item 
 void \hyperlink{LIBIRWLS-predict_8h_a53efcb64ca8e76d4a2cb65991189af91}{print\+Predict\+Instructions} ()
-\begin{DoxyCompactList}\small\item\em It shows the command line instructions in the standard output. \end{DoxyCompactList}\item 
-\hyperlink{structpredictProperties}{predict\+Properties} \hyperlink{LIBIRWLS-predict_8h_ad053dd367164b4b4b39a8f4ce31fe97f}{parse\+Predict\+Parameters} (int $\ast$argc, char $\ast$$\ast$$\ast$argv, int semiparametric)
+\begin{DoxyCompactList}\small\item\em Print instructions. \end{DoxyCompactList}\item 
+\hyperlink{structpredictProperties}{predict\+Properties} \hyperlink{LIBIRWLS-predict_8h_a186e63263bf147110137e90adafcb8c7}{parse\+Predict\+Parameters} (int $\ast$argc, char $\ast$$\ast$$\ast$argv)
 \begin{DoxyCompactList}\small\item\em It parses the prediction parameters from the command line. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -29,17 +29,27 @@ Roberto Diaz Morales
 
 
 \subsection{Function Documentation}
-\hypertarget{LIBIRWLS-predict_8h_ad053dd367164b4b4b39a8f4ce31fe97f}{}\label{LIBIRWLS-predict_8h_ad053dd367164b4b4b39a8f4ce31fe97f} 
+\hypertarget{LIBIRWLS-predict_8h_a186e63263bf147110137e90adafcb8c7}{}\label{LIBIRWLS-predict_8h_a186e63263bf147110137e90adafcb8c7} 
 \index{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}!parse\+Predict\+Parameters@{parse\+Predict\+Parameters}}
 \index{parse\+Predict\+Parameters@{parse\+Predict\+Parameters}!L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}}
 \subsubsection{\texorpdfstring{parse\+Predict\+Parameters()}{parsePredictParameters()}}
-{\ttfamily \hyperlink{structpredictProperties}{predict\+Properties} parse\+Predict\+Parameters (\begin{DoxyParamCaption}\item[{int $\ast$}]{argc,  }\item[{char $\ast$$\ast$$\ast$}]{argv,  }\item[{int}]{semiparametric }\end{DoxyParamCaption})}
+{\ttfamily \hyperlink{structpredictProperties}{predict\+Properties} parse\+Predict\+Parameters (\begin{DoxyParamCaption}\item[{int $\ast$}]{argc,  }\item[{char $\ast$$\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
 
 
 
 It parses the prediction parameters from the command line. 
 
-It parses the prediction parameters from the command line. \hypertarget{LIBIRWLS-predict_8h_a53efcb64ca8e76d4a2cb65991189af91}{}\label{LIBIRWLS-predict_8h_a53efcb64ca8e76d4a2cb65991189af91} 
+It reads the command line, extract the parameters and creates a strict with the value of its values. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of words of the command line. \\
+\hline
+{\em argv} & The list of words of the command line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A struct that contains the values of the test parameters. 
+\end{DoxyReturn}
+\hypertarget{LIBIRWLS-predict_8h_a53efcb64ca8e76d4a2cb65991189af91}{}\label{LIBIRWLS-predict_8h_a53efcb64ca8e76d4a2cb65991189af91} 
 \index{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}!print\+Predict\+Instructions@{print\+Predict\+Instructions}}
 \index{print\+Predict\+Instructions@{print\+Predict\+Instructions}!L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}}
 \subsubsection{\texorpdfstring{print\+Predict\+Instructions()}{printPredictInstructions()}}
@@ -47,7 +57,7 @@ It parses the prediction parameters from the command line. \hypertarget{LIBIRWLS
 
 
 
-It shows the command line instructions in the standard output. 
+Print instructions. 
 
 It shows the command line instructions in the standard output. \hypertarget{LIBIRWLS-predict_8h_ae3fc6988def0487bb4bb47b759ba3d0b}{}\label{LIBIRWLS-predict_8h_ae3fc6988def0487bb4bb47b759ba3d0b} 
 \index{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}!test@{test}}
@@ -59,4 +69,15 @@ It shows the command line instructions in the standard output. \hypertarget{LIBI
 
 Function to classify data in a labeled dataset and to obtain the accuracy. 
 
-Function to classify data in a labeled dataset and to obtain the accuracy. 
+Function that uses a trained model on a dataset and obtains the class of every training sample. 
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The test set. \\
+\hline
+{\em mymodel} & A trained S\+VM model. \\
+\hline
+{\em props} & The test properties. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The output of the classifier for every test sample (soft output). 
+\end{DoxyReturn}

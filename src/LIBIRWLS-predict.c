@@ -20,6 +20,16 @@
  ============================================================================
  */
 
+/**
+ * @brief Implementation of the predictions functions to classify data using a trained model.
+ *
+ * See LIBIRWLS-predict.h for a detailed description of its functions and parameters.
+ * @file LIBIRWLS-predict.c
+ * @author Roberto Diaz Morales
+ * @date 23 Aug 2016
+ *
+ * @see LIBIRWLS-predict.h
+ */
 
 #include <omp.h>
 #include <stdio.h>
@@ -40,8 +50,19 @@
 
 #include "../include/kernels.h"
 
+/**
+ * @cond
+ */
 
-
+/**
+ * @brief Function to classify data in a labeled dataset and to obtain the accuracy.
+ *
+ * Function to classify data in a labeled dataset and to obtain the accuracy.
+ * @param dataset The test set.
+ * @param mymodel A trained SVM model.
+ * @param props The test properties.
+ * @return The output of the classifier for every test sample (soft output).
+ */
 
 double *test(svm_dataset dataset, model mymodel,predictProperties props){
 
@@ -52,14 +73,17 @@ double *test(svm_dataset dataset, model mymodel,predictProperties props){
     {	
     #pragma omp for schedule(static)			
     for (i=0;i<dataset.l;i++){
+        // Iteration over all the training elements
         double pred=mymodel.bias;
         for (j=0;j<mymodel.nSVs;j++){
+            // Iteration over the Support Vectors
             pred+=(mymodel.weights[j])*kernelTest(dataset, i,  mymodel, j);
         }
         predictions[i]=pred;
     }	
     }
 
+    // Obtaining accuracy (only for labeled test dataset)
     double aciertos=0.0;
     double total=(double)dataset.l;
     if(props.Labels==1){
@@ -72,6 +96,12 @@ double *test(svm_dataset dataset, model mymodel,predictProperties props){
     return predictions;
 }
 
+
+/**
+ * @brief It shows the command line instructions in the standard output.
+ *
+ * It shows the command line instructions in the standard output.
+ */
 
 void printPredictInstructions() {
     fprintf(stderr, "LIBIRWLS-predict: This software predicts the label of a SVM given a data set of samples and a model obtained with PIRWLS-train or PSIRWLS-train");
@@ -87,8 +117,16 @@ void printPredictInstructions() {
     fprintf(stderr, "       given to PIRWLS-train.\n");
 }
 
+/**
+ * @brief It parses the prediction parameters from the command line.
+ *
+ * It parses the prediction parameters from the command line.
+ * @param argc The number of words of the command line.
+ * @param argv The list of words of the command line.
+ * @return A struct that contains the values of the test parameters.
+ */
 
-predictProperties parsePredictParameters(int* argc, char*** argv, int semiparametric) {
+predictProperties parsePredictParameters(int* argc, char*** argv) {
 
     predictProperties props;
     props.Labels=0;
@@ -98,10 +136,7 @@ predictProperties parsePredictParameters(int* argc, char*** argv, int semiparame
     for (i = 1; i < *argc; ++i) {
         if ((*argv)[i][0] != '-') break;
         if (++i >= *argc) {
-            if (semiparametric==0)
-                printPredictInstructions();
-            else
-                printPredictInstructions();
+            printPredictInstructions();
             exit(1);
         }
 
@@ -118,10 +153,7 @@ predictProperties parsePredictParameters(int* argc, char*** argv, int semiparame
             }
         } else {
             fprintf(stderr, "Unknown parameter %s\n",param_name);
-            if (semiparametric==0)
-                printPredictInstructions();
-            else
-                printPredictInstructions();
+            printPredictInstructions();
             exit(2);
         }
     }
@@ -134,30 +166,45 @@ predictProperties parsePredictParameters(int* argc, char*** argv, int semiparame
     return props;
 }
 
+/**
+ * @brief It the main function to build the executable file to make predictions 
+ * on a dataset using a model previously trained using PIRWLS-train or PSIRWLS-train.
+ */
 
 int main(int argc, char** argv)
 {
 
-    predictProperties props = parsePredictParameters(&argc, &argv,0);
+    // Parsing command line to extract parameters.
+    predictProperties props = parsePredictParameters(&argc, &argv);
   
+    //Show error msg if there are wrong parameters.
     if (argc != 4) {
         printPredictInstructions();
         return 4;
     }
 
+    // The name of the files
     char * data_file = argv[1];
     char * data_model = argv[2];
     char * output_file = argv[3];
   
     model  mymodel;
     
-    //////////////////////////////
+    // Reading the trained model from the file
+    printf("Reading trained model from file:%s\n",data_model);
     FILE *In = fopen(data_model, "r+");
+    if (In == NULL) {
+        fprintf(stderr, "Input file with the trained model not found: %s\n",filename);
+        exit(2);
+    }
     readModel(&mymodel, In);
     fclose(In);
 
-    printf("\nModel Loaded from file: %s\nSupport Vectors: %d\n\n",data_model,mymodel.nSVs);
+    printf("Model Loaded, it contains %d Support Vectors\n",mymodel.nSVs);
 
+
+    // Loading dataset
+    printf("Reading dataset from file:%s\n",data_file);
     svm_dataset dataset;
 	  
     if(props.Labels==0){
@@ -166,10 +213,13 @@ int main(int argc, char** argv)
         dataset=readTrainFile(data_file);			
     }
 
-    printf("Dataset Loaded from file: %s\nTraining samples: %d\nNumber of features: %d\n\n",data_file, dataset.l,dataset.maxdim);
+    printf("Dataset Loaded, it contains %d samples and %d features\n", dataset.l,dataset.maxdim);
 
+    // Set the number of openmp threads
     omp_set_num_threads(props.Threads);
 	
+    //Making predictions
+    printf("Classification\n", dataset.l);
     double *predictions=test(dataset,mymodel,props);
 	
     printf("\nWriting output in file: %s \n\n",output_file);
@@ -177,3 +227,7 @@ int main(int argc, char** argv)
     return 0;
 
 }
+
+/**
+ * @endcond
+ */

@@ -24,9 +24,9 @@
  * @file kernels.h
  * @author Roberto Diaz Morales
  * @date 23 Aug 2016
- * @brief kernel function of non linear SVM.
+ * @brief Defition of the kernel functions used in the non linear SVM.
  *
- * Implements the kernel function to use in the non linear SVM.
+ * It defines the kernel function to use in the non linear SVM in this library.
  */
 
 
@@ -36,17 +36,39 @@
 #include "IOStructures.h"
 
 /**
- * @brief Kernel function among two elements of the dataset.
+ * @brief Radial Basis Function of two elements of the dataset.
  *
- * This function returns the kernel function among two elements of the dataset.
+ * This function returns the kernel function among two elements of the same dataset.
+ *
+ * It returns exp(-gamma||x1-x2||^2)
+ *
+ * x1 and x2 are two elements of the dataset and gamma is a parameter whose value can be found
+ * in the struct props. 
+ *
+ * @param dataset The strut that contains the dataset information.
+ * @param index1 The index of the first element of the dataset.
+ * @param index2 The index of the second element of the dataset.
+ * @param props The list of properties to extract the kernel parameters.
+ * @return The value of the Radial Basis Function of both elements.
  */
 
 double kernel(svm_dataset dataset, int index1, int index2, properties props);
 
 /**
- * @brief Kernel function among two elements of two different datasets.
+ * @brief Radial Basis Function of one element of the dataset and Support Vectro of a trained model.
  *
- * This function returns the kernel function among two elements of two different datasets.
+ * This method returns the RBF Kernel function of one element of the dataset and Support Vectro of a trained model.
+ * 
+ * It returns exp(-gamma||x1-x2||^2)
+ *
+ * x1 is an element of the dataset and x2 is a support vector of a trained model, gamma is a parameter whose value can be found
+ * in the struct props. 
+ *
+ * @param dataset The strut that contains the dataset information.
+ * @param index1 The index of the sample of the dataset.
+ * @param mymodel The trained SVM model.
+ * @param index2 The index of one of the Support Vectors of the trained model.
+ * @return The value of the Radial Basis Function of both elements.
  */
 
 double kernelTest(svm_dataset dataset, int index1, model mymodel, int index2);

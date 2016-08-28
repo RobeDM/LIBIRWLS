@@ -36,9 +36,9 @@
 #include <stdio.h>
 
 /**
- * @brief Structure to save training parameters.
+ * @brief Training parameters of the IRWLS procedures.
  *
- * Structure to save training parameters.
+ * This struct stores the training parameters of the IRWLS procedures.
  */
 
 typedef struct properties{
@@ -52,9 +52,9 @@ typedef struct properties{
 
 
 /**
- * @brief Structure to save predictions parameters.
+ * @brief Testing parameters of the IRWLS procedures.
  *
- * Structure to save prediction parameters.
+ * This struct stores the testing parameters of the IRWLS procedures.
  */
 
 typedef struct predictProperties{
@@ -64,9 +64,9 @@ typedef struct predictProperties{
 
 
 /**
- * @brief Structure of a trained model.
+ * @brief It represents a trained model that has been obtained using PIRWLS or PSIRWLS.
  *
- * Structure of a trained model.
+ * This structures saves all the variables of a trained model needed to classify future data.
  */
 
 typedef struct model{
@@ -83,9 +83,9 @@ typedef struct model{
 
 
 /**
- * @brief This structure represents a single feature of a data.
+ * @brief A single feature of a data.
  *
- * This structure represents a single feature of a data.
+ * This structure represents a single feature of a data. It is composed of a features index and its value.
  */
 
 typedef struct svm_sample{
@@ -95,9 +95,9 @@ typedef struct svm_sample{
 
 
 /**
- * @brief This structure represents a dataset.
+ * @brief A dataset.
  *
- * This structure represents a dataset.
+ * This structure represents a dataset, a collection of samples and its associated labels.
  */
 
 typedef struct svm_dataset{
@@ -106,7 +106,7 @@ typedef struct svm_dataset{
     int maxdim; /**< The number of features of the dataset. */   
     double *y; /**< The label of every sample. */   
     struct svm_sample **x; /**< The samples. */   
-    double *quadratic_value; /**< The L2 norm of every sample. */   
+    double *quadratic_value; /**< The L2 norm of every sample. It is used to compute kernel functions faster.*/   
 }svm_dataset;
 
 
@@ -128,8 +128,7 @@ static int compare (const void * a, const void * b);
 /**
  * @brief It reads a file that contains a labeled dataset in libsvm format.
  *
- * It reads a file that contains a labeled dataset in libsvm format.
- * The format si the following one:
+ * It reads a file that contains a labeled dataset in libsvm format, the format is the following one:
  * +1 1:5 7:2 15:6
  * +1 1:5 7:2 15:6 23:1
  * -1 2:4 3:2 10:6 11:4
@@ -145,8 +144,7 @@ svm_dataset readTrainFile(char filename[]);
 /**
  * @brief It reads a file that contains an unlabeled dataset in libsvm format.
  *
- * It reads a file that contains an unlabeled dataset in libsvm format.
- * The format si the following one:
+ * It reads a file that contains an unlabeled dataset in libsvm format. The format si the following one:
  * 1:5 7:2 15:6
  * 1:5 7:2 15:6 23:1
  * 2:4 3:2 10:6 11:4
@@ -162,7 +160,7 @@ svm_dataset readUnlabeledFile(char filename[]);
 /**
  * @brief It stores a trained model into a file.
  *
- * It stores the strut of a trained model into a file.
+ * It stores the struct of a trained model (that has been obtained using PIRWLS or PSIRWLS) into a file.
  * @param mod The struct with the model to store.
  * @param Output The name of the file.
  */
@@ -172,7 +170,7 @@ void storeModel(model * mod, FILE *Output);
 /**
  * @brief It loads a trained model from a file.
  *
- * It loads a trained model from a file.
+ * It loads a trained model (that has been obtained using PIRWLS or PSIRWLS) from a file.
  * @param mod The pointer with the struct to load results.
  * @param Input The name of the file.
  */
@@ -183,7 +181,7 @@ void readModel(model * mod, FILE *Input);
 /**
  * @brief It writes the content of a double array into a file.
  *
- * It writes the content of a double array into a file.
+ * It writes the content of a double array into a file. It is used to save the predictions of a model on a dataset.
  * @param fileoutput The name of the file.
  * @param predictions The array with the information to save.
  * @param size The length of the array.

@@ -9,6 +9,13 @@
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
@@ -22,7 +29,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">LIBIRWLS
+   &#160;<span id="projectnumber">2.0</span>
    </div>
+   <div id="projectbrief">Parallel SVMs and semi parametric SVMS using the IRWLS procedure</div>
   </td>
  </tr>
  </tbody>
@@ -42,6 +51,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('db/d3d/LIBIRWLS-predict_8h.html','../../');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -56,11 +80,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="../../dir_fbf672e6629ab74a24e7d310d431c03b.html">LIBIRWLS</a></li><li class="navelem"><a class="el" href="../../dir_2b8ab67b0898ed06b16a24fa52708771.html">include</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
@@ -81,19 +100,19 @@ Functions</h2></td></tr>
 <tr class="memdesc:ae3fc6988def0487bb4bb47b759ba3d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to classify data in a labeled dataset and to obtain the accuracy.  <a href="#ae3fc6988def0487bb4bb47b759ba3d0b">More...</a><br /></td></tr>
 <tr class="separator:ae3fc6988def0487bb4bb47b759ba3d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53efcb64ca8e76d4a2cb65991189af91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3d/LIBIRWLS-predict_8h.html#a53efcb64ca8e76d4a2cb65991189af91">printPredictInstructions</a> ()</td></tr>
-<tr class="memdesc:a53efcb64ca8e76d4a2cb65991189af91"><td class="mdescLeft">&#160;</td><td class="mdescRight">It shows the command line instructions in the standard output.  <a href="#a53efcb64ca8e76d4a2cb65991189af91">More...</a><br /></td></tr>
+<tr class="memdesc:a53efcb64ca8e76d4a2cb65991189af91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print instructions.  <a href="#a53efcb64ca8e76d4a2cb65991189af91">More...</a><br /></td></tr>
 <tr class="separator:a53efcb64ca8e76d4a2cb65991189af91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad053dd367164b4b4b39a8f4ce31fe97f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d38/structpredictProperties.html">predictProperties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3d/LIBIRWLS-predict_8h.html#ad053dd367164b4b4b39a8f4ce31fe97f">parsePredictParameters</a> (int *argc, char ***argv, int semiparametric)</td></tr>
-<tr class="memdesc:ad053dd367164b4b4b39a8f4ce31fe97f"><td class="mdescLeft">&#160;</td><td class="mdescRight">It parses the prediction parameters from the command line.  <a href="#ad053dd367164b4b4b39a8f4ce31fe97f">More...</a><br /></td></tr>
-<tr class="separator:ad053dd367164b4b4b39a8f4ce31fe97f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a186e63263bf147110137e90adafcb8c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d38/structpredictProperties.html">predictProperties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3d/LIBIRWLS-predict_8h.html#a186e63263bf147110137e90adafcb8c7">parsePredictParameters</a> (int *argc, char ***argv)</td></tr>
+<tr class="memdesc:a186e63263bf147110137e90adafcb8c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">It parses the prediction parameters from the command line.  <a href="#a186e63263bf147110137e90adafcb8c7">More...</a><br /></td></tr>
+<tr class="separator:a186e63263bf147110137e90adafcb8c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions to classify data with a trained model. </p>
 <dl class="section author"><dt>Author</dt><dd>Roberto Diaz Morales </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>23 Aug 2016 Functions to classify data with a trained model. </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ad053dd367164b4b4b39a8f4ce31fe97f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad053dd367164b4b4b39a8f4ce31fe97f">&sect;&nbsp;</a></span>parsePredictParameters()</h2>
+<a id="a186e63263bf147110137e90adafcb8c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a186e63263bf147110137e90adafcb8c7">&sect;&nbsp;</a></span>parsePredictParameters()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -108,13 +127,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">char ***&#160;</td>
-          <td class="paramname"><em>argv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>semiparametric</em>&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -125,7 +138,14 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>It parses the prediction parameters from the command line. </p>
-<p>It parses the prediction parameters from the command line. </p>
+<p>It reads the command line, extract the parameters and creates a strict with the value of its values. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td>The number of words of the command line. </td></tr>
+    <tr><td class="paramname">argv</td><td>The list of words of the command line. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A struct that contains the values of the test parameters. </dd></dl>
 
 </div>
 </div>
@@ -144,7 +164,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>It shows the command line instructions in the standard output. </p>
+<p>Print instructions. </p>
 <p>It shows the command line instructions in the standard output. </p>
 
 </div>
@@ -182,16 +202,28 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Function to classify data in a labeled dataset and to obtain the accuracy. </p>
-<p>Function to classify data in a labeled dataset and to obtain the accuracy. </p>
+<p>Function that uses a trained model on a dataset and obtains the class of every training sample. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dataset</td><td>The test set. </td></tr>
+    <tr><td class="paramname">mymodel</td><td>A trained SVM model. </td></tr>
+    <tr><td class="paramname">props</td><td>The test properties. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The output of the classifier for every test sample (soft output). </dd></dl>
 
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="../../doxygen.png" alt="doxygen"/>
-</a> 1.8.12
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dir_fbf672e6629ab74a24e7d310d431c03b.html">LIBIRWLS</a></li><li class="navelem"><a class="el" href="../../dir_2b8ab67b0898ed06b16a24fa52708771.html">include</a></li><li class="navelem"><a class="el" href="../../db/d3d/LIBIRWLS-predict_8h.html">LIBIRWLS-predict.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
+  </ul>
+</div>
 </body>
 </html>

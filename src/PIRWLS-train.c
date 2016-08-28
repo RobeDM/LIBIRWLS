@@ -20,7 +20,22 @@
  ============================================================================
  */
 
-
+/**
+ * @brief Implementation of the training functions of the PIRWLS algorithm.
+ *
+ * See PIRWLS-train.h for a detailed description of its functions and parameters.
+ * 
+ * For a detailed description of the algorithm and its parameters read the following paper: \n Pérez-Cruz, F., Alarcón-Diana, P. L., Navia-Vázquez, A., & Artés-Rodríguez, A. (2001). Fast Training of Support Vector Classifiers. In Advances in Neural Information Processing Systems (pp. 734-740)
+ *
+ * For a detailed description about the parallelization read the following paper: \n
+ Díaz-Morales, R., & Navia-Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-186.
+ *
+ * @file PIRWLS-train.c
+ * @author Roberto Diaz Morales
+ * @date 23 Aug 2016
+ * @see PIRWLS-train.h
+ * 
+ */
 
 #include <omp.h>
 #include <stdio.h>
@@ -40,6 +55,18 @@
 
 #include "../include/PIRWLS-train.h"
 
+/**
+ * @cond
+ */
+
+/**
+ * @brief Random permutation of n elements.
+ *
+ * It crates a random permutation of n elements.
+ *
+ * @param n The number of elementos in the permutation.
+ * @return The permutation.
+ */
 
 int * rpermute(int n) {
     int *a = (int *) malloc(n*sizeof(int));
@@ -55,6 +82,22 @@ int * rpermute(int n) {
     return a;
 }
 
+/**
+ * @brief IRWLS procedure on a Working Set.
+ *
+ * For a detailed description of the algorithm and its parameters read the following paper: \n Pérez-Cruz, F., Alarcón-Diana, P. L., Navia-Vázquez, A., & Artés-Rodríguez, A. (2001). Fast Training of Support Vector Classifiers. In Advances in Neural Information Processing Systems (pp. 734-740)
+ *
+ * For a detailed description about the parallelization read the following paper: \n
+ Díaz-Morales, R., & Navia-Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-186.
+ *
+ * It uses the IRWLS procedure on a Working Set.
+ * @param dataset The training dataset.
+ * @param props The strut of training properties.
+ * @param GIN The classification effect of the inactive set.
+ * @param e The current error on every training data.
+ * @param beta The bias term of the classification function.
+ * @return The new weights vector of the classifier.
+ */
 
 double* subIRWLS(svm_dataset dataset,properties props, double *GIN, double *e, double *beta){
     
@@ -330,6 +373,14 @@ double* subIRWLS(svm_dataset dataset,properties props, double *GIN, double *e, d
     return betaBest;
 }
 
+/**
+ * @brief It trains a full SVM with a training set.
+ *
+ * It trains a full SVM using a training set and the training parameters.
+ * @param dataset The training set.
+ * @param props The values of the training parameters.
+ * @return The weights of every Support Vector of the SVM.
+ */
 
 double* trainFULL(svm_dataset dataset,properties props){
 
@@ -615,6 +666,12 @@ double* trainFULL(svm_dataset dataset,properties props){
 
 }
 
+/**
+ * @brief It shows PIRWLS-train command line instructions in the standard output.
+ *
+ *  It shows PIRWLS-train command line instructions in the standard output.
+ */
+
 void printPIRWLSInstructions() {
     fprintf(stderr, "PIRWLS-train: This software train the SVM on the given training set and ");
     fprintf(stderr, "generages a model for futures prediction use.\n\n");
@@ -627,6 +684,15 @@ void printPIRWLSInstructions() {
     fprintf(stderr, "  -w Working set size: Size of the Least Squares problem in every iteration (default 500)\n");
     fprintf(stderr, "  -e eta: Stop criteria (default 0.001)\n");    
 }
+
+/**
+ * @brief It parses the command line.
+ *
+ * It parses input command line to extract the parameters.
+ * @param argc The number of words of the command line.
+ * @param argv The list of words of the command line.
+ * @return A struct that contains the values of the training parameters.
+ */
 
 properties parseTrainPIRWLSParameters(int* argc, char*** argv) {
 
@@ -676,6 +742,16 @@ properties parseTrainPIRWLSParameters(int* argc, char*** argv) {
 
 }
 
+/**
+ * @brief It converts the result into a model struct.
+ *
+ * After the training of a SVM using the IRWLS procedure, this function build a struct with the information and returns it.
+ *
+ * @param props The training parameters.
+ * @param dataset The training set.
+ * @param beta The weights of the classifier.
+ * @return The struct that storages all the information of the classifier.
+ */
 
 model calculatePIRWLSModel(properties props, svm_dataset dataset, double * beta ){
     model classifier;
@@ -738,6 +814,10 @@ model calculatePIRWLSModel(properties props, svm_dataset dataset, double * beta 
     return classifier;
 }
 
+/**
+ * @brief Is the main function to build the executable file to train a SVM using the PIRWLS procedure.
+ */
+  
   
 int main(int argc, char** argv)
 {
@@ -782,4 +862,7 @@ int main(int argc, char** argv)
     return 0;
 }
 
+/**
+ * @endcond
+ */
 

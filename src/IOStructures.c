@@ -20,17 +20,57 @@
  ============================================================================
  */
 
+/**
+ * @brief Implementation of the IO functions used in the application.
+ *
+ * It implements the interface defined by IOStructures.h. See IOStructures.h for a detailed description of functions and parameters.
+ * @file IOStructures.c
+ * @author Roberto Diaz Morales
+ * @date 23 Aug 2016
+ *
+ * @see IOStructures.h
+ */
+
 #include "../include/IOStructures.h"
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
 
+/**
+ * @cond
+ */
+
+/**
+ * @brief A comparator of two data.
+ *
+ * A function to compare two data and returns:
+ *  * 1 if teh first argument is higher than the second one.
+ *  * -1 if teh first argument is lower than the second one.
+ *  * 0 if both arguments are equal.
+ * @param a The first argument to compare.
+ * @param b The second argument to compare.
+ * @return The result of comparing a and b.
+ */
 
 static int compare (const void * a, const void * b){
   if (*(double*)a < *(double*)b) return -1;
   else if (*(double*)a > *(double*)b) return +1;
   else return 0;  
 }
+
+/**
+ * @brief It reads a file that contains a labeled dataset in libsvm format.
+ *
+ * It reads a file that contains a labeled dataset in libsvm format.
+ * The format si the following one:
+ * +1 1:5 7:2 15:6
+ * +1 1:5 7:2 15:6 23:1
+ * -1 2:4 3:2 10:6 11:4
+ * ...
+ *
+ * @param filename A string with the name of the file that contains the dataset.
+ * @return The struct with the dataset information.
+ */
 
 svm_dataset readTrainFile(char filename[]){
 
@@ -212,6 +252,20 @@ svm_dataset readTrainFile(char filename[]){
 
 }
 
+/**
+ * @brief It reads a file that contains an unlabeled dataset in libsvm format.
+ *
+ * It reads a file that contains an unlabeled dataset in libsvm format.
+ * The format si the following one:
+ * 1:5 7:2 15:6
+ * 1:5 7:2 15:6 23:1
+ * 2:4 3:2 10:6 11:4
+ * ...
+ *
+ * @param filename A string with the name of the file that contains the dataset.
+ * @return The struct with the dataset information.
+ */
+
 svm_dataset readUnlabeledFile(char filename[]){
 
     svm_dataset dataset;
@@ -327,9 +381,17 @@ svm_dataset readUnlabeledFile(char filename[]){
 
 }
 
+/**
+ * @brief It stores a trained model into a file.
+ *
+ * It stores the strut of a trained model into a file.
+ * @param mod The struct with the model to store.
+ * @param Output The name of the file.
+ */
 
 void storeModel(model * mod, FILE *Output){
 
+    //This procedures write in the file every element of the model struct.
     int aux;
     aux=fwrite(&mod->Kgamma, sizeof(double), 1, Output);    
     aux=fwrite(&mod->bias, sizeof(double), 1, Output);
@@ -343,8 +405,17 @@ void storeModel(model * mod, FILE *Output){
 
 }
 
+/**
+ * @brief It loads a trained model from a file.
+ *
+ * It loads a trained model from a file.
+ * @param mod The pointer with the struct to load results.
+ * @param Input The name of the file.
+ */
+
 void readModel(model * mod, FILE *Input){
-	
+
+    //This procedures reads from the file every element of the model struct.	
     int aux;
     aux=fread(&mod->Kgamma, sizeof(double), 1, Input);
     aux=fread(&mod->bias, sizeof(double), 1, Input);
@@ -370,6 +441,15 @@ void readModel(model * mod, FILE *Input){
     }
 }
 
+/**
+ * @brief It writes the content of a double array into a file.
+ *
+ * It writes the content of a double array into a file.
+ * @param fileoutput The name of the file.
+ * @param predictions The array with the information to save.
+ * @param size The length of the array.
+ */
+
 void writeOutput (char fileoutput[], double *predictions, int size){
 	
      FILE *Archivo;
@@ -384,5 +464,8 @@ void writeOutput (char fileoutput[], double *predictions, int size){
      fclose(Archivo);
 }
 
+/**
+ * @endcond
+ */
 
 

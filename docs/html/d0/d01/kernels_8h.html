@@ -9,6 +9,13 @@
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
@@ -22,7 +29,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">LIBIRWLS
+   &#160;<span id="projectnumber">2.0</span>
    </div>
+   <div id="projectbrief">Parallel SVMs and semi parametric SVMS using the IRWLS procedure</div>
   </td>
  </tr>
  </tbody>
@@ -42,6 +51,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('d0/d01/kernels_8h.html','../../');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -56,11 +80,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="../../dir_fbf672e6629ab74a24e7d310d431c03b.html">LIBIRWLS</a></li><li class="navelem"><a class="el" href="../../dir_2b8ab67b0898ed06b16a24fa52708771.html">include</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
@@ -69,7 +88,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>kernel function of non linear SVM.  
+<p>Defition of the kernel functions used in the non linear SVM.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="../../de/d79/IOStructures_8h_source.html">IOStructures.h</a>&quot;</code><br />
 </div>
@@ -78,16 +97,16 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aef79c6ac1742e54bec17d9fd80cda321"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d01/kernels_8h.html#aef79c6ac1742e54bec17d9fd80cda321">kernel</a> (<a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a> dataset, int index1, int index2, <a class="el" href="../../d1/d03/structproperties.html">properties</a> props)</td></tr>
-<tr class="memdesc:aef79c6ac1742e54bec17d9fd80cda321"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function among two elements of the dataset.  <a href="#aef79c6ac1742e54bec17d9fd80cda321">More...</a><br /></td></tr>
+<tr class="memdesc:aef79c6ac1742e54bec17d9fd80cda321"><td class="mdescLeft">&#160;</td><td class="mdescRight">Radial Basis Function of two elements of the dataset.  <a href="#aef79c6ac1742e54bec17d9fd80cda321">More...</a><br /></td></tr>
 <tr class="separator:aef79c6ac1742e54bec17d9fd80cda321"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeb0c5c6c8105ff0aec7f01ef47bed32"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d01/kernels_8h.html#afeb0c5c6c8105ff0aec7f01ef47bed32">kernelTest</a> (<a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a> dataset, int index1, <a class="el" href="../../dc/d1b/structmodel.html">model</a> mymodel, int index2)</td></tr>
-<tr class="memdesc:afeb0c5c6c8105ff0aec7f01ef47bed32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function among two elements of two different datasets.  <a href="#afeb0c5c6c8105ff0aec7f01ef47bed32">More...</a><br /></td></tr>
+<tr class="memdesc:afeb0c5c6c8105ff0aec7f01ef47bed32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Radial Basis Function of one element of the dataset and Support Vectro of a trained model.  <a href="#afeb0c5c6c8105ff0aec7f01ef47bed32">More...</a><br /></td></tr>
 <tr class="separator:afeb0c5c6c8105ff0aec7f01ef47bed32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>kernel function of non linear SVM. </p>
+<div class="textblock"><p>Defition of the kernel functions used in the non linear SVM. </p>
 <dl class="section author"><dt>Author</dt><dd>Roberto Diaz Morales </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>23 Aug 2016 Implements the kernel function to use in the non linear SVM. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>23 Aug 2016 It defines the kernel function to use in the non linear SVM in this library. </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="aef79c6ac1742e54bec17d9fd80cda321"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aef79c6ac1742e54bec17d9fd80cda321">&sect;&nbsp;</a></span>kernel()</h2>
@@ -127,8 +146,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Kernel function among two elements of the dataset. </p>
-<p>This function returns the kernel function among two elements of the dataset. </p>
+<p>Radial Basis Function of two elements of the dataset. </p>
+<p>This function returns the kernel function among two elements of the same dataset.</p>
+<p>It returns exp(-gamma||x1-x2||^2)</p>
+<p>x1 and x2 are two elements of the dataset and gamma is a parameter whose value can be found in the struct props.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dataset</td><td>The strut that contains the dataset information. </td></tr>
+    <tr><td class="paramname">index1</td><td>The index of the first element of the dataset. </td></tr>
+    <tr><td class="paramname">index2</td><td>The index of the second element of the dataset. </td></tr>
+    <tr><td class="paramname">props</td><td>The list of properties to extract the kernel parameters. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of the Radial Basis Function of both elements. </dd></dl>
 
 </div>
 </div>
@@ -170,17 +201,33 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Kernel function among two elements of two different datasets. </p>
-<p>This function returns the kernel function among two elements of two different datasets. </p>
+<p>Radial Basis Function of one element of the dataset and Support Vectro of a trained model. </p>
+<p>This method returns the RBF Kernel function of one element of the dataset and Support Vectro of a trained model.</p>
+<p>It returns exp(-gamma||x1-x2||^2)</p>
+<p>x1 is an element of the dataset and x2 is a support vector of a trained model, gamma is a parameter whose value can be found in the struct props.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dataset</td><td>The strut that contains the dataset information. </td></tr>
+    <tr><td class="paramname">index1</td><td>The index of the sample of the dataset. </td></tr>
+    <tr><td class="paramname">mymodel</td><td>The trained SVM model. </td></tr>
+    <tr><td class="paramname">index2</td><td>The index of one of the Support Vectors of the trained model. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of the Radial Basis Function of both elements. </dd></dl>
 
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="../../doxygen.png" alt="doxygen"/>
-</a> 1.8.12
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dir_fbf672e6629ab74a24e7d310d431c03b.html">LIBIRWLS</a></li><li class="navelem"><a class="el" href="../../dir_2b8ab67b0898ed06b16a24fa52708771.html">include</a></li><li class="navelem"><a class="el" href="../../d0/d01/kernels_8h.html">kernels.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,0 +1,155 @@
+<toc label="LIBIRWLS" topic="index.html">
+  <topic label="Data Structures" href="annotated.html">
+    <topic label="Data Structures" href="annotated.html">
+      <topic label="model" href="dc/d1b/structmodel.html">
+        <topic label="bias" href="dc/d1b/structmodel.html#a9aef7cc709fca4e03a021623ce6c7ae6"/>
+        <topic label="Kgamma" href="dc/d1b/structmodel.html#ac5c18eca6ad32bc6da1f2a923965e66c"/>
+        <topic label="maxdim" href="dc/d1b/structmodel.html#ac6ba8c1bc138143114cd331583f41387"/>
+        <topic label="nElem" href="dc/d1b/structmodel.html#a4877089d41daf2186482e0e6f900d65f"/>
+        <topic label="nSVs" href="dc/d1b/structmodel.html#a3b73d79940bbdae365676c4fa56e96ea"/>
+        <topic label="quadratic_value" href="dc/d1b/structmodel.html#a623da3d1f5116fd4d66873b95eb2e720"/>
+        <topic label="sparse" href="dc/d1b/structmodel.html#ad00b5b9bbafcd18eb6367c90d9471231"/>
+        <topic label="weights" href="dc/d1b/structmodel.html#a658dab89d4b4b1a5bd28cdfb4abafe39"/>
+        <topic label="x" href="dc/d1b/structmodel.html#a81da41c8731f95de344a068d302eb336"/>
+      </topic>
+      <topic label="predictProperties" href="d0/d38/structpredictProperties.html">
+        <topic label="Labels" href="d0/d38/structpredictProperties.html#a580276e3e15305d5ac16d9ce0eb9b20a"/>
+        <topic label="Threads" href="d0/d38/structpredictProperties.html#a602116e0d46424243cb4c971c03695e1"/>
+      </topic>
+      <topic label="properties" href="d1/d03/structproperties.html">
+        <topic label="C" href="d1/d03/structproperties.html#a3b98814395b295db30f029e5e67ae9c9"/>
+        <topic label="Eta" href="d1/d03/structproperties.html#abd91deb543a31a6a1f75892af7cf95c8"/>
+        <topic label="Kgamma" href="d1/d03/structproperties.html#aab9c0195a446f08fc782701750ddb6ac"/>
+        <topic label="MaxSize" href="d1/d03/structproperties.html#a42219768dd35e1ab628e1785759df400"/>
+        <topic label="size" href="d1/d03/structproperties.html#a1694aebbbdd904f9b0e5faca725966b6"/>
+        <topic label="Threads" href="d1/d03/structproperties.html#a56ab77c44fb808e71990074bd75529ed"/>
+      </topic>
+      <topic label="svm_dataset" href="d0/d6e/structsvm__dataset.html">
+        <topic label="l" href="d0/d6e/structsvm__dataset.html#a899bdc43cdfb5e7063e8d7d1787357b4"/>
+        <topic label="maxdim" href="d0/d6e/structsvm__dataset.html#aec1d1ee62ef8204fe90d8c6b7a647177"/>
+        <topic label="quadratic_value" href="d0/d6e/structsvm__dataset.html#a4b1ff8b06358c73f6b55ecae7516d01e"/>
+        <topic label="sparse" href="d0/d6e/structsvm__dataset.html#a58e8012a38ef5ea1c642db1b8c06b8bc"/>
+        <topic label="x" href="d0/d6e/structsvm__dataset.html#ad3e266a07c610ed3f10df1bab30fd9e5"/>
+        <topic label="y" href="d0/d6e/structsvm__dataset.html#a2bce5da2f59f28fe18eff3f92f92c011"/>
+      </topic>
+      <topic label="svm_sample" href="d8/d33/structsvm__sample.html">
+        <topic label="index" href="d8/d33/structsvm__sample.html#a008f6b24c7c76af103e84245fb271506"/>
+        <topic label="value" href="d8/d33/structsvm__sample.html#a2c43371736dc33a9e1d83561a99cf2f7"/>
+      </topic>
+    </topic>
+    <topic label="Data Structure Index" href="classes.html"/>
+    <topic label="Data Fields" href="functions.html">
+      <topic label="All" href="functions.html"/>
+      <topic label="Variables" href="functions_vars.html"/>
+    </topic>
+  </topic>
+  <topic label="Files">
+    <topic label="File List" href="files.html">
+      <topic label="LIBIRWLS" href="dir_fbf672e6629ab74a24e7d310d431c03b.html">
+        <topic label="include" href="dir_2b8ab67b0898ed06b16a24fa52708771.html">
+          <topic label="IOStructures.h" href="de/d79/IOStructures_8h.html">
+            <topic label="properties" href="d1/d03/structproperties.html">
+              <topic label="C" href="d1/d03/structproperties.html#a3b98814395b295db30f029e5e67ae9c9"/>
+              <topic label="Eta" href="d1/d03/structproperties.html#abd91deb543a31a6a1f75892af7cf95c8"/>
+              <topic label="Kgamma" href="d1/d03/structproperties.html#aab9c0195a446f08fc782701750ddb6ac"/>
+              <topic label="MaxSize" href="d1/d03/structproperties.html#a42219768dd35e1ab628e1785759df400"/>
+              <topic label="size" href="d1/d03/structproperties.html#a1694aebbbdd904f9b0e5faca725966b6"/>
+              <topic label="Threads" href="d1/d03/structproperties.html#a56ab77c44fb808e71990074bd75529ed"/>
+            </topic>
+            <topic label="predictProperties" href="d0/d38/structpredictProperties.html">
+              <topic label="Labels" href="d0/d38/structpredictProperties.html#a580276e3e15305d5ac16d9ce0eb9b20a"/>
+              <topic label="Threads" href="d0/d38/structpredictProperties.html#a602116e0d46424243cb4c971c03695e1"/>
+            </topic>
+            <topic label="model" href="dc/d1b/structmodel.html">
+              <topic label="bias" href="dc/d1b/structmodel.html#a9aef7cc709fca4e03a021623ce6c7ae6"/>
+              <topic label="Kgamma" href="dc/d1b/structmodel.html#ac5c18eca6ad32bc6da1f2a923965e66c"/>
+              <topic label="maxdim" href="dc/d1b/structmodel.html#ac6ba8c1bc138143114cd331583f41387"/>
+              <topic label="nElem" href="dc/d1b/structmodel.html#a4877089d41daf2186482e0e6f900d65f"/>
+              <topic label="nSVs" href="dc/d1b/structmodel.html#a3b73d79940bbdae365676c4fa56e96ea"/>
+              <topic label="quadratic_value" href="dc/d1b/structmodel.html#a623da3d1f5116fd4d66873b95eb2e720"/>
+              <topic label="sparse" href="dc/d1b/structmodel.html#ad00b5b9bbafcd18eb6367c90d9471231"/>
+              <topic label="weights" href="dc/d1b/structmodel.html#a658dab89d4b4b1a5bd28cdfb4abafe39"/>
+              <topic label="x" href="dc/d1b/structmodel.html#a81da41c8731f95de344a068d302eb336"/>
+            </topic>
+            <topic label="svm_sample" href="d8/d33/structsvm__sample.html">
+              <topic label="index" href="d8/d33/structsvm__sample.html#a008f6b24c7c76af103e84245fb271506"/>
+              <topic label="value" href="d8/d33/structsvm__sample.html#a2c43371736dc33a9e1d83561a99cf2f7"/>
+            </topic>
+            <topic label="svm_dataset" href="d0/d6e/structsvm__dataset.html">
+              <topic label="l" href="d0/d6e/structsvm__dataset.html#a899bdc43cdfb5e7063e8d7d1787357b4"/>
+              <topic label="maxdim" href="d0/d6e/structsvm__dataset.html#aec1d1ee62ef8204fe90d8c6b7a647177"/>
+              <topic label="quadratic_value" href="d0/d6e/structsvm__dataset.html#a4b1ff8b06358c73f6b55ecae7516d01e"/>
+              <topic label="sparse" href="d0/d6e/structsvm__dataset.html#a58e8012a38ef5ea1c642db1b8c06b8bc"/>
+              <topic label="x" href="d0/d6e/structsvm__dataset.html#ad3e266a07c610ed3f10df1bab30fd9e5"/>
+              <topic label="y" href="d0/d6e/structsvm__dataset.html#a2bce5da2f59f28fe18eff3f92f92c011"/>
+            </topic>
+            <topic label="model" href="de/d79/IOStructures_8h.html#ad81f7fac8a46794d554f6e95bd4a5003"/>
+            <topic label="predictProperties" href="de/d79/IOStructures_8h.html#ae83124652adf1509cd37c4c18d028b96"/>
+            <topic label="properties" href="de/d79/IOStructures_8h.html#a5bb83871c3e19eb625ad51296d4e532c"/>
+            <topic label="svm_dataset" href="de/d79/IOStructures_8h.html#afbd46f4092eac424ab1434d941f1c766"/>
+            <topic label="svm_sample" href="de/d79/IOStructures_8h.html#acbd8739518c9f448c33dfbff28f929fc"/>
+            <topic label="readModel" href="de/d79/IOStructures_8h.html#a39db6a02819bd37baf33f195ab81d02e"/>
+            <topic label="readTrainFile" href="de/d79/IOStructures_8h.html#a8edb4ba3a828ebfd3f315794c1fa5936"/>
+            <topic label="readUnlabeledFile" href="de/d79/IOStructures_8h.html#a55bd770c8b94fb281d835b8d96fab13d"/>
+            <topic label="storeModel" href="de/d79/IOStructures_8h.html#a7fb93dbcd30190fa467ca0ad00a99568"/>
+            <topic label="writeOutput" href="de/d79/IOStructures_8h.html#a1d182f217a275e4236bc3ef5f9904895"/>
+          </topic>
+          <topic label="kernels.h" href="d0/d01/kernels_8h.html">
+            <topic label="kernel" href="d0/d01/kernels_8h.html#aef79c6ac1742e54bec17d9fd80cda321"/>
+            <topic label="kernelTest" href="d0/d01/kernels_8h.html#afeb0c5c6c8105ff0aec7f01ef47bed32"/>
+          </topic>
+          <topic label="LIBIRWLS-predict.h" href="db/d3d/LIBIRWLS-predict_8h.html">
+            <topic label="parsePredictParameters" href="db/d3d/LIBIRWLS-predict_8h.html#a186e63263bf147110137e90adafcb8c7"/>
+            <topic label="printPredictInstructions" href="db/d3d/LIBIRWLS-predict_8h.html#a53efcb64ca8e76d4a2cb65991189af91"/>
+            <topic label="test" href="db/d3d/LIBIRWLS-predict_8h.html#ae3fc6988def0487bb4bb47b759ba3d0b"/>
+          </topic>
+          <topic label="ParallelAlgorithms.h" href="d0/d98/ParallelAlgorithms_8h.html">
+            <topic label="getSubMatrix" href="d0/d98/ParallelAlgorithms_8h.html#abc5ce35fa5e4a39916b37ec82708c7ee"/>
+            <topic label="initMemory" href="d0/d98/ParallelAlgorithms_8h.html#aa6df8c3f4f455d5692b3cb220fc205c7"/>
+            <topic label="ParallelChol" href="d0/d98/ParallelAlgorithms_8h.html#aedc9a05cc25e789d22135eda90b8d22c"/>
+            <topic label="ParallelLinearSystem" href="d0/d98/ParallelAlgorithms_8h.html#acd578bbef8ed7d2c5b301d858d6e54cf"/>
+            <topic label="ParallelVectorMatrix" href="d0/d98/ParallelAlgorithms_8h.html#aa173cc47a2219bbaff08572bab6de056"/>
+            <topic label="ParallelVectorMatrixT" href="d0/d98/ParallelAlgorithms_8h.html#a043ebcb9d7b0843551be9bda4a518f61"/>
+            <topic label="putSubMatrix" href="d0/d98/ParallelAlgorithms_8h.html#a99121d09a1719aa7f13fc1564adbf0f8"/>
+            <topic label="updateMemory" href="d0/d98/ParallelAlgorithms_8h.html#a2f2bfa1b3a76a0a0bb0c1db793205ff2"/>
+          </topic>
+          <topic label="PIRWLS-train.h" href="df/d51/PIRWLS-train_8h.html">
+            <topic label="calculatePIRWLSModel" href="df/d51/PIRWLS-train_8h.html#aeaa2f3c1d0f757826017dae7a83d7f8a"/>
+            <topic label="parseTrainPIRWLSParameters" href="df/d51/PIRWLS-train_8h.html#a661bbe4aa2899bb306b7b509296068a2"/>
+            <topic label="printPIRWLSInstructions" href="df/d51/PIRWLS-train_8h.html#ac4a62e1a98c35f9d7e8996d58fe48523"/>
+            <topic label="rpermute" href="df/d51/PIRWLS-train_8h.html#a9e75aabe599f48c66cbda89320d68a71"/>
+            <topic label="subIRWLS" href="df/d51/PIRWLS-train_8h.html#af736cb71af5e7e4cb062977793905f4d"/>
+            <topic label="trainFULL" href="df/d51/PIRWLS-train_8h.html#ad719770a7de382211555ba831af2ea28"/>
+          </topic>
+          <topic label="PSIRWLS-train.h" href="d1/dd0/PSIRWLS-train_8h.html">
+            <topic label="calculatePSIRWLSModel" href="d1/dd0/PSIRWLS-train_8h.html#a71b4329438bbf3210414315619f7b804"/>
+            <topic label="IRWLSpar" href="d1/dd0/PSIRWLS-train_8h.html#ad51d9a46645ad0b0bedb1113a3807d24"/>
+            <topic label="parseTrainParameters" href="d1/dd0/PSIRWLS-train_8h.html#a67566f6fd6aec7278ca360186af4e91b"/>
+            <topic label="printPSIRWLSInstructions" href="d1/dd0/PSIRWLS-train_8h.html#af71e97e89750872ce608bffd01d2af41"/>
+            <topic label="SGMA" href="d1/dd0/PSIRWLS-train_8h.html#a50a6e1f36a010feb91db9b9b38679948"/>
+          </topic>
+        </topic>
+        <topic label="src" href="dir_999986d24f6c817c1bfe4b11b0f4a64d.html">
+          <topic label="IOStructures.c" href="dc/dfc/IOStructures_8c.html"/>
+          <topic label="kernels.c" href="d7/d73/kernels_8c.html"/>
+          <topic label="LIBIRWLS-predict.c" href="df/d6f/LIBIRWLS-predict_8c.html"/>
+          <topic label="ParallelAlgorithms.c" href="de/d09/ParallelAlgorithms_8c.html"/>
+          <topic label="PIRWLS-train.c" href="d8/db2/PIRWLS-train_8c.html"/>
+          <topic label="PSIRWLS-train.c" href="d3/d3a/PSIRWLS-train_8c.html">
+            <topic label="calculatePSIRWLSModel" href="d3/d3a/PSIRWLS-train_8c.html#a71b4329438bbf3210414315619f7b804"/>
+            <topic label="IRWLSpar" href="d3/d3a/PSIRWLS-train_8c.html#ad51d9a46645ad0b0bedb1113a3807d24"/>
+            <topic label="main" href="d3/d3a/PSIRWLS-train_8c.html#a3c04138a5bfe5d72780bb7e82a18e627"/>
+            <topic label="parseTrainParameters" href="d3/d3a/PSIRWLS-train_8c.html#a67566f6fd6aec7278ca360186af4e91b"/>
+            <topic label="printPSIRWLSInstructions" href="d3/d3a/PSIRWLS-train_8c.html#af71e97e89750872ce608bffd01d2af41"/>
+            <topic label="SGMA" href="d3/d3a/PSIRWLS-train_8c.html#a50a6e1f36a010feb91db9b9b38679948"/>
+          </topic>
+        </topic>
+      </topic>
+    </topic>
+    <topic label="Globals" href="globals.html">
+      <topic label="All" href="globals.html"/>
+      <topic label="Functions" href="globals_func.html"/>
+      <topic label="Typedefs" href="globals_type.html"/>
+    </topic>
+  </topic>
+</toc>

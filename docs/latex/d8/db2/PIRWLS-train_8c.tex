@@ -1,0 +1,38 @@
+\hypertarget{PIRWLS-train_8c}{}\section{L\+I\+B\+I\+R\+W\+L\+S/src/\+P\+I\+R\+W\+L\+S-\/train.c File Reference}
+\label{PIRWLS-train_8c}\index{L\+I\+B\+I\+R\+W\+L\+S/src/\+P\+I\+R\+W\+L\+S-\/train.\+c@{L\+I\+B\+I\+R\+W\+L\+S/src/\+P\+I\+R\+W\+L\+S-\/train.\+c}}
+
+
+Implementation of the training functions of the P\+I\+R\+W\+LS algorithm.  
+
+
+{\ttfamily \#include $<$omp.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include $<$sys/time.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}cblas.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../include/\+P\+I\+R\+W\+L\+S-\/train.\+h\char`\"{}}\\*
+
+
+\subsection{Detailed Description}
+Implementation of the training functions of the P\+I\+R\+W\+LS algorithm. 
+
+See \hyperlink{PIRWLS-train_8h}{P\+I\+R\+W\+L\+S-\/train.\+h} for a detailed description of its functions and parameters.
+
+For a detailed description of the algorithm and its parameters read the following paper\+: ~\newline
+ Pérez-\/\+Cruz, F., Alarcón-\/\+Diana, P. L., Navia-\/\+Vázquez, A., \& Artés-\/\+Rodríguez, A. (2001). Fast Training of Support Vector Classifiers. In Advances in Neural Information Processing Systems (pp. 734-\/740)
+
+For a detailed description about the parallelization read the following paper\+: ~\newline
+Díaz-\/\+Morales, R., \& Navia-\/\+Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-\/186.
+
+\begin{DoxyAuthor}{Author}
+Roberto Diaz Morales 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+23 Aug 2016 
+\end{DoxyDate}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{PIRWLS-train_8h}{P\+I\+R\+W\+L\+S-\/train.\+h} 
+\end{DoxySeeAlso}
