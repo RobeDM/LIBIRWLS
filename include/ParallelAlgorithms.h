@@ -453,7 +453,7 @@ void TNNProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int 
  * @param numTh The thread identifier.
  */
 
-void NNTProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int ro2,int c2, int co2,int n1,int n2,int n3,double K1,double K2,double *result,int rr,int ror,int cr, int cor, int nCores,int posIni,int numTh)
+void NNTProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int ro2,int c2, int co2,int n1,int n2,int n3,double K1,double K2,double *result,int rr,int ror,int cr, int cor, int nCores,int posIni,int numTh);
 
 /**
  * @brief An auxiliar function of used to perform parallel matrix products.

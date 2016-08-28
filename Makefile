@@ -26,7 +26,7 @@ endif
 
 COMMONOBJ := $(BUILDFOLDER)/ParallelAlgorithms.o $(BUILDFOLDER)/IOStructures.o $(BUILDFOLDER)/kernels.o
 
-all: LIBIRWLS-predict PIRWLS-train
+all: LIBIRWLS-predict PIRWLS-train PSIRWLS-train
 
 PIRWLS-train: $(BUILDFOLDER)/PIRWLS-train.o $(COMMONOBJ)
 	@echo " Linking PIRWLS-train"

@@ -194,7 +194,7 @@ int main(int argc, char** argv)
     printf("Reading trained model from file:%s\n",data_model);
     FILE *In = fopen(data_model, "r+");
     if (In == NULL) {
-        fprintf(stderr, "Input file with the trained model not found: %s\n",filename);
+        fprintf(stderr, "Input file with the trained model not found: %s\n",data_model);
         exit(2);
     }
     readModel(&mymodel, In);

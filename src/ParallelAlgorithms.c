@@ -53,11 +53,11 @@
  * @cond
  */
 
-/** \brief Auxiliar memory to perform temporal results in the parallel algebra operations. */
+/** @brief Auxiliar memory to perform temporal results in the parallel algebra operations. */
 double **auxmemory1;
-/** \brief Auxiliar memory to perform temporal results in the parallel algebra operations. */
+/** @brief Auxiliar memory to perform temporal results in the parallel algebra operations. */
 double **auxmemory2;
-/** \brief Auxiliar memory to perform temporal results in the parallel algebra operations. */
+/** @brief Auxiliar memory to perform temporal results in the parallel algebra operations. */
 double **auxmemory3;
 
 /**
