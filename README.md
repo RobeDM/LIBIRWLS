@@ -39,10 +39,32 @@ The structure of this library is as follows:
     LIBIRWLS
     |
     +-- README.md
+    |
     +-- Makefile
+    |
     +-- docs
-        |-- html
-        |-- latex
+    |   |
+    |   +— html
+    |   |
+    |   +— latex
+    |
+    +-- inclue
+    |   +-- IOStructures.c
+    |   +-- LIBIRWLS-predict.c
+    |   +-- PIRWLS-train.c
+    |   +-- PSIRWLS-train.c
+    |   +-- ParallelAlgorithms.c
+    |   +-- kernels.c
+    |
+    +-- src
+        +-- IOStructures.c
+        +-- LIBIRWLS-predict.c
+        +-- PIRWLS-train.c
+        +-- PSIRWLS-train.c
+        +-- ParallelAlgorithms.c
+        +-- kernels.c
+
+
 
 
 
