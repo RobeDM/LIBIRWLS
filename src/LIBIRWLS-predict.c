@@ -219,7 +219,7 @@ int main(int argc, char** argv)
     omp_set_num_threads(props.Threads);
 	
     //Making predictions
-    printf("Classification\n", dataset.l);
+    printf("Classification\n");
     double *predictions=test(dataset,mymodel,props);
 	
     printf("\nWriting output in file: %s \n\n",output_file);

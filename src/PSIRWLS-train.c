@@ -56,6 +56,10 @@
 #include "../include/PSIRWLS-train.h"
 
 /**
+ * @cond
+ */
+
+/**
  * @brief Sparse Greedy Matrix Approximation algorithm
  *
  * Sparse Greedy Matrix Approximation algorithm to select the basis elements of the semi parametric model. For a detailed description read:
@@ -521,6 +525,7 @@ properties parseTrainParameters(int* argc, char*** argv) {
     props.MaxSize=500;
     props.Eta=0.001;
     props.size=10;
+    props.kernelType=1;
 
     int i,j;
     for (i = 1; i < *argc; ++i) {
@@ -538,6 +543,8 @@ properties parseTrainParameters(int* argc, char*** argv) {
             props.C = atof(param_value);
         } else if (strcmp(param_name, "e") == 0) {
             props.Eta = atof(param_value);
+        }else if (strcmp(param_name, "k") == 0) {
+            props.kernelType = atoi(param_value);
         }else if (strcmp(param_name, "t") == 0) {
             props.Threads = atoi(param_value);
         } else if (strcmp(param_name, "w") == 0) {
@@ -571,6 +578,9 @@ void printPSIRWLSInstructions() {
     fprintf(stderr, "and generages a model for futures prediction use.\n\n");
     fprintf(stderr, "Usage: PSIRWLS-train [options] training_set_file model_file\n\n");
     fprintf(stderr, "Options:\n");
+    fprintf(stderr, "  -k kernel type: (default 1)\n");
+    fprintf(stderr, "       0 -- Linear kernel u'*v\n");
+    fprintf(stderr, "       1 -- radial basis function: exp(-gamma*|u-v|^2)\n");
     fprintf(stderr, "  -g gamma: set gamma in radial basis kernel function (default 1)\n");
     fprintf(stderr, "       radial basis K(u,v)= exp(-gamma*|u-v|^2)\n");
     fprintf(stderr, "  -c Cost: set SVM Cost (default 1)\n");
@@ -633,3 +643,7 @@ int main(int argc, char** argv)
 
     return 0;
 }
+
+/**
+ * @endcond
+ */

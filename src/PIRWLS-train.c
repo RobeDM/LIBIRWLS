@@ -677,6 +677,9 @@ void printPIRWLSInstructions() {
     fprintf(stderr, "generages a model for futures prediction use.\n\n");
     fprintf(stderr, "Usage: PIRWLS-train [options] training_set_file model_file\n\n");
     fprintf(stderr, "Options:\n");
+    fprintf(stderr, "  -k kernel type: (default 1)\n");
+    fprintf(stderr, "       0 -- Linear kernel u'*v\n");
+    fprintf(stderr, "       1 -- radial basis function: exp(-gamma*|u-v|^2)\n");
     fprintf(stderr, "  -g gamma: set gamma in radial basis kernel function (default 1)\n");
     fprintf(stderr, "       radial basis K(u,v)= exp(-gamma*|u-v|^2)\n");
     fprintf(stderr, "  -c Cost: set SVM Cost (default 1)\n");
@@ -703,6 +706,7 @@ properties parseTrainPIRWLSParameters(int* argc, char*** argv) {
     props.MaxSize=500;
     props.Eta=0.001;
     props.size=10;
+    props.kernelType=1;
 
     int i,j;
     for (i = 1; i < *argc; ++i) {
@@ -720,8 +724,10 @@ properties parseTrainPIRWLSParameters(int* argc, char*** argv) {
             props.C = atof(param_value);
         } else if (strcmp(param_name, "e") == 0) {
             props.Eta = atof(param_value);
-        }else if (strcmp(param_name, "t") == 0) {
+        } else if (strcmp(param_name, "t") == 0) {
             props.Threads = atoi(param_value);
+        } else if (strcmp(param_name, "k") == 0) {
+            props.kernelType = atoi(param_value);
         } else if (strcmp(param_name, "w") == 0) {
             props.MaxSize = atoi(param_value);
         } else if (strcmp(param_name, "s") == 0) {

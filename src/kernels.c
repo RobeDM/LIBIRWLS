@@ -66,35 +66,54 @@ double kernel(svm_dataset dataset, int index1, int index2, properties props){
     svm_sample *x=dataset.x[index1];
     svm_sample *y=dataset.x[index2];
 
-    // If the dataset is not sparse we iterate directly.
-    if (dataset.sparse==0){
-        int maxdim = dataset.maxdim;
-        int i;
-        for(i=0;i<maxdim;i++){
-	    sum+=pow((x->value) - (y->value),2);
-	    ++x;
-	    ++y;
-	}
+    if (props.kernelType==0){
 
-    }else{
-        // If the dataset is sparse we iterate comparing the indexes of every feature.
-        sum += (dataset.quadratic_value[index1])+(dataset.quadratic_value[index2]);
-        while(x->index !=-1 && y->index !=-1) {
-            if(x->index == y->index){
-                sum += -2.0 * (x->value) * (y->value);
+        while(x->index != -1 && y->index != -1){
+	    if(x->index == y->index){
+                sum += x->value * y->value;
                 ++x;
                 ++y;
             }else{
-                if((x->index) < (y->index)){
-                    ++x;
-                }else{
+                if(x->index > y->index)
                     ++y;
+                else
+                    ++x;
+                }			
+            }
+
+	return sum;        
+
+    }else{
+        // If the dataset is not sparse we iterate directly.
+        if (dataset.sparse==0){
+            int maxdim = dataset.maxdim;
+            int i;
+            for(i=0;i<maxdim;i++){
+	        sum+=pow((x->value) - (y->value),2);
+	        ++x;
+                ++y;
+            }
+
+        }else{
+            // If the dataset is sparse we iterate comparing the indexes of every feature.
+            sum += (dataset.quadratic_value[index1])+(dataset.quadratic_value[index2]);
+            while(x->index !=-1 && y->index !=-1) {
+                if(x->index == y->index){
+                    sum += -2.0 * (x->value) * (y->value);
+                    ++x;
+                    ++y;
+                }else{
+                    if((x->index) < (y->index)){
+                        ++x;
+                    }else{
+                        ++y;
+                    }
                 }
             }
         }
-    }
 
-    return exp(-(props.Kgamma)*sum);
+        return exp(-(props.Kgamma)*sum);
+    }
 }
 
 /**
@@ -122,34 +141,53 @@ double kernelTest(svm_dataset dataset, int index1, model mymodel, int index2){
     svm_sample *x=dataset.x[index1];
     svm_sample *y=mymodel.x[index2];
 
-    // If the dataset is not sparse we iterate directly.
-    if (mymodel.sparse==0){
-        int maxdim = mymodel.maxdim;
-        int i;
-        for(i=0;i<maxdim;i++){
-            sum+=pow((x->value)-(y->value) ,2);
-            ++x;
-            ++y;
-        }
-    }else{
-        // If the dataset is sparse we iterate comparing the indexes of every feature.
-        sum += (dataset.quadratic_value[index1])+(mymodel.quadratic_value[index2]);
-        while(x->index !=-1 && y->index !=-1) {
-            if(x->index == y->index){
-                sum += -2.0 * (x->value) * (y->value);
+    if (mymodel.kernelType==0){
+
+        while(x->index != -1 && y->index != -1){
+	    if(x->index == y->index){
+                sum += x->value * y->value;
                 ++x;
                 ++y;
             }else{
-                if((x->index) < (y->index)){
-                    ++x;
-                }else{
+                if(x->index > y->index)
                     ++y;
+                else
+                    ++x;
+                }			
+            }
+
+	return sum;        
+
+    }else{
+        // If the dataset is not sparse we iterate directly.
+        if (mymodel.sparse==0){
+            int maxdim = mymodel.maxdim;
+            int i;
+            for(i=0;i<maxdim;i++){
+                sum+=pow((x->value)-(y->value) ,2);
+                ++x;
+                ++y;
+            }
+        }else{
+            // If the dataset is sparse we iterate comparing the indexes of every feature.
+            sum += (dataset.quadratic_value[index1])+(mymodel.quadratic_value[index2]);
+            while(x->index !=-1 && y->index !=-1) {
+                if(x->index == y->index){
+                    sum += -2.0 * (x->value) * (y->value);
+                    ++x;
+                    ++y;
+                }else{
+                    if((x->index) < (y->index)){
+                        ++x;
+                    }else{
+                        ++y;
+                    }
                 }
             }
         }
-    }
 
-    return exp(-(mymodel.Kgamma)*sum);
+        return exp(-(mymodel.Kgamma)*sum);
+    }
 }
 
 /**

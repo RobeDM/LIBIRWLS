@@ -43,6 +43,7 @@
 
 typedef struct properties{
     double Kgamma; /**< Gamma parameter of the kernel function. */
+    double kernelType; /**< The kernel function (linear=0, rbf=1). */
     double C; /**< C parameter of the SVM cost function. */
     int Threads; /**< Number of threads to parallelize the operations. */
     int MaxSize; /**< Maximum size of the active set to calculate the SVM. */
@@ -71,6 +72,7 @@ typedef struct predictProperties{
 
 typedef struct model{
     double Kgamma; /**< Gamma parameter of the kernel function. */
+    double kernelType; /**< The kernel function (linear=0, rbf=1). */
     int sparse; /**< To tell if the datasets are sparse or not. */
     int nSVs; /**< To tell if the datasets are sparse or not. */
     int nElem; /**< Number of features distinct than zero in the dataset. */   
