@@ -36,19 +36,25 @@ Directory List:
 The structure of this library is as follows:
 
 
-    LIBIRWLS
+    LIBIRWLS/
     |
     +-- README.md
     |
     +-- Makefile
     |
-    +-- docs
-    |   |
-    |   +— html
-    |   |
-    |   +— latex
+    +-- bin/
     |
-    +-- inclue
+    +-- build/
+    |
+    +-- docs/
+    |   |
+    |   +— html/
+    |   |
+    |   +— latex/
+    |
+    +-- examples/
+    |
+    +-- inclue/
     |   +-- IOStructures.h
     |   +-- LIBIRWLS-predict.h
     |   +-- PIRWLS-train.h
@@ -56,7 +62,7 @@ The structure of this library is as follows:
     |   +-- ParallelAlgorithms.h
     |   +-- kernels.h
     |
-    +-- src
+    +-- src/
         +-- IOStructures.c
         +-- LIBIRWLS-predict.c
         +-- PIRWLS-train.c
@@ -67,13 +73,13 @@ The structure of this library is as follows:
 Files and folders:
 * **README.md**: This markdown file
 * **Makefile**: The file with the directives used with the make build automation tool.
-* **docs/html**: A detailed documentation of every function of source code in html format.
-* **docs/latex**: A detailed documentation of every function of source code in latex format (it includes a Makefile to build a pdf documentation).
-* **include**: Folder with the C headers used.
-* **src**: Folder with the C source code.
-
-
-
+* **bin/**: It appears when the application is build using the make command and it contains the executable binaries.
+* **build/**: It appears when the application is build using the make command and it contains the C object files.
+* **docs/html/**: A detailed documentation of every function of source code in html format.
+* **docs/latex/**: A detailed documentation of every function of source code in latex format (it includes a Makefile to build a pdf documentation).
+* **examples/**: Folder with some script examples to run the algorithms.
+* **include/**: Folder with the C headers used.
+* **src/**: Folder with the C source code.
 
 
 Requirements:
