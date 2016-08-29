@@ -81,6 +81,13 @@ Files and folders:
 * **include/**: Folder with the C headers used.
 * **src/**: Folder with the C source code.
 
+Online documentation:
+=============
+
+A documentation of the functions has been created in html format and it can be found in the folder docs/html. This documentation is also available online:
+
+ - [Online Documentation] (http://robedm.github.io/LIBIRWLS/) Generated using doxygen.
+
 
 Requirements:
 =============
