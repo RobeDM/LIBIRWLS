@@ -89,8 +89,11 @@ A documentation of the functions has been created in html format and it can be f
  - [Online Documentation] (http://robedm.github.io/LIBIRWLS/) Generated using doxygen.
 
 
-Requirements:
-=============
+Installation Instructions:
+=========
+
+Requeriments:
+____________
 
 This software is implemented in C and requires the following libraries:
 
@@ -98,10 +101,6 @@ This software is implemented in C and requires the following libraries:
  - A Linear Algebra Package that implements the BLAS and Lapack standard routines, this software has been tested with these libraries:
      - [BLAS] (http://www.netlib.org/blas/), [LAPACK] (http://www.netlib.org/lapack/) and [ATLAS] (http://math-atlas.sourceforge.net/)
      - [MKL](https://software.intel.com/en-us/intel-mkl)
-
-
-Installation Instructions:
-=========
 
 External libraries:
 ________________
