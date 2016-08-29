@@ -49,12 +49,12 @@ The structure of this library is as follows:
     |   +— latex
     |
     +-- inclue
-    |   +-- IOStructures.c
-    |   +-- LIBIRWLS-predict.c
-    |   +-- PIRWLS-train.c
-    |   +-- PSIRWLS-train.c
-    |   +-- ParallelAlgorithms.c
-    |   +-- kernels.c
+    |   +-- IOStructures.h
+    |   +-- LIBIRWLS-predict.h
+    |   +-- PIRWLS-train.h
+    |   +-- PSIRWLS-train.h
+    |   +-- ParallelAlgorithms.h
+    |   +-- kernels.h
     |
     +-- src
         +-- IOStructures.c
@@ -63,6 +63,14 @@ The structure of this library is as follows:
         +-- PSIRWLS-train.c
         +-- ParallelAlgorithms.c
         +-- kernels.c
+
+Files and folders:
+* **README.md**: This markdown file
+* **Makefile**: The file with the directives used with the make build automation tool.
+* **docs/html**: A detailed documentation of every function of source code in html format.
+* **docs/latex**: A detailed documentation of every function of source code in latex format (it includes a Makefile to build a pdf documentation).
+* **include**: Folder with the C headers used.
+* **src**: Folder with the C source code.
 
 
 
