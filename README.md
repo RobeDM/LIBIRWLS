@@ -36,13 +36,13 @@ Directory List:
 The structure of this library is as follows:
 
 
-LIBIRWLS
-|
-+-- README.md
-+-- Makefile
-+-- docs
-    |-- html
-    |-- latex
+    LIBIRWLS
+    |
+    +-- README.md
+    +-- Makefile
+    +-- docs
+        |-- html
+        |-- latex
 
 
 
