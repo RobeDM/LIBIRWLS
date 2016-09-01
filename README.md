@@ -98,14 +98,14 @@ ____________
 This software is implemented in C and requires the following libraries:
 
  - [OpenMP] (http://openmp.org/wp/) To parallelize the software
- - A Linear Algebra Package that implements the BLAS and Lapack standard routines, this software has been tested with these libraries:
+ - A Linear Algebra Package that implements the BLAS and Lapack standard routines, this software has been tested on two alternatives:
      - [BLAS] (http://www.netlib.org/blas/) and [LAPACK] (http://www.netlib.org/lapack/)
      - [MKL](https://software.intel.com/en-us/intel-mkl)
 
 External libraries:
 ________________
 
-### Ubuntu, Debian, Slackware and other linux distributions using the Advanced Package Tools 
+#### Ubuntu, Debian, Slackware and other linux distributions using the Advanced Package Tools 
 
 The Advanced Package Tool, or APT, is a free software user interface that works with core libraries to handle the installation and removal of software on some Linux distributions.
 
@@ -121,7 +121,7 @@ To install the linear algebra routines use the following command line:
     sudo apt-get install liblapack-dev
     sudo apt-get install libblas-dev
 
-### Unix operating systems (OS X or any linux distribution) :
+#### Unix operating systems (OS X or any linux distribution) :
 
 You need to download from their official webpages and install them following their instructions.
 
@@ -130,7 +130,7 @@ You need to download from their official webpages and install them following the
 [LAPACK] (http://www.netlib.org/lapack/)
 
 
-### Intel MKL :
+#### Intel MKL :
 
 We have also tested this software using the Intel MKL library. Due to the fact that it is not open source software we don't provide here the intallation instructions.
 
@@ -160,6 +160,10 @@ Running the code:
 Training using the PSIRWLS algorithm:
 ________
 
+The algorithm is described in this paper:
+
+Díaz-Morales, R., & Navia-Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-186.
+
 To train the algorithm and create the model:
 
     ./PSIRWLS-train [options] training_set_file model_file
@@ -182,6 +186,10 @@ Example:
 
 Training using the PIRWLS algorithm:
 ________
+
+The algorithm is described in this paper:
+
+Morales, R. D., & Vázquez, Á. N. (2016). Improving the efficiency of IRWLS SVMs using Parallel Cholesky Factorization. Pattern Recognition Letters.
 
 To train the algorithm and create the model:
 
