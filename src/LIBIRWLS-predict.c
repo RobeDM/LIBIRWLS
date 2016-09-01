@@ -32,39 +32,26 @@
  */
 
 #include <omp.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-#include <time.h>
-#include<sys/time.h>
-#include <string.h>
-
-
-#ifdef USE_MKL
-#include "mkl_cblas.h"
-#include "mkl_blas.h"
-#include "mkl.h"
-#else
-#include "cblas.h"
-#endif
 
 #include "../include/kernels.h"
+#include "../include/LIBIRWLS-predict.h"
 
 /**
  * @cond
  */
 
 /**
- * @brief Function to classify data in a labeled dataset and to obtain the accuracy.
+ * @brief Function to obtain the soft output of the classifier.
  *
- * Function to classify data in a labeled dataset and to obtain the accuracy.
+ * Function to obtain the soft output (the output of the classifier before using the threshold to decide +1 or -1) of the model on a dataset.
  * @param dataset The test set.
  * @param mymodel A trained SVM model.
  * @param props The test properties.
  * @return The output of the classifier for every test sample (soft output).
  */
 
-double *test(svm_dataset dataset, model mymodel,predictProperties props){
+double *softTest(svm_dataset dataset, model mymodel,predictProperties props){
 
     int i,j;		
     double *predictions=(double *) malloc((dataset.l)*sizeof(double));
@@ -98,6 +85,51 @@ double *test(svm_dataset dataset, model mymodel,predictProperties props){
 
 
 /**
+ * @brief Function to classify data in a labeled dataset and to obtain the accuracy.
+ *
+ * Function to classify data in a labeled dataset and to obtain the accuracy.
+ * @param dataset The test set.
+ * @param mymodel A trained SVM model.
+ * @param props The test properties.
+ * @return The output of the classifier for every test sample.
+ */
+
+double *test(svm_dataset dataset, model mymodel,predictProperties props){
+
+    int i,j;		
+    double *predictions=(double *) malloc((dataset.l)*sizeof(double));
+
+    #pragma omp parallel default(shared) private(i,j)
+    {	
+    #pragma omp for schedule(static)			
+    for (i=0;i<dataset.l;i++){
+        // Iteration over all the training elements
+        double pred=mymodel.bias;
+        for (j=0;j<mymodel.nSVs;j++){
+            // Iteration over the Support Vectors
+            pred+=(mymodel.weights[j])*kernelTest(dataset, i,  mymodel, j);
+        }
+        predictions[i]=pred;
+        if(predictions[i]>=0.0) predictions[i]=1.0;
+        else predictions[i]=-1.0;
+    }	
+    }
+
+    // Obtaining accuracy (only for labeled test dataset)
+    double aciertos=0.0;
+    double total=(double)dataset.l;
+    if(props.Labels==1){
+        for (i=0;i<dataset.l;i++){
+            if(predictions[i]>0 & dataset.y[i]>0) aciertos++;
+            if(predictions[i]<=0 & dataset.y[i]<=0) aciertos++;
+        }
+        printf("Accuracy: %f\n",aciertos/total);
+    }		
+    return predictions;
+}
+
+
+/**
  * @brief It shows the command line instructions in the standard output.
  *
  * It shows the command line instructions in the standard output.
@@ -112,6 +144,9 @@ void printPredictInstructions() {
     fprintf(stderr, "  -l type of data set: (default 0)\n");
     fprintf(stderr, "       0 -- Data set with no target as first dimension.\n");
     fprintf(stderr, "       1 -- Data set with label as first dimension (obtains accuracy too)\n");
+    fprintf(stderr, "  -s Soft output: (default 0)\n");
+    fprintf(stderr, "       0 -- Obtains the class of every data (It takes values of +1 or -1).\n");
+    fprintf(stderr, "       1 -- The output before the class decision (Useful to combine in ensembles with other algorithms).\n");
     fprintf(stderr, "Note:\n");
     fprintf(stderr, "       The data set file must have the same format as the data set\n");
     fprintf(stderr, "       given to PIRWLS-train.\n");
@@ -131,6 +166,7 @@ predictProperties parsePredictParameters(int* argc, char*** argv) {
     predictProperties props;
     props.Labels=0;
     props.Threads=1;
+    props.Soft=0;
 	
     int i;
     for (i = 1; i < *argc; ++i) {
@@ -149,6 +185,12 @@ predictProperties parsePredictParameters(int* argc, char*** argv) {
             props.Labels = atoi(param_value);
             if(props.Labels !=0 && props.Labels !=1){
       	        printf("\nInvalid type of test data set:%d\n",props.Labels);
+                exit(2);
+            }
+        } else if (strcmp(param_name, "s") == 0) {
+            props.Soft = atoi(param_value);
+            if(props.Soft !=0 && props.Soft !=1){
+      	        printf("\nInvalid type of output (-s param):%d\n",props.Soft);
                 exit(2);
             }
         } else {
@@ -173,7 +215,6 @@ predictProperties parsePredictParameters(int* argc, char*** argv) {
 
 int main(int argc, char** argv)
 {
-
     // Parsing command line to extract parameters.
     predictProperties props = parsePredictParameters(&argc, &argv);
   
@@ -189,9 +230,10 @@ int main(int argc, char** argv)
     char * output_file = argv[3];
   
     model  mymodel;
+
     
     // Reading the trained model from the file
-    printf("Reading trained model from file:%s\n",data_model);
+    printf("\nReading trained model from file:%s\n",data_model);
     FILE *In = fopen(data_model, "r+");
     if (In == NULL) {
         fprintf(stderr, "Input file with the trained model not found: %s\n",data_model);
@@ -199,29 +241,38 @@ int main(int argc, char** argv)
     }
     readModel(&mymodel, In);
     fclose(In);
-
-    printf("Model Loaded, it contains %d Support Vectors\n",mymodel.nSVs);
+    printf("Model Loaded, it contains %d Support Vectors\n\n",mymodel.nSVs);
 
 
     // Loading dataset
     printf("Reading dataset from file:%s\n",data_file);
     svm_dataset dataset;
-	  
+    In = fopen(data_file, "r+");
+    if (In == NULL) {
+        fprintf(stderr, "Input file with the training set not found: %s\n",data_file);
+        exit(2);
+    }
+    fclose(In);	  
     if(props.Labels==0){
         dataset=readUnlabeledFile(data_file);
     }else{
         dataset=readTrainFile(data_file);			
     }
+    printf("Dataset Loaded, it contains %d samples and %d features\n\n", dataset.l,dataset.maxdim);
 
-    printf("Dataset Loaded, it contains %d samples and %d features\n", dataset.l,dataset.maxdim);
 
     // Set the number of openmp threads
     omp_set_num_threads(props.Threads);
-	
+
     //Making predictions
-    printf("Classification\n");
-    double *predictions=test(dataset,mymodel,props);
-	
+    printf("Classifying data...\n");
+    double *predictions;
+    if (props.Soft==0){
+        predictions=test(dataset,mymodel,props);
+    }else{
+        predictions=softTest(dataset,mymodel,props);
+    }
+    printf("data classified\n");	
     printf("\nWriting output in file: %s \n\n",output_file);
     writeOutput (output_file, predictions,dataset.l);
     return 0;

@@ -38,22 +38,19 @@
  */
 
 #include <omp.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <time.h>
-#include<sys/time.h>
 #include <string.h>
 
 #ifdef USE_MKL
 #include "mkl_cblas.h"
 #include "mkl_blas.h"
 #include "mkl.h"
-#else
-#include "cblas.h"
 #endif
 
 #include "../include/PIRWLS-train.h"
+#include "../include/kernels.h"
+
 
 /**
  * @cond
@@ -181,7 +178,7 @@ double* subIRWLS(svm_dataset dataset,properties props, double *GIN, double *e, d
                 H[nS1*(nS1+1)+i]=dataset.y[S1comp[i]];
                 et[i]=1.0-G13[i]-GIN[S1comp[i]];
                 for (j=0;j<nS1;j++){
-                    H[i*(nS1+1)+j]=kernel(dataset,S1comp[i], S1comp[j], props)*dataset.y[S1comp[i]]*dataset.y[S1comp[j]];
+                    H[i*(nS1+1)+j]=kernelFunction(dataset,S1comp[i], S1comp[j], props)*dataset.y[S1comp[i]]*dataset.y[S1comp[j]];
                     if(i==j) H[i*(nS1+1)+j]+=(1.0/(a[S1comp[i]]));
                 }
             }
@@ -249,7 +246,7 @@ double* subIRWLS(svm_dataset dataset,properties props, double *GIN, double *e, d
                 int j;
                 for (j=0;j<dataset.l;j++){
                     if(betaNew[j] != beta[j]){
-                        e[i]=e[i]-kernel(dataset,i,j,props)*(betaNew[j]-beta[j]);
+                        e[i]=e[i]-kernelFunction(dataset,i,j,props)*(betaNew[j]-beta[j]);
                     }
                 }
                 e[i]=e[i]-(betaNew[dataset.l]-beta[dataset.l]);
@@ -345,7 +342,7 @@ double* subIRWLS(svm_dataset dataset,properties props, double *GIN, double *e, d
                 for (i=0;i<(nS1+1);i++){
                     int o;
                     if(i<nS1){
-                        for (o=0;o<nS3;o++) G13[i] += et[o]*kernel(dataset,S1comp[i], S3comp[o], props)*dataset.y[S1comp[i]]*dataset.y[S3comp[o]];
+                        for (o=0;o<nS3;o++) G13[i] += et[o]*kernelFunction(dataset,S1comp[i], S3comp[o], props)*dataset.y[S1comp[i]]*dataset.y[S3comp[o]];
                     }else{
                         for (o=0;o<nS3;o++) G13[nS1]+=et[o]*dataset.y[S3comp[o]];	
                         
@@ -456,7 +453,7 @@ double* trainFULL(svm_dataset dataset,properties props){
                     int o;
                     if(i<nSW){
                         for (o=0;o<nSIn;o++) if (betaNew[SIN[o]] != 0.0){
-                            GIN[i] += betaNew[SIN[o]]*kernel(dataset,SW[i], SIN[o], props)*dataset.y[SW[i]];
+                            GIN[i] += betaNew[SIN[o]]*kernelFunction(dataset,SW[i], SIN[o], props)*dataset.y[SW[i]];
                         }
                         
                     }else{
@@ -512,7 +509,7 @@ double* trainFULL(svm_dataset dataset,properties props){
             int j;
 
             for (j=0;j<nSW;j++){  
-                e[i]=e[i]-kernel(dataset,i,SW[j],props)*(betaNew[SW[j]]-beta[SW[j]]);
+                e[i]=e[i]-kernelFunction(dataset,i,SW[j],props)*(betaNew[SW[j]]-beta[SW[j]]);
                 
             }
             e[i]=e[i]-(betaNew[dataset.l]-beta[dataset.l]);
@@ -765,6 +762,7 @@ model calculatePIRWLSModel(properties props, svm_dataset dataset, double * beta 
     classifier.bias = beta[dataset.l];
     classifier.sparse = dataset.sparse;
     classifier.maxdim = dataset.maxdim;
+    classifier.kernelType = props.kernelType;
     
     int nElem=0;
     int nSVs=0;
@@ -841,9 +839,16 @@ int main(int argc, char** argv)
     char * data_file = argv[1];
     char * data_model = argv[2];
   	
-
+    // Loading dataset
+    printf("\nReading dataset from file:%s\n",data_file);
+    FILE *In = fopen(data_file, "r+");
+    if (In == NULL) {
+        fprintf(stderr, "Input file with the training set not found: %s\n",data_file);
+        exit(2);
+    }
+    fclose(In);
     svm_dataset dataset = readTrainFile(data_file);
-    printf("\nDataset Loaded from file: %s\n\nTraining samples: %d\nNumber of features: %d\n\n",data_file, dataset.l,dataset.maxdim);
+    printf("Dataset Loaded\n\nTraining samples: %d\nNumber of features: %d\n\n",dataset.l,dataset.maxdim);
 
     struct timeval tiempo1, tiempo2;
     omp_set_num_threads(props.Threads);

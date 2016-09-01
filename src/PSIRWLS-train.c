@@ -37,11 +37,8 @@
  */
 
 #include <omp.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <time.h>
-#include<sys/time.h>
 #include <string.h>
 
 
@@ -49,11 +46,11 @@
 #include "mkl_cblas.h"
 #include "mkl_blas.h"
 #include "mkl.h"
-#else
-#include "cblas.h"
 #endif
 
 #include "../include/PSIRWLS-train.h"
+#include "../include/kernels.h"
+#include "../include/ParallelAlgorithms.h"
 
 /**
  * @cond
@@ -105,6 +102,12 @@ int* SGMA(svm_dataset dataset,properties props){
     double *tmp1,*tmp2;
     int indexSample=0;
 
+    for(i=0;i<64;i++){
+            KNC[i]=(double *) malloc((props.size)*sizeof(double));
+            KSM[i]=(double *) malloc((dataset.l)*sizeof(double));
+            Z[i]=(double *) malloc((props.size)*sizeof(double));
+    }
+
     while(size<props.size){
         if(size>1){
         #pragma omp parallel default(shared) private(i,e,miKSM,miKNC,miZ,value)
@@ -118,21 +121,22 @@ int* SGMA(svm_dataset dataset,properties props){
             }
 
             indexes[i]=indexSample;
-            				
+            	
+            /*			
             if(size==2 && i>0){
                 KNC[i]=(double *) malloc((props.size)*sizeof(double));
                 KSM[i]=(double *) malloc((dataset.l)*sizeof(double));
                 Z[i]=(double *) malloc((props.size)*sizeof(double));
-            }
+            }*/
 
             miKNC=KNC[i];
             miKSM=KSM[i];
             miZ=Z[i];
 
-            for(e=0;e<dataset.l;e++) miKSM[e]=kernel(dataset,indexes[i],e,props);            
+            for(e=0;e<dataset.l;e++) miKSM[e]=kernelFunction(dataset,indexes[i],e,props);            
 
             for(e=0;e<size;e++){
-                value=kernel(dataset,indexes[i],centroids[e],props);
+                value=kernelFunction(dataset,indexes[i],centroids[e],props);
                 miKNC[e]=value;
                 miZ[e]=value;
             }
@@ -170,13 +174,13 @@ int* SGMA(svm_dataset dataset,properties props){
 
         }else{
             if(size==0){
-                KNC[0]=(double *) malloc((props.size)*sizeof(double));
-                KSM[0]=(double *) malloc((dataset.l)*sizeof(double));
-                Z[0]=(double *) malloc((props.size)*sizeof(double));
+                //KNC[0]=(double *) malloc((props.size)*sizeof(double));
+                //KSM[0]=(double *) malloc((dataset.l)*sizeof(double));
+                //Z[0]=(double *) malloc((props.size)*sizeof(double));
                 centroids[size]=dataset.l;
             }else{
                 centroids[size]=dataset.l+1;
-                KNC[0][0]=kernel(dataset,centroids[0],centroids[1],props);
+                KNC[0][0]=kernelFunction(dataset,centroids[0],centroids[1],props);
             }
             value=1.0;
             bestBasis=0;
@@ -190,15 +194,15 @@ int* SGMA(svm_dataset dataset,properties props){
         #pragma omp parallel default(shared) private(i)
         {
         #pragma omp for schedule(static)	
-        for(i=0;i<dataset.l;i++) KSC[size*(dataset.l)+i]=kernel(dataset,i,centroids[size],props);
+        for(i=0;i<dataset.l;i++) KSC[size*(dataset.l)+i]=kernelFunction(dataset,i,centroids[size],props);
         }
 
         if(size==0){
-            iKCTmp[0]=pow(kernel(dataset,centroids[size],centroids[size],props)+0.000001,0.5);
+            iKCTmp[0]=pow(kernelFunction(dataset,centroids[size],centroids[size],props)+0.000001,0.5);
             invKCTmp[0]=1.0/iKCTmp[0];
         }else{
             ParallelVectorMatrixT(KNC[bestBasis],size,invKC,L2,props.Threads);
-            L3=kernel(dataset,centroids[size],centroids[size],props)+0.00001;
+            L3=kernelFunction(dataset,centroids[size],centroids[size],props)+0.00001;
             for(i=0;i<size;i++) L3 = L3 - (L2[i]*L2[i]);
             L3=pow(L3,0.5);
             IL3=1.0/L3;
@@ -289,7 +293,7 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
     for (i=0;i<props.size;i++){
         int j=0;
         for (j=0;j<props.size;j++){
-            KC[i*(props.size)+j]=kernel(dataset,indexes[i], indexes[j], props);
+            KC[i*(props.size)+j]=kernelFunction(dataset,indexes[i], indexes[j], props);
             if(i==j) KC[i*(props.size)+j]+=pow(10,-5);
         }
     }
@@ -304,7 +308,7 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
         Da[i]=M;
         Day[i]=dataset.y[i]*M;
         for (j=0;j<props.size;j++){
-            kernelvalue=kernel(dataset,i, indexes[j], props);
+            kernelvalue=kernelFunction(dataset,i, indexes[j], props);
             KSC[i*(props.size)+j]=kernelvalue;
             KSCA[i*(props.size)+j]=kernelvalue;
         }
@@ -463,6 +467,7 @@ model calculatePSIRWLSModel(properties props, svm_dataset dataset, int *centroid
     classifier.maxdim = dataset.maxdim;
     classifier.nSVs = props.size;
     classifier.bias=0.0;
+    classifier.kernelType = props.kernelType;
         
     int nElem=0;
     svm_sample *iteratorSample;
@@ -609,8 +614,17 @@ int main(int argc, char** argv)
     char * data_model = argv[2];
   	
 
+    // Loading dataset
+    printf("\nReading dataset from file:%s\n",data_file);
+    FILE *In = fopen(data_file, "r+");
+    if (In == NULL) {
+        fprintf(stderr, "Input file with the training set not found: %s\n",data_file);
+        exit(2);
+    }
+    fclose(In);
     svm_dataset dataset = readTrainFile(data_file);
-    printf("\nDataset Loaded from file: %s\nTraining samples: %d\nNumber of features: %d\n\n",data_file, dataset.l,dataset.maxdim);
+    printf("Dataset Loaded\n\nTraining samples: %d\nNumber of features: %d\n\n",dataset.l,dataset.maxdim);
+
 
     struct timeval tiempo1, tiempo2;
     omp_set_num_threads(props.Threads);
@@ -620,11 +634,12 @@ int main(int argc, char** argv)
 
 
     initMemory(props.Threads,props.size);
-    //omp_set_num_threads(1);
 
     int * centroids=SGMA(dataset,props);
 
     omp_set_num_threads(props.Threads);
+
+    printf("\nRunning IRWLS\n");	
 
     double * W = IRWLSpar(dataset,centroids,props);
 	

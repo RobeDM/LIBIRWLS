@@ -12,16 +12,15 @@ SRCEXT := c
 SOURCES := $(shell find $(SRCFOLDER) -type f -name "*.$(SRCEXT)")
 OBJECTS := $(patsubst $(SRCFOLDER)/%,$(BUILDFOLDER)/%,$(SOURCES:.$(SRCEXT)=.o))
 
+# If your linear algebra library (mkl or blas and lapack) can not be found, uncomment these lines and write the respective folder.
+#INCLUDEPATH = -I/usr/...
+#LIBRARYPATH = -L/usr/...
 
 ifeq ($(USE_MKL),1)
 	CFLAGS= -DUSE_MKL
 	LIBS = -lmkl_core -fopenmp -lmkl_sequential -lmkl_intel_lp64 -lm
-	#INCLUDEPATH = -I/opt/intel/composerxe-2013.1.106/mkl/include/
-	#LIBRARYPATH = -L/opt/intel/composerxe-2013.1.106/mkl/lib/intel64/
 else
-	LIBS = -fopenmp -lblas -lm -llapack
-	INCLUDEPATH = -I/usr/local/atlas/include/
-	#LIBRARYPATH = -L...
+	LIBS = -fopenmp -lm -lblas -llapack
 endif
 
 COMMONOBJ := $(BUILDFOLDER)/ParallelAlgorithms.o $(BUILDFOLDER)/IOStructures.o $(BUILDFOLDER)/kernels.o
@@ -45,7 +44,7 @@ LIBIRWLS-predict: $(BUILDFOLDER)/LIBIRWLS-predict.o $(COMMONOBJ)
 
 $(BUILDFOLDER)/%.o: $(SRCFOLDER)/%.$(SRCEXT)
 	@echo " mkdir -p $(BUILDFOLDER)"; mkdir -p $(BUILDFOLDER)
-	@echo " $(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<"; $(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<
+	@echo " $(CC) $(LIBS) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<"; $(CC) $(LIBS) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<
 
 clean:
 	@echo " Cleaning..."; 

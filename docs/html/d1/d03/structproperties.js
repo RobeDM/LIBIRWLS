@@ -2,6 +2,7 @@ var structproperties =
 [
     [ "C", "d1/d03/structproperties.html#a3b98814395b295db30f029e5e67ae9c9", null ],
     [ "Eta", "d1/d03/structproperties.html#abd91deb543a31a6a1f75892af7cf95c8", null ],
+    [ "kernelType", "d1/d03/structproperties.html#a498e1588ce31c3265632f17f7d65c624", null ],
     [ "Kgamma", "d1/d03/structproperties.html#aab9c0195a446f08fc782701750ddb6ac", null ],
     [ "MaxSize", "d1/d03/structproperties.html#a42219768dd35e1ab628e1785759df400", null ],
     [ "size", "d1/d03/structproperties.html#a1694aebbbdd904f9b0e5faca725966b6", null ],

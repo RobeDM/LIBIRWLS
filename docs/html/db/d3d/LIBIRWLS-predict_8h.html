@@ -99,6 +99,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ae3fc6988def0487bb4bb47b759ba3d0b"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3d/LIBIRWLS-predict_8h.html#ae3fc6988def0487bb4bb47b759ba3d0b">test</a> (<a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a> dataset, <a class="el" href="../../dc/d1b/structmodel.html">model</a> mymodel, <a class="el" href="../../d0/d38/structpredictProperties.html">predictProperties</a> props)</td></tr>
 <tr class="memdesc:ae3fc6988def0487bb4bb47b759ba3d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to classify data in a labeled dataset and to obtain the accuracy.  <a href="#ae3fc6988def0487bb4bb47b759ba3d0b">More...</a><br /></td></tr>
 <tr class="separator:ae3fc6988def0487bb4bb47b759ba3d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47a2cacfccb7e9f9ef8b273b5d5a7498"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3d/LIBIRWLS-predict_8h.html#a47a2cacfccb7e9f9ef8b273b5d5a7498">softTest</a> (<a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a> dataset, <a class="el" href="../../dc/d1b/structmodel.html">model</a> mymodel, <a class="el" href="../../d0/d38/structpredictProperties.html">predictProperties</a> props)</td></tr>
+<tr class="memdesc:a47a2cacfccb7e9f9ef8b273b5d5a7498"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to obtain the soft output of the classifier.  <a href="#a47a2cacfccb7e9f9ef8b273b5d5a7498">More...</a><br /></td></tr>
+<tr class="separator:a47a2cacfccb7e9f9ef8b273b5d5a7498"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53efcb64ca8e76d4a2cb65991189af91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3d/LIBIRWLS-predict_8h.html#a53efcb64ca8e76d4a2cb65991189af91">printPredictInstructions</a> ()</td></tr>
 <tr class="memdesc:a53efcb64ca8e76d4a2cb65991189af91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print instructions.  <a href="#a53efcb64ca8e76d4a2cb65991189af91">More...</a><br /></td></tr>
 <tr class="separator:a53efcb64ca8e76d4a2cb65991189af91"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,6 +169,51 @@ Functions</h2></td></tr>
 
 <p>Print instructions. </p>
 <p>It shows the command line instructions in the standard output. </p>
+
+</div>
+</div>
+<a id="a47a2cacfccb7e9f9ef8b273b5d5a7498"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47a2cacfccb7e9f9ef8b273b5d5a7498">&sect;&nbsp;</a></span>softTest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* softTest </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a>&#160;</td>
+          <td class="paramname"><em>dataset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d1b/structmodel.html">model</a>&#160;</td>
+          <td class="paramname"><em>mymodel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/d38/structpredictProperties.html">predictProperties</a>&#160;</td>
+          <td class="paramname"><em>props</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to obtain the soft output of the classifier. </p>
+<p>Function to obtain the soft output (the output of the classifier before using the threshold to decide class +1 or -1) of the model on a dataset. It is useful to combine this output with other algorithms in ensembles. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dataset</td><td>The test set. </td></tr>
+    <tr><td class="paramname">mymodel</td><td>A trained SVM model. </td></tr>
+    <tr><td class="paramname">props</td><td>The test properties. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The output of the classifier for every test sample (soft output). </dd></dl>
 
 </div>
 </div>

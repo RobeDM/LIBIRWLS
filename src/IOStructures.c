@@ -396,6 +396,7 @@ void storeModel(model * mod, FILE *Output){
     aux=fwrite(&mod->Kgamma, sizeof(double), 1, Output);    
     aux=fwrite(&mod->bias, sizeof(double), 1, Output);
     aux=fwrite(&mod->maxdim, sizeof(int), 1, Output);
+    aux=fwrite(&mod->kernelType, sizeof(int), 1, Output);
     aux=fwrite(&mod->sparse, sizeof(int), 1, Output);
     aux=fwrite(&mod->nSVs, sizeof(int), 1, Output);
     aux=fwrite(&mod->nElem, sizeof(int), 1, Output);
@@ -420,6 +421,7 @@ void readModel(model * mod, FILE *Input){
     aux=fread(&mod->Kgamma, sizeof(double), 1, Input);
     aux=fread(&mod->bias, sizeof(double), 1, Input);
     aux=fread(&mod->maxdim, sizeof(int), 1, Input);
+    aux=fread(&mod->kernelType, sizeof(int), 1, Input);
     aux=fread(&mod->sparse, sizeof(int), 1, Input);
     aux=fread(&mod->nSVs, sizeof(int), 1, Input);    
     aux=fread(&mod->nElem, sizeof(int), 1, Input);    

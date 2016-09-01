@@ -166,18 +166,6 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The struct that storages all the information of the classifier.</dd></dl>
-<p>It converts the result of the PSIRWLS algorithm into a model struct.</p>
-<p>After the training of a SVM using the PSIRWLS procedure, this function build a struct with the information and returns it.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">props</td><td>The training parameters. </td></tr>
-    <tr><td class="paramname">dataset</td><td>The training set. </td></tr>
-    <tr><td class="paramname">centroids</td><td>of the selected centroids by the SGMA algorithm. </td></tr>
-    <tr><td class="paramname">beta</td><td>The weights of every centroid obtained with the IRWLS algorithm. </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>Returns</dt><dd>The struct that storages all the information of the classifier. </dd></dl>
 
 </div>
@@ -216,17 +204,6 @@ Functions</h2></td></tr>
 
 <p>Iterative Re-Weighted Least Squares Algorithm. </p>
 <p>IRWLS procedure to obtain the weights of the semi parametric model. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">dataset</td><td>The training set. </td></tr>
-    <tr><td class="paramname">indexes</td><td>The indexes of the centroids selected by the SGMA algorithm. </td></tr>
-    <tr><td class="paramname">props</td><td>The struct with the training parameters. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The weights of every centroid.</dd></dl>
-<p>IRWLS procedure to obtain the weights of the semi parametric model. For a detailed description of the algorithm and parallelization:</p>
-<p>Díaz-Morales, R., &amp; Navia-Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-186.</p>
-<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dataset</td><td>The training set. </td></tr>
     <tr><td class="paramname">indexes</td><td>The indexes of the centroids selected by the SGMA algorithm. </td></tr>
@@ -292,8 +269,6 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Print Instructions. </p>
-<p>It shows PSIRWLS-train command line instructions in the standard output.</p>
-<p>Print Instructions.</p>
 <p>It shows PSIRWLS-train command line instructions in the standard output. </p>
 
 </div>
@@ -326,15 +301,6 @@ Functions</h2></td></tr>
 
 <p>Sparse Greedy Matrix Approximation algorithm. </p>
 <p>Sparse Greedy Matrix Approximation algorithm to select the basis elements of the semi parametric model. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">dataset</td><td>The training set. </td></tr>
-    <tr><td class="paramname">props</td><td>The struct with the training parameters.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Sparse Greedy Matrix Approximation algorithm to select the basis elements of the semi parametric model. For a detailed description read:</p>
-<p>Díaz-Morales, R., &amp; Navia-Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-186.</p>
-<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dataset</td><td>The training set. </td></tr>
     <tr><td class="paramname">props</td><td>The struct with the training parameters. </td></tr>

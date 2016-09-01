@@ -11,6 +11,8 @@ Functions to classify data with a trained model.
 \item 
 double $\ast$ \hyperlink{LIBIRWLS-predict_8h_ae3fc6988def0487bb4bb47b759ba3d0b}{test} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, \hyperlink{structmodel}{model} mymodel, \hyperlink{structpredictProperties}{predict\+Properties} props)
 \begin{DoxyCompactList}\small\item\em Function to classify data in a labeled dataset and to obtain the accuracy. \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{LIBIRWLS-predict_8h_a47a2cacfccb7e9f9ef8b273b5d5a7498}{soft\+Test} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, \hyperlink{structmodel}{model} mymodel, \hyperlink{structpredictProperties}{predict\+Properties} props)
+\begin{DoxyCompactList}\small\item\em Function to obtain the soft output of the classifier. \end{DoxyCompactList}\item 
 void \hyperlink{LIBIRWLS-predict_8h_a53efcb64ca8e76d4a2cb65991189af91}{print\+Predict\+Instructions} ()
 \begin{DoxyCompactList}\small\item\em Print instructions. \end{DoxyCompactList}\item 
 \hyperlink{structpredictProperties}{predict\+Properties} \hyperlink{LIBIRWLS-predict_8h_a186e63263bf147110137e90adafcb8c7}{parse\+Predict\+Parameters} (int $\ast$argc, char $\ast$$\ast$$\ast$argv)
@@ -59,7 +61,29 @@ A struct that contains the values of the test parameters.
 
 Print instructions. 
 
-It shows the command line instructions in the standard output. \hypertarget{LIBIRWLS-predict_8h_ae3fc6988def0487bb4bb47b759ba3d0b}{}\label{LIBIRWLS-predict_8h_ae3fc6988def0487bb4bb47b759ba3d0b} 
+It shows the command line instructions in the standard output. \hypertarget{LIBIRWLS-predict_8h_a47a2cacfccb7e9f9ef8b273b5d5a7498}{}\label{LIBIRWLS-predict_8h_a47a2cacfccb7e9f9ef8b273b5d5a7498} 
+\index{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}!soft\+Test@{soft\+Test}}
+\index{soft\+Test@{soft\+Test}!L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}}
+\subsubsection{\texorpdfstring{soft\+Test()}{softTest()}}
+{\ttfamily double$\ast$ soft\+Test (\begin{DoxyParamCaption}\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{dataset,  }\item[{\hyperlink{structmodel}{model}}]{mymodel,  }\item[{\hyperlink{structpredictProperties}{predict\+Properties}}]{props }\end{DoxyParamCaption})}
+
+
+
+Function to obtain the soft output of the classifier. 
+
+Function to obtain the soft output (the output of the classifier before using the threshold to decide class +1 or -\/1) of the model on a dataset. It is useful to combine this output with other algorithms in ensembles. 
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The test set. \\
+\hline
+{\em mymodel} & A trained S\+VM model. \\
+\hline
+{\em props} & The test properties. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The output of the classifier for every test sample (soft output). 
+\end{DoxyReturn}
+\hypertarget{LIBIRWLS-predict_8h_ae3fc6988def0487bb4bb47b759ba3d0b}{}\label{LIBIRWLS-predict_8h_ae3fc6988def0487bb4bb47b759ba3d0b} 
 \index{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}!test@{test}}
 \index{test@{test}!L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h@{L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h}}
 \subsubsection{\texorpdfstring{test()}{test()}}

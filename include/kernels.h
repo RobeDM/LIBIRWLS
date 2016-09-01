@@ -52,7 +52,7 @@
  * @return The value of the Radial Basis Function of both elements.
  */
 
-double kernel(svm_dataset dataset, int index1, int index2, properties props);
+double kernelFunction(svm_dataset dataset, int index1, int index2, properties props);
 
 /**
  * @brief Radial Basis Function of one element of the dataset and Support Vectro of a trained model.

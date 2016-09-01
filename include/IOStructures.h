@@ -61,6 +61,7 @@ typedef struct properties{
 typedef struct predictProperties{
     int Labels; /**< If the dataset to test is labeled. */
     int Threads; /**< Number of threads to make the predictions on the dataset. */
+    int Soft; /**< The classifier obtains Soft output or not. */
 }predictProperties;
 
 
@@ -72,7 +73,7 @@ typedef struct predictProperties{
 
 typedef struct model{
     double Kgamma; /**< Gamma parameter of the kernel function. */
-    double kernelType; /**< The kernel function (linear=0, rbf=1). */
+    int kernelType; /**< The kernel function (linear=0, rbf=1). */
     int sparse; /**< To tell if the datasets are sparse or not. */
     int nSVs; /**< To tell if the datasets are sparse or not. */
     int nElem; /**< Number of features distinct than zero in the dataset. */   

@@ -58,7 +58,8 @@
  * @return The value of the Radial Basis Function of both elements.
  */
 
-double kernel(svm_dataset dataset, int index1, int index2, properties props){
+
+double kernelFunction(svm_dataset dataset, int index1, int index2, properties props){
 
     double sum = 0.0;   
 
@@ -95,7 +96,7 @@ double kernel(svm_dataset dataset, int index1, int index2, properties props){
             }
 
         }else{
-            // If the dataset is sparse we iterate comparing the indexes of every feature.
+
             sum += (dataset.quadratic_value[index1])+(dataset.quadratic_value[index2]);
             while(x->index !=-1 && y->index !=-1) {
                 if(x->index == y->index){
@@ -111,7 +112,6 @@ double kernel(svm_dataset dataset, int index1, int index2, properties props){
                 }
             }
         }
-
         return exp(-(props.Kgamma)*sum);
     }
 }
@@ -155,7 +155,6 @@ double kernelTest(svm_dataset dataset, int index1, model mymodel, int index2){
                     ++x;
                 }			
             }
-
 	return sum;        
 
     }else{
@@ -185,7 +184,6 @@ double kernelTest(svm_dataset dataset, int index1, model mymodel, int index2){
                 }
             }
         }
-
         return exp(-(mymodel.Kgamma)*sum);
     }
 }

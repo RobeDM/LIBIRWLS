@@ -57,24 +57,6 @@ It converts the result into a model struct.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The struct that storages all the information of the classifier.
-\end{DoxyReturn}
-It converts the result of the P\+S\+I\+R\+W\+LS algorithm into a model struct.
-
-After the training of a S\+VM using the P\+S\+I\+R\+W\+LS procedure, this function build a struct with the information and returns it.
-
-
-\begin{DoxyParams}{Parameters}
-{\em props} & The training parameters. \\
-\hline
-{\em dataset} & The training set. \\
-\hline
-{\em centroids} & of the selected centroids by the S\+G\+MA algorithm. \\
-\hline
-{\em beta} & The weights of every centroid obtained with the I\+R\+W\+LS algorithm. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
 The struct that storages all the information of the classifier. 
 \end{DoxyReturn}
 \hypertarget{PSIRWLS-train_8h_ad51d9a46645ad0b0bedb1113a3807d24}{}\label{PSIRWLS-train_8h_ad51d9a46645ad0b0bedb1113a3807d24} 
@@ -88,22 +70,6 @@ The struct that storages all the information of the classifier.
 Iterative Re-\/\+Weighted Least Squares Algorithm. 
 
 I\+R\+W\+LS procedure to obtain the weights of the semi parametric model. 
-\begin{DoxyParams}{Parameters}
-{\em dataset} & The training set. \\
-\hline
-{\em indexes} & The indexes of the centroids selected by the S\+G\+MA algorithm. \\
-\hline
-{\em props} & The struct with the training parameters. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The weights of every centroid.
-\end{DoxyReturn}
-I\+R\+W\+LS procedure to obtain the weights of the semi parametric model. For a detailed description of the algorithm and parallelization\+:
-
-Díaz-\/\+Morales, R., \& Navia-\/\+Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-\/186.
-
-
 \begin{DoxyParams}{Parameters}
 {\em dataset} & The training set. \\
 \hline
@@ -145,10 +111,6 @@ A struct that contains the values of the training parameters of the P\+S\+I\+R\+
 
 Print Instructions. 
 
-It shows P\+S\+I\+R\+W\+L\+S-\/train command line instructions in the standard output.
-
-Print Instructions.
-
 It shows P\+S\+I\+R\+W\+L\+S-\/train command line instructions in the standard output. \hypertarget{PSIRWLS-train_8h_a50a6e1f36a010feb91db9b9b38679948}{}\label{PSIRWLS-train_8h_a50a6e1f36a010feb91db9b9b38679948} 
 \index{P\+S\+I\+R\+W\+L\+S-\/train.\+h@{P\+S\+I\+R\+W\+L\+S-\/train.\+h}!S\+G\+MA@{S\+G\+MA}}
 \index{S\+G\+MA@{S\+G\+MA}!P\+S\+I\+R\+W\+L\+S-\/train.\+h@{P\+S\+I\+R\+W\+L\+S-\/train.\+h}}
@@ -160,17 +122,6 @@ It shows P\+S\+I\+R\+W\+L\+S-\/train command line instructions in the standard o
 Sparse Greedy Matrix Approximation algorithm. 
 
 Sparse Greedy Matrix Approximation algorithm to select the basis elements of the semi parametric model. 
-\begin{DoxyParams}{Parameters}
-{\em dataset} & The training set. \\
-\hline
-{\em props} & The struct with the training parameters.\\
-\hline
-\end{DoxyParams}
-Sparse Greedy Matrix Approximation algorithm to select the basis elements of the semi parametric model. For a detailed description read\+:
-
-Díaz-\/\+Morales, R., \& Navia-\/\+Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-\/186.
-
-
 \begin{DoxyParams}{Parameters}
 {\em dataset} & The training set. \\
 \hline

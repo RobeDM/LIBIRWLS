@@ -3,6 +3,7 @@
     <topic label="Data Structures" href="annotated.html">
       <topic label="model" href="dc/d1b/structmodel.html">
         <topic label="bias" href="dc/d1b/structmodel.html#a9aef7cc709fca4e03a021623ce6c7ae6"/>
+        <topic label="kernelType" href="dc/d1b/structmodel.html#aaff8ca8579bd888fcfeca1c682618be9"/>
         <topic label="Kgamma" href="dc/d1b/structmodel.html#ac5c18eca6ad32bc6da1f2a923965e66c"/>
         <topic label="maxdim" href="dc/d1b/structmodel.html#ac6ba8c1bc138143114cd331583f41387"/>
         <topic label="nElem" href="dc/d1b/structmodel.html#a4877089d41daf2186482e0e6f900d65f"/>
@@ -14,11 +15,13 @@
       </topic>
       <topic label="predictProperties" href="d0/d38/structpredictProperties.html">
         <topic label="Labels" href="d0/d38/structpredictProperties.html#a580276e3e15305d5ac16d9ce0eb9b20a"/>
+        <topic label="Soft" href="d0/d38/structpredictProperties.html#a3af58f4dd3147f2896e024e89307f7ac"/>
         <topic label="Threads" href="d0/d38/structpredictProperties.html#a602116e0d46424243cb4c971c03695e1"/>
       </topic>
       <topic label="properties" href="d1/d03/structproperties.html">
         <topic label="C" href="d1/d03/structproperties.html#a3b98814395b295db30f029e5e67ae9c9"/>
         <topic label="Eta" href="d1/d03/structproperties.html#abd91deb543a31a6a1f75892af7cf95c8"/>
+        <topic label="kernelType" href="d1/d03/structproperties.html#a498e1588ce31c3265632f17f7d65c624"/>
         <topic label="Kgamma" href="d1/d03/structproperties.html#aab9c0195a446f08fc782701750ddb6ac"/>
         <topic label="MaxSize" href="d1/d03/structproperties.html#a42219768dd35e1ab628e1785759df400"/>
         <topic label="size" href="d1/d03/structproperties.html#a1694aebbbdd904f9b0e5faca725966b6"/>
@@ -51,6 +54,7 @@
             <topic label="properties" href="d1/d03/structproperties.html">
               <topic label="C" href="d1/d03/structproperties.html#a3b98814395b295db30f029e5e67ae9c9"/>
               <topic label="Eta" href="d1/d03/structproperties.html#abd91deb543a31a6a1f75892af7cf95c8"/>
+              <topic label="kernelType" href="d1/d03/structproperties.html#a498e1588ce31c3265632f17f7d65c624"/>
               <topic label="Kgamma" href="d1/d03/structproperties.html#aab9c0195a446f08fc782701750ddb6ac"/>
               <topic label="MaxSize" href="d1/d03/structproperties.html#a42219768dd35e1ab628e1785759df400"/>
               <topic label="size" href="d1/d03/structproperties.html#a1694aebbbdd904f9b0e5faca725966b6"/>
@@ -58,10 +62,12 @@
             </topic>
             <topic label="predictProperties" href="d0/d38/structpredictProperties.html">
               <topic label="Labels" href="d0/d38/structpredictProperties.html#a580276e3e15305d5ac16d9ce0eb9b20a"/>
+              <topic label="Soft" href="d0/d38/structpredictProperties.html#a3af58f4dd3147f2896e024e89307f7ac"/>
               <topic label="Threads" href="d0/d38/structpredictProperties.html#a602116e0d46424243cb4c971c03695e1"/>
             </topic>
             <topic label="model" href="dc/d1b/structmodel.html">
               <topic label="bias" href="dc/d1b/structmodel.html#a9aef7cc709fca4e03a021623ce6c7ae6"/>
+              <topic label="kernelType" href="dc/d1b/structmodel.html#aaff8ca8579bd888fcfeca1c682618be9"/>
               <topic label="Kgamma" href="dc/d1b/structmodel.html#ac5c18eca6ad32bc6da1f2a923965e66c"/>
               <topic label="maxdim" href="dc/d1b/structmodel.html#ac6ba8c1bc138143114cd331583f41387"/>
               <topic label="nElem" href="dc/d1b/structmodel.html#a4877089d41daf2186482e0e6f900d65f"/>
@@ -95,12 +101,13 @@
             <topic label="writeOutput" href="de/d79/IOStructures_8h.html#a1d182f217a275e4236bc3ef5f9904895"/>
           </topic>
           <topic label="kernels.h" href="d0/d01/kernels_8h.html">
-            <topic label="kernel" href="d0/d01/kernels_8h.html#aef79c6ac1742e54bec17d9fd80cda321"/>
+            <topic label="kernelFunction" href="d0/d01/kernels_8h.html#a85abc5ee96126e72d98f024a2fde5221"/>
             <topic label="kernelTest" href="d0/d01/kernels_8h.html#afeb0c5c6c8105ff0aec7f01ef47bed32"/>
           </topic>
           <topic label="LIBIRWLS-predict.h" href="db/d3d/LIBIRWLS-predict_8h.html">
             <topic label="parsePredictParameters" href="db/d3d/LIBIRWLS-predict_8h.html#a186e63263bf147110137e90adafcb8c7"/>
             <topic label="printPredictInstructions" href="db/d3d/LIBIRWLS-predict_8h.html#a53efcb64ca8e76d4a2cb65991189af91"/>
+            <topic label="softTest" href="db/d3d/LIBIRWLS-predict_8h.html#a47a2cacfccb7e9f9ef8b273b5d5a7498"/>
             <topic label="test" href="db/d3d/LIBIRWLS-predict_8h.html#ae3fc6988def0487bb4bb47b759ba3d0b"/>
           </topic>
           <topic label="ParallelAlgorithms.h" href="d0/d98/ParallelAlgorithms_8h.html">
@@ -135,14 +142,7 @@
           <topic label="LIBIRWLS-predict.c" href="df/d6f/LIBIRWLS-predict_8c.html"/>
           <topic label="ParallelAlgorithms.c" href="de/d09/ParallelAlgorithms_8c.html"/>
           <topic label="PIRWLS-train.c" href="d8/db2/PIRWLS-train_8c.html"/>
-          <topic label="PSIRWLS-train.c" href="d3/d3a/PSIRWLS-train_8c.html">
-            <topic label="calculatePSIRWLSModel" href="d3/d3a/PSIRWLS-train_8c.html#a71b4329438bbf3210414315619f7b804"/>
-            <topic label="IRWLSpar" href="d3/d3a/PSIRWLS-train_8c.html#ad51d9a46645ad0b0bedb1113a3807d24"/>
-            <topic label="main" href="d3/d3a/PSIRWLS-train_8c.html#a3c04138a5bfe5d72780bb7e82a18e627"/>
-            <topic label="parseTrainParameters" href="d3/d3a/PSIRWLS-train_8c.html#a67566f6fd6aec7278ca360186af4e91b"/>
-            <topic label="printPSIRWLSInstructions" href="d3/d3a/PSIRWLS-train_8c.html#af71e97e89750872ce608bffd01d2af41"/>
-            <topic label="SGMA" href="d3/d3a/PSIRWLS-train_8c.html#a50a6e1f36a010feb91db9b9b38679948"/>
-          </topic>
+          <topic label="PSIRWLS-train.c" href="d3/d3a/PSIRWLS-train_8c.html"/>
         </topic>
       </topic>
     </topic>

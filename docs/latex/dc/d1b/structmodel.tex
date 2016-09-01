@@ -14,6 +14,8 @@ It represents a trained model that has been obtained using P\+I\+R\+W\+LS or P\+
 \item 
 double \hyperlink{structmodel_ac5c18eca6ad32bc6da1f2a923965e66c}{Kgamma}
 \item 
+int \hyperlink{structmodel_aaff8ca8579bd888fcfeca1c682618be9}{kernel\+Type}
+\item 
 int \hyperlink{structmodel_ad00b5b9bbafcd18eb6367c90d9471231}{sparse}
 \item 
 int \hyperlink{structmodel_a3b73d79940bbdae365676c4fa56e96ea}{n\+S\+Vs}
@@ -44,7 +46,13 @@ This structures saves all the variables of a trained model needed to classify fu
 \subsubsection{\texorpdfstring{bias}{bias}}
 {\ttfamily double model\+::bias}
 
-The bias term of the classification function. \hypertarget{structmodel_ac5c18eca6ad32bc6da1f2a923965e66c}{}\label{structmodel_ac5c18eca6ad32bc6da1f2a923965e66c} 
+The bias term of the classification function. \hypertarget{structmodel_aaff8ca8579bd888fcfeca1c682618be9}{}\label{structmodel_aaff8ca8579bd888fcfeca1c682618be9} 
+\index{model@{model}!kernel\+Type@{kernel\+Type}}
+\index{kernel\+Type@{kernel\+Type}!model@{model}}
+\subsubsection{\texorpdfstring{kernel\+Type}{kernelType}}
+{\ttfamily int model\+::kernel\+Type}
+
+The kernel function (linear=0, rbf=1). \hypertarget{structmodel_ac5c18eca6ad32bc6da1f2a923965e66c}{}\label{structmodel_ac5c18eca6ad32bc6da1f2a923965e66c} 
 \index{model@{model}!Kgamma@{Kgamma}}
 \index{Kgamma@{Kgamma}!model@{model}}
 \subsubsection{\texorpdfstring{Kgamma}{Kgamma}}
