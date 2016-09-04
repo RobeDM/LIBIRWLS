@@ -81,12 +81,20 @@ Files and folders:
 * **include/**: Folder with the C headers used.
 * **src/**: Folder with the C source code.
 
-Online documentation:
+Web:
 =============
 
-A documentation of the functions has been created in html format and it can be found in the folder docs/html. This documentation is also available online:
+You can find detailed information about the software and the algorithm in its respective webpage:
 
- - [Online Documentation] (http://robedm.github.io/LIBIRWLS/) Generated using doxygen.
+ - [LIBIRWLS] (http://robedm.github.io/LIBIRWLS/index.html) Generated using doxygen.
+
+
+Online API:
+=============
+
+A documentation of the application programming interface (API) has been created in html format and it can be found in the folder docs/html. This documentation is also available online:
+
+ - [Online Documentation] (http://robedm.github.io/LIBIRWLS/API/index.html) Generated using doxygen.
 
 
 Installation Instructions:
@@ -149,7 +157,7 @@ If you use MKL libraries:
 
 If the libraries are not installed in the standard paths you can edit the file Makefile and uncomment and edit the following variables:
 
- **INCLUDEPATH** to tell the cblas.h file
+ **INCLUDEPATH** to tell where the headers .h are
  
  **LIBRARYPATH** to tell the linear algebra libraries location.
 
@@ -218,7 +226,7 @@ _____
 
 To make predictions with the model in a different dataset:
 
-    ./PIRWLS-predict [options] dataset_file model_file output_file
+    ./LIBIRWLS-predict [options] dataset_file model_file output_file
 
 Options:
 * -t Number_of_Threads: It is the number of threads in the parallel task (default 1)
