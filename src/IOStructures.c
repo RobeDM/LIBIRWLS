@@ -31,10 +31,13 @@
  * @see IOStructures.h
  */
 
-#include "../include/IOStructures.h"
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <stdio.h>
+#include <ctype.h>
+
+#include "IOStructures.h"
 
 /**
  * @cond
@@ -400,10 +403,10 @@ void storeModel(model * mod, FILE *Output){
     aux=fwrite(&mod->sparse, sizeof(int), 1, Output);
     aux=fwrite(&mod->nSVs, sizeof(int), 1, Output);
     aux=fwrite(&mod->nElem, sizeof(int), 1, Output);
-    aux=fwrite(mod->weights, (mod->nSVs)*sizeof(double), 1, Output);
+	aux=fwrite(mod->weights, sizeof(double), mod->nSVs, Output);
     aux=fwrite(mod->quadratic_value, (mod->nSVs)*sizeof(double), 1, Output);
     aux=fwrite(mod->x[0], (mod->nElem)*sizeof(svm_sample), 1, Output);
-
+    fflush(Output);
 }
 
 /**
@@ -424,11 +427,11 @@ void readModel(model * mod, FILE *Input){
     aux=fread(&mod->kernelType, sizeof(int), 1, Input);
     aux=fread(&mod->sparse, sizeof(int), 1, Input);
     aux=fread(&mod->nSVs, sizeof(int), 1, Input);    
-    aux=fread(&mod->nElem, sizeof(int), 1, Input);    
+    aux=fread(&mod->nElem, sizeof(int), 1, Input);
     mod->weights = (double *)malloc((mod->nSVs)*sizeof(double));
-    mod->quadratic_value = (double *)malloc((mod->nSVs)*sizeof(double));    
-    aux=fread(mod->weights, (mod->nSVs)*sizeof(double), 1, Input);
-    aux=fread(mod->quadratic_value, (mod->nSVs)*sizeof(double), 1, Input);
+    mod->quadratic_value = (double *)malloc((mod->nSVs)*sizeof(double));
+    aux=fread(mod->weights, sizeof(double), mod->nSVs, Input);	
+    aux=fread(mod->quadratic_value, (mod->nSVs)*sizeof(double), 1, Input); 
     mod->x = (svm_sample **)malloc((mod->nSVs)*sizeof(svm_sample *));    
     svm_sample* features = (svm_sample *) calloc((mod->nElem),sizeof(svm_sample));    
     aux=fread(features, (mod->nElem)*sizeof(svm_sample), 1, Input);

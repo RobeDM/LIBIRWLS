@@ -40,7 +40,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-
+#include <time.h>
+#include <sys\time.h>
 
 #ifdef USE_MKL
 #include "mkl_cblas.h"
@@ -48,9 +49,9 @@
 #include "mkl.h"
 #endif
 
-#include "../include/PSIRWLS-train.h"
-#include "../include/kernels.h"
-#include "../include/ParallelAlgorithms.h"
+#include "PSIRWLS-train.h"
+#include "kernels.h"
+#include "ParallelAlgorithms.h"
 
 /**
  * @cond
@@ -189,7 +190,7 @@ int* SGMA(svm_dataset dataset,properties props){
         }
         
 
-        printf("Best Error Descent %f, Index %d, Sample %d\n",value,centroids[size],size);
+        printf("Best Error Descent %f, Data with index %d is centroid %d\n",value,centroids[size],size);
 
         #pragma omp parallel default(shared) private(i)
         {
@@ -483,7 +484,8 @@ model calculatePSIRWLSModel(properties props, svm_dataset dataset, int *centroid
     }
 
     classifier.nElem = nElem;
-    classifier.weights = beta;
+    classifier.weights = (double *) calloc(props.size,sizeof(double));
+	memcpy(classifier.weights,beta,props.size*sizeof(double));	
     classifier.quadratic_value = (double *) calloc(props.size,sizeof(double));
 
     classifier.x = (svm_sample **) calloc(props.size,sizeof(svm_sample *));
@@ -601,7 +603,7 @@ int main(int argc, char** argv)
 {
 
     srand(0);	
-    srand48(0);
+    //srand48(0);
 
     properties props = parseTrainParameters(&argc, &argv);
   
@@ -629,9 +631,9 @@ int main(int argc, char** argv)
     struct timeval tiempo1, tiempo2;
     omp_set_num_threads(props.Threads);
 
+	
     printf("Running SGMA\n");	
     gettimeofday(&tiempo1, NULL);
-
 
     initMemory(props.Threads,props.size);
 
@@ -639,23 +641,23 @@ int main(int argc, char** argv)
 
     omp_set_num_threads(props.Threads);
 
+	
     printf("\nRunning IRWLS\n");	
 
     double * W = IRWLSpar(dataset,centroids,props);
-	
-
 
     gettimeofday(&tiempo2, NULL);
     printf("Weights calculated in %ld\n\n",((tiempo2.tv_sec-tiempo1.tv_sec)*1000+(tiempo2.tv_usec-tiempo1.tv_usec)/1000));
 
     model modelo = calculatePSIRWLSModel(props, dataset,centroids, W);
-
+	
+	
     printf("Saving model in file: %s\n\n",data_model);	
  
-    FILE *Out = fopen(data_model, "w+");
+    FILE *Out = fopen(data_model, "wb");
     storeModel(&modelo, Out);
-    fclose(Out);
-
+    fclose(Out);	
+	
     return 0;
 }
 

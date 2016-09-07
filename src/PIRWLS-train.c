@@ -41,6 +41,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <time.h>
+#include <sys\time.h>
 
 #ifdef USE_MKL
 #include "mkl_cblas.h"
@@ -48,8 +50,9 @@
 #include "mkl.h"
 #endif
 
-#include "../include/PIRWLS-train.h"
-#include "../include/kernels.h"
+#include "ParallelAlgorithms.h"
+#include "PIRWLS-train.h"
+#include "kernels.h"
 
 
 /**
@@ -827,7 +830,7 @@ int main(int argc, char** argv)
 {
 
     srand(0);	
-    srand48(0);
+    //srand48(0);
 
     properties props = parseTrainPIRWLSParameters(&argc, &argv);
   
@@ -866,7 +869,7 @@ int main(int argc, char** argv)
 
     printf("Saving model in file: %s\n\n",data_model);	
  
-    FILE *Out = fopen(data_model, "w+");
+    FILE *Out = fopen(data_model, "wb");
     storeModel(&modelo, Out);
     fclose(Out);
 

@@ -33,9 +33,11 @@
 
 #include <omp.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
-#include "../include/kernels.h"
-#include "../include/LIBIRWLS-predict.h"
+#include "kernels.h"
+#include "LIBIRWLS-predict.h"
 
 /**
  * @cond
@@ -234,7 +236,7 @@ int main(int argc, char** argv)
     
     // Reading the trained model from the file
     printf("\nReading trained model from file:%s\n",data_model);
-    FILE *In = fopen(data_model, "r+");
+    FILE *In = fopen(data_model, "rb");
     if (In == NULL) {
         fprintf(stderr, "Input file with the trained model not found: %s\n",data_model);
         exit(2);
@@ -259,7 +261,6 @@ int main(int argc, char** argv)
         dataset=readTrainFile(data_file);			
     }
     printf("Dataset Loaded, it contains %d samples and %d features\n\n", dataset.l,dataset.maxdim);
-
 
     // Set the number of openmp threads
     omp_set_num_threads(props.Threads);

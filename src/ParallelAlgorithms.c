@@ -34,7 +34,7 @@
  */
 
 
-#include "../include/ParallelAlgorithms.h"
+#include "ParallelAlgorithms.h"
 #include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
