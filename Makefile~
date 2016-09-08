@@ -12,10 +12,8 @@ SRCEXT := c
 SOURCES := $(shell find $(SRCFOLDER) -type f -name "*.$(SRCEXT)")
 OBJECTS := $(patsubst $(SRCFOLDER)/%,$(BUILDFOLDER)/%,$(SOURCES:.$(SRCEXT)=.o))
 
-INCLUDE  = -Iinclude
-
-# If your linear algebra library (mkl or blas and lapack) can not be found, uncomment these lines and write the respective folder.
-#INCLUDEPATH = -I/usr/...
+# If your linear algebra library (mkl or blas and lapack) can not be found, uncomment these lines to tell where is the library and add the and write the respective folder.
+INCLUDEPATH = -Iinclude
 #LIBRARYPATH = -L/usr/...
 
 ifeq ($(USE_MKL),1)
@@ -46,7 +44,7 @@ LIBIRWLS-predict: $(BUILDFOLDER)/LIBIRWLS-predict.o $(COMMONOBJ)
 
 $(BUILDFOLDER)/%.o: $(SRCFOLDER)/%.$(SRCEXT)
 	@echo " mkdir -p $(BUILDFOLDER)"; mkdir -p $(BUILDFOLDER)
-	@echo " $(CC) $(LIBS) $(OPTFLAGS) $(CFLAGS) $(INCLUDE) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<"; $(CC) $(LIBS) $(OPTFLAGS) $(CFLAGS) $(INCLUDE) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<
+	@echo " $(CC) $(LIBS) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<"; $(CC) $(LIBS) $(OPTFLAGS) $(CFLAGS) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<
 
 clean:
 	@echo " Cleaning..."; 

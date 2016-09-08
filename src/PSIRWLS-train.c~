@@ -41,6 +41,7 @@
 #include <math.h>
 #include <string.h>
 #include <time.h>
+#include <sys\time.h>
 
 #ifdef USE_MKL
 #include "mkl_cblas.h"
