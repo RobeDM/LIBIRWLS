@@ -42,6 +42,7 @@
 #include <string.h>
 #include <time.h>
 
+
 #ifdef USE_MKL
 #include "mkl_cblas.h"
 #include "mkl_blas.h"
@@ -279,8 +280,6 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
     int i,j;
     double kernelvalue;
 
-
-    int nSVs=dataset.l;
     double *KC=(double *) calloc(props.size*props.size,sizeof(double));
     double *KSC=(double *) calloc(dataset.l*props.size,sizeof(double));
     double *KSCA=(double *) calloc(dataset.l*props.size,sizeof(double));
@@ -317,7 +316,7 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
     }
 
     //Stop conditions
-    int  iter=0, max_iter=500,cambios=100;
+    int  iter=0, max_iter=500,cambios=100, trueSVs=0;
     double deltaW = 1e9, normW = 1.0;
 
     double *K1 = (double *) calloc(props.size*props.size,sizeof(double));
@@ -348,24 +347,33 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
     int thLS=pow(2,floor(log(props.Threads)/log(2.0)));
     if(props.size<thLS) thLS=pow(2,floor(log(props.size)/log(2.0)));
     if(thLS<1) thLS=1;        
+	
+	int tamDgemm = props.Threads;
+	if (props.size<props.Threads) tamDgemm = props.size;
     
+	trueSVs=dataset.l;
+	
     while( (iter<max_iter) && (deltaW/normW > 1e-6) && (itersSinceBestDW<5) ){
 
         memcpy(K1,KC,(props.size)*(props.size)*sizeof(double));
-        
-        #pragma omp parallel default(shared) private(i)
-        {				
-        #pragma omp for schedule(static)	
-        for (i=0;i<props.Threads;i++){
-            int InitCol=round(i*props.size/props.Threads);
-            int FinalCol=round((i+1)*props.size/props.Threads)-1;			
-            int lengthCol=FinalCol-InitCol+1;
-            if(lengthCol>0){
-                dgemm_(&notrans, &notrans, &(lengthCol), &(row), &(nSVs), &factor, &KSCA[InitCol], &(props.size), Day, &nSVs, &zfactor, &K2[InitCol], &(props.size));
-                dgemm_(&notrans, &trans, &(lengthCol), &(props.size), &(nSVs), &factor, &KSCA[InitCol], &(props.size), KSCA, &props.size, &factor, &K1[InitCol], &(props.size));
-            }
-        }
-        }
+
+		if(trueSVs>0){
+			#pragma omp parallel default(shared) private(i)
+			{				
+			#pragma omp for schedule(static)	
+			for (i=0;i<tamDgemm;i++){
+				int InitCol=round(i*props.size/tamDgemm);
+				int FinalCol=round((i+1)*props.size/tamDgemm)-1;			
+				int lengthCol=FinalCol-InitCol+1;
+				if(lengthCol>0){
+					dgemm_(&notrans, &notrans, &(lengthCol), &(row), &(trueSVs), &factor, &KSCA[InitCol], &(props.size), Day, &trueSVs, &zfactor, &K2[InitCol], &(props.size));
+					dgemm_(&notrans, &trans, &(lengthCol), &(props.size), &(trueSVs), &factor, &KSCA[InitCol], &(props.size), KSCA, &props.size, &factor, &K1[InitCol], &(props.size));
+				}
+			}
+			}
+		}else{
+			memset(K2,0.0,props.size*sizeof(double));
+		}
 
         memset(betaNew,0.0,props.size*sizeof(double));
 
@@ -388,24 +396,22 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
         #pragma omp parallel default(shared) private(i)
         {				
         #pragma omp for schedule(static)	
-        for (i=0;i<props.Threads;i++){
-            int InitCol=round(i*dataset.l/props.Threads);
-            int FinalCol=round((i+1)*dataset.l/props.Threads)-1;			
+        for (i=0;i<tamDgemm;i++){
+            int InitCol=round(i*dataset.l/tamDgemm);
+            int FinalCol=round((i+1)*dataset.l/tamDgemm)-1;			
             int lengthCol=FinalCol-InitCol+1;
             if(lengthCol>0){
                 dgemm_(&notrans, &notrans, &(row), &(lengthCol), &(props.size), &nfactor, beta, &row, &KSC[InitCol*props.size], &props.size, &factor, &e[InitCol], &(row));
             }
         }
         }
-
-
         
         double alpha,chi;
         #pragma omp parallel default(shared) private(i,val,chi,alpha)
         {				
         #pragma omp for schedule(static)	
         for(i=0;i<dataset.l;i++){
-	    
+
            if(e[i]*dataset.y[i]<0.0){
                 Da[i]=0.0;
            }else{
@@ -416,11 +422,11 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
         }
 
 
-        nSVs=0;
+        trueSVs=0;
         for(i=0;i<dataset.l;i++){
             if(Da[i]!=0.0){
-                indKSCA[nSVs]=i;
-                ++nSVs;
+                indKSCA[trueSVs]=i;
+                ++trueSVs;
             }
         }
 
@@ -428,7 +434,7 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
         #pragma omp parallel default(shared) private(i,j)
         {
         #pragma omp for schedule(static)
-        for (i=0;i<nSVs;i++){
+        for (i=0;i<trueSVs;i++){
             for (j=0;j<props.size;j++){
                 KSCA[i*(props.size)+j]=sqrt(Da[indKSCA[i]])*KSC[indKSCA[i]*(props.size)+j];
             }
@@ -437,7 +443,7 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
         }         
 
         ++iter;
-        printf("Iteration %d, nSVs %d, ||deltaW||^2/||W||^2=%f\n",iter,nSVs,deltaW/normW);
+        printf("Iteration %d, nSVs %d, ||deltaW||^2/||W||^2=%f\n",iter,trueSVs,deltaW/normW);
     
         if(iter>10 && deltaW/normW>100*oldnorm) M=M/10.0;
         oldnorm=deltaW/normW;
