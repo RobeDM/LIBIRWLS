@@ -230,16 +230,6 @@ int main(int argc, char** argv)
     char * data_file = argv[1];
     char * data_model = argv[2];
     char * output_file = argv[3];
-
-    printf("\nRunning with parameters:\n");
-    printf("------------------------\n");
-    printf("Dataset: %s\n",data_file);
-    printf("The model to use: %s\n",data_model);
-    printf("The result will be saved in: %s\n",output_file);
-    printf("flag l = %d (l = 1 for labeled datasets, l = 0 for unlabeled datasets)\n",props.Labels);
-    printf("------------------------\n");
-    printf("\n");
-
   
     model  mymodel;
 

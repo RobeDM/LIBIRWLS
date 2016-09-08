@@ -41,7 +41,6 @@
 #include <math.h>
 #include <string.h>
 #include <time.h>
-#include <sys\time.h>
 
 #ifdef USE_MKL
 #include "mkl_cblas.h"
@@ -189,8 +188,9 @@ int* SGMA(svm_dataset dataset,properties props){
             
         }
         
-
-        printf("Best Error Descent %f, Data with index %d is centroid %d\n",value,centroids[size],size);
+        if(size==0) printf("Best Error Descent %f, Average of positive data is centroid %d\n",value,centroids[size],size);
+        if(size==1) printf("Best Error Descent %f, Average of negative data is centroid %d\n",value,centroids[size],size);
+        if(size>1) printf("Best Error Descent %f, Data with index %d is centroid %d\n",value,centroids[size],size);
 
         #pragma omp parallel default(shared) private(i)
         {
@@ -344,6 +344,10 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
     
     int itersSinceBestDW=0;
     double bestDW=1e9;
+
+    int thLS=pow(2,floor(log(props.Threads)/log(2.0)));
+    if(props.size<thLS) thLS=pow(2,floor(log(props.size)/log(2.0)));
+    if(thLS<1) thLS=1;        
     
     while( (iter<max_iter) && (deltaW/normW > 1e-6) && (itersSinceBestDW<5) ){
 
@@ -363,10 +367,11 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
         }
         }
 
-
         memset(betaNew,0.0,props.size*sizeof(double));
-        ParallelLinearSystem(K1,props.size,props.size,0,0,K2,props.size,1,0,0,props.size,1,betaNew,props.size,1,0,0,props.Threads);
 
+        omp_set_num_threads(thLS);
+        ParallelLinearSystem(K1,props.size,props.size,0,0,K2,props.size,1,0,0,props.size,1,betaNew,props.size,1,0,0,thLS);
+        omp_set_num_threads(props.Threads);
 
         deltaW=0.0;        
         normW=0.0;
@@ -614,7 +619,23 @@ int main(int argc, char** argv)
 
     char * data_file = argv[1];
     char * data_model = argv[2];
-  	
+
+    printf("\nRunning with parameters:\n");
+    printf("------------------------\n");
+    printf("Training set: %s\n",data_file);
+    printf("The model will be saved in: %s\n",data_model);
+    printf("Cost c = %f\n",props.C);
+    printf("Semiparametric size = %d\n",props.size);
+
+
+    if(props.kernelType == 0){
+        printf("Using linear kernel\n");
+    }else{
+        printf("Using gaussian kernel with gamma = %f\n",props.Kgamma);
+    }
+    printf("------------------------\n");
+    printf("\n");  
+	
 
     // Loading dataset
     printf("\nReading dataset from file:%s\n",data_file);
@@ -647,7 +668,7 @@ int main(int argc, char** argv)
     double * W = IRWLSpar(dataset,centroids,props);
 
     gettimeofday(&tiempo2, NULL);
-    printf("Weights calculated in %ld\n\n",((tiempo2.tv_sec-tiempo1.tv_sec)*1000+(tiempo2.tv_usec-tiempo1.tv_usec)/1000));
+    printf("Weights calculated in %ld miliseconds\n\n",((tiempo2.tv_sec-tiempo1.tv_sec)*1000+(tiempo2.tv_usec-tiempo1.tv_usec)/1000));
 
     model modelo = calculatePSIRWLSModel(props, dataset,centroids, W);
 	
