@@ -46,6 +46,12 @@ The structure of this library is as follows:
     |
     +-- build/
     |
+    +-- data/
+    |
+    +-- demo/
+    |   +-- demoIRWLS.sh
+    |   +-- demoIRWLS.bat
+    |
     +-- docs/
     |   |
     |   +— html/
@@ -63,23 +69,31 @@ The structure of this library is as follows:
     |   +-- kernels.h
     |
     +-- src/
-        +-- IOStructures.c
-        +-- LIBIRWLS-predict.c
-        +-- PIRWLS-train.c
-        +-- PSIRWLS-train.c
-        +-- ParallelAlgorithms.c
-        +-- kernels.c
+    |   +-- IOStructures.c
+    |   +-- LIBIRWLS-predict.c
+    |   +-- PIRWLS-train.c
+    |   +-- PSIRWLS-train.c
+    |   +-- ParallelAlgorithms.c
+    |   +-- kernels.c
+    |
+    +-- windows/
+        +-- PIRWLS-train.exe
+        +-- PSIRWLS-train.exe
+        +-- LIBIRWLS-predict.exe
 
 Files and folders:
 * **README.md**: This markdown file
 * **Makefile**: The file with the directives used with the make build automation tool.
 * **bin/**: It appears when the application is build using the make command and it contains the executable binaries.
 * **build/**: It appears when the application is build using the make command and it contains the C object files.
+* **data/**: Some sample data needed to run the demo scripts.
+* **demo/**: A .bat windows demo script and a Unix .sh demo script that runs the executable files.
 * **docs/html/**: A detailed documentation of every function of source code in html format.
 * **docs/latex/**: A detailed documentation of every function of source code in latex format (it includes a Makefile to build a pdf documentation).
 * **examples/**: Folder with some script examples to run the algorithms.
 * **include/**: Folder with the C headers used.
 * **src/**: Folder with the C source code.
+* **windows/**: Precompiled windows executable files.
 
 Web:
 =============
@@ -113,6 +127,11 @@ This software is implemented in C and requires the following libraries:
 External libraries:
 ________________
 
+#### Windows
+
+LIBIRWLS contains windows static executable files that were precompiled for 64bits instancies. These executables are static so no extra packages are needed.
+
+
 #### Ubuntu, Debian, Slackware and other linux distributions using the Advanced Package Tools 
 
 The Advanced Package Tool, or APT, is a free software user interface that works with core libraries to handle the installation and removal of software on some Linux distributions.
@@ -144,7 +163,13 @@ We have also tested this software using the Intel MKL library. Due to the fact t
 
 
 Compiling:
-__________
+==========
+
+#### Windows
+
+The source code has been precompiled for windows and executable files are in the windows folder.
+
+#### Unix, Linux, OS X
 
 If you use blas, lapack, atlas:
 
