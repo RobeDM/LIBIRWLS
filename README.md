@@ -100,7 +100,7 @@ Web:
 
 You can find detailed information about the software and the algorithm in its respective webpage:
 
- - [LIBIRWLS] (http://robedm.github.io/LIBIRWLS/index.html) Generated using doxygen.
+ - [LIBIRWLS] (http://robedm.github.io/LIBIRWLS/index.html).
 
 
 Online API:
