@@ -136,6 +136,7 @@ LIBIRWLS contains windows static executable files that were precompiled for 64bi
 #### Dependencies:
 
  - Ubuntu, Debian, Slackware and other linux distributions using the Advanced Package Tools:
+
 ⋅⋅⋅The Advanced Package Tool, or APT, is a free software user interface that works with core libraries to handle the installation and removal of software on some Linux distributions. If gcc is not installed, use the following command line:
 
     sudo apt-get install build-essential
