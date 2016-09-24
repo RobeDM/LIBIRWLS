@@ -140,7 +140,7 @@ LIBIRWLS contains windows static executable files that were precompiled for 64bi
 
     sudo apt-get install build-essential
 
-⋅⋅⋅To install the linear algebra routines use the following command line:<br>
+⋅⋅⋅To install the linear algebra routines use the following command line:
 
     sudo apt-get install liblapack-dev
     sudo apt-get install libblas-dev
@@ -162,10 +162,10 @@ This software needs BLAS and Lapack standard routines. We have two different alt
 
  - If you are a Mac user, there is no need to install them because Mac comes with BLAS and LAPACK since Maverick. The names of the files are libBLAS.dylib and libLAPACK.dylib, in some OS X versions they are in the folder:
     /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/Versions/Current/
-...The folder may change depending on the OS X version, you can use the command find to find out the location:
+⋅⋅⋅The folder may change depending on the OS X version, you can use the command find to find out the location:
     sudo find /System/Library/ -name "libBLAS.dylib"
     sudo find /System/Library/ -name "libLAPACK.dylib"
-...These libraries are not in a library path, you need to put a copy of them in the folder /usr/local/lib
+⋅⋅⋅These libraries are not in a library path, you need to put a copy of them in the folder /usr/local/lib
 
  - The alternative is to download both libraries, compile them and put the libraries in the library path.[In this link](https://pheiter.wordpress.com/2012/09/04/howto-installing-lapack-and-blas-on-mac-os/) you can find simple and detailed instructions to do that.
 
@@ -174,10 +174,13 @@ This software needs BLAS and Lapack standard routines. We have two different alt
 The default compiler installed in OS X is clang. It currently doesn't support openmp to perform the parallelization. We recommend the installation of gcc using Homebrew or Macports:
 
  - Macports (this option is faster): Download and Install macports from [https://www.macports.org/](https://www.macports.org/) and install gcc using the following command line:
+
     sudo port install gcc49
+
  - Homebrew: Install homebrew using the following command line:
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 and then install gcc using the command line:
+
     brew install gcc --without-multilib
 
 
@@ -190,7 +193,7 @@ Then you can use the make command telling the path of the compiler that you have
     cd LIBIRWLS
     make CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6
 
-
+        
 
 Running the code:
 =================
