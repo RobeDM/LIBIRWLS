@@ -119,72 +119,77 @@ ____________
 
 This software is implemented in C and requires the following libraries:
 
- - [OpenMP] (http://openmp.org/wp/) To parallelize the software
- - A Linear Algebra Package that implements the BLAS and Lapack standard routines, this software has been tested on two alternatives:
-     - [BLAS] (http://www.netlib.org/blas/) and [LAPACK] (http://www.netlib.org/lapack/)
-     - [MKL](https://software.intel.com/en-us/intel-mkl)
+ - [OpenMP] (http://openmp.org/wp/) To parallelize the software.
+ - [BLAS] (http://www.netlib.org/blas/) and [LAPACK] (http://www.netlib.org/lapack/): Linear algebra packages with standard routines.
 
-External libraries:
+Install:
 ________________
 
-#### Windows
+### Windows
+
 
 LIBIRWLS contains windows static executable files that were precompiled for 64bits instancies. These executables are static so no extra packages are needed.
 
 
-#### Ubuntu, Debian, Slackware and other linux distributions using the Advanced Package Tools 
+### Linux, Unix
 
-The Advanced Package Tool, or APT, is a free software user interface that works with core libraries to handle the installation and removal of software on some Linux distributions.
+#### Dependencies:
 
-You can install the external libraries using the apt-get command:
-
-OPENMP is currently included with the gcc compiler, if gcc is not installed, use the following command line:
+ - Ubuntu, Debian, Slackware and other linux distributions using the Advanced Package Tools:
+⋅⋅⋅The Advanced Package Tool, or APT, is a free software user interface that works with core libraries to handle the installation and removal of software on some Linux distributions. If gcc is not installed, use the following command line:
 
     sudo apt-get install build-essential
 
-
-To install the linear algebra routines use the following command line:
+⋅⋅⋅To install the linear algebra routines use the following command line:<br>
 
     sudo apt-get install liblapack-dev
     sudo apt-get install libblas-dev
 
-#### Unix operating systems (OS X or any linux distribution) :
+ - If you have any Linux or Unix distribution with no apt-get support you need to download BLAS and lapack from their official webpages and install them following their instructions. [In this link](https://pheiter.wordpress.com/2012/09/04/howto-installing-lapack-and-blas-on-mac-os/) you can find simple and detailed instructions to do that.
 
-You need to download from their official webpages and install them following their instructions.
+#### Compiling:
 
-[BLAS] (http://www.netlib.org/blas/) 
+You need to run make in the library folder:
 
-[LAPACK] (http://www.netlib.org/lapack/)
-
-
-#### Intel MKL :
-
-We have also tested this software using the Intel MKL library. Due to the fact that it is not open source software we don't provide here the intallation instructions.
-
-
-Compiling:
-==========
-
-#### Windows
-
-The source code has been precompiled for windows and executable files are in the windows folder.
-
-#### Unix, Linux, OS X
-
-If you use blas, lapack, atlas:
-
+    cd LIBIRWLS
     make
 
-If you use MKL libraries:
+### Mac OS X
 
-    make USE_MKL=1
+#### Dependencies:
+
+This software needs BLAS and Lapack standard routines. We have two different alternatives:
+
+ - If you are a Mac user, there is no need to install them because Mac comes with BLAS and LAPACK since Maverick. The names of the files are libBLAS.dylib and libLAPACK.dylib, in some OS X versions they are in the folder:
+    /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/Versions/Current/
+...The folder may change depending on the OS X version, you can use the command find to find out the location:
+    sudo find /System/Library/ -name "libBLAS.dylib"
+    sudo find /System/Library/ -name "libLAPACK.dylib"
+...These libraries are not in a library path, you need to put a copy of them in the folder /usr/local/lib
+
+ - The alternative is to download both libraries, compile them and put the libraries in the library path.[In this link](https://pheiter.wordpress.com/2012/09/04/howto-installing-lapack-and-blas-on-mac-os/) you can find simple and detailed instructions to do that.
+
+#### Compiling:
+
+The default compiler installed in OS X is clang. It currently doesn't support openmp to perform the parallelization. We recommend the installation of gcc using Homebrew or Macports:
+
+ - Macports (this option is faster): Download and Install macports from [https://www.macports.org/](https://www.macports.org/) and install gcc using the following command line:
+    sudo port install gcc49
+ - Homebrew: Install homebrew using the following command line:
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+and then install gcc using the command line:
+    brew install gcc --without-multilib
 
 
-If the libraries are not installed in the standard paths you can edit the file Makefile and uncomment and edit the following variables:
+Then you can use the make command telling the path of the compiler that you have installed (the default path for macports gcc is /opt/local/bin/ and the default path for homebrew is /usr/local/Cellar/), for example:
 
- **INCLUDEPATH** to tell where the headers .h are
- 
- **LIBRARYPATH** to tell the linear algebra libraries location.
+ - If you have installed gcc 4.9 using Macports:
+    cd LIBIRWLS
+    make CC=/opt/local/bin/gcc-mp-4.9
+ - If you have installed gcc 6 using Homebrew:
+    cd LIBIRWLS
+    make CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6
+
 
 
 Running the code:
