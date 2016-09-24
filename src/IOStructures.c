@@ -123,9 +123,6 @@ svm_dataset readTrainFile(char filename[]){
         ++elements;
         ++dataset.l;
     }
-
-    printf("Dataset size %d\n",dataset.l);
-    printf("Elements %d\n",elements);
     
     elements=elements+2*(maxindexDS+2);
     double *meanPositives = (double *) calloc(maxindexDS+1,sizeof(double));

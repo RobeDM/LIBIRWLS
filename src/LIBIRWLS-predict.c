@@ -268,10 +268,8 @@ int main(int argc, char** argv)
     if(props.Labels==0){
         dataset=readUnlabeledFile(data_file);
     }else{
-        printf("Reading training\n");
         dataset=readTrainFile(data_file);			
     }
-    printf("Readed training\n");
     printf("Dataset Loaded, it contains %d samples and %d features\n\n", dataset.l,dataset.maxdim);
 
     
