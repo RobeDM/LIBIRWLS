@@ -139,12 +139,12 @@ LIBIRWLS contains windows static executable files that were precompiled for 64bi
 
 ⋅⋅⋅ The Advanced Package Tool, or APT, is a free software user interface that works with core libraries to handle the installation and removal of software on some Linux distributions. If gcc is not installed, use the following command line:
 
-    sudo apt-get install build-essential
+        sudo apt-get install build-essential
 
 ⋅⋅⋅ To install the linear algebra routines use the following command line:
 
-    sudo apt-get install liblapack-dev
-    sudo apt-get install libblas-dev
+        sudo apt-get install liblapack-dev
+        sudo apt-get install libblas-dev
 
  - If you have any Linux or Unix distribution with no apt-get support you need to download BLAS and lapack from their official webpages and install them following their instructions. [In this link](https://pheiter.wordpress.com/2012/09/04/howto-installing-lapack-and-blas-on-mac-os/) you can find simple and detailed instructions to do that.
 
