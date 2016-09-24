@@ -137,11 +137,11 @@ LIBIRWLS contains windows static executable files that were precompiled for 64bi
 
  - Ubuntu, Debian, Slackware and other linux distributions using the Advanced Package Tools:
 
-⋅⋅⋅The Advanced Package Tool, or APT, is a free software user interface that works with core libraries to handle the installation and removal of software on some Linux distributions. If gcc is not installed, use the following command line:
+⋅⋅⋅ The Advanced Package Tool, or APT, is a free software user interface that works with core libraries to handle the installation and removal of software on some Linux distributions. If gcc is not installed, use the following command line:
 
     sudo apt-get install build-essential
 
-⋅⋅⋅To install the linear algebra routines use the following command line:
+⋅⋅⋅ To install the linear algebra routines use the following command line:
 
     sudo apt-get install liblapack-dev
     sudo apt-get install libblas-dev
