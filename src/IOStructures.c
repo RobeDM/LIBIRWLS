@@ -90,7 +90,7 @@ svm_dataset readTrainFile(char filename[]){
         exit(2);
     }
 		
-    FILE* file = fopen(filename, "r");
+    FILE* file = fopen(filename, "rb");
     if (file == NULL) {
         fprintf(stderr, "File not found: %s\n",filename);
         exit(2);
@@ -124,8 +124,9 @@ svm_dataset readTrainFile(char filename[]){
         ++dataset.l;
     }
 
-
-
+    printf("Dataset size %d\n",dataset.l);
+    printf("Elements %d\n",elements);
+    
     elements=elements+2*(maxindexDS+2);
     double *meanPositives = (double *) calloc(maxindexDS+1,sizeof(double));
     double *meanNegatives = (double *) calloc(maxindexDS+1,sizeof(double));
@@ -141,10 +142,12 @@ svm_dataset readTrainFile(char filename[]){
     dataset.maxdim=0;
 
     int max_index = 0;
-    int i,j,dm=0;
+    int i=0;
+    int j=0;
+    int dm=0;
     int inst_max_index;
     int errno;
-
+    
 
     for(i=0;i<dataset.l;i++){
 
@@ -153,7 +156,7 @@ svm_dataset readTrainFile(char filename[]){
             fprintf(stderr, "Error reading data file\n");
             exit(2);
         }
-
+        
         dataset.x[i] = &features[j];
 	    label = strtok(fileline," \t\n");
 
@@ -182,13 +185,17 @@ svm_dataset readTrainFile(char filename[]){
             if(val == NULL) break;
 
             errno = 0;
+
+
             features[j].index = (int) strtol(idx,&endptr,10);
+
             if(endptr == idx || errno != 0 || *endptr != '\0' || features[j].index <= inst_max_index){
                 fprintf(stderr, "Wrong file format\n");
                 exit(2);
             }else{
                 inst_max_index = features[j].index;
             }
+
             if(features[dm].index != features[j].index){
                 dataset.sparse=1;
             }
@@ -315,7 +322,9 @@ svm_dataset readUnlabeledFile(char filename[]){
     dataset.maxdim=0;
 
     int max_index = 0;
-    int i,j,dm=0;
+    int i=0;
+    int j=0;
+    int dm=0;
     char *endptr;
     char *idx, *val, *label;
     int inst_max_index;

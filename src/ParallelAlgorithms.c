@@ -41,14 +41,38 @@
 #include <math.h>
 #include <string.h>
 
+
+
 #ifdef USE_MKL
 #include "mkl_blas.h"
-#include "mkl.h"
+
 #endif
 
 /**
  * @cond
  */
+
+
+extern void dgemm_(char *transa, char *transb, int *m, int *n, int *k, double
+                   *alpha, double *a, int *lda, double *b, int *ldb, double *beta, double *c,
+                   int *ldc );
+
+extern void dpotrs_(char *uplo, int *n, int *nrhs, double *A, int *lda,
+                    double *B, int *ldb, int *info);
+
+extern void dtrtri_(char *uplo, char *diag, int *n, double  *a, int *lda,
+                    int *info);
+
+extern void dpotrf_(char *uplo, int *n, double *A, int *lda, int *info);
+
+extern void dsyrk_(char   *uplo, char   *trans, int    *n, int    *k,
+                  double *alpha, double *a, int    *lda, double *beta,
+                  double *c, int    *ldc);
+
+extern void dtrmm_(char *side, char *uplo, char *transA, char *diag,
+                   int *m, int *n, double *alpha, double *A, int *ldA,
+                   double *B, int *ldB);
+
 
 /** @brief Auxiliar memory to perform temporal results in the parallel algebra operations. */
 double **auxmemory1;
@@ -989,10 +1013,11 @@ void LNProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int r
             double *mresultT=auxmemory1[numTh];
             getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n1,nCores);        
             getSubMatrix(m2,r2,c2,ro2,co2,mresultT, n1,n2,nCores); 
-            char transN = 'L';
-            char transY = 'L';
-            char transZ = 'N';
-            dtrmm_(&transN, &transY, &transZ, &(n1), &(n2), &(K1), m1T, &(n1), mresultT, &(n1));                            
+            char side = 'L';
+            char uplo = 'L';
+            char transa = 'N';
+            char diag = 'N';
+            dtrmm_(&side, &uplo, &transa, &diag, &(n1), &(n2), &(K1), m1T, &(n1), mresultT, &(n1));
             //cblas_dtrmm (CblasColMajor, CblasLeft,CblasLower,CblasNoTrans,CblasNonUnit,n1,n2,K1, m1T, n1, mresultT, n1);
             putSubMatrix(result,rr,cr,ror,cor,mresultT, n1,n2,nCores);
          }
@@ -1063,10 +1088,11 @@ void LTNProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int 
             double *m2T=auxmemory2[numTh];
             getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n1,1);
             getSubMatrix(result,rr,cr,ror,cor,m2T, n1,n2,1);
-            char transN = 'L';
-            char transY = 'L';
-            char transZ = 'T';
-            dtrmm_(&transN, &transY, &transZ, &(n1), &(n2), &(K1), m1T, &(n1), m2T, &(n1));                            
+            char side = 'L';
+            char uplo = 'L';
+            char transa = 'T';
+            char diag = 'N';
+            dtrmm_(&side, &uplo, &transa, &diag, &(n1), &(n2), &(K1), m1T, &(n1), m2T, &(n1));
             //cblas_dtrmm (CblasColMajor, CblasLeft,CblasLower,CblasTrans,CblasNonUnit,n1,n2,K1, m1T, n1, m2T, n1);
             putSubMatrix(result,rr,cr,ror,cor,m2T, n1,n2,1);
         }
@@ -1134,11 +1160,13 @@ void NLProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int r
             double *m1T=auxmemory1[numTh];
             double *mresultT=auxmemory2[numTh];
             getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n1,nCores);        
-            getSubMatrix(m2,r2,c2,ro2,co2,mresultT, n2,n1,nCores); 
-            char transN = 'R';
-            char transY = 'L';
-            char transZ = 'N';
-            dtrmm_(&transN, &transY, &transZ, &(n2), &(n1), &(K1), m1T, &(n1), mresultT, &(n2));                                   
+            getSubMatrix(m2,r2,c2,ro2,co2,mresultT, n2,n1,nCores);
+            char side = 'R';
+            char uplo = 'L';
+            char transa = 'N';
+            char diag = 'N';
+            
+            dtrmm_(&side, &uplo, &transa, &diag, &(n2), &(n1), &(K1), m1T, &(n1), mresultT, &(n2));
             //cblas_dtrmm (CblasColMajor, CblasRight,CblasLower,CblasNoTrans,CblasNonUnit,n2,n1,K1, m1T, n1, mresultT, n2);
             putSubMatrix(result,rr,cr,ror,cor,mresultT, n2,n1,nCores);
         }
@@ -1205,11 +1233,13 @@ void NLTProduct(double *m1,int r1,int ro1,int c1, int co1,double *m2,int r2,int 
             double *m1T=auxmemory1[numTh];
             double *m2T=auxmemory2[numTh];
             getSubMatrix(m1,r1,c1,ro1,co1,m1T, n1,n1,nCores);        
-            getSubMatrix(m2,r2,c2,ro2,co2,m2T, n2,n1,nCores);   
-            char transN = 'R';
-            char transY = 'L';
-            char transZ = 'T';
-            dtrmm_(&transN, &transY, &transZ, &(n2), &(n1), &(K1), m1T, &(n1), m2T, &(n2));                                   
+            getSubMatrix(m2,r2,c2,ro2,co2,m2T, n2,n1,nCores);
+            char side = 'R';
+            char uplo = 'L';
+            char transa = 'T';
+            char diag = 'N';
+            
+            dtrmm_(&side, &uplo, &transa, &diag, &(n2), &(n1), &(K1), m1T, &(n1), m2T, &(n2));
             //cblas_dtrmm (CblasColMajor, CblasRight,CblasLower,CblasTrans,CblasNonUnit,n2,n1,K1, m1T, n1, m2T, n2);
             putSubMatrix(result,rr,cr,ror,cor,m2T, n2,n1,nCores);
         }

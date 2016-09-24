@@ -41,7 +41,7 @@
 #include <math.h>
 #include <string.h>
 #include <time.h>
-
+#include <sys/time.h>
 
 #ifdef USE_MKL
 #include "mkl_cblas.h"
@@ -53,9 +53,19 @@
 #include "kernels.h"
 #include "ParallelAlgorithms.h"
 
+
 /**
  * @cond
  */
+
+
+extern void dgemm_(char *transa, char *transb, int *m, int *n, int *k, double
+                   *alpha, double *a, int *lda, double *b, int *ldb, double *beta, double *c,
+                   int *ldc );
+
+extern void dpotrs_(char *uplo, int *n, int *nrhs, double *A, int *lda,
+                    double *B, int *ldb, int *info);
+
 
 /**
  * @brief Sparse Greedy Matrix Approximation algorithm

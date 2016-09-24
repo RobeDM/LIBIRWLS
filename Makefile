@@ -1,6 +1,6 @@
 CC=gcc
 
-OPTFLAGS = -O3
+OPTFLAGS = -O3 -fopenmp
 
 USE_MKL=0
 
@@ -46,7 +46,7 @@ LIBIRWLS-predict: $(BUILDFOLDER)/LIBIRWLS-predict.o $(COMMONOBJ)
 
 $(BUILDFOLDER)/%.o: $(SRCFOLDER)/%.$(SRCEXT)
 	@echo " mkdir -p $(BUILDFOLDER)"; mkdir -p $(BUILDFOLDER)
-	@echo " $(CC) $(LIBS) $(OPTFLAGS) $(CFLAGS) $(INCLUDE) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<"; $(CC) $(LIBS) $(OPTFLAGS) $(CFLAGS) $(INCLUDE) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<
+	@echo " $(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDE) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<"; $(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDE) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<
 
 clean:
 	@echo " Cleaning..."; 

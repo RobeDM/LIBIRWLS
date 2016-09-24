@@ -60,7 +60,7 @@ double *softTest(svm_dataset dataset, model mymodel,predictProperties props){
 
     #pragma omp parallel default(shared) private(i,j)
     {	
-    #pragma omp for schedule(static)			
+    #pragma omp for schedule(static)
     for (i=0;i<dataset.l;i++){
         // Iteration over all the training elements
         double pred=mymodel.bias;
@@ -103,7 +103,7 @@ double *test(svm_dataset dataset, model mymodel,predictProperties props){
 
     #pragma omp parallel default(shared) private(i,j)
     {	
-    #pragma omp for schedule(static)			
+    #pragma omp for schedule(static)
     for (i=0;i<dataset.l;i++){
         // Iteration over all the training elements
         double pred=mymodel.bias;
@@ -259,7 +259,7 @@ int main(int argc, char** argv)
     // Loading dataset
     printf("Reading dataset from file:%s\n",data_file);
     svm_dataset dataset;
-    In = fopen(data_file, "r+");
+    In = fopen(data_file, "rb");
     if (In == NULL) {
         fprintf(stderr, "Input file with the training set not found: %s\n",data_file);
         exit(2);
@@ -268,10 +268,13 @@ int main(int argc, char** argv)
     if(props.Labels==0){
         dataset=readUnlabeledFile(data_file);
     }else{
+        printf("Reading training\n");
         dataset=readTrainFile(data_file);			
     }
+    printf("Readed training\n");
     printf("Dataset Loaded, it contains %d samples and %d features\n\n", dataset.l,dataset.maxdim);
 
+    
     // Set the number of openmp threads
     omp_set_num_threads(props.Threads);
 
@@ -287,7 +290,7 @@ int main(int argc, char** argv)
     printf("\nWriting output in file: %s \n\n",output_file);
     writeOutput (output_file, predictions,dataset.l);
     return 0;
-
+    
 }
 
 /**
