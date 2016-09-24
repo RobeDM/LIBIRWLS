@@ -183,8 +183,10 @@ The default compiler installed in OS X is clang. It currently doesn't support op
     sudo port install gcc49
 
  - Homebrew: Install homebrew using the following command line:
+
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-and then install gcc using the command line:
+
+⋅⋅⋅and then install gcc using the command line:
 
     brew install gcc --without-multilib
 
