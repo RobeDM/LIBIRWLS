@@ -141,7 +141,7 @@ LIBIRWLS contains windows static executable files that were precompiled for 64bi
 
         sudo apt-get install build-essential
 
-⋅⋅⋅ To install the linear algebra routines use the following command line:
+    To install the linear algebra routines use the following command line:
 
         sudo apt-get install liblapack-dev
         sudo apt-get install libblas-dev
@@ -165,12 +165,12 @@ This software needs BLAS and Lapack standard routines. We have two different alt
 
     /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/Versions/Current/
 
-⋅⋅⋅The folder may change depending on the OS X version, you can use the command find to find out the location:
+    The folder may change depending on the OS X version, you can use the command find to find out the location:
 
     sudo find /System/Library/ -name "libBLAS.dylib"
     sudo find /System/Library/ -name "libLAPACK.dylib"
 
-⋅⋅⋅These libraries are not in a library path, you need to put a copy of them in the folder /usr/local/lib
+    These libraries are not in a library path, you need to put a copy of them in the folder /usr/local/lib
 
  - The alternative is to download both libraries, compile them and put the libraries in the library path.[In this link](https://pheiter.wordpress.com/2012/09/04/howto-installing-lapack-and-blas-on-mac-os/) you can find simple and detailed instructions to do that.
 
@@ -186,7 +186,7 @@ The default compiler installed in OS X is clang. It currently doesn't support op
 
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-⋅⋅⋅and then install gcc using the command line:
+    and then install gcc using the command line:
 
     brew install gcc --without-multilib
 
@@ -197,6 +197,7 @@ Then you can use the make command telling the path of the compiler that you have
 
     cd LIBIRWLS
     make CC=/opt/local/bin/gcc-mp-4.9
+
  - If you have installed gcc 6 using Homebrew:
 
     cd LIBIRWLS
