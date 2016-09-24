@@ -180,7 +180,7 @@ The default compiler installed in OS X is clang. It currently doesn't support op
 
  - Macports (this option is faster): Download and Install macports from [https://www.macports.org/](https://www.macports.org/) and install gcc using the following command line:
 
-    sudo port install gcc49
+        sudo port install gcc49
 
  - Homebrew: Install homebrew using the following command line:
 
