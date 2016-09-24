@@ -161,10 +161,14 @@ You need to run make in the library folder:
 This software needs BLAS and Lapack standard routines. We have two different alternatives:
 
  - If you are a Mac user, there is no need to install them because Mac comes with BLAS and LAPACK since Maverick. The names of the files are libBLAS.dylib and libLAPACK.dylib, in some OS X versions they are in the folder:
+
     /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/Versions/Current/
+
 ⋅⋅⋅The folder may change depending on the OS X version, you can use the command find to find out the location:
+
     sudo find /System/Library/ -name "libBLAS.dylib"
     sudo find /System/Library/ -name "libLAPACK.dylib"
+
 ⋅⋅⋅These libraries are not in a library path, you need to put a copy of them in the folder /usr/local/lib
 
  - The alternative is to download both libraries, compile them and put the libraries in the library path.[In this link](https://pheiter.wordpress.com/2012/09/04/howto-installing-lapack-and-blas-on-mac-os/) you can find simple and detailed instructions to do that.
@@ -187,9 +191,11 @@ and then install gcc using the command line:
 Then you can use the make command telling the path of the compiler that you have installed (the default path for macports gcc is /opt/local/bin/ and the default path for homebrew is /usr/local/Cellar/), for example:
 
  - If you have installed gcc 4.9 using Macports:
+
     cd LIBIRWLS
     make CC=/opt/local/bin/gcc-mp-4.9
  - If you have installed gcc 6 using Homebrew:
+
     cd LIBIRWLS
     make CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6
 
