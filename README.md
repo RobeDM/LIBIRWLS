@@ -86,7 +86,7 @@ Files and folders:
 * **Makefile**: The file with the directives used with the make build automation tool.
 * **bin/**: It appears when the application is build using the make command and it contains the executable binaries.
 * **build/**: It appears when the application is build using the make command and it contains the C object files.
-* **data/**: Some sample data needed to run the demo scripts.
+* **data/**: It appears when the demo scripts of the folder demo are executed and contains some sample data needed to run the demo scripts.
 * **demo/**: A .bat windows demo script and a Unix .sh demo script that runs the executable files.
 * **docs/html/**: A detailed documentation of every function of source code in html format.
 * **docs/latex/**: A detailed documentation of every function of source code in latex format (it includes a Makefile to build a pdf documentation).
@@ -207,6 +207,12 @@ Then you can use the make command telling the path of the compiler that you have
 
 Running the code:
 =================
+
+Demo scripts:
+________
+
+For testing purposes, the folder demo contains a .bat windows demo script and a Unix .sh demo script that download a sample dataset from the libsvm repository and runs the executable files.
+
 
 Training using the PSIRWLS algorithm:
 ________
