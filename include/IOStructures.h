@@ -48,6 +48,7 @@ typedef struct properties{
     int Threads; /**< Number of threads to parallelize the operations. */
     int MaxSize; /**< Maximum size of the active set to calculate the SVM. */
     int size; /**< Size of semiparametric model (if we are executing the semiparametric version). */
+    int algorithm;/**< Algorithm to select the centroids of the semiparametric model. */
     double Eta; /**< Convergence criteria of the SVM. */
 }properties;
 

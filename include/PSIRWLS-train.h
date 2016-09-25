@@ -36,6 +36,18 @@
 #include "IOStructures.h"
 
 /**
+ * @brief Random selection of centroids for the semiparametric model
+ *
+ * It creates a random permutation and selects the first elements to be the indexes of the centroids of the semiparametric model.
+ *
+ * @param dataset The training set.
+ * @param props The struct with the training parameters.
+ */
+
+int* randomCentroids(svm_dataset dataset,properties props);
+
+
+/**
  * @brief Sparse Greedy Matrix Approximation algorithm
  *
  * Sparse Greedy Matrix Approximation algorithm to select the basis elements of the semi parametric model.

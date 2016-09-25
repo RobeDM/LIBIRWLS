@@ -68,6 +68,45 @@ extern void dpotrs_(char *uplo, int *n, int *nrhs, double *A, int *lda,
 
 
 /**
+ * @brief Random selection of centroids for the semiparametric model
+ *
+ * It creates a random permutation and selects the first elements to be the indexes of the centroids of the semiparametric model.
+ *
+ * @param dataset The training set.
+ * @param props The struct with the training parameters.
+ */
+
+int* randomCentroids(svm_dataset dataset,properties props){
+
+    int* permut = malloc(dataset.l * sizeof(int));
+    int i;
+    // initial range of numbers
+    for(i=0;i<dataset.l;++i){
+        permut[i]=i;
+    }
+    
+    for (i = dataset.l-1; i >= 0; --i){
+        //generate a random number [0, n-1]
+        int j = rand() % (i+1);
+        //swap the last element with element at random index
+        int temp = permut[i];
+        permut[i] = permut[j];
+        permut[j] = temp;
+    }
+    
+    int* centroids = malloc(props.size * sizeof(int));
+    
+    for (i = 0; i < props.size; i++){
+        centroids[i]=permut[i];
+    }
+    
+    free(permut);
+    return centroids;
+    
+}
+
+
+/**
  * @brief Sparse Greedy Matrix Approximation algorithm
  *
  * Sparse Greedy Matrix Approximation algorithm to select the basis elements of the semi parametric model. For a detailed description read:
@@ -553,6 +592,7 @@ properties parseTrainParameters(int* argc, char*** argv) {
     props.MaxSize=500;
     props.Eta=0.001;
     props.size=10;
+    props.algorithm=1;
     props.kernelType=1;
 
     int i,j;
@@ -579,6 +619,8 @@ properties parseTrainParameters(int* argc, char*** argv) {
             props.MaxSize = atoi(param_value);
         } else if (strcmp(param_name, "s") == 0) {
             props.size = atoi(param_value);
+        } else if (strcmp(param_name, "a") == 0) {
+            props.algorithm = atoi(param_value);
         } else {
             fprintf(stderr, "Unknown parameter %s\n",param_name);
             printPSIRWLSInstructions();
@@ -614,6 +656,9 @@ void printPSIRWLSInstructions() {
     fprintf(stderr, "  -c Cost: set SVM Cost (default 1)\n");
     fprintf(stderr, "  -t Threads: Number of threads (default 1)\n");
     fprintf(stderr, "  -s Classifier size: Size of the classifier (default 1)\n");
+    fprintf(stderr, "  -a Algorithm: Algorithm for centroids selection (default 1)\n");
+    fprintf(stderr, "       0 -- Random Selection\n");
+    fprintf(stderr, "       1 -- SGMA (Sparse Greedy Matrix Aproximation)\n");
 }
 
 /**
@@ -669,17 +714,23 @@ int main(int argc, char** argv)
     omp_set_num_threads(props.Threads);
 
 	
-    printf("Running SGMA\n");	
+    printf("Selecting centroids\n");
     gettimeofday(&tiempo1, NULL);
 
     initMemory(props.Threads,props.size);
 
-    int * centroids=SGMA(dataset,props);
+    int * centroids;
+    
+    if (props.algorithm==0){
+        centroids=randomCentroids(dataset,props);
+    }else{
+        centroids=SGMA(dataset,props);
+    }
 
     omp_set_num_threads(props.Threads);
 
 	
-    printf("\nRunning IRWLS\n");	
+    printf("\nCentroids Selected\n");
 
     double * W = IRWLSpar(dataset,centroids,props);
 
