@@ -234,7 +234,9 @@ Options:
 * -c Cost: Set the SVM Cost (default 1)
 * -s Classifier_size: Size of the classifier (default 50)
 * -t Number_of_Threads: It is the number of threads in the parallel task (default 1)
-
+* -a Algorithm: Algorithm for centroids selection (default 1)
+     * 0 -- Random Selection
+     * 1 -- SGMA (Sparse Greedy Matrix Approximation
 
 Example:
 

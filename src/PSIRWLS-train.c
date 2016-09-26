@@ -658,7 +658,7 @@ void printPSIRWLSInstructions() {
     fprintf(stderr, "  -s Classifier size: Size of the classifier (default 1)\n");
     fprintf(stderr, "  -a Algorithm: Algorithm for centroids selection (default 1)\n");
     fprintf(stderr, "       0 -- Random Selection\n");
-    fprintf(stderr, "       1 -- SGMA (Sparse Greedy Matrix Aproximation)\n");
+    fprintf(stderr, "       1 -- SGMA (Sparse Greedy Matrix Approximation)\n");
 }
 
 /**
