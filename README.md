@@ -162,12 +162,12 @@ LIBIRWLS contains windows static executable files that were precompiled for 64bi
 
 You need to run make in the library folder to build LIBIRWLS. If you have installed atlas using apt-get:
 
-    cd LIBERALS
+    cd LIBIRWLS
     make
 
 If you have manually installed ATLAS, you must tell the installation directory.
 
-    cd LIBERALS
+    cd LIBIRWLS
     make ATLASDIR=/installation/directory 
 
 
