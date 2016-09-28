@@ -206,7 +206,7 @@ The default compiler installed in OS X is clang. It currently doesn't support op
         brew install gcc --without-multilib
 
 
-Then you can use the make command telling the path of the compiler that you have installed (the default path for macports gcc is /opt/local/bin/ and the default path for homebrew is /usr/local/Cellar/), for example:
+Then you can use the make command telling the path of the compiler that you have installed (the default path for macports gcc is /opt/local/bin/ and the default path for homebrew is /usr/local/Cellar/) and the installation directory of ATLAS, for example:
 
  - If you have installed gcc 4.9 using Macports:
 
