@@ -120,7 +120,7 @@ ____________
 This software is implemented in C and requires the following libraries:
 
  - [OpenMP] (http://openmp.org/wp/) To parallelize the software.
- - [BLAS] (http://www.netlib.org/blas/) and [LAPACK] (http://www.netlib.org/lapack/): Linear algebra packages with standard routines.
+ - [ATLAS] (http://math-atlas.sourceforge.net/): Linear algebra package with standard routines.
 
 Install:
 ________________
@@ -143,10 +143,19 @@ LIBIRWLS contains windows static executable files that were precompiled for 64bi
 
     To install the linear algebra routines use the following command line:
 
-        sudo apt-get install liblapack-dev
-        sudo apt-get install libblas-dev
+        sudo apt-get install libatlas-base-dev
 
- - If you have any Linux or Unix distribution with no apt-get support you need to download BLAS and lapack from their official webpages and install them following their instructions. [In this link](https://pheiter.wordpress.com/2012/09/04/howto-installing-lapack-and-blas-on-mac-os/) you can find simple and detailed instructions to do that.
+ - If you have any Linux or Unix distribution with no apt-get support you need to download ATLAS from the [official repository] (https://sourceforge.net/projects/math-atlas/files/) and install it following the instructions that are detailed in the file INSTALL.txt. If you are impatient, for a basic installation on a 64 bits computer, this is the basic outline:
+        tar -xvjf atlas3.10.2.tar.bz2
+        cd ATLAS
+        mkdir my_build_dir ;
+        cd my_build_dir
+        ../configure -b 64 --prefix=/home/whaley/lib/atlas ! 
+        make              ! tune and compile library
+        make check        ! perform sanity tests
+        make ptcheck      ! checks of threaded code for multiprocessor systems
+        make time         ! provide performance summary as % of clock rate
+        make install      ! copy the library in the installation directory
 
 #### Compiling:
 

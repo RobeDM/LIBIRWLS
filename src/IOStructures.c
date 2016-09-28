@@ -143,7 +143,7 @@ svm_dataset readTrainFile(char filename[]){
     int j=0;
     int dm=0;
     int inst_max_index;
-    int errno;
+    int nerrno;
     
 
     for(i=0;i<dataset.l;i++){
@@ -181,12 +181,12 @@ svm_dataset readTrainFile(char filename[]){
 
             if(val == NULL) break;
 
-            errno = 0;
+            nerrno = 0;
 
 
             features[j].index = (int) strtol(idx,&endptr,10);
 
-            if(endptr == idx || errno != 0 || *endptr != '\0' || features[j].index <= inst_max_index){
+            if(endptr == idx || nerrno != 0 || *endptr != '\0' || features[j].index <= inst_max_index){
                 fprintf(stderr, "Wrong file format\n");
                 exit(2);
             }else{
@@ -197,7 +197,7 @@ svm_dataset readTrainFile(char filename[]){
                 dataset.sparse=1;
             }
 
-            errno = 0;
+            nerrno = 0;
             features[j].value = strtod(val,&endptr);
 
             if (dataset.y[i]==1.0){
@@ -207,7 +207,7 @@ svm_dataset readTrainFile(char filename[]){
             }
 
             dataset.quadratic_value[i] += pow(strtod(val,&endptr),2);
-            if(endptr == val || errno != 0 || (*endptr != '\0' && !isspace(*endptr))){
+            if(endptr == val || nerrno != 0 || (*endptr != '\0' && !isspace(*endptr))){
                 fprintf(stderr, "Wrong file format\n");
                 exit(2);
             }
@@ -325,7 +325,7 @@ svm_dataset readUnlabeledFile(char filename[]){
     char *endptr;
     char *idx, *val, *label;
     int inst_max_index;
-    int errno;
+    int nerrno;
 
     for(i=0;i<dataset.l;i++){
 

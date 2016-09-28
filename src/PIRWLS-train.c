@@ -44,13 +44,6 @@
 #include <time.h>
 #include <sys/time.h>
 
-
-#ifdef USE_MKL
-#include "mkl_cblas.h"
-#include "mkl_blas.h"
-#include "mkl.h"
-#endif
-
 #include "ParallelAlgorithms.h"
 #include "PIRWLS-train.h"
 #include "kernels.h"
