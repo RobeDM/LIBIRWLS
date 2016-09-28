@@ -146,6 +146,7 @@ LIBIRWLS contains windows static executable files that were precompiled for 64bi
         sudo apt-get install libatlas-base-dev
 
  - If you have any Linux or Unix distribution with no apt-get support you need to download ATLAS from the [official repository] (https://sourceforge.net/projects/math-atlas/files/) and install it following the instructions that are detailed in the file INSTALL.txt. If you are impatient, for a basic installation on a 64 bits computer, this is the basic outline:
+
         tar -xvjf atlas3.10.2.tar.bz2
         cd ATLAS
         mkdir my_build_dir ;
