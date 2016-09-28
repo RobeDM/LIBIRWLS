@@ -141,7 +141,7 @@ LIBIRWLS contains windows static executable files that were precompiled for 64bi
 
         sudo apt-get install build-essential
 
-    To install the linear algebra routines use the following command line:
+    To install the linear algebra routines of ATLAS use the following command line:
 
         sudo apt-get install libatlas-base-dev
 
@@ -160,29 +160,34 @@ LIBIRWLS contains windows static executable files that were precompiled for 64bi
 
 #### Compiling:
 
-You need to run make in the library folder:
+You need to run make in the library folder to build LIBIRWLS. If you have installed atlas using apt-get:
 
-    cd LIBIRWLS
+    cd LIBERALS
     make
+
+If you have manually installed ATLAS, you must tell the installation directory.
+
+    cd LIBERALS
+    make ATLASDIR=/installation/directory 
+
 
 ### Mac OS X
 
 #### Dependencies:
 
-This software needs BLAS and Lapack standard routines. We have two different alternatives:
+This software needs the ATLAS algebra standard routines. You need to download ATLAS from the [official repository] (https://sourceforge.net/projects/math-atlas/files/) and install it following the instructions that are detailed in the file INSTALL.txt. If you are impatient, for a basic installation on a 64 bits computer, this is the basic outline:
 
- - If you are a Mac user, there is no need to install them because Mac comes with BLAS and LAPACK since Maverick. The names of the files are libBLAS.dylib and libLAPACK.dylib, in some OS X versions they are in the folder:
+        tar -xvjf atlas3.10.2.tar.bz2
+        cd ATLAS
+        mkdir my_build_dir
+        cd my_build_dir
+        ../configure -b 64 --prefix=/installation/directory ! Tell the installation directory
+        make                                                ! tune and compile library
+        make check                                          ! perform sanity tests
+        make ptcheck                                        ! checks of threaded code for multiprocessor systems
+        make time                                           ! provide performance summary as % of clock rate
+        make install                                        ! copy the library in the installation directory
 
-        /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/Versions/Current/
-
-    The folder may change depending on the OS X version, you can use the command find to find out the location:
-
-        sudo find /System/Library/ -name "libBLAS.dylib"
-        sudo find /System/Library/ -name "libLAPACK.dylib"
-
-    These libraries are not in a library path, you need to put a copy of them in the folder /usr/local/lib
-
- - The alternative is to download both libraries, compile them and put the libraries in the library path.[In this link](https://pheiter.wordpress.com/2012/09/04/howto-installing-lapack-and-blas-on-mac-os/) you can find simple and detailed instructions to do that.
 
 #### Compiling:
 
@@ -206,12 +211,12 @@ Then you can use the make command telling the path of the compiler that you have
  - If you have installed gcc 4.9 using Macports:
 
         cd LIBIRWLS
-        make CC=/opt/local/bin/gcc-mp-4.9
+        make CC=/opt/local/bin/gcc-mp-4.9 ATLASDIR=/installation/directory
 
  - If you have installed gcc 6 using Homebrew:
 
         cd LIBIRWLS
-        make CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6
+        make CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6 ATLASDIR=/installation/directory
 
         
 
