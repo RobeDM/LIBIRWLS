@@ -149,14 +149,14 @@ LIBIRWLS contains windows static executable files that were precompiled for 64bi
 
         tar -xvjf atlas3.10.2.tar.bz2
         cd ATLAS
-        mkdir my_build_dir ;
+        mkdir my_build_dir
         cd my_build_dir
-        ../configure -b 64 --prefix=/home/whaley/lib/atlas ! 
-        make              ! tune and compile library
-        make check        ! perform sanity tests
-        make ptcheck      ! checks of threaded code for multiprocessor systems
-        make time         ! provide performance summary as % of clock rate
-        make install      ! copy the library in the installation directory
+        ../configure -b 64 --prefix=/installation/directory ! Tell the installation directory
+        make                                                ! tune and compile library
+        make check                                          ! perform sanity tests
+        make ptcheck                                        ! checks of threaded code for multiprocessor systems
+        make time                                           ! provide performance summary as % of clock rate
+        make install                                        ! copy the library in the installation directory
 
 #### Compiling:
 
