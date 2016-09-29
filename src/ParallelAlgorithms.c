@@ -42,7 +42,6 @@
 #include <string.h>
 
 
-#endif
 
 /**
  * @cond
