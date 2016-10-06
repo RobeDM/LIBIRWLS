@@ -237,7 +237,7 @@ void ParallelChol(double *matrix,int r,int c, int ro, int co, int n,int nCores, 
 
 void Chol(double *matrix,int r,int c, int ro, int co, int n,int nCores,int numTh, int deep,int posIni,double *memaux, int blockSize){    
     if(deep<=1){    
-        if(numTh==posIni){
+        if(numTh==posIni & n>0){
            
             double *m=auxmemory1[numTh];        
             getSubMatrix(matrix,r,c,ro,co,m, n,n,1);
