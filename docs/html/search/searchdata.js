@@ -1,12 +1,11 @@
 var indexSectionsWithContent =
 {
-  0: "bcegiklmnpqrstuvwxy",
+  0: "abcegiklmnpqrstuvwxy",
   1: "mps",
   2: "iklp",
   3: "cgikprstuw",
-  4: "bceiklmnqstvwxy",
-  5: "mps",
-  6: "l"
+  4: "abceiklmnqstvwxy",
+  5: "mps"
 };
 
 var indexSectionNames =
@@ -16,8 +15,7 @@ var indexSectionNames =
   2: "files",
   3: "functions",
   4: "variables",
-  5: "typedefs",
-  6: "pages"
+  5: "typedefs"
 };
 
 var indexSectionLabels =
@@ -27,7 +25,6 @@ var indexSectionLabels =
   2: "Files",
   3: "Functions",
   4: "Variables",
-  5: "Typedefs",
-  6: "Pages"
+  5: "Typedefs"
 };
 

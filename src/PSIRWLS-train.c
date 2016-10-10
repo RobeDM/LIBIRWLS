@@ -647,7 +647,7 @@ void printPSIRWLSInstructions() {
 int main(int argc, char** argv)
 {
 
-    srand(0);	
+    //srand(0);	
     //srand48(0);
 
     properties props = parseTrainParameters(&argc, &argv);

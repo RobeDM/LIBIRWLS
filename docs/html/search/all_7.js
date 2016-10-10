@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['maxdim',['maxdim',['../dc/d1b/structmodel.html#ac6ba8c1bc138143114cd331583f41387',1,'model::maxdim()'],['../d0/d6e/structsvm__dataset.html#aec1d1ee62ef8204fe90d8c6b7a647177',1,'svm_dataset::maxdim()']]],
-  ['maxsize',['MaxSize',['../d1/d03/structproperties.html#a42219768dd35e1ab628e1785759df400',1,'properties']]],
-  ['model',['model',['../dc/d1b/structmodel.html',1,'model'],['../de/d79/IOStructures_8h.html#ad81f7fac8a46794d554f6e95bd4a5003',1,'model():&#160;IOStructures.h']]]
+  ['l',['l',['../d0/d6e/structsvm__dataset.html#a899bdc43cdfb5e7063e8d7d1787357b4',1,'svm_dataset']]],
+  ['labels',['Labels',['../d0/d38/structpredictProperties.html#a580276e3e15305d5ac16d9ce0eb9b20a',1,'predictProperties']]],
+  ['libirwls_2dpredict_2ec',['LIBIRWLS-predict.c',['../df/d6f/LIBIRWLS-predict_8c.html',1,'']]],
+  ['libirwls_2dpredict_2eh',['LIBIRWLS-predict.h',['../db/d3d/LIBIRWLS-predict_8h.html',1,'']]]
 ];

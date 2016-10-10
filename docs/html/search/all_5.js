@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['kernelfunction',['kernelFunction',['../d0/d01/kernels_8h.html#a85abc5ee96126e72d98f024a2fde5221',1,'kernels.h']]],
-  ['kernels_2ec',['kernels.c',['../d7/d73/kernels_8c.html',1,'']]],
-  ['kernels_2eh',['kernels.h',['../d0/d01/kernels_8h.html',1,'']]],
-  ['kerneltest',['kernelTest',['../d0/d01/kernels_8h.html#afeb0c5c6c8105ff0aec7f01ef47bed32',1,'kernels.h']]],
-  ['kerneltype',['kernelType',['../d1/d03/structproperties.html#a498e1588ce31c3265632f17f7d65c624',1,'properties::kernelType()'],['../dc/d1b/structmodel.html#aaff8ca8579bd888fcfeca1c682618be9',1,'model::kernelType()']]],
-  ['kgamma',['Kgamma',['../d1/d03/structproperties.html#aab9c0195a446f08fc782701750ddb6ac',1,'properties::Kgamma()'],['../dc/d1b/structmodel.html#ac5c18eca6ad32bc6da1f2a923965e66c',1,'model::Kgamma()']]]
+  ['index',['index',['../d8/d33/structsvm__sample.html#a008f6b24c7c76af103e84245fb271506',1,'svm_sample']]],
+  ['initmemory',['initMemory',['../d0/d98/ParallelAlgorithms_8h.html#aa6df8c3f4f455d5692b3cb220fc205c7',1,'ParallelAlgorithms.h']]],
+  ['iostructures_2ec',['IOStructures.c',['../dc/dfc/IOStructures_8c.html',1,'']]],
+  ['iostructures_2eh',['IOStructures.h',['../de/d79/IOStructures_8h.html',1,'']]],
+  ['irwlspar',['IRWLSpar',['../d1/dd0/PSIRWLS-train_8h.html#ad51d9a46645ad0b0bedb1113a3807d24',1,'PSIRWLS-train.h']]]
 ];

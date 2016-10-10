@@ -51,11 +51,11 @@ fi
 
 
 
-file=${myDIR}/"../bin/PIRWLS-train"
+file="../bin/PIRWLS-train"
 if [ -f "$file" ]
 then
 
-file=${myDIR}/"../bin/LIBIRWLS-predict"
+file="../bin/LIBIRWLS-predict"
 if [ -f "$file" ]
 then
 
