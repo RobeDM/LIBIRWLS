@@ -12,4 +12,6 @@ data
 # Ignore dropbox files
 .dropbox
 
+# Ignore edited security copies
+*~
 
