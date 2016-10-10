@@ -9,4 +9,7 @@ data
 # Ignore Mac specific files
 .DS_Store
 
+# Ignore dropbox files
+.dropbox
+
 
