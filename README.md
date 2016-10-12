@@ -50,7 +50,8 @@ The structure of this library is as follows:
     |
     +-- demo/
     |   +-- demoIRWLS.sh
-    |   +-- demoIRWLS.bat
+    |   +-- demoIRWLSWin32.bat
+    |   +-- demoIRWLSWin64.bat
     |
     +-- docs/
     |   |
@@ -77,9 +78,16 @@ The structure of this library is as follows:
     |   +-- kernels.c
     |
     +-- windows/
-        +-- PIRWLS-train.exe
-        +-- PSIRWLS-train.exe
-        +-- LIBIRWLS-predict.exe
+        |
+        +--Win32
+        |  +-- PIRWLS-train.exe
+        |  +-- PSIRWLS-train.exe
+        |  +-- LIBIRWLS-predict.exe
+        |
+        +--Win64
+           +-- PIRWLS-train.exe
+           +-- PSIRWLS-train.exe
+           +-- LIBIRWLS-predict.exe
 
 Files and folders:
 * **README.md**: This markdown file
@@ -93,7 +101,7 @@ Files and folders:
 * **examples/**: Folder with some script examples to run the algorithms.
 * **include/**: Folder with the C headers used.
 * **src/**: Folder with the C source code.
-* **windows/**: Precompiled windows executable files.
+* **windows/**: Precompiled windows executable files for 32 and 64 bits versions.
 
 Web:
 =============
@@ -120,15 +128,10 @@ ____________
 This software is implemented in C and requires the following libraries:
 
  - [OpenMP] (http://openmp.org/wp/) To parallelize the software.
- - [ATLAS] (http://math-atlas.sourceforge.net/): Linear algebra package with standard routines.
+ - [ATLAS] (http://math-atlas.sourceforge.net/): Linear algebra package with standard routines that contains optimized BLAS and LAPACK implementations.
 
 Install:
 ________________
-
-### Windows
-
-
-LIBIRWLS contains windows static executable files that were precompiled for 64bits instancies. These executables are static so no extra packages are needed.
 
 
 ### Linux, Unix
@@ -218,7 +221,13 @@ Then you can use the make command telling the path of the compiler that you have
         cd LIBIRWLS
         make CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6 ATLASDIR=/installation/directory
 
-        
+### Windows
+
+
+LIBIRWLS contains windows executable files that were precompiled for 32 and 64 bits instancies. These executables are static so no extra packages are needed.
+
+If you want to obtain an optimized performance the software must be compiled and built in your system using tools like [cygwin](https://www.cygwin.com/). This is because ATLAS fixes some parameters to optimize the run time attending to the microprocessor in the computer that builds it.
+
 
 Running the code:
 =================
