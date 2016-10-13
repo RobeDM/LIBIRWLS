@@ -391,7 +391,7 @@ void ParallelLinearSystem(double *matrix1,int r1,int c1, int ro1, int co1,double
 void LinearSystem(double *matrix1,int r1,int c1, int ro1, int co1,double *matrix2,int r2,int c2, int ro2, int co2,int n, int m,double *result,int rr,int cr, int ror, int cor, int nCores, int numTh,int posIni,double *memaux, int blockSize){    
          
 
-    int deep=log(nCores)/log(2)+1;
+    int deep=2;
  
     Chol(matrix1,r1,c1,ro1,co1,n,nCores,numTh,deep+2,posIni,memaux,blockSize);
 
