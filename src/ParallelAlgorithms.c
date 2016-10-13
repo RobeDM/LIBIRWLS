@@ -393,7 +393,7 @@ void LinearSystem(double *matrix1,int r1,int c1, int ro1, int co1,double *matrix
 
     int deep=2;
  
-    Chol(matrix1,r1,c1,ro1,co1,n,nCores,numTh,deep+2,posIni,memaux,blockSize);
+    Chol(matrix1,r1,c1,ro1,co1,n,nCores,numTh,deep,posIni,memaux,blockSize);
 
     #pragma omp barrier    
         
