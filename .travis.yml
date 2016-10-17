@@ -1,5 +1,7 @@
 
 language: c
+sudo: required
+dist: trusty
 install: make
 compiler:
   - gcc
