@@ -2,10 +2,10 @@
 language: c
 sudo: required
 dist: trusty
-install: make
+script: make
 compiler:
   - gcc
-before_install:
+before_script:
   - sudo apt-get update
   - sudo apt-get install gfortran
   - sudo apt-get install libatlas-base-dev
