@@ -128,17 +128,12 @@ A documentation of the application programming interface (API) has been created 
 
 ## Installation Instructions:
 
-Requeriments:
-____________
+### Requeriments:
 
 This software is implemented in C and requires the following libraries:
 
  - [OpenMP] (http://openmp.org/wp/) To parallelize the software.
  - [ATLAS] (http://math-atlas.sourceforge.net/): Linear algebra package with standard routines that contains optimized BLAS and LAPACK implementations.
-
-Install:
-________________
-
 
 ### Linux, Unix
 
@@ -235,17 +230,14 @@ LIBIRWLS contains windows executable files that were precompiled for 32 and 64 b
 If you want to obtain an optimized performance the software must be compiled and built in your system using tools like [cygwin](https://www.cygwin.com/). This is because ATLAS fixes some parameters to optimize the run time attending to the microprocessor in the computer that builds it.
 
 
-Running the code:
-=================
+## Running the code:
 
-Demo scripts:
-________
+### Demo scripts:
 
 For testing purposes, the folder demo contains a .bat windows demo script and a Unix .sh demo script that download a sample dataset from the libsvm repository and runs the executable files.
 
 
-Training using the PSIRWLS algorithm:
-________
+#### Training using the PSIRWLS algorithm:
 
 The algorithm is described in this paper:
 
@@ -273,8 +265,7 @@ Example:
     ./PSIRWLS-train -g 0.001 -c 1000 -t 4 -s 150 training_set_file.txt model_file.mod
 
 
-Training using the PIRWLS algorithm:
-________
+#### Training using the PIRWLS algorithm:
 
 The algorithm is described in this paper:
 
@@ -302,8 +293,7 @@ Example:
     ./PIRWLS-train -g 0.001 -c 1000 -t 4 training_set_file.txt model_file.mod
 
 
-Test:
-_____
+#### Test:
 
 To make predictions with the model in a different dataset:
 
@@ -322,8 +312,7 @@ Example:
 
     ./PIRWLS-predict -t 4 -l 1 dataset_file.txt model_file.mod output_file.txt
 
-Input file format:
-=================
+### Input file format:
 
 The dataset must be provided in LibSVM format, labeled to train the model and labeled or unlabeled for predictions (using the -l option in the PIRWLS-predict command to tell if the file is labeled or unlabeled):
 
