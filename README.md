@@ -7,7 +7,7 @@
 
 [WebPage](https://robedm.github.io/LIBIRWLS/) |
 [API](https://robedm.github.io/LIBIRWLS/API/index.html) |
-[Installation Instructions:](#Installation Instructions:) |
+[Installation](#markdown-header-installation-instructions:) |
 [Release Notes](NEWS.md) |
 [RoadMap](https://github.com/dmlc/xgboost/issues/873)
 
