@@ -6,5 +6,6 @@ install: make
 compiler:
   - gcc
 before_install:
+  - sudo apt-get update
   - sudo apt-get install atlas-base-dev
   
