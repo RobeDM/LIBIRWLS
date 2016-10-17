@@ -5,6 +5,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Gitter](https://img.shields.io/gitter/room/badges/shields.svg)](https://gitter.im/LIBIRWLS/Lobby)
 
+[WebPage](https://robedm.github.io/LIBIRWLS/) |
+[API](https://robedm.github.io/LIBIRWLS/API/index.html) |
+[Installation](# Installation Instructions:) |
+[Release Notes](NEWS.md) |
+[RoadMap](https://github.com/dmlc/xgboost/issues/873)
+
 LIBIRWLS is an integrated parallel library for Support Vector Machines (SVMs) that makes use of the IRWLS procedure. It implements the functions to run two different algorithms:
 
 **Parallel Iterative Re-Weighted Least Squares:** A Parallel SVM solver based on the IRWLS algorithm.
@@ -124,7 +130,7 @@ A documentation of the application programming interface (API) has been created 
  - [Online Documentation] (http://robedm.github.io/LIBIRWLS/API/index.html) Generated using doxygen.
 
 
-Installation Instructions:
+## Installation Instructions:
 =========
 
 Requeriments:
