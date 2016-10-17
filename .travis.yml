@@ -7,6 +7,6 @@ compiler:
   - gcc
 before_install:
   - sudo apt-get update
-  - sudo apt-get install build-essential
+  - sudo apt-get install gfortran
   - sudo apt-get install libatlas-base-dev
   
