@@ -1,6 +1,7 @@
 # LIBIRWLS
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8e33396866a9466f9c131c913c62b078)](https://www.codacy.com/app/rober-diaz/LIBIRWLS?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RobeDM/LIBIRWLS&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/RobeDM/LIBIRWLS.svg?branch=master)](https://travis-ci.org/RobeDM/LIBIRWLS)
 
 LIBIRWLS is an integrated parallel library for Support Vector Machines (SVMs) that makes use of the IRWLS procedure. It implements the functions to run two different algorithms:
 
