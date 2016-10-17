@@ -4,5 +4,5 @@ install: make
 compiler:
   - gcc
 before_install:
-  - sudo apt-get install atlas-base-devel
+  - sudo apt-get install atlas-base-dev
   
