@@ -8,7 +8,7 @@
 [WebPage](https://robedm.github.io/LIBIRWLS/) |
 [API](https://robedm.github.io/LIBIRWLS/API/index.html) |
 [Installation](#installation-instructions) |
-[Release Notes](NEWS.md) |
+[Running](#running-the-code) |
 [RoadMap](https://github.com/dmlc/xgboost/issues/873)
 
 LIBIRWLS is an integrated parallel library for Support Vector Machines (SVMs) that makes use of the IRWLS procedure. It implements the functions to run two different algorithms:
