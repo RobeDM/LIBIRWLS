@@ -7,7 +7,7 @@
 
 [WebPage](https://robedm.github.io/LIBIRWLS/) |
 [API](https://robedm.github.io/LIBIRWLS/API/index.html) |
-[Installation](## Installation Instructions:) |
+[Installation](##Installation Instructions:) |
 [Release Notes](NEWS.md) |
 [RoadMap](https://github.com/dmlc/xgboost/issues/873)
 
@@ -112,16 +112,14 @@ Files and folders:
 * **src/**: Folder with the C source code.
 * **windows/**: Precompiled windows executable files for 32 and 64 bits versions.
 
-Web:
-=============
+## Web:
 
 You can find detailed information about the software and the algorithm in its respective webpage:
 
  - [LIBIRWLS] (http://robedm.github.io/LIBIRWLS/index.html).
 
 
-Online API:
-=============
+## Online API:
 
 A documentation of the application programming interface (API) has been created in html format and it can be found in the folder docs/html. This documentation is also available online:
 
@@ -129,7 +127,6 @@ A documentation of the application programming interface (API) has been created 
 
 
 ## Installation Instructions:
-=========
 
 Requeriments:
 ____________
