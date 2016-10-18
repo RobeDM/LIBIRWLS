@@ -17,6 +17,8 @@ LIBIRWLS is an integrated parallel library for Support Vector Machines (SVMs) th
 
 **Parallel Semi-parametric Iterative Re-Weighted Least Squares:** A Parallel solver for semiparametric SVMs solver based on the IRWLS algorithm.
 
+For a detailed explanation of the algorithms take a look at the [web page](https://robedm.github.io/LIBIRWLS/)
+
 ## License: MIT License
 
 Copyright (c) 2015-2016 Roberto Diaz Morales, Ángel Navia Vázquez
