@@ -11,14 +11,6 @@
 [Installation](#installation-instructions) |
 [Running](#running-the-code)
 
-SVMs are a very popular machine learning technique because they can easily create non-linear solutions by transforming the input space onto a high dimensional one where a kernel function can compute the inner product of a pair vectors. Thanks to this ability, they offer a good compromise between complexity and performance in many applications.
-
-SVMs have two main limitations. The first problem is related to their non-parametric nature. The complexity of the classifier is not limited and depends on the number of Support Vectors (SVs) after training. If the number of SVs is very large we may obtain a very slow classifier when processing new samples. The second problem is the run time associated to the training procedure that may be excessive for large datasets.
-
-To face these problems, we can make use of parallel computing, thus reducing the run time of the training procedure or we can use semi-parametric approximations than can limit the complexity of the model in advance, which directly implies a faster classifier.
-
-The above situation motivated us to develop "LIBIRWLS", an integrated library based on a parallel implementation of the IRWLS procedure to solve non-linear SVMs and semi-parametric SVMs. This library is implemented in C, supports a wide range of platforms and also provides detailed information about its programming interface and dependencies.
-
 LIBIRWLS is an integrated parallel library for Support Vector Machines (SVMs) that makes use of the IRWLS procedure. It implements the functions to run two different algorithms:
 
 **Parallel Iterative Re-Weighted Least Squares:** A Parallel SVM solver based on the IRWLS algorithm.
@@ -26,6 +18,14 @@ LIBIRWLS is an integrated parallel library for Support Vector Machines (SVMs) th
 **Parallel Semi-parametric Iterative Re-Weighted Least Squares:** A Parallel solver for semiparametric SVMs solver based on the IRWLS algorithm.
 
 For a detailed explanation of the algorithms take a look at the [web page](https://robedm.github.io/LIBIRWLS/)
+
+SVMs are a very popular machine learning technique because they can easily create non-linear solutions by transforming the input space onto a high dimensional one where a kernel function can compute the inner product of a pair vectors. Thanks to this ability, they offer a good compromise between complexity and performance in many applications.
+
+SVMs have two main limitations. The first problem is related to their non-parametric nature. The complexity of the classifier is not limited and depends on the number of Support Vectors (SVs) after training. If the number of SVs is very large we may obtain a very slow classifier when processing new samples. The second problem is the run time associated to the training procedure that may be excessive for large datasets.
+
+To face these problems, we can make use of parallel computing, thus reducing the run time of the training procedure or we can use semi-parametric approximations than can limit the complexity of the model in advance, which directly implies a faster classifier.
+
+The above situation motivated us to develop "LIBIRWLS", an integrated library based on a parallel implementation of the IRWLS procedure to solve non-linear SVMs and semi-parametric SVMs. This library is implemented in C, supports a wide range of platforms and also provides detailed information about its programming interface and dependencies.
 
 ## License: MIT License
 
