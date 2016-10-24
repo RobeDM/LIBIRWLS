@@ -89,6 +89,11 @@ The structure of this library is as follows:
     |   +-- ParallelAlgorithms.h
     |   +-- kernels.h
     |
+    +-- python-package/
+    |   +--pythonmodule.c
+    |   +--pythonmodule.h
+    |   +--setup.py
+    |
     +-- src/
     |   +-- IOStructures.c
     |   +-- LIBIRWLS-predict.c
@@ -121,6 +126,7 @@ Files and folders:
 * **docs/latex/**: A detailed documentation of every function of source code in latex format (it includes a Makefile to build a pdf documentation).
 * **examples/**: Folder with some script examples to run the algorithms.
 * **include/**: Folder with the C headers used.
+* **python-module/**: Python extension to use this library.
 * **src/**: Folder with the C source code.
 * **windows/**: Precompiled windows executable files for 32 and 64 bits versions.
 
@@ -242,7 +248,7 @@ LIBIRWLS contains windows executable files that were precompiled for 32 and 64 b
 If you want to obtain an optimized performance the software must be compiled and built in your system using tools like [cygwin](https://www.cygwin.com/). This is because ATLAS fixes some parameters to optimize the run time attending to the microprocessor in the computer that builds it.
 
 
-## Running the code:
+## Running the software from command line:
 
 ### Demo scripts:
 
@@ -344,3 +350,9 @@ Unlabeled example:
 1:5 7:2 15:6 23:1
 2:4 3:2 10:6 11:4
 ~~~~
+
+## Python module:
+
+Installation and running instructions are detailed in the README.md file allocated in the folder python-module
+
+

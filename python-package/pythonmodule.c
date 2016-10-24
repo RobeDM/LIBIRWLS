@@ -76,7 +76,7 @@ static PyObject *predict (PyObject *dummy, PyObject *args, PyObject *kwds)
     props.Soft=0;
     svm_dataset dataset;
 
-    static char *kwlist[] = {"classifier", "data", "labels", "Threads", "Soft", NULL};
+    static char *kwlist[] = {"classifier", "data", "labels", "threads", "Soft", NULL};
 
     PyObject *pymodel=NULL, *arg1=NULL, *arr1=NULL, *arg2=NULL, *arr2=NULL;
     props.Threads=1;
