@@ -1,14 +1,6 @@
 var searchData=
 [
-  ['parallelchol',['ParallelChol',['../d0/d98/ParallelAlgorithms_8h.html#aedc9a05cc25e789d22135eda90b8d22c',1,'ParallelAlgorithms.h']]],
-  ['parallellinearsystem',['ParallelLinearSystem',['../d0/d98/ParallelAlgorithms_8h.html#acd578bbef8ed7d2c5b301d858d6e54cf',1,'ParallelAlgorithms.h']]],
-  ['parallelvectormatrix',['ParallelVectorMatrix',['../d0/d98/ParallelAlgorithms_8h.html#aa173cc47a2219bbaff08572bab6de056',1,'ParallelAlgorithms.h']]],
-  ['parallelvectormatrixt',['ParallelVectorMatrixT',['../d0/d98/ParallelAlgorithms_8h.html#a043ebcb9d7b0843551be9bda4a518f61',1,'ParallelAlgorithms.h']]],
-  ['parsepredictparameters',['parsePredictParameters',['../db/d3d/LIBIRWLS-predict_8h.html#a186e63263bf147110137e90adafcb8c7',1,'LIBIRWLS-predict.h']]],
-  ['parsetrainparameters',['parseTrainParameters',['../d1/dd0/PSIRWLS-train_8h.html#a67566f6fd6aec7278ca360186af4e91b',1,'PSIRWLS-train.h']]],
-  ['parsetrainpirwlsparameters',['parseTrainPIRWLSParameters',['../df/d51/PIRWLS-train_8h.html#a661bbe4aa2899bb306b7b509296068a2',1,'PIRWLS-train.h']]],
-  ['printpirwlsinstructions',['printPIRWLSInstructions',['../df/d51/PIRWLS-train_8h.html#ac4a62e1a98c35f9d7e8996d58fe48523',1,'PIRWLS-train.h']]],
-  ['printpredictinstructions',['printPredictInstructions',['../db/d3d/LIBIRWLS-predict_8h.html#a53efcb64ca8e76d4a2cb65991189af91',1,'LIBIRWLS-predict.h']]],
-  ['printpsirwlsinstructions',['printPSIRWLSInstructions',['../d1/dd0/PSIRWLS-train_8h.html#af71e97e89750872ce608bffd01d2af41',1,'PSIRWLS-train.h']]],
-  ['putsubmatrix',['putSubMatrix',['../d0/d98/ParallelAlgorithms_8h.html#a99121d09a1719aa7f13fc1564adbf0f8',1,'ParallelAlgorithms.h']]]
+  ['initlibirwls',['initLIBIRWLS',['../d4/d54/pythonmodule_8c.html#abe9b02ef8b3dff171684f855d6819d13',1,'initLIBIRWLS(void):&#160;pythonmodule.c'],['../d0/da7/pythonmodule_8h.html#abe9b02ef8b3dff171684f855d6819d13',1,'initLIBIRWLS(void):&#160;pythonmodule.c']]],
+  ['initmemory',['initMemory',['../d0/d98/ParallelAlgorithms_8h.html#aa6df8c3f4f455d5692b3cb220fc205c7',1,'ParallelAlgorithms.h']]],
+  ['irwlspar',['IRWLSpar',['../d1/dd0/PSIRWLS-train_8h.html#ad51d9a46645ad0b0bedb1113a3807d24',1,'PSIRWLS-train.h']]]
 ];

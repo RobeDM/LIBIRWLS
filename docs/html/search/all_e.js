@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['test',['test',['../db/d3d/LIBIRWLS-predict_8h.html#ae3fc6988def0487bb4bb47b759ba3d0b',1,'LIBIRWLS-predict.h']]],
-  ['threads',['Threads',['../d1/d03/structproperties.html#a56ab77c44fb808e71990074bd75529ed',1,'properties::Threads()'],['../d0/d38/structpredictProperties.html#a602116e0d46424243cb4c971c03695e1',1,'predictProperties::Threads()']]],
-  ['trainfull',['trainFULL',['../df/d51/PIRWLS-train_8h.html#ad719770a7de382211555ba831af2ea28',1,'PIRWLS-train.h']]]
+  ['randomcentroids',['randomCentroids',['../d1/dd0/PSIRWLS-train_8h.html#aa6c8aa8b86b7a0647cc679408c310cd3',1,'PSIRWLS-train.h']]],
+  ['readmodel',['readModel',['../de/d79/IOStructures_8h.html#a39db6a02819bd37baf33f195ab81d02e',1,'IOStructures.h']]],
+  ['readtrainfile',['readTrainFile',['../de/d79/IOStructures_8h.html#a8edb4ba3a828ebfd3f315794c1fa5936',1,'IOStructures.h']]],
+  ['readunlabeledfile',['readUnlabeledFile',['../de/d79/IOStructures_8h.html#a55bd770c8b94fb281d835b8d96fab13d',1,'IOStructures.h']]],
+  ['rpermute',['rpermute',['../df/d51/PIRWLS-train_8h.html#a9e75aabe599f48c66cbda89320d68a71',1,'PIRWLS-train.h']]]
 ];

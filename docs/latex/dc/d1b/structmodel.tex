@@ -31,6 +31,8 @@ double $\ast$ \hyperlink{structmodel_a623da3d1f5116fd4d66873b95eb2e720}{quadrati
 int \hyperlink{structmodel_ac6ba8c1bc138143114cd331583f41387}{maxdim}
 \item 
 double \hyperlink{structmodel_a9aef7cc709fca4e03a021623ce6c7ae6}{bias}
+\item 
+struct \hyperlink{structsvm__sample}{svm\+\_\+sample} $\ast$ \hyperlink{structmodel_ac034047dc48ef9be6739e48b13f8f65c}{features}
 \end{DoxyCompactItemize}
 
 
@@ -46,7 +48,13 @@ This structures saves all the variables of a trained model needed to classify fu
 \subsubsection{\texorpdfstring{bias}{bias}}
 {\ttfamily double model\+::bias}
 
-The bias term of the classification function. \hypertarget{structmodel_aaff8ca8579bd888fcfeca1c682618be9}{}\label{structmodel_aaff8ca8579bd888fcfeca1c682618be9} 
+The bias term of the classification function. \hypertarget{structmodel_ac034047dc48ef9be6739e48b13f8f65c}{}\label{structmodel_ac034047dc48ef9be6739e48b13f8f65c} 
+\index{model@{model}!features@{features}}
+\index{features@{features}!model@{model}}
+\subsubsection{\texorpdfstring{features}{features}}
+{\ttfamily struct \hyperlink{structsvm__sample}{svm\+\_\+sample}$\ast$ model\+::features}
+
+Array of features. \hypertarget{structmodel_aaff8ca8579bd888fcfeca1c682618be9}{}\label{structmodel_aaff8ca8579bd888fcfeca1c682618be9} 
 \index{model@{model}!kernel\+Type@{kernel\+Type}}
 \index{kernel\+Type@{kernel\+Type}!model@{model}}
 \subsubsection{\texorpdfstring{kernel\+Type}{kernelType}}

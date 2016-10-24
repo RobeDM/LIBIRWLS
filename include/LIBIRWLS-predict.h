@@ -67,7 +67,7 @@ double *softTest(svm_dataset dataset, model mymodel,predictProperties props);
  * It shows the command line instructions in the standard output.
  */
 
-void printPredictInstructions();
+void printPredictInstructions(void);
 
 
 /**

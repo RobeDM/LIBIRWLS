@@ -1,0 +1,122 @@
+\hypertarget{pythonmodule_8c}{}\section{L\+I\+B\+I\+R\+W\+L\+S/python-\/package/pythonmodule.c File Reference}
+\label{pythonmodule_8c}\index{L\+I\+B\+I\+R\+W\+L\+S/python-\/package/pythonmodule.\+c@{L\+I\+B\+I\+R\+W\+L\+S/python-\/package/pythonmodule.\+c}}
+
+
+Implementation of the functions of the python extension.  
+
+
+{\ttfamily \#include \char`\"{}Python.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}numpy/arrayobject.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\+O\+Structures.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}P\+I\+R\+W\+L\+S-\/train.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}P\+S\+I\+R\+W\+L\+S-\/train.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Parallel\+Algorithms.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}L\+I\+B\+I\+R\+W\+L\+S-\/predict.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$omp.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}pythonmodule.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{pythonmodule_8c_acf0755277b8d72b23c6b62d904f1fa8f}{del\+Model} (Py\+Object $\ast$pymodel)
+\begin{DoxyCompactList}\small\item\em Model capsule destructor. \end{DoxyCompactList}\item 
+\hyperlink{structsvm__dataset}{svm\+\_\+dataset} \hyperlink{pythonmodule_8c_a978cb6144438bc23d419731ffa2df0bf}{numpy2dataset} (Py\+Object $\ast$arr1, Py\+Object $\ast$arr2)
+\begin{DoxyCompactList}\small\item\em Convert numpy array to a dataset. \end{DoxyCompactList}\item 
+\hyperlink{structsvm__dataset}{svm\+\_\+dataset} \hyperlink{pythonmodule_8c_a5a74dac1e53f4b081adec57bd65ea917}{numpy2dataset\+With\+Average} (Py\+Object $\ast$arr1, Py\+Object $\ast$arr2)
+\begin{DoxyCompactList}\small\item\em Convert numpy array to a dataset and the average of every class data. \end{DoxyCompactList}\item 
+Py\+M\+O\+D\+I\+N\+I\+T\+\_\+\+F\+U\+NC \hyperlink{pythonmodule_8c_abe9b02ef8b3dff171684f855d6819d13}{init\+L\+I\+B\+I\+R\+W\+LS} (void)
+\begin{DoxyCompactList}\small\item\em Initialization of the python module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of the functions of the python extension. 
+
+See pythonextension.\+h for a detailed description of the functions and parameters.
+
+\begin{DoxyAuthor}{Author}
+Roberto Diaz Morales 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+23 Sep 2016 
+\end{DoxyDate}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{pythonmodule_8h}{pythonmodule.\+h} 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\hypertarget{pythonmodule_8c_acf0755277b8d72b23c6b62d904f1fa8f}{}\label{pythonmodule_8c_acf0755277b8d72b23c6b62d904f1fa8f} 
+\index{pythonmodule.\+c@{pythonmodule.\+c}!del\+Model@{del\+Model}}
+\index{del\+Model@{del\+Model}!pythonmodule.\+c@{pythonmodule.\+c}}
+\subsubsection{\texorpdfstring{del\+Model()}{delModel()}}
+{\ttfamily void del\+Model (\begin{DoxyParamCaption}\item[{Py\+Object $\ast$}]{pymodel }\end{DoxyParamCaption})}
+
+
+
+Model capsule destructor. 
+
+The capsule destructor of the model object
+
+
+\begin{DoxyParams}{Parameters}
+{\em pymodel} & The model to delete \\
+\hline
+\end{DoxyParams}
+\hypertarget{pythonmodule_8c_abe9b02ef8b3dff171684f855d6819d13}{}\label{pythonmodule_8c_abe9b02ef8b3dff171684f855d6819d13} 
+\index{pythonmodule.\+c@{pythonmodule.\+c}!init\+L\+I\+B\+I\+R\+W\+LS@{init\+L\+I\+B\+I\+R\+W\+LS}}
+\index{init\+L\+I\+B\+I\+R\+W\+LS@{init\+L\+I\+B\+I\+R\+W\+LS}!pythonmodule.\+c@{pythonmodule.\+c}}
+\subsubsection{\texorpdfstring{init\+L\+I\+B\+I\+R\+W\+L\+S()}{initLIBIRWLS()}}
+{\ttfamily Py\+M\+O\+D\+I\+N\+I\+T\+\_\+\+F\+U\+NC init\+L\+I\+B\+I\+R\+W\+LS (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialization of the python module. 
+
+This function is called when the python extension is initialzed.
+
+\begin{DoxyReturn}{Returns}
+The init function. 
+\end{DoxyReturn}
+\hypertarget{pythonmodule_8c_a978cb6144438bc23d419731ffa2df0bf}{}\label{pythonmodule_8c_a978cb6144438bc23d419731ffa2df0bf} 
+\index{pythonmodule.\+c@{pythonmodule.\+c}!numpy2dataset@{numpy2dataset}}
+\index{numpy2dataset@{numpy2dataset}!pythonmodule.\+c@{pythonmodule.\+c}}
+\subsubsection{\texorpdfstring{numpy2dataset()}{numpy2dataset()}}
+{\ttfamily \hyperlink{structsvm__dataset}{svm\+\_\+dataset} numpy2dataset (\begin{DoxyParamCaption}\item[{Py\+Object $\ast$}]{arr1,  }\item[{Py\+Object $\ast$}]{arr2 }\end{DoxyParamCaption})}
+
+
+
+Convert numpy array to a dataset. 
+
+It converts a dataset in numpy array format to our internal format.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr1} & Python numpy array with the training set features. \\
+\hline
+{\em args} & Python numpy array with the training set labels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The dataset in our format. 
+\end{DoxyReturn}
+\hypertarget{pythonmodule_8c_a5a74dac1e53f4b081adec57bd65ea917}{}\label{pythonmodule_8c_a5a74dac1e53f4b081adec57bd65ea917} 
+\index{pythonmodule.\+c@{pythonmodule.\+c}!numpy2dataset\+With\+Average@{numpy2dataset\+With\+Average}}
+\index{numpy2dataset\+With\+Average@{numpy2dataset\+With\+Average}!pythonmodule.\+c@{pythonmodule.\+c}}
+\subsubsection{\texorpdfstring{numpy2dataset\+With\+Average()}{numpy2datasetWithAverage()}}
+{\ttfamily \hyperlink{structsvm__dataset}{svm\+\_\+dataset} numpy2dataset\+With\+Average (\begin{DoxyParamCaption}\item[{Py\+Object $\ast$}]{arr1,  }\item[{Py\+Object $\ast$}]{arr2 }\end{DoxyParamCaption})}
+
+
+
+Convert numpy array to a dataset and the average of every class data. 
+
+It converts a dataset in numpy array format to our internal format and calculates the average of every class data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr1} & Python numpy array with the training set features. \\
+\hline
+{\em args} & Python numpy array with the training set labels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The dataset in our format. 
+\end{DoxyReturn}

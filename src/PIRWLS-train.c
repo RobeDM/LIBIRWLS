@@ -184,7 +184,7 @@ double* subIRWLS(svm_dataset dataset,properties props, double *GIN, double *e, d
 
         H[nS1*(nS1+1)+(nS1)]=0.0;
         et[nS1]=-G13[nS1]-GIN[dataset.l];
-       
+      
        
         ///////////////////////////////////////////////////////
         //SOLVING THE LINEAR SYSTEM
@@ -193,6 +193,7 @@ double* subIRWLS(svm_dataset dataset,properties props, double *GIN, double *e, d
         if(nS1<thLS) thLS=pow(2,floor(log(nS1)/log(2.0)));
         if(thLS<1) thLS=1;
         
+
         omp_set_num_threads(thLS);
         ParallelLinearSystem(H,(nS1+1),(nS1+1),0,0,et,(nS1+1),1,0,0,(nS1+1),1,betaAux,(nS1+1),1,0,0,thLS);
         omp_set_num_threads(props.Threads);
@@ -207,10 +208,8 @@ double* subIRWLS(svm_dataset dataset,properties props, double *GIN, double *e, d
         maxbeta=0.0;
         minbeta=0.0;
 
-        
         memset(betaNew,0.0,(dataset.l+1)*sizeof(double));
         
-
         for (i=0;i<nS1;i++){
         	if (betaAux[i]> maxbeta) maxbeta=betaAux[i];
                 if (betaAux[i]< minbeta) minbeta=betaAux[i];
@@ -230,8 +229,6 @@ double* subIRWLS(svm_dataset dataset,properties props, double *GIN, double *e, d
             
         }
         
-        
-
         ////////////////////////////////////////
         //UPDATING THE ERROR OF THE TRAINING SET
         ////////////////////////////////////////
@@ -263,7 +260,6 @@ double* subIRWLS(svm_dataset dataset,properties props, double *GIN, double *e, d
         /////////////////////////
         //ADDING EVERY DATA TO ITS GROUP
         /////////////////////////
-        
 
         #pragma omp parallel default(shared) private(i)
         {
@@ -329,7 +325,7 @@ double* subIRWLS(svm_dataset dataset,properties props, double *GIN, double *e, d
             }
         }
         S1comp[nS1]=dataset.l;
-        
+
         memset(G13,0.0,(nS1+1)*sizeof(double));
         
         if(nS3>0){
@@ -460,6 +456,7 @@ double* trainFULL(svm_dataset dataset,properties props){
             }
             
         }
+
 
         ////////////////////
         // CREATE SUBDATASET
@@ -666,7 +663,7 @@ double* trainFULL(svm_dataset dataset,properties props){
  *  It shows PIRWLS-train command line instructions in the standard output.
  */
 
-void printPIRWLSInstructions() {
+void printPIRWLSInstructions(void) {
     fprintf(stderr, "PIRWLS-train: This software train the SVM on the given training set and ");
     fprintf(stderr, "generages a model for futures prediction use.\n\n");
     fprintf(stderr, "Usage: PIRWLS-train [options] training_set_file model_file\n\n");
@@ -784,7 +781,7 @@ model calculatePIRWLSModel(properties props, svm_dataset dataset, double * beta 
     classifier.quadratic_value = (double *) calloc(nSVs,sizeof(double));
 
     classifier.x = (svm_sample **) calloc(nSVs,sizeof(svm_sample *));
-    svm_sample* features = (svm_sample *) calloc(nElem,sizeof(svm_sample));
+    classifier.features = (svm_sample *) calloc(nElem,sizeof(svm_sample));
 
     
     int indexIt=0;
@@ -793,7 +790,7 @@ model calculatePIRWLSModel(properties props, svm_dataset dataset, double * beta 
         if(beta[i] != 0.0){
             classifier.quadratic_value[indexIt]=dataset.quadratic_value[i];
             classifier.weights[indexIt]=beta[i];            
-            classifier.x[indexIt] = &features[featureIt];
+            classifier.x[indexIt] = &classifier.features[featureIt];
             
             iteratorSample = dataset.x[i];
             classifierSample = classifier.x[indexIt];
@@ -815,76 +812,7 @@ model calculatePIRWLSModel(properties props, svm_dataset dataset, double * beta 
     return classifier;
 }
 
-/**
- * @brief Is the main function to build the executable file to train a SVM using the PIRWLS procedure.
- */
-  
-  
-int main(int argc, char** argv)
-{
 
-    srand(0);	
-    //srand48(0);
-
-    properties props = parseTrainPIRWLSParameters(&argc, &argv);
-  
-    if (argc != 3) {
-        printPIRWLSInstructions();
-        return 4;
-    }
-
-    char * data_file = argv[1];
-    char * data_model = argv[2];
-
-    printf("\nRunning with parameters:\n");
-    printf("------------------------\n");
-    printf("Training set: %s\n",data_file);
-    printf("The model will be saved in: %s\n",data_model);
-    printf("Cost c = %f\n",props.C);
-    printf("Working set size = %d\n",props.MaxSize);
-    printf("Stop criteria = %f\n",props.Eta);
-
-    if(props.kernelType == 0){
-        printf("Using linear kernel\n");
-    }else{
-        printf("Using gaussian kernel with gamma = %f\n",props.Kgamma);
-    }
-    printf("------------------------\n");
-    printf("\n");
-  	
-    // Loading dataset
-    printf("\nReading dataset from file:%s\n",data_file);
-    FILE *In = fopen(data_file, "r+");
-    if (In == NULL) {
-        fprintf(stderr, "Input file with the training set not found: %s\n",data_file);
-        exit(2);
-    }
-    fclose(In);
-    svm_dataset dataset = readTrainFile(data_file);
-    printf("Dataset Loaded\n\nTraining samples: %d\nNumber of features: %d\n\n",dataset.l,dataset.maxdim);
-
-    struct timeval tiempo1, tiempo2;
-    omp_set_num_threads(props.Threads);
-
-    printf("Running IRWLS\n");	
-    gettimeofday(&tiempo1, NULL);
-
-    initMemory(props.Threads,(props.MaxSize+1));
-    double * W = trainFULL(dataset,props);
-
-    gettimeofday(&tiempo2, NULL);
-    printf("\nWeights calculated in %ld miliseconds\n\n",((tiempo2.tv_sec-tiempo1.tv_sec)*1000+(tiempo2.tv_usec-tiempo1.tv_usec)/1000));
-
-    model modelo = calculatePIRWLSModel(props, dataset, W);
-
-    printf("Saving model in file: %s\n\n",data_model);	
- 
-    FILE *Out = fopen(data_model, "wb");
-    storeModel(&modelo, Out);
-    fclose(Out);
-
-    return 0;
-}
 
 /**
  * @endcond

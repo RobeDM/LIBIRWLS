@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['index',['index',['../d8/d33/structsvm__sample.html#a008f6b24c7c76af103e84245fb271506',1,'svm_sample']]],
-  ['initmemory',['initMemory',['../d0/d98/ParallelAlgorithms_8h.html#aa6df8c3f4f455d5692b3cb220fc205c7',1,'ParallelAlgorithms.h']]],
-  ['iostructures_2ec',['IOStructures.c',['../dc/dfc/IOStructures_8c.html',1,'']]],
-  ['iostructures_2eh',['IOStructures.h',['../de/d79/IOStructures_8h.html',1,'']]],
-  ['irwlspar',['IRWLSpar',['../d1/dd0/PSIRWLS-train_8h.html#ad51d9a46645ad0b0bedb1113a3807d24',1,'PSIRWLS-train.h']]]
+  ['features',['features',['../dc/d1b/structmodel.html#ac034047dc48ef9be6739e48b13f8f65c',1,'model::features()'],['../d0/d6e/structsvm__dataset.html#adb398643a3af457d1b18db0cb47c5a4c',1,'svm_dataset::features()']]],
+  ['freedataset',['freeDataset',['../de/d79/IOStructures_8h.html#acdb4b82c9c1b48bf1b46bc6ef7f5c463',1,'IOStructures.h']]],
+  ['freemodel',['freeModel',['../de/d79/IOStructures_8h.html#ae5341933172e53ce4cdc1a2bb1eb003a',1,'IOStructures.h']]]
 ];

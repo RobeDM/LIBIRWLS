@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['l',['l',['../d0/d6e/structsvm__dataset.html#a899bdc43cdfb5e7063e8d7d1787357b4',1,'svm_dataset']]],
-  ['labels',['Labels',['../d0/d38/structpredictProperties.html#a580276e3e15305d5ac16d9ce0eb9b20a',1,'predictProperties']]],
-  ['libirwls_2dpredict_2ec',['LIBIRWLS-predict.c',['../df/d6f/LIBIRWLS-predict_8c.html',1,'']]],
-  ['libirwls_2dpredict_2eh',['LIBIRWLS-predict.h',['../db/d3d/LIBIRWLS-predict_8h.html',1,'']]]
+  ['index',['index',['../d8/d33/structsvm__sample.html#a008f6b24c7c76af103e84245fb271506',1,'svm_sample']]],
+  ['initlibirwls',['initLIBIRWLS',['../d4/d54/pythonmodule_8c.html#abe9b02ef8b3dff171684f855d6819d13',1,'initLIBIRWLS(void):&#160;pythonmodule.c'],['../d0/da7/pythonmodule_8h.html#abe9b02ef8b3dff171684f855d6819d13',1,'initLIBIRWLS(void):&#160;pythonmodule.c']]],
+  ['initmemory',['initMemory',['../d0/d98/ParallelAlgorithms_8h.html#aa6df8c3f4f455d5692b3cb220fc205c7',1,'ParallelAlgorithms.h']]],
+  ['iostructures_2ec',['IOStructures.c',['../dc/dfc/IOStructures_8c.html',1,'']]],
+  ['iostructures_2eh',['IOStructures.h',['../de/d79/IOStructures_8h.html',1,'']]],
+  ['irwlspar',['IRWLSpar',['../d1/dd0/PSIRWLS-train_8h.html#ad51d9a46645ad0b0bedb1113a3807d24',1,'PSIRWLS-train.h']]]
 ];

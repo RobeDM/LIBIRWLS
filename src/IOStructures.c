@@ -44,21 +44,31 @@
  */
 
 /**
- * @brief A comparator of two data.
+ * @brief Free dataset memory
  *
- * A function to compare two data and returns:
- *  * 1 if teh first argument is higher than the second one.
- *  * -1 if teh first argument is lower than the second one.
- *  * 0 if both arguments are equal.
- * @param a The first argument to compare.
- * @param b The second argument to compare.
- * @return The result of comparing a and b.
+ * Free memory allocated by a dataset.
+ * @param data The dataset
  */
 
-static int compare (const void * a, const void * b){
-  if (*(double*)a < *(double*)b) return -1;
-  else if (*(double*)a > *(double*)b) return +1;
-  else return 0;  
+void freeDataset (svm_dataset data){
+    free(data.y);
+    free(data.quadratic_value);	
+    free(data.x);
+    free(data.features);
+}
+
+/**
+ * @brief Free model memory
+ *
+ * Free memory allocated by a model.
+ * @param data The model
+ */
+
+void freeModel (model modelo){
+    free(modelo.weights);
+    free(modelo.quadratic_value);	
+    free(modelo.x);
+    free(modelo.features);
 }
 
 /**

@@ -91,7 +91,7 @@ double* trainFULL(svm_dataset dataset,properties props);
  *  It shows PIRWLS-train command line instructions in the standard output.
  */
 
-void printPIRWLSInstructions() ;
+void printPIRWLSInstructions(void) ;
 
 
 /**

@@ -9,6 +9,13 @@
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
@@ -42,6 +49,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('de/d79/IOStructures_8h.html','../../');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -56,11 +78,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="../../dir_fbf672e6629ab74a24e7d310d431c03b.html">LIBIRWLS</a></li><li class="navelem"><a class="el" href="../../dir_2b8ab67b0898ed06b16a24fa52708771.html">include</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
@@ -115,6 +132,12 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:acdb4b82c9c1b48bf1b46bc6ef7f5c463"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d79/IOStructures_8h.html#acdb4b82c9c1b48bf1b46bc6ef7f5c463">freeDataset</a> (<a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a> data)</td></tr>
+<tr class="memdesc:acdb4b82c9c1b48bf1b46bc6ef7f5c463"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free dataset memory.  <a href="#acdb4b82c9c1b48bf1b46bc6ef7f5c463">More...</a><br /></td></tr>
+<tr class="separator:acdb4b82c9c1b48bf1b46bc6ef7f5c463"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5341933172e53ce4cdc1a2bb1eb003a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d79/IOStructures_8h.html#ae5341933172e53ce4cdc1a2bb1eb003a">freeModel</a> (<a class="el" href="../../dc/d1b/structmodel.html">model</a> modelo)</td></tr>
+<tr class="memdesc:ae5341933172e53ce4cdc1a2bb1eb003a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free model memory.  <a href="#ae5341933172e53ce4cdc1a2bb1eb003a">More...</a><br /></td></tr>
+<tr class="separator:ae5341933172e53ce4cdc1a2bb1eb003a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8edb4ba3a828ebfd3f315794c1fa5936"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d79/IOStructures_8h.html#a8edb4ba3a828ebfd3f315794c1fa5936">readTrainFile</a> (char filename[])</td></tr>
 <tr class="memdesc:a8edb4ba3a828ebfd3f315794c1fa5936"><td class="mdescLeft">&#160;</td><td class="mdescRight">It reads a file that contains a labeled dataset in libsvm format.  <a href="#a8edb4ba3a828ebfd3f315794c1fa5936">More...</a><br /></td></tr>
 <tr class="separator:a8edb4ba3a828ebfd3f315794c1fa5936"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -222,6 +245,58 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="acdb4b82c9c1b48bf1b46bc6ef7f5c463"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdb4b82c9c1b48bf1b46bc6ef7f5c463">&sect;&nbsp;</a></span>freeDataset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeDataset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a>&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Free dataset memory. </p>
+<p>Free memory allocated by a dataset. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The dataset </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae5341933172e53ce4cdc1a2bb1eb003a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5341933172e53ce4cdc1a2bb1eb003a">&sect;&nbsp;</a></span>freeModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeModel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/d1b/structmodel.html">model</a>&#160;</td>
+          <td class="paramname"><em>modelo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Free model memory. </p>
+<p>Free memory allocated by a model. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The model </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a39db6a02819bd37baf33f195ab81d02e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a39db6a02819bd37baf33f195ab81d02e">&sect;&nbsp;</a></span>readModel()</h2>
 
@@ -397,11 +472,15 @@ Functions</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="../../doxygen.png" alt="doxygen"/>
-</a> 1.8.12
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dir_fbf672e6629ab74a24e7d310d431c03b.html">LIBIRWLS</a></li><li class="navelem"><a class="el" href="../../dir_2b8ab67b0898ed06b16a24fa52708771.html">include</a></li><li class="navelem"><a class="el" href="../../de/d79/IOStructures_8h.html">IOStructures.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
+  </ul>
+</div>
 </body>
 </html>

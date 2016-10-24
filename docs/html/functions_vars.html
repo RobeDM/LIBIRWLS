@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -43,6 +50,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_vars.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -58,36 +79,74 @@ $(function() {
 </div>
 
 <div class="contents">
-&#160;<ul>
+&#160;
+
+<h3><a id="index_a"></a>- a -</h3><ul>
 <li>algorithm
 : <a class="el" href="d1/d03/structproperties.html#aa0ba665a115d2e69811c694bc1af5096">properties</a>
 </li>
+</ul>
+
+
+<h3><a id="index_b"></a>- b -</h3><ul>
 <li>bias
 : <a class="el" href="dc/d1b/structmodel.html#a9aef7cc709fca4e03a021623ce6c7ae6">model</a>
 </li>
+</ul>
+
+
+<h3><a id="index_c"></a>- c -</h3><ul>
 <li>C
 : <a class="el" href="d1/d03/structproperties.html#a3b98814395b295db30f029e5e67ae9c9">properties</a>
 </li>
+</ul>
+
+
+<h3><a id="index_e"></a>- e -</h3><ul>
 <li>Eta
 : <a class="el" href="d1/d03/structproperties.html#abd91deb543a31a6a1f75892af7cf95c8">properties</a>
 </li>
+</ul>
+
+
+<h3><a id="index_f"></a>- f -</h3><ul>
+<li>features
+: <a class="el" href="dc/d1b/structmodel.html#ac034047dc48ef9be6739e48b13f8f65c">model</a>
+, <a class="el" href="d0/d6e/structsvm__dataset.html#adb398643a3af457d1b18db0cb47c5a4c">svm_dataset</a>
+</li>
+</ul>
+
+
+<h3><a id="index_i"></a>- i -</h3><ul>
 <li>index
 : <a class="el" href="d8/d33/structsvm__sample.html#a008f6b24c7c76af103e84245fb271506">svm_sample</a>
 </li>
+</ul>
+
+
+<h3><a id="index_k"></a>- k -</h3><ul>
 <li>kernelType
 : <a class="el" href="dc/d1b/structmodel.html#aaff8ca8579bd888fcfeca1c682618be9">model</a>
-, <a class="el" href="d1/d03/structproperties.html#a498e1588ce31c3265632f17f7d65c624">properties</a>
+, <a class="el" href="d1/d03/structproperties.html#a2cb295bd30c81b5bec52b79e67106881">properties</a>
 </li>
 <li>Kgamma
 : <a class="el" href="dc/d1b/structmodel.html#ac5c18eca6ad32bc6da1f2a923965e66c">model</a>
 , <a class="el" href="d1/d03/structproperties.html#aab9c0195a446f08fc782701750ddb6ac">properties</a>
 </li>
+</ul>
+
+
+<h3><a id="index_l"></a>- l -</h3><ul>
 <li>l
 : <a class="el" href="d0/d6e/structsvm__dataset.html#a899bdc43cdfb5e7063e8d7d1787357b4">svm_dataset</a>
 </li>
 <li>Labels
 : <a class="el" href="d0/d38/structpredictProperties.html#a580276e3e15305d5ac16d9ce0eb9b20a">predictProperties</a>
 </li>
+</ul>
+
+
+<h3><a id="index_m"></a>- m -</h3><ul>
 <li>maxdim
 : <a class="el" href="dc/d1b/structmodel.html#ac6ba8c1bc138143114cd331583f41387">model</a>
 , <a class="el" href="d0/d6e/structsvm__dataset.html#aec1d1ee62ef8204fe90d8c6b7a647177">svm_dataset</a>
@@ -95,16 +154,28 @@ $(function() {
 <li>MaxSize
 : <a class="el" href="d1/d03/structproperties.html#a42219768dd35e1ab628e1785759df400">properties</a>
 </li>
+</ul>
+
+
+<h3><a id="index_n"></a>- n -</h3><ul>
 <li>nElem
 : <a class="el" href="dc/d1b/structmodel.html#a4877089d41daf2186482e0e6f900d65f">model</a>
 </li>
 <li>nSVs
 : <a class="el" href="dc/d1b/structmodel.html#a3b73d79940bbdae365676c4fa56e96ea">model</a>
 </li>
+</ul>
+
+
+<h3><a id="index_q"></a>- q -</h3><ul>
 <li>quadratic_value
 : <a class="el" href="dc/d1b/structmodel.html#a623da3d1f5116fd4d66873b95eb2e720">model</a>
 , <a class="el" href="d0/d6e/structsvm__dataset.html#a4b1ff8b06358c73f6b55ecae7516d01e">svm_dataset</a>
 </li>
+</ul>
+
+
+<h3><a id="index_s"></a>- s -</h3><ul>
 <li>size
 : <a class="el" href="d1/d03/structproperties.html#a1694aebbbdd904f9b0e5faca725966b6">properties</a>
 </li>
@@ -115,30 +186,53 @@ $(function() {
 : <a class="el" href="dc/d1b/structmodel.html#ad00b5b9bbafcd18eb6367c90d9471231">model</a>
 , <a class="el" href="d0/d6e/structsvm__dataset.html#a58e8012a38ef5ea1c642db1b8c06b8bc">svm_dataset</a>
 </li>
+</ul>
+
+
+<h3><a id="index_t"></a>- t -</h3><ul>
 <li>Threads
 : <a class="el" href="d0/d38/structpredictProperties.html#a602116e0d46424243cb4c971c03695e1">predictProperties</a>
 , <a class="el" href="d1/d03/structproperties.html#a56ab77c44fb808e71990074bd75529ed">properties</a>
 </li>
+</ul>
+
+
+<h3><a id="index_v"></a>- v -</h3><ul>
 <li>value
 : <a class="el" href="d8/d33/structsvm__sample.html#a2c43371736dc33a9e1d83561a99cf2f7">svm_sample</a>
 </li>
+</ul>
+
+
+<h3><a id="index_w"></a>- w -</h3><ul>
 <li>weights
 : <a class="el" href="dc/d1b/structmodel.html#a658dab89d4b4b1a5bd28cdfb4abafe39">model</a>
 </li>
+</ul>
+
+
+<h3><a id="index_x"></a>- x -</h3><ul>
 <li>x
 : <a class="el" href="dc/d1b/structmodel.html#a81da41c8731f95de344a068d302eb336">model</a>
 , <a class="el" href="d0/d6e/structsvm__dataset.html#ad3e266a07c610ed3f10df1bab30fd9e5">svm_dataset</a>
 </li>
+</ul>
+
+
+<h3><a id="index_y"></a>- y -</h3><ul>
 <li>y
 : <a class="el" href="d0/d6e/structsvm__dataset.html#a2bce5da2f59f28fe18eff3f92f92c011">svm_dataset</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.12
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
+  </ul>
+</div>
 </body>
 </html>

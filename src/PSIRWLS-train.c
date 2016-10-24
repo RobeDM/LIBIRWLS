@@ -528,13 +528,13 @@ model calculatePSIRWLSModel(properties props, svm_dataset dataset, int *centroid
     classifier.quadratic_value = (double *) calloc(props.size,sizeof(double));
 
     classifier.x = (svm_sample **) calloc(props.size,sizeof(svm_sample *));
-    svm_sample* features = (svm_sample *) calloc(nElem,sizeof(svm_sample));
+    classifier.features = (svm_sample *) calloc(nElem,sizeof(svm_sample));
     
     int indexIt=0;
     int featureIt=0;
     for (i =0;i<props.size;i++){
         classifier.quadratic_value[i]=dataset.quadratic_value[centroids[i]];
-        classifier.x[i] = &features[featureIt];
+        classifier.x[i] = &classifier.features[featureIt];
         iteratorSample = dataset.x[centroids[i]];
         classifierSample = classifier.x[i];
         while (iteratorSample->index != -1){
@@ -622,7 +622,7 @@ properties parseTrainParameters(int* argc, char*** argv) {
  *  It shows PSIRWLS-train command line instructions in the standard output.
  */
 
-void printPSIRWLSInstructions() {
+void printPSIRWLSInstructions(void) {
     fprintf(stderr, "PSIRWLS-train: This software train the sparse SVM on the given training set ");
     fprintf(stderr, "and generages a model for futures prediction use.\n\n");
     fprintf(stderr, "Usage: PSIRWLS-train [options] training_set_file model_file\n\n");
@@ -638,94 +638,6 @@ void printPSIRWLSInstructions() {
     fprintf(stderr, "  -a Algorithm: Algorithm for centroids selection (default 1)\n");
     fprintf(stderr, "       0 -- Random Selection\n");
     fprintf(stderr, "       1 -- SGMA (Sparse Greedy Matrix Approximation)\n");
-}
-
-/**
- * @brief Is the main function to build the executable file to train a SVM using the PSIRWLS procedure.
- */
-  
-int main(int argc, char** argv)
-{
-
-    //srand(0);	
-    //srand48(0);
-
-    properties props = parseTrainParameters(&argc, &argv);
-  
-    if (argc != 3) {
-        printPSIRWLSInstructions();
-        return 4;
-    }
-
-    char * data_file = argv[1];
-    char * data_model = argv[2];
-
-    printf("\nRunning with parameters:\n");
-    printf("------------------------\n");
-    printf("Training set: %s\n",data_file);
-    printf("The model will be saved in: %s\n",data_model);
-    printf("Cost c = %f\n",props.C);
-    printf("Semiparametric size = %d\n",props.size);
-
-
-    if(props.kernelType == 0){
-        printf("Using linear kernel\n");
-    }else{
-        printf("Using gaussian kernel with gamma = %f\n",props.Kgamma);
-    }
-    printf("------------------------\n");
-    printf("\n");  
-	
-
-    // Loading dataset
-    printf("\nReading dataset from file:%s\n",data_file);
-    FILE *In = fopen(data_file, "r+");
-    if (In == NULL) {
-        fprintf(stderr, "Input file with the training set not found: %s\n",data_file);
-        exit(2);
-    }
-    fclose(In);
-    svm_dataset dataset = readTrainFile(data_file);
-    printf("Dataset Loaded\n\nTraining samples: %d\nNumber of features: %d\n\n",dataset.l,dataset.maxdim);
-
-
-    struct timeval tiempo1, tiempo2;
-
-    omp_set_num_threads(props.Threads);
-
-    printf("Selecting centroids\n");
-    gettimeofday(&tiempo1, NULL);
-
-    initMemory(props.Threads,props.size);
-
-    int * centroids;
-    
-    if (props.algorithm==0){
-        centroids=randomCentroids(dataset,props);
-    }else{
-        centroids=SGMA(dataset,props);
-    }
-
-    omp_set_num_threads(props.Threads);
-
-	
-    printf("\nCentroids Selected\n");
-
-    double * W = IRWLSpar(dataset,centroids,props);
-
-    gettimeofday(&tiempo2, NULL);
-    printf("Weights calculated in %ld miliseconds\n\n",((tiempo2.tv_sec-tiempo1.tv_sec)*1000+(tiempo2.tv_usec-tiempo1.tv_usec)/1000));
-
-    model modelo = calculatePSIRWLSModel(props, dataset,centroids, W);
-	
-	
-    printf("Saving model in file: %s\n\n",data_model);	
- 
-    FILE *Out = fopen(data_model, "wb");
-    storeModel(&modelo, Out);
-    fclose(Out);	
-	
-    return 0;
 }
 
 /**

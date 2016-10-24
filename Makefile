@@ -1,6 +1,6 @@
 CC=gcc
 
-OPTFLAGS = -O3 -fopenmp
+OPTFLAGS = -fPIC -O3 -fopenmp
 
 BINFOLDER := bin
 BUILDFOLDER := build
@@ -20,28 +20,28 @@ endif
 LIBS = -lm -llapack -lf77blas -lcblas -latlas -lgfortran -fopenmp
 
 
-COMMONOBJ := $(BUILDFOLDER)/ParallelAlgorithms.o $(BUILDFOLDER)/IOStructures.o $(BUILDFOLDER)/kernels.o
+COMMONOBJ := $(BUILDFOLDER)/ParallelAlgorithms.o $(BUILDFOLDER)/IOStructures.o $(BUILDFOLDER)/kernels.o $(BUILDFOLDER)/LIBIRWLS-predict.o $(BUILDFOLDER)/PSIRWLS-train.o $(BUILDFOLDER)/PIRWLS-train.o
 
 all: LIBIRWLS-predict PIRWLS-train PSIRWLS-train
 
-PIRWLS-train: $(BUILDFOLDER)/PIRWLS-train.o $(COMMONOBJ)
+PIRWLS-train: $(BUILDFOLDER)/ExecPIRWLS-train.o $(COMMONOBJ)
 	@echo " Linking PIRWLS-train"
 	mkdir -p $(BINFOLDER)
 	@echo " $(CC) $^ -o $(BINFOLDER)/$@ $(INCLUDEPATH) $(LIBRARYPATH) $(LIBS)"; $(CC) $^ -o $(BINFOLDER)/$@ $(INCLUDEPATH) $(LIBRARYPATH) $(LIBS) 
 
-PSIRWLS-train: $(BUILDFOLDER)/PSIRWLS-train.o $(COMMONOBJ)
+PSIRWLS-train: $(BUILDFOLDER)/ExecPSIRWLS-train.o $(COMMONOBJ)
 	@echo " Linking PSIRWLS-train"
 	mkdir -p $(BINFOLDER)
 	@echo " $(CC) $^ -o $(BINFOLDER)/$@ $(INCLUDEPATH) $(LIBRARYPATH) $(LIBS)"; $(CC) $^ -o $(BINFOLDER)/$@ $(INCLUDEPATH) $(LIBRARYPATH) $(LIBS)
 
-LIBIRWLS-predict: $(BUILDFOLDER)/LIBIRWLS-predict.o $(COMMONOBJ)
+LIBIRWLS-predict: $(BUILDFOLDER)/ExecLIBIRWLS-predict.o $(COMMONOBJ)
 	@echo " Linking LIBIRWLS-predict"
 	mkdir -p $(BINFOLDER)
-	@echo " $(CC) $^ -o $(BINFOLDER)/$@ $(INCLUDEPATH) $(LIBRARYPATH) $(LIBS)"; $(CC) $^ -o $(BINFOLDER)/$@ $(INCLUDEPATH) $(LIBRARYPATH) $(LIBS)
+	@echo " $(CC) $^ -o $(BINFOLDER)/$@ $(INCLUDEPATH) $(LIBRARYPATH) $(LIBS)"; $(CC) $^ -o $(BINFOLDER)/LIBIRWLS-predict $(INCLUDEPATH) $(LIBRARYPATH) $(LIBS)
 
 $(BUILDFOLDER)/%.o: $(SRCFOLDER)/%.$(SRCEXT)
 	@echo " mkdir -p $(BUILDFOLDER)"; mkdir -p $(BUILDFOLDER)
-	@echo " $(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDE) -c -o $@ $<"; $(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDE) -c -o $@ $<
+	@echo " $(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDE) -c -o $@ $<"; $(CC) $(OPTFLAGS) $(CFLAGS) $(INCLUDE) $(INCLUDEPATH) $(LIBRARYPATH) -c -o $@ $<
 
 clean:
 	@echo " Cleaning..."; 

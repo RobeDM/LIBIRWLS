@@ -35,6 +35,10 @@ typedef struct \hyperlink{structsvm__dataset}{svm\+\_\+dataset} \hyperlink{IOStr
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \hyperlink{IOStructures_8h_acdb4b82c9c1b48bf1b46bc6ef7f5c463}{free\+Dataset} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} data)
+\begin{DoxyCompactList}\small\item\em Free dataset memory. \end{DoxyCompactList}\item 
+void \hyperlink{IOStructures_8h_ae5341933172e53ce4cdc1a2bb1eb003a}{free\+Model} (\hyperlink{structmodel}{model} modelo)
+\begin{DoxyCompactList}\small\item\em Free model memory. \end{DoxyCompactList}\item 
 \hyperlink{structsvm__dataset}{svm\+\_\+dataset} \hyperlink{IOStructures_8h_a8edb4ba3a828ebfd3f315794c1fa5936}{read\+Train\+File} (char filename\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em It reads a file that contains a labeled dataset in libsvm format. \end{DoxyCompactList}\item 
 \hyperlink{structsvm__dataset}{svm\+\_\+dataset} \hyperlink{IOStructures_8h_a55bd770c8b94fb281d835b8d96fab13d}{read\+Unlabeled\+File} (char filename\mbox{[}$\,$\mbox{]})
@@ -112,6 +116,36 @@ A single feature of a data.
 This structure represents a single feature of a data. It is composed of a features index and its value. 
 
 \subsection{Function Documentation}
+\hypertarget{IOStructures_8h_acdb4b82c9c1b48bf1b46bc6ef7f5c463}{}\label{IOStructures_8h_acdb4b82c9c1b48bf1b46bc6ef7f5c463} 
+\index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!free\+Dataset@{free\+Dataset}}
+\index{free\+Dataset@{free\+Dataset}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
+\subsubsection{\texorpdfstring{free\+Dataset()}{freeDataset()}}
+{\ttfamily void free\+Dataset (\begin{DoxyParamCaption}\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{data }\end{DoxyParamCaption})}
+
+
+
+Free dataset memory. 
+
+Free memory allocated by a dataset. 
+\begin{DoxyParams}{Parameters}
+{\em data} & The dataset \\
+\hline
+\end{DoxyParams}
+\hypertarget{IOStructures_8h_ae5341933172e53ce4cdc1a2bb1eb003a}{}\label{IOStructures_8h_ae5341933172e53ce4cdc1a2bb1eb003a} 
+\index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!free\+Model@{free\+Model}}
+\index{free\+Model@{free\+Model}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}
+\subsubsection{\texorpdfstring{free\+Model()}{freeModel()}}
+{\ttfamily void free\+Model (\begin{DoxyParamCaption}\item[{\hyperlink{structmodel}{model}}]{modelo }\end{DoxyParamCaption})}
+
+
+
+Free model memory. 
+
+Free memory allocated by a model. 
+\begin{DoxyParams}{Parameters}
+{\em data} & The model \\
+\hline
+\end{DoxyParams}
 \hypertarget{IOStructures_8h_a39db6a02819bd37baf33f195ab81d02e}{}\label{IOStructures_8h_a39db6a02819bd37baf33f195ab81d02e} 
 \index{I\+O\+Structures.\+h@{I\+O\+Structures.\+h}!read\+Model@{read\+Model}}
 \index{read\+Model@{read\+Model}!I\+O\+Structures.\+h@{I\+O\+Structures.\+h}}

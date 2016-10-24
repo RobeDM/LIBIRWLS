@@ -23,6 +23,8 @@ double $\ast$ \hyperlink{structsvm__dataset_a2bce5da2f59f28fe18eff3f92f92c011}{y
 struct \hyperlink{structsvm__sample}{svm\+\_\+sample} $\ast$$\ast$ \hyperlink{structsvm__dataset_ad3e266a07c610ed3f10df1bab30fd9e5}{x}
 \item 
 double $\ast$ \hyperlink{structsvm__dataset_a4b1ff8b06358c73f6b55ecae7516d01e}{quadratic\+\_\+value}
+\item 
+struct \hyperlink{structsvm__sample}{svm\+\_\+sample} $\ast$ \hyperlink{structsvm__dataset_adb398643a3af457d1b18db0cb47c5a4c}{features}
 \end{DoxyCompactItemize}
 
 
@@ -32,7 +34,13 @@ A dataset.
 This structure represents a dataset, a collection of samples and its associated labels. 
 
 \subsection{Field Documentation}
-\hypertarget{structsvm__dataset_a899bdc43cdfb5e7063e8d7d1787357b4}{}\label{structsvm__dataset_a899bdc43cdfb5e7063e8d7d1787357b4} 
+\hypertarget{structsvm__dataset_adb398643a3af457d1b18db0cb47c5a4c}{}\label{structsvm__dataset_adb398643a3af457d1b18db0cb47c5a4c} 
+\index{svm\+\_\+dataset@{svm\+\_\+dataset}!features@{features}}
+\index{features@{features}!svm\+\_\+dataset@{svm\+\_\+dataset}}
+\subsubsection{\texorpdfstring{features}{features}}
+{\ttfamily struct \hyperlink{structsvm__sample}{svm\+\_\+sample}$\ast$ svm\+\_\+dataset\+::features}
+
+Array of features. \hypertarget{structsvm__dataset_a899bdc43cdfb5e7063e8d7d1787357b4}{}\label{structsvm__dataset_a899bdc43cdfb5e7063e8d7d1787357b4} 
 \index{svm\+\_\+dataset@{svm\+\_\+dataset}!l@{l}}
 \index{l@{l}!svm\+\_\+dataset@{svm\+\_\+dataset}}
 \subsubsection{\texorpdfstring{l}{l}}
@@ -62,7 +70,7 @@ If the dataset is sparse or not. \hypertarget{structsvm__dataset_ad3e266a07c610e
 \subsubsection{\texorpdfstring{x}{x}}
 {\ttfamily struct \hyperlink{structsvm__sample}{svm\+\_\+sample}$\ast$$\ast$ svm\+\_\+dataset\+::x}
 
-The samples. \hypertarget{structsvm__dataset_a2bce5da2f59f28fe18eff3f92f92c011}{}\label{structsvm__dataset_a2bce5da2f59f28fe18eff3f92f92c011} 
+Pointer to the first feature of every sample. \hypertarget{structsvm__dataset_a2bce5da2f59f28fe18eff3f92f92c011}{}\label{structsvm__dataset_a2bce5da2f59f28fe18eff3f92f92c011} 
 \index{svm\+\_\+dataset@{svm\+\_\+dataset}!y@{y}}
 \index{y@{y}!svm\+\_\+dataset@{svm\+\_\+dataset}}
 \subsubsection{\texorpdfstring{y}{y}}

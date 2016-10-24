@@ -43,7 +43,7 @@
 
 typedef struct properties{
     double Kgamma; /**< Gamma parameter of the kernel function. */
-    double kernelType; /**< The kernel function (linear=0, rbf=1). */
+    int kernelType; /**< The kernel function (linear=0, rbf=1). */
     double C; /**< C parameter of the SVM cost function. */
     int Threads; /**< Number of threads to parallelize the operations. */
     int MaxSize; /**< Maximum size of the active set to calculate the SVM. */
@@ -83,6 +83,7 @@ typedef struct model{
     double *quadratic_value; /**< Array that contains the norm L2 of every support vector. */    
     int maxdim; /**< Number of dimensions of the dataset. */
     double bias; /**< The bias term of the classification function. */
+    struct svm_sample* features; /**< Array of features.*/  
 }model;
 
 
@@ -109,25 +110,28 @@ typedef struct svm_dataset{
     int sparse; /**< If the dataset is sparse or not. */   
     int maxdim; /**< The number of features of the dataset. */   
     double *y; /**< The label of every sample. */   
-    struct svm_sample **x; /**< The samples. */   
-    double *quadratic_value; /**< The L2 norm of every sample. It is used to compute kernel functions faster.*/   
+    struct svm_sample **x; /**< Pointer to the first feature of every sample. */   
+    double *quadratic_value; /**< The L2 norm of every sample. It is used to compute kernel functions faster.*/
+    struct svm_sample* features; /**< Array of features.*/  
 }svm_dataset;
 
-
 /**
- * @brief A comparator of two data.
+ * @brief Free dataset memory
  *
- * A function to compare two data and returns:
- *  * 1 if teh first argument is higher than the second one.
- *  * -1 if teh first argument is lower than the second one.
- *  * 0 if both arguments are equal.
- * @param a The first argument to compare.
- * @param b The second argument to compare.
- * @return The result of comparing a and b.
+ * Free memory allocated by a dataset.
+ * @param data The dataset
  */
 
-static int compare (const void * a, const void * b);
+void freeDataset (svm_dataset data);
 
+/**
+ * @brief Free model memory
+ *
+ * Free memory allocated by a model.
+ * @param data The model
+ */
+
+void freeModel (model modelo);
 
 /**
  * @brief It reads a file that contains a labeled dataset in libsvm format.

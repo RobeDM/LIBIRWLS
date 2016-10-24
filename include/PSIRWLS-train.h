@@ -77,7 +77,7 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props);
  *  It shows PSIRWLS-train command line instructions in the standard output.
  */
 
-void printPSIRWLSInstructions() ;
+void printPSIRWLSInstructions(void) ;
 
 
 /**
