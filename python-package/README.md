@@ -44,7 +44,7 @@ These are the available functions available of the module:
 
 - To classify a new dataset (the only mandatory parameters are model and data):
 
-        LIBIRWLS.predict(model, data, labels, Threads=1, Soft=0)
+        predictions = LIBIRWLS.predict(model, data, labels, Threads=1, Soft=0)
 
 - To save a model in a file:
 
