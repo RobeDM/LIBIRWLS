@@ -18,12 +18,17 @@ If you default C compiler is gcc amd you have ATLAS installed in the library pat
 
 If your default gcc compiler is different (for example, if you had clang and you had to install gcc when building the library in OS X systems) you need to tell where is gcc:
 
-        CC=/path/to/gcc sudo python setup.py install
+        sudo python setup.py install
 
-If ATLAS is not built in the library path you must tell where are the folders lib and include:
+If ATLAS is not built in the library path you must edit the file setup.py to include the directories of the header files and libraries:
 
-        sudo python setup.py install -I /path/to/ATLAS/include/ -L /path/to/ATLAS/lib/
+ - Include the lib folder under you ATLAS build directory in the list library directories:
+ 
+        library_dirs = ['/path/to/atlas/lib/',"../build/"],
 
+ - Include the include folder under you ATLAS build directory in the :
+ 
+        include_dirs=['/path/to/atlas/include/','.','../include/',np.get_include()],
 
 ## RUNNING:
 
