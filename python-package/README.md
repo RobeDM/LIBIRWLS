@@ -30,14 +30,13 @@ If ATLAS linbraries and headers are not visible from the library and include pat
 
 The python preinstalled in OS X has been compiled using clang instead of gcc. Currently there is certain incompatibility between ATLAS and clang that we are trying to solve.
 
-You can make use of the python extension installing a python using the gcc compiler.
+You can make use of the python extension installing a python using the gcc compiler that you used to build this software.
 
 Download the source release from the [official webpage](https://www.python.org/downloads/release/python-2712/) (for example the Gzipped source tarball version) and install it telling where is your gcc compiler (read carefully its README file).    
 
 After that you can install the libraries that you need making use of the [pip command](https://pip.pypa.io/en/stable/installing/). 
 
 After that, follow the procedure for linux taking care of using this python instalation instead of the preinstalled one.
-
 
 ## RUNNING:
 
