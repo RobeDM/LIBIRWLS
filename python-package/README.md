@@ -10,17 +10,13 @@ You need to build the application before installing the python extension. To do 
 
 Currently this python extension is still not available for Windows operating systems.
 
-### Installation Linux, Unix, OS X
+### Installation Linux, Unix
 
 If you default C compiler is gcc amd you have ATLAS installed in the library path you can install this module easily: 
 
         sudo python setup.py install
 
-If your default gcc compiler is different (for example, if you had clang and you had to install gcc when building the library in OS X systems) you need to tell where is gcc:
-
-        sudo python setup.py install
-
-If ATLAS is not built in the library path you must edit the file setup.py to include the directories of the header files and libraries:
+If ATLAS linbraries and headers are not visible from the library and include paths you must edit the file setup.py to include the directories of the header files and libraries:
 
  - Include the lib folder under you ATLAS build directory in the list library directories:
  
@@ -29,6 +25,19 @@ If ATLAS is not built in the library path you must edit the file setup.py to inc
  - Include the include folder under you ATLAS build directory in the :
  
         include_dirs=['/path/to/atlas/include/','.','../include/',np.get_include()],
+
+### OS X
+
+The python preinstalled in OS X has been compiled using clang instead of gcc. Currently there is certain incompatibility between ATLAS and clang that we are trying to solve.
+
+You can make use of the python extension installing a python using the gcc compiler.
+
+Download the source release from the [official webpage](https://www.python.org/downloads/release/python-2712/) (for example the Gzipped source tarball version) and install it telling where is your gcc compiler (read carefully its README file).    
+
+After that you can install the libraries that you need making use of the [pip command](https://pip.pypa.io/en/stable/installing/). 
+
+After that, follow the procedure for linux taking care of using this python instalation instead of the preinstalled one.
+
 
 ## RUNNING:
 
