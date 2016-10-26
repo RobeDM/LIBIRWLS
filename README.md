@@ -214,7 +214,9 @@ We recommend the installation of gcc using Homebrew or Macports:
 
 #### Dependencies:
 
-This software needs the ATLAS algebra standard routines. You need to download ATLAS from the [official repository] (https://sourceforge.net/projects/math-atlas/files/) and install it following the instructions that are detailed in the file INSTALL.txt. If you are impatient, for a basic installation on a 64 bits computer, this is the basic outline:
+This software needs the ATLAS algebra standard routines. You need to download ATLAS from the [official repository] (https://sourceforge.net/projects/math-atlas/files/) and install it following the instructions that are detailed in the file INSTALL.txt.
+
+If you are impatient, for a basic installation on a 64 bits computer, this is the basic outline. Please, make sure that you are using the gcc compiler that you have installed:
 
         tar -xvjf atlas3.10.2.tar.bz2
         cd ATLAS
