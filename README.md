@@ -9,7 +9,7 @@
 [API](https://robedm.github.io/LIBIRWLS/API/index.html) |
 [Files](#directory-list) |
 [Installation](#installation-instructions) |
-[Running](#running-the-code)
+[Running](#running-the-software-from-command-line)
 
 LIBIRWLS is an integrated parallel library for Support Vector Machines (SVMs) that makes use of the IRWLS procedure. It implements the functions to run two different algorithms:
 
@@ -169,7 +169,8 @@ This software is implemented in C and requires the following libraries:
 
  - If you have any Linux or Unix distribution with no apt-get support you need to download ATLAS from the [official repository] (https://sourceforge.net/projects/math-atlas/files/) and install it following the instructions that are detailed in the file INSTALL.txt. If you are impatient, for a basic installation on a 64 bits computer, this is the basic outline:
 
-        tar -xvjf atlas3.10.2.tar.bz2
+        bzip2 -d atlas3.10.2.tar.bz2
+        tar -xvf atlas3.10.2.tar.bz2
         cd ATLAS
         mkdir my_build_dir
         cd my_build_dir
@@ -195,25 +196,9 @@ If you have manually installed ATLAS, you must tell the installation directory.
 
 ### Mac OS X
 
-#### Dependencies:
+The default compiler installed in OS X is clang. It currently doesn't have a good support for openmp and it also have some problems to compile ATLAS due to its fortran routines.
 
-This software needs the ATLAS algebra standard routines. You need to download ATLAS from the [official repository] (https://sourceforge.net/projects/math-atlas/files/) and install it following the instructions that are detailed in the file INSTALL.txt. If you are impatient, for a basic installation on a 64 bits computer, this is the basic outline:
-
-        tar -xvjf atlas3.10.2.tar.bz2
-        cd ATLAS
-        mkdir my_build_dir
-        cd my_build_dir
-        ../configure -b 64 --prefix=/installation/directory ! Tell the installation directory
-        make                                                ! tune and compile library
-        make check                                          ! perform sanity tests
-        make ptcheck                                        ! checks of threaded code for multiprocessor systems
-        make time                                           ! provide performance summary as % of clock rate
-        make install                                        ! copy the library in the installation directory
-
-
-#### Compiling:
-
-The default compiler installed in OS X is clang. It currently doesn't support openmp to perform the parallelization. We recommend the installation of gcc using Homebrew or Macports:
+We recommend the installation of gcc using Homebrew or Macports:
 
  - Macports (this option is faster): Download and Install macports from [https://www.macports.org/](https://www.macports.org/) and install gcc using the following command line:
 
@@ -227,6 +212,27 @@ The default compiler installed in OS X is clang. It currently doesn't support op
 
         brew install gcc --without-multilib
 
+
+#### Dependencies:
+
+This software needs the ATLAS algebra standard routines. You need to download ATLAS from the [official repository] (https://sourceforge.net/projects/math-atlas/files/) and install it following the instructions that are detailed in the file INSTALL.txt.
+
+If you are impatient, for a basic installation on a 64 bits computer, this is the basic outline. Please, make sure that you are using the gcc compiler that you have installed by using "-C acg /path/to/gcc" to tell the gcc that you have installed:
+
+        bzip2 -d atlas3.10.2.tar.bz2
+        tar -xvf atlas3.10.2.tar.bz2
+        cd ATLAS
+        mkdir my_build_dir
+        cd my_build_dir        
+        ../configure -b 64 --prefix=/installation/directory ! Tell the installation directory
+        make                                                ! tune and compile library
+        make check                                          ! perform sanity tests
+        make ptcheck                                        ! checks of threaded code for multiprocessor systems
+        make time                                           ! provide performance summary as % of clock rate
+        make install                                        ! copy the library in the installation directory
+
+
+#### Compiling:
 
 Then you can use the make command telling the path of the compiler that you have installed (the default path for macports gcc is /opt/local/bin/ and the default path for homebrew is /usr/local/Cellar/) and the installation directory of ATLAS, for example:
 
