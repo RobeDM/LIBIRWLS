@@ -8,9 +8,9 @@ echo "***************************************************"
 
 mkdir ${myDIR}/../data
 echo "Downloading ADULT dataset for training: a9a"
-wget  -O ${myDIR}/../data/a9a 'https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary/a9a'
+wget  -q -O ${myDIR}/../data/a9a 'https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary/a9a'
 echo "Downloading ADULT dataset for testing: a9a.t"
-wget  -O ${myDIR}/../data/a9a.t 'https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary/a9a.t'
+wget  -q -O ${myDIR}/../data/a9a.t 'https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary/a9a.t'
 
 
 
