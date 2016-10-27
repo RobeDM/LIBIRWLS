@@ -103,6 +103,36 @@ void initMemory(int Threads, int size){
 
 }
 
+
+/**
+ * @brief Function to free auxiliar memory to be used in the algebra operations.
+ *
+ * 
+ * The parallel lineal algebra functions of this module require some memory for every thead to
+ * allocate temporal results. This function must be called after any other function.
+ *
+ * @param Threads The number of threads to parallelize the linear algebra functions.
+ * @see updateMemory()
+ */
+
+void freeMemory(int Threads){
+
+    int i;
+
+    for(i=0;i<Threads;i++){
+        free(auxmemory1[i]);
+        free(auxmemory2[i]);
+        free(auxmemory3[i]);
+    } 
+
+    free(auxmemory1);
+    free(auxmemory2);
+    free(auxmemory3);
+}
+
+
+
+
 /**
  * @brief Function to update auxiliar memory to be used in the algebra operations.
  *
@@ -206,7 +236,8 @@ void ParallelChol(double *matrix,int r,int c, int ro, int co, int n,int nCores, 
     for (i=0;i<nCores;i++){
         Chol(matrix,r,c,ro,co,n,nCores,i,deep,0,memaux,blockSize);
     }
-    }        
+    }
+    free(memaux);        
 }
 
 /**

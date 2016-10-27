@@ -651,6 +651,22 @@ double* trainFULL(svm_dataset dataset,properties props){
         //memcpy(beta,betaNew,dataset.l*sizeof(double));
     }
 
+    free(e);
+    free(beta);
+    free(betaBest);
+
+    free(GIN);
+    free(esub);
+    free(betasub);
+
+    free(SW);
+    free(SIN);
+    free(SC);
+
+    free(subdataset.y);
+    free(subdataset.quadratic_value);
+    free(subdataset.x);
+    free(betaTmp);
     printf("\n");
   
     return betaNew;

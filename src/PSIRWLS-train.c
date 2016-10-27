@@ -278,13 +278,13 @@ int* SGMA(svm_dataset dataset,properties props){
 
     }
     
-    if(size>=2){
-        for(i=0;i<64;i++){
-    	    free(KNC[i]);
-    	    free(KSM[i]);
-    	    free(Z[i]);
-        }
+
+    for(i=0;i<64;i++){
+        free(KNC[i]);
+        free(KSM[i]);
+        free(Z[i]);
     }
+
     
     free(KNC);
     free(KSM);
@@ -302,6 +302,7 @@ int* SGMA(svm_dataset dataset,properties props){
     free(indexes);
     free(descE);	
     
+  
     return centroids;
 }
 
@@ -484,6 +485,19 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
             itersSinceBestDW+=1;
         }
     }
+
+    free(KC);
+    free(KSC);
+    free(KSCA);
+    free(Da);
+    free(Day);
+
+    free(K1);
+    free(K2);
+    free(beta);
+    free(betaNew);
+    free(e);
+    free(indKSCA);
 
     return betaBest;
 }

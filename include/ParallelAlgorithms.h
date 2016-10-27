@@ -52,6 +52,19 @@
 
 void initMemory(int Threads, int size);
 
+/**
+ * @brief Function to free auxiliar memory to be used in the algebra operations.
+ *
+ * 
+ * The parallel lineal algebra functions of this module require some memory for every thead to
+ * allocate temporal results. This function must be called after any other function.
+ *
+ * @param Threads The number of threads to parallelize the linear algebra functions.
+ * @see updateMemory()
+ */
+
+void freeMemory(int Threads);
+
 
 /**
  * @brief Function to update auxiliar memory to be used in the algebra operations.

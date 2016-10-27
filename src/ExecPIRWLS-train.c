@@ -68,6 +68,7 @@ int main(int argc, char** argv)
         return 4;
     }
 
+    
     char * data_file = argv[1];
     char * data_model = argv[2];
 
@@ -86,7 +87,9 @@ int main(int argc, char** argv)
     }
     printf("------------------------\n");
     printf("\n");
-  	
+  
+    
+	
     // Loading dataset
     printf("\nReading dataset from file:%s\n",data_file);
     FILE *In = fopen(data_file, "r+");
@@ -95,8 +98,15 @@ int main(int argc, char** argv)
         exit(2);
     }
     fclose(In);
+
+    
+
     svm_dataset dataset = readTrainFile(data_file);
     printf("Dataset Loaded\n\nTraining samples: %d\nNumber of features: %d\n\n",dataset.l,dataset.maxdim);
+
+    #ifdef OSX    
+    setenv("VECLIB_MAXIMUM_THREADS", "1", 1);
+    #endif
 
     struct timeval tiempo1, tiempo2;
     omp_set_num_threads(props.Threads);
@@ -106,22 +116,26 @@ int main(int argc, char** argv)
 
     initMemory(props.Threads,(props.MaxSize+1));
     double * W = trainFULL(dataset,props);
+    freeMemory(props.Threads);
 
     gettimeofday(&tiempo2, NULL);
     printf("\nWeights calculated in %ld miliseconds\n\n",((tiempo2.tv_sec-tiempo1.tv_sec)*1000+(tiempo2.tv_usec-tiempo1.tv_usec)/1000));
 
     model modelo = calculatePIRWLSModel(props, dataset, W);
 
-    printf("Saving model in file: %s\n\n",data_model);	
- 
+    printf("Saving model in file: %s\n\n",data_model);	 
     FILE *Out = fopen(data_model, "wb");
     storeModel(&modelo, Out);
     fclose(Out);
-
+    
+    freeModel(modelo);
+    freeDataset(dataset);
+    free(W);
     return 0;
 }
 
 /**
  * @endcond
  */
+
 

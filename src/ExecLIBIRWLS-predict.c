@@ -41,7 +41,6 @@ int main(int argc, char** argv)
 
   
     model  mymodel;
-
     
     // Reading the trained model from the file
     printf("\nReading trained model from file:%s\n",data_model);
@@ -70,7 +69,6 @@ int main(int argc, char** argv)
         dataset=readTrainFile(data_file);			
     }
     printf("Dataset Loaded, it contains %d samples and %d features\n\n", dataset.l,dataset.maxdim);
-
     
     // Set the number of openmp threads
     omp_set_num_threads(props.Threads);
@@ -86,6 +84,9 @@ int main(int argc, char** argv)
     printf("data classified\n");	
     printf("\nWriting output in file: %s \n\n",output_file);
     writeOutput (output_file, predictions,dataset.l);
-    return 0;
-    
+
+    freeDataset(dataset);
+    freeModel(mymodel);
+    free(predictions);
+    return 0;   
 }

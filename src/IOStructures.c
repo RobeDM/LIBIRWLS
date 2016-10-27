@@ -114,10 +114,11 @@ svm_dataset readTrainFile(char filename[]){
 
     int maxindexDS = 0;
     int index;
+    char *p;
 
     while (fgets(fileline, 100000, file) != NULL){
 
-        char *p = strtok(fileline," \t");
+        p = strtok(fileline," \t");
 
 
         while(1){
@@ -145,7 +146,7 @@ svm_dataset readTrainFile(char filename[]){
     dataset.y = (double *) calloc(dataset.l+2,sizeof(double));
     dataset.quadratic_value = (double *) calloc(dataset.l+2,sizeof(double));
     dataset.x = (svm_sample **) calloc(dataset.l+2,sizeof(svm_sample *));
-    svm_sample* features = (svm_sample *) calloc(elements,sizeof(svm_sample));
+    dataset.features = (svm_sample *) calloc(elements,sizeof(svm_sample));
     dataset.maxdim=0;
 
     int max_index = 0;
@@ -164,7 +165,7 @@ svm_dataset readTrainFile(char filename[]){
             exit(2);
         }
         
-        dataset.x[i] = &features[j];
+        dataset.x[i] = &dataset.features[j];
 	    label = strtok(fileline," \t\n");
 
         if(label == NULL){
@@ -194,26 +195,26 @@ svm_dataset readTrainFile(char filename[]){
             nerrno = 0;
 
 
-            features[j].index = (int) strtol(idx,&endptr,10);
+            dataset.features[j].index = (int) strtol(idx,&endptr,10);
 
-            if(endptr == idx || nerrno != 0 || *endptr != '\0' || features[j].index <= inst_max_index){
+            if(endptr == idx || nerrno != 0 || *endptr != '\0' || dataset.features[j].index <= inst_max_index){
                 fprintf(stderr, "Wrong file format\n");
                 exit(2);
             }else{
-                inst_max_index = features[j].index;
+                inst_max_index = dataset.features[j].index;
             }
 
-            if(features[dm].index != features[j].index){
+            if(dataset.features[dm].index != dataset.features[j].index){
                 dataset.sparse=1;
             }
 
             nerrno = 0;
-            features[j].value = strtod(val,&endptr);
+            dataset.features[j].value = strtod(val,&endptr);
 
             if (dataset.y[i]==1.0){
-                meanPositives[features[j].index] += features[j].value;
+                meanPositives[dataset.features[j].index] += dataset.features[j].value;
             }else{
-                meanNegatives[features[j].index] += features[j].value;
+                meanNegatives[dataset.features[j].index] += dataset.features[j].value;
             }
 
             dataset.quadratic_value[i] += pow(strtod(val,&endptr),2);
@@ -229,42 +230,46 @@ svm_dataset readTrainFile(char filename[]){
             max_index = inst_max_index;
         }
 
-        features[j++].index = -1;
+        dataset.features[j++].index = -1;
 
 
     }
 
     dataset.y[dataset.l]=1.0;
-    dataset.x[dataset.l] = &features[j];
+    dataset.x[dataset.l] = &dataset.features[j];
     for (i=0;i<=maxindexDS;i++){
         if (meanPositives[i] != 0.0){
-            features[j].index = i;
-            features[j].value = meanPositives[i]/sumPositives;
+            dataset.features[j].index = i;
+            dataset.features[j].value = meanPositives[i]/sumPositives;
             dataset.quadratic_value[dataset.l] += pow(meanPositives[i]/sumPositives,2);
             ++j;
         }
     }
     
-    features[j].index = -1;
+    dataset.features[j].index = -1;
     ++j;
 
 
     dataset.y[dataset.l+1]=-1.0;
-    dataset.x[dataset.l+1] = &features[j];
+    dataset.x[dataset.l+1] = &dataset.features[j];
     for (i=0;i<=maxindexDS;i++){
         if (meanNegatives[i] != 0.0){
-            features[j].index = i;
-            features[j].value = meanNegatives[i]/sumNegatives;
+            dataset.features[j].index = i;
+            dataset.features[j].value = meanNegatives[i]/sumNegatives;
             dataset.quadratic_value[dataset.l+1] += pow(meanNegatives[i]/sumPositives,2);
             ++j;
         }
     }
     
-    features[j].index = -1;
+    dataset.features[j].index = -1;
     ++j;
 
     dataset.maxdim=max_index;
     fclose(file);
+
+    free(meanPositives);
+    free(meanNegatives);
+
     return dataset;
 
 }
@@ -325,7 +330,7 @@ svm_dataset readUnlabeledFile(char filename[]){
     dataset.y = (double *) calloc(dataset.l,sizeof(double));
     dataset.quadratic_value = (double *) calloc(dataset.l,sizeof(double));
     dataset.x = (svm_sample **) calloc(dataset.l,sizeof(svm_sample *));
-    svm_sample* features = (svm_sample *) calloc(elements,sizeof(svm_sample));
+    dataset.features = (svm_sample *) calloc(elements,sizeof(svm_sample));
     dataset.maxdim=0;
 
     int max_index = 0;
@@ -345,7 +350,7 @@ svm_dataset readUnlabeledFile(char filename[]){
             exit(2);
         }
 
-        dataset.x[i] = &features[j];
+        dataset.x[i] = &dataset.features[j];
 
         dataset.y[i] = 0;
 
@@ -358,20 +363,20 @@ svm_dataset readUnlabeledFile(char filename[]){
 
             if(val == NULL) break;
 
-            features[j].index = (int) strtol(idx,&endptr,10);
+            dataset.features[j].index = (int) strtol(idx,&endptr,10);
 
-            if(endptr == idx || *endptr != '\0' || features[j].index <= inst_max_index){
+            if(endptr == idx || *endptr != '\0' || dataset.features[j].index <= inst_max_index){
                 fprintf(stderr, "Wrong file format\n");
                 exit(2);
             }else{
-                inst_max_index = features[j].index;
+                inst_max_index = dataset.features[j].index;
             }
 
-            if(features[dm].index != features[j].index){
+            if(dataset.features[dm].index != dataset.features[j].index){
                 dataset.sparse=1;
             }
 
-            features[j].value = strtod(val,&endptr);
+            dataset.features[j].value = strtod(val,&endptr);
             dataset.quadratic_value[i] += pow(strtod(val,&endptr),2);
 
             if(endptr == val ||  (*endptr != '\0' && !isspace(*endptr))){
@@ -390,7 +395,7 @@ svm_dataset readUnlabeledFile(char filename[]){
             max_index = inst_max_index;
         }
 
-        features[j++].index = -1;
+        dataset.features[j++].index = -1;
 
     }
 
@@ -449,14 +454,14 @@ void readModel(model * mod, FILE *Input){
     aux=fread(mod->weights, sizeof(double), mod->nSVs, Input);	
     aux=fread(mod->quadratic_value, (mod->nSVs)*sizeof(double), 1, Input); 
     mod->x = (svm_sample **)malloc((mod->nSVs)*sizeof(svm_sample *));    
-    svm_sample* features = (svm_sample *) calloc((mod->nElem),sizeof(svm_sample));    
-    aux=fread(features, (mod->nElem)*sizeof(svm_sample), 1, Input);
+    mod->features = (svm_sample *) calloc((mod->nElem),sizeof(svm_sample));    
+    aux=fread(mod->features, (mod->nElem)*sizeof(svm_sample), 1, Input);
 
-    mod->x[0]=&features[0];    
+    mod->x[0]=&mod->features[0];    
     int iterSV=1;
     for(aux=0;aux<(mod->nElem);aux++){
-        if (features[aux].index == -1){
-            if(iterSV<mod->nSVs) mod->x[iterSV]=&features[aux+1];
+        if (mod->features[aux].index == -1){
+            if(iterSV<mod->nSVs) mod->x[iterSV]=&mod->features[aux+1];
             ++iterSV;
         }
     }

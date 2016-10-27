@@ -104,8 +104,14 @@ int main(int argc, char** argv)
     printf("Dataset Loaded\n\nTraining samples: %d\nNumber of features: %d\n\n",dataset.l,dataset.maxdim);
 
 
-    struct timeval tiempo1, tiempo2;
 
+    #ifdef OSX    
+    setenv("VECLIB_MAXIMUM_THREADS", "1", 1);
+    printf("running osx\n");
+    #endif
+
+    struct timeval tiempo1, tiempo2;
+    
     omp_set_num_threads(props.Threads);
 
     printf("Selecting centroids\n");
@@ -133,6 +139,7 @@ int main(int argc, char** argv)
 
     model modelo = calculatePSIRWLSModel(props, dataset,centroids, W);
 	
+    freeMemory(props.Threads);
 	
     printf("Saving model in file: %s\n\n",data_model);	
  
@@ -140,6 +147,11 @@ int main(int argc, char** argv)
     storeModel(&modelo, Out);
     fclose(Out);	
 	
+    freeModel(modelo);
+    freeDataset(dataset);
+    free(centroids);
+    free(W);
+
     return 0;
 }
 
