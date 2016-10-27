@@ -169,7 +169,8 @@ This software is implemented in C and requires the following libraries:
 
  - If you have any Linux or Unix distribution with no apt-get support you need to download ATLAS from the [official repository] (https://sourceforge.net/projects/math-atlas/files/) and install it following the instructions that are detailed in the file INSTALL.txt. If you are impatient, for a basic installation on a 64 bits computer, this is the basic outline:
 
-        tar -xvjf atlas3.10.2.tar.bz2
+        bzip2 -d atlas3.10.2.tar.bz2
+        tar -xvf atlas3.10.2.tar.bz2
         cd ATLAS
         mkdir my_build_dir
         cd my_build_dir
@@ -216,12 +217,13 @@ We recommend the installation of gcc using Homebrew or Macports:
 
 This software needs the ATLAS algebra standard routines. You need to download ATLAS from the [official repository] (https://sourceforge.net/projects/math-atlas/files/) and install it following the instructions that are detailed in the file INSTALL.txt.
 
-If you are impatient, for a basic installation on a 64 bits computer, this is the basic outline. Please, make sure that you are using the gcc compiler that you have installed:
+If you are impatient, for a basic installation on a 64 bits computer, this is the basic outline. Please, make sure that you are using the gcc compiler that you have installed by using "-C acg /path/to/gcc" to tell the gcc that you have installed:
 
-        tar -xvjf atlas3.10.2.tar.bz2
+        bzip2 -d atlas3.10.2.tar.bz2
+        tar -xvf atlas3.10.2.tar.bz2
         cd ATLAS
         mkdir my_build_dir
-        cd my_build_dir
+        cd my_build_dir        
         ../configure -b 64 --prefix=/installation/directory ! Tell the installation directory
         make                                                ! tune and compile library
         make check                                          ! perform sanity tests
