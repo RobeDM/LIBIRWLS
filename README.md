@@ -230,7 +230,7 @@ Plese, check that both files are in the directory. If you cannot find them there
     sudo find / -name "libBLAS.dylib" 
 
 
-#e### Compiling:
+#### Compiling:
 
 You must use the make command using the following parameters:
 
