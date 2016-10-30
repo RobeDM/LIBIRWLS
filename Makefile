@@ -17,16 +17,19 @@ LIBS = -lm -llapack -lf77blas -lcblas -latlas -lgfortran -fopenmp
 
 CCOPTION = 
 
+ifdef VECLIBDIR
+    LIBRARYPATH = -L$(VECLIBDIR)/
+endif
+
 ifeq ($(OSX),1)
     LIBRARYPATH = -L/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/
     LIBS = -lLAPACK -lBLAS -fopenmp
     CCOPTION = -DOSX
 endif
 
-ifdef ALGEBRADIR
-    LIBRARYPATH = -L$(ALGEBRADIR)/lib/
+ifdef ATLASDIR
+    LIBRARYPATH = -L$(ATLASDIR)/lib/
 endif
-
 
 COMMONOBJ := $(BUILDFOLDER)/ParallelAlgorithms.o $(BUILDFOLDER)/IOStructures.o $(BUILDFOLDER)/kernels.o $(BUILDFOLDER)/LIBIRWLS-predict.o $(BUILDFOLDER)/PSIRWLS-train.o $(BUILDFOLDER)/PIRWLS-train.o
 
