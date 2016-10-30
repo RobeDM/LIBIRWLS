@@ -11,7 +11,7 @@ print ""
 print "USING COMPILER:",os.environ["CC"]
 print ""
 
-VecLibDir = os.environ.get("ALGEBRA_PATH","/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/")
+VecLibDir = os.environ.get("VECLIBDIR","/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/")
 
 print ""
 print "VECLIB ROUTINES:",VecLibDir
