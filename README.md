@@ -218,16 +218,16 @@ We recommend the installation of gcc using Homebrew or Macports:
 
 OS X has its own accelerated algebra standard routines. The name of this library is veclib and it is composed by two files:
 
-    libBLAS.dylib
-    libLAPACK.dylib
+        libBLAS.dylib
+        libLAPACK.dylib
     
 If these files are commonly in the directory:
 
-    /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/
+        /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/
 
 Plese, check that both files are in the directory. If you cannot find them there, look for them using the command "find" and note the folder for the next step:
 
-    sudo find / -name "libBLAS.dylib" 
+        sudo find / -name "libBLAS.dylib" 
 
 
 #### Compiling:
