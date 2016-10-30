@@ -13,7 +13,7 @@
 
 ## Description
 
-LIBIRWLS is an integrated parallel library for Support Vector Machines (SVMs) that makes use of the IRWLS procedure. It implements the functions to run two different algorithms:
+LIBIRWLS is an integrated library that makes use of a parallel implementation of the Iterative Re-Weighted Least Squares (IRWLS) procedure for solving the quadratic programmig (QP) problem that arises during the training of Support Vector Machines (SVMs). It implements the functions to run two different algorithms:
 
 **Parallel Iterative Re-Weighted Least Squares:** A Parallel SVM solver based on the IRWLS algorithm.
 
@@ -21,11 +21,11 @@ LIBIRWLS is an integrated parallel library for Support Vector Machines (SVMs) th
 
 For a detailed explanation of the algorithms take a look at the [web page](https://robedm.github.io/LIBIRWLS/)
 
-SVMs are a very popular machine learning technique because they can easily create non-linear solutions by transforming the input space onto a high dimensional one where a kernel function can compute the inner product of a pair vectors. Thanks to this ability, they offer a good compromise between complexity and performance in many applications.
-
 ![Dimensions](https://qph.ec.quoracdn.net/main-qimg-08fe68adf9ee3e05ca806e72cbd88b54?convert_to_webp=true)
 
 ## Motivation
+
+SVMs are a very popular machine learning technique because they can easily create non-linear solutions by transforming the input space onto a high dimensional one where a kernel function can compute the inner product of a pair vectors. Thanks to this ability, they offer a good compromise between complexity and performance in many applications.
 
 SVMs have two main limitations. The first problem is related to their non-parametric nature. The complexity of the classifier is not limited and depends on the number of Support Vectors (SVs) after training. If the number of SVs is very large we may obtain a very slow classifier when processing new samples. The second problem is the run time associated to the training procedure that may be excessive for large datasets.
 
@@ -203,7 +203,7 @@ If you have manually installed ATLAS, you must tell the installation directory.
 
 #### Compiler:
 
-The default compiler installed in OS X is clang. It currently doesn't have a good support for openmp. We recommend the installation of gcc using [Homebrew](http://brew.sh/) or [Macports](https://www.macports.org/):
+The default compiler installed in OS X is clang. It currently doesn't have a good support for openmp. You can install gcc using [Homebrew](http://brew.sh/) or [Macports](https://www.macports.org/):
 
  - Homebrew: Install homebrew using the following command line:
 
@@ -225,11 +225,11 @@ OS X has its own accelerated algebra standard routines. The name of this library
         libBLAS.dylib
         libLAPACK.dylib
     
-If these files are commonly in the directory:
+These files are commonly in the directory:
 
         /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/
 
-Plese, check that both files are in the directory. If you cannot find them there, look for them using the command "find" and note the folder for the next step:
+This library will look for the library in that directory. Check that both files are there. If they are in a diferent path, look for them using the command "find" and note the folder for the next step:
 
         sudo find / -name "libBLAS.dylib" 
 
@@ -239,12 +239,12 @@ Plese, check that both files are in the directory. If you cannot find them there
 You must use the make command using the following parameters:
 
  - OSX: A boolean variable that tells that you are using OS X operating system. 
- - CC: To tell where is the gcc compiler that you have installed.
+ - CC: To tell where is the gcc compiler that you have installed (macports install software under the path /opt/local/bin/ and homebrew under /usr/local/Cellar/).
  - VECLIBDIR: To tell where is the veclib library if it is not in the default directory.
 
-Then you can use the make telling command telling the path of the compiler that you have installed (the default path for macports gcc is /opt/local/bin/ and the default path for homebrew is /usr/local/Cellar/) and the installation directory of ATLAS, for example:
+For example:
 
- - For example, if you have installed gcc 6 using Homebrew:
+ - If you have installed gcc 6 using Homebrew:
 
         cd LIBIRWLS
         make OSX=1 CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6
