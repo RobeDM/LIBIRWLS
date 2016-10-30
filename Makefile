@@ -17,14 +17,14 @@ LIBS = -lm -llapack -lf77blas -lcblas -latlas -lgfortran -fopenmp
 
 CCOPTION = 
 
-ifdef VECLIBDIR
-    LIBRARYPATH = -L$(VECLIBDIR)/
-endif
-
 ifeq ($(OSX),1)
     LIBRARYPATH = -L/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/
     LIBS = -lLAPACK -lBLAS -fopenmp
     CCOPTION = -DOSX
+endif
+
+ifdef VECLIBDIR
+    LIBRARYPATH = -L$(VECLIBDIR)/
 endif
 
 ifdef ATLASDIR
