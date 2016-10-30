@@ -1,5 +1,12 @@
 # PYTHON EXTENSION
 
+To use this module you must have the libraries numpy and Cython installed in python.
+
+ - [Cython] (http://cython.org/)
+ - [Numpy] (http://www.numpy.org/)
+
+You can install very easily both libraries using the command [pip](https://pip.pypa.io/en/stable/).
+
 ## Installation Instructions:
 
 ### Requeriments:
@@ -8,35 +15,49 @@ You need to build the application before installing the python extension. To do 
 
 ### Windows
 
-Currently this python extension is still not available for Windows operating systems.
+If you Currently this python extension is still not available for Windows operating systems.
 
 ### Installation Linux, Unix
 
-If you default C compiler is gcc amd you have ATLAS installed in the library path you can install this module easily: 
+If you have manually installed ATLAS (instead of using the apt-get command), you must tell the installation directory by defining the environment variable ATLASDIR:
 
-        sudo python setup.py install
+    export ATLASDIR=/path/to/atlas/
 
-If ATLAS linbraries and headers are not visible from the library and include paths you must edit the file setup.py to include the directories of the header files and libraries:
+After that, you can easily install this python module: 
 
- - Include the lib folder under you ATLAS build directory in the list library directories:
- 
-        library_dirs = ['/path/to/atlas/lib/',"../build/"],
+    sudo python setup.py install
+    
+Remember: If you need sudo permission you have to use the parameter -E to keep the environment variable:
 
- - Include the include folder under you ATLAS build directory in the :
- 
-        include_dirs=['/path/to/atlas/include/','.','../include/',np.get_include()],
-
+    sudo -E python setupOSX.py install
+    
 ### OS X
 
-The python preinstalled in OS X has been compiled using clang instead of gcc. Currently there is certain incompatibility between ATLAS and clang that we are trying to solve.
+You must define some enviroment variables:
 
-You can make use of the python extension installing a python using the gcc compiler that you used to build this software.
+CC to tell the compiler (use the same compiler that you use to compile the command line app). For example, in the case of gcc 6 installed with homebrew:
 
-Download the source release from the [official webpage](https://www.python.org/downloads/release/python-2712/) (for example the Gzipped source tarball version) and install it telling where is your gcc compiler (read carefully its README file).    
+    export CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6
+    
+Only if veclib is not in the default directory you must define the environment variable VECLIBDIR telling where veclib is:
 
-After that you can install the libraries that you need making use of the [pip command](https://pip.pypa.io/en/stable/installing/). 
+    export VECLIBDIR=/path/to/veclib
 
-After that, follow the procedure for linux taking care of using this python instalation instead of the preinstalled one.
+Your compiler has the openmp functions in the libgomp library, you must define an enviroment variable called LIBGOMP_PATH telling where is the file libgomp.a in the lib directory of your compiler. In the case of gcc 6 installed with homebrew: 
+
+    export LIBGOMP_PATH=/usr/local/Cellar/gcc/6.2.0/lib/gcc/6/libgomp.a
+    
+To avoid that Cython could use any posible flag only available for clang it is better to set the CFLAGS environment variable to the following value:
+
+    export CFLAGS=-Qunused-arguments
+
+With these environment variables well defined you can install 
+
+    python setupOSX.py install
+    
+Remember: If you need sudo permission you have to use the parameter -E to keep the environment variables:
+
+    sudo -E python setupOSX.py install
 
 ## RUNNING:
 
