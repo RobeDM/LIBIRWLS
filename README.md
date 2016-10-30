@@ -197,11 +197,9 @@ If you have manually installed ATLAS, you must tell the installation directory.
 
 ### Mac OS X
 
-The default compiler installed in OS X is clang. It currently doesn't have a good support for openmp. We recommend the installation of gcc using Homebrew or Macports:
+#### Compiler:
 
- - Macports: Download and Install macports from [https://www.macports.org/](https://www.macports.org/) and install gcc using the following command line:
-
-        sudo port install gcc49
+The default compiler installed in OS X is clang. It currently doesn't have a good support for openmp. We recommend the installation of gcc using [Homebrew](http://brew.sh/) or [Macports](https://www.macports.org/):
 
  - Homebrew: Install homebrew using the following command line:
 
@@ -210,6 +208,10 @@ The default compiler installed in OS X is clang. It currently doesn't have a goo
     and then install gcc using the command line:
 
         brew install gcc --without-multilib
+
+ - Macports: Download and Install macports from [https://www.macports.org/](https://www.macports.org/) and install gcc using the following command line:
+
+        sudo port install gcc49
 
 
 #### Dependencies:
