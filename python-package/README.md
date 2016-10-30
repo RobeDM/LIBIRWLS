@@ -47,9 +47,9 @@ Your compiler has the openmp functions in the libgomp library, you must define a
 
     export LIBGOMP_PATH=/usr/local/Cellar/gcc/6.2.0/lib/gcc/6/libgomp.a
     
-To avoid that Cython could use any posible flag only available for clang it is better to set the CFLAGS environment variable to the following value:
+To avoid that Cython could use any posible flag only available for clang it is better to set the CFLAGS environment variable to an empty value:
 
-    export CFLAGS=-Qunused-arguments
+    export CFLAGS=
 
 With these environment variables well defined you can install 
 
