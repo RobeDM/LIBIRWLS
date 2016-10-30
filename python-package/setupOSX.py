@@ -5,24 +5,38 @@ from Cython.Distutils import build_ext
 import numpy as np
 import os
 
+os.environ["CC"]=os.environ.get("CC","gcc")
 
-AtlasDir=os.environ.get("ATLASDIR","..")
+print ""
+print "USING COMPILER:",os.environ["CC"]
+print ""
 
-AtlasDir = AtlasDir+"/lib/"
+VecLibDir = os.environ.get("ALGEBRA_PATH","/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/")
+
+print ""
+print "VECLIB ROUTINES:",linearAlgebraDir
+print ""
+
+libgompPath=os.environ.get("LIBGOMP_PATH","libgomp.a")
+
+print ""
+print "USING LIBGOMP:",libgompPath
+print ""
 
 ext_modules = [ 
         Extension('LIBIRWLS',
             include_dirs=['.','../include/',np.get_include()],
             sources = ['pythonmodule.c'],
-            extra_objects = ['../build/LIBIRWLS-predict.o',
+            extra_objects = [libgompPath,
+                '../build/LIBIRWLS-predict.o',
                 '../build/PIRWLS-train.o',
                 '../build/PSIRWLS-train.o',
                 '../build/IOStructures.o',
                 '../build/ParallelAlgorithms.o',
                 '../build/kernels.o'
             ],
-            library_dirs = [AtlasDir,"../build/"],
-            extra_compile_args=libsExt = ["-llapack", "-lf77blas", "-lcblas", "-latlas", "-lgfortran",'-fopenmp'],
+            library_dirs = [VecLibDir,"../build/"],
+            extra_compile_args=['-Wno-cpp','-static','-lgomp','-lblas','-llapack'],
             extra_link_args=['-static']
         )
         ]
