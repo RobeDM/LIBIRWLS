@@ -367,6 +367,6 @@ Unlabeled example:
 
 ## Python module:
 
-Installation and running instructions are detailed in the README.md file allocated in the folder python-module
+Installation and running instructions are detailed in the README.md file of the folder python-module
 
 
