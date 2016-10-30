@@ -93,6 +93,7 @@ The structure of this library is as follows:
     |   +--pythonmodule.c
     |   +--pythonmodule.h
     |   +--setup.py
+    |   +--setupOSX.py
     |
     +-- src/
     |   +-- IOStructures.c
@@ -200,7 +201,7 @@ The default compiler installed in OS X is clang. It currently doesn't have a goo
 
 We recommend the installation of gcc using Homebrew or Macports:
 
- - Macports (this option is faster): Download and Install macports from [https://www.macports.org/](https://www.macports.org/) and install gcc using the following command line:
+ - Macports: Download and Install macports from [https://www.macports.org/](https://www.macports.org/) and install gcc using the following command line:
 
         sudo port install gcc49
 
@@ -215,36 +216,39 @@ We recommend the installation of gcc using Homebrew or Macports:
 
 #### Dependencies:
 
-This software needs the ATLAS algebra standard routines. You need to download ATLAS from the [official repository] (https://sourceforge.net/projects/math-atlas/files/) and install it following the instructions that are detailed in the file INSTALL.txt.
+OS X has its own accelerated algebra standard routines. The name of this library is veclib and it is composed by two files:
 
-If you are impatient, for a basic installation on a 64 bits computer, this is the basic outline. Please, make sure that you are using the gcc compiler that you have installed by using "-C acg /path/to/gcc" to tell the gcc that you have installed:
+    libBLAS.dylib
+    libLAPACK.dylib
+    
+If these files are commonly in the directory:
 
-        bzip2 -d atlas3.10.2.tar.bz2
-        tar -xvf atlas3.10.2.tar.bz2
-        cd ATLAS
-        mkdir my_build_dir
-        cd my_build_dir        
-        ../configure -b 64 --prefix=/installation/directory ! Tell the installation directory
-        make                                                ! tune and compile library
-        make check                                          ! perform sanity tests
-        make ptcheck                                        ! checks of threaded code for multiprocessor systems
-        make time                                           ! provide performance summary as % of clock rate
-        make install                                        ! copy the library in the installation directory
+    /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/
+
+Plese, check that both files are in the directory. If you cannot find them there, look for them using the command "find" and note the folder for the next step:
+
+    sudo find / -name "libBLAS.dylib" 
 
 
-#### Compiling:
+#e### Compiling:
 
-Then you can use the make command telling the path of the compiler that you have installed (the default path for macports gcc is /opt/local/bin/ and the default path for homebrew is /usr/local/Cellar/) and the installation directory of ATLAS, for example:
+You must use the make command using the following parameters:
 
- - If you have installed gcc 4.9 using Macports:
+ - OSX: A boolean variable that tells that you are using OS X operating system. 
+ - CC: To tell where is the gcc compiler that you have installed.
+ - VECLIBDIR: To tell where is the veclib library if it is not in the default directory.
 
-        cd LIBIRWLS
-        make CC=/opt/local/bin/gcc-mp-4.9 ATLASDIR=/installation/directory
+Then you can use the make telling command telling the path of the compiler that you have installed (the default path for macports gcc is /opt/local/bin/ and the default path for homebrew is /usr/local/Cellar/) and the installation directory of ATLAS, for example:
 
- - If you have installed gcc 6 using Homebrew:
+ - For example, if you have installed gcc 6 using Homebrew:
 
         cd LIBIRWLS
-        make CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6 ATLASDIR=/installation/directory
+        make OSX=1 CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6
+
+ - If you have installed gcc 6 using Homebrew and veclib is in a different directory called /veclib/directory then:
+
+        cd LIBIRWLS
+        make OSX=1 CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6 VECLIBDIR=/veclib/directory
 
 ### Windows
 
