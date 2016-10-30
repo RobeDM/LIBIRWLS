@@ -14,7 +14,7 @@ print ""
 VecLibDir = os.environ.get("ALGEBRA_PATH","/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/")
 
 print ""
-print "VECLIB ROUTINES:",linearAlgebraDir
+print "VECLIB ROUTINES:",VecLibDir
 print ""
 
 libgompPath=os.environ.get("LIBGOMP_PATH","libgomp.a")
