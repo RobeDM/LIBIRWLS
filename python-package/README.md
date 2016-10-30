@@ -15,7 +15,7 @@ You need to build the application before installing the python extension. To do 
 
 ### Windows
 
-If you Currently this python extension is still not available for Windows operating systems.
+Currently this python extension is still not available for Windows operating systems.
 
 ### Installation Linux, Unix
 
