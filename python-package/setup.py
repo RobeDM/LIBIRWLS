@@ -22,7 +22,7 @@ ext_modules = [
                 '../build/kernels.o'
             ],
             library_dirs = [AtlasDir,"../build/"],
-            extra_compile_args=libsExt = ["-llapack", "-lf77blas", "-lcblas", "-latlas", "-lgfortran",'-fopenmp'],
+            extra_compile_args = ["-llapack", "-lf77blas", "-lcblas", "-latlas", "-lgfortran",'-fopenmp'],
             extra_link_args=['-static']
         )
         ]
