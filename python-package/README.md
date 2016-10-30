@@ -61,30 +61,65 @@ Remember: If you need sudo permission you have to use the parameter -E to keep t
 
 ## RUNNING:
 
-From python, to test that this module was installed type:
+### Import this library:
 
         import LIBIRWLS
 
-These are the available functions available of the module:
 
-- To train SVM using the PIRWLS algorithm (data is a numpy 2d array with the training set features, labels is a numpy array with the training set labels, the other parameters and its possible values are detailed in the main README.md file in the command line instructions), the only mandatory parameters are data and labels:
-
-        model = LIBIRWLS.PIRWLStrain(data, labels, gamma=1, C=1, threads=1, workingSet=500, eta=0.001, kernel=1)
+### PIRWLS algorithm: It trains a SVM using a parallel IRWLS procedure. See the library [!webpage](https://robedm.github.io/LIBIRWLS/) for a detailed description.
 
 
-- To train SVM using the PSIRWLS algorithm (data is a numpy 2d array with the training set features, labels is a numpy array with the training set labels, the other parameters and its possible values are detailed in the main README.md file in the command line instructions), the only mandatory parameters are data and labels::
+    model = LIBIRWLS.PIRWLStrain(data, labels, gamma=1, C=1, threads=1, workingSet=500, eta=0.001, kernel=1)
+
+Parameters:
+* data: Training set (numpy 2d array)
+* labels: Training set labels (the label of every training data numpy array with values +1 and -1)
+* kernel: kernel type: 
+    * 0 for Linear kernel u'*v
+    * 1 for radial basis function exp(-gamma*|u-v|^2)
+* gamma: gamma in the radial basis kernel function
+* C: SVM Cost
+* workingSet: Size of the Least Squares Problem in every iteration
+* threads: It is the number of parallel threads
+* eta: Stop criteria
+
+### PSIRWLS algorithm: It trains a semiparametric SVM using a parallel IRWLS procedure. See the library [!webpage](https://robedm.github.io/LIBIRWLS/) for a detailed description.
 
         model = LIBIRWLS.PSIRWLStrain(data, labels, gamma=1, C=1, threads=1, size=500, algorithm=0.001, kernel=1)
 
-- To classify a new dataset (the only mandatory parameters are model and data):
+Parameters:
+* data: Training set (numpy 2d array)
+* labels: Training set labels (the label of every training data numpy array with values +1 and -1)
+* kernel: kernel type: 
+    * 0 for Linear kernel u'*v
+    * 1 for radial basis function exp(-gamma*|u-v|^2)
+* gamma: gamma in the radial basis kernel function
+* C: SVM Cost
+* threads: It is the number of parallel threads
+* size: Size of the classifier
+* algorithm: Algorithm for centroids selection
+     * 0 -- Random Selection
+     * 1 -- SGMA (Sparse Greedy Matrix Approximation
 
-        predictions = LIBIRWLS.predict(model, data, labels, Threads=1, Soft=0)
+### To classify a new dataset (the only mandatory parameters are model and data):
 
-- To save a model in a file:
+        predictions = LIBIRWLS.predict(model, data, labels=None, Threads=1, Soft=0)
+
+Parameters:
+* model: A model obtained using PIRWLS or PSIRWLS.
+* data: A dataset to classify.
+* labels: dataset labels (optional)
+* Threads: It is the number of parallel threads
+* Soft:
+    * 0 Class prediction (the output is +1 or -1)
+    * 1 Soft output: The output after the hard decision that decides the class (useful to use in ensembles with other algorithms).
+
+
+### To save a model in a file:
 
         LIBIRWLS.save(model, filename)
 
-- To save a model in a file:
+### To save a model in a file:
 
         model = LIBIRWLS.load(filename)
 
