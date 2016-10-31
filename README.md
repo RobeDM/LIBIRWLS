@@ -130,14 +130,14 @@ Files and folders:
 * **docs/html/**: A detailed documentation of every function of source code in html format.
 * **docs/latex/**: A detailed documentation of every function of source code in latex format (it includes a Makefile to build a pdf documentation).
 * **examples/**: Folder with some script examples to run the algorithms.
-* **include/**: Folder with the C headers used.
+* **include/**: Folder with the C headers.
 * **python-module/**: Python extension to use this library.
 * **src/**: Folder with the C source code.
 * **windows/**: Precompiled windows executable files for 32 and 64 bits versions.
 
 ## Web:
 
-You can find detailed information about the software and the algorithm in its respective webpage:
+You can find detailed information about the software and algorithms in its respective webpage:
 
  - [LIBIRWLS] (http://robedm.github.io/LIBIRWLS/index.html).
 
@@ -203,7 +203,7 @@ If you have manually installed ATLAS, you must tell the installation directory.
 
 #### Compiler:
 
-The default compiler installed in OS X is clang. It currently doesn't have a good support for openmp. You can install gcc using [Homebrew](http://brew.sh/) or [Macports](https://www.macports.org/):
+The default compiler in OS X is clang. It currently doesn't works with openmp. You can install gcc using [Homebrew](http://brew.sh/) or [Macports](https://www.macports.org/):
 
  - Homebrew: Install homebrew using the following command line:
 
@@ -225,7 +225,7 @@ OS X has its own accelerated algebra standard routines. The name of this library
         libBLAS.dylib
         libLAPACK.dylib
     
-These files are commonly in the directory:
+These files are in the directory:
 
         /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/
 
@@ -238,9 +238,9 @@ This library will look for the library in that directory. Check that both files 
 
 You must use the make command using the following parameters:
 
- - OSX: A boolean variable that tells that you are using OS X operating system. 
- - CC: To tell where is the gcc compiler that you have installed (macports install software under the path /opt/local/bin/ and homebrew under /usr/local/Cellar/).
- - VECLIBDIR: To tell where is the veclib library if it is not in the default directory.
+ - OSX: A boolean variable that indicates that you are using OS X operating system. 
+ - CC: The path of the gcc compiler that you have installed (macports install software under the path /opt/local/bin/ and homebrew under /usr/local/Cellar/).
+ - VECLIBDIR: To path of veclib if it is not in the default directory.
 
 For example:
 
@@ -255,7 +255,6 @@ For example:
         make OSX=1 CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6 VECLIBDIR=/veclib/directory
 
 ### Windows
-
 
 LIBIRWLS contains windows executable files that were precompiled for 32 and 64 bits instancies. These executables are static so no extra packages are needed.
 
