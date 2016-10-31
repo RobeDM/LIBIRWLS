@@ -404,6 +404,7 @@ PSIRWLStrain (PyObject *dummy, PyObject *args, PyObject *kwds)
 
     // Obtaining the centroids
     omp_set_num_threads(props.Threads);
+    setenv("VECLIB_MAXIMUM_THREADS", "1", 1);
     initMemory(props.Threads,props.size);
     int * centroids;
     if (props.algorithm==0){
@@ -481,7 +482,8 @@ PIRWLStrain (PyObject *dummy, PyObject *args, PyObject *kwds)
     svm_dataset dataset = numpy2dataset(arr1, arr2);
 
     //Using the PIRWLS algorithm
-    initMemory(props.Threads,(props.MaxSize+1));   
+    initMemory(props.Threads,(props.MaxSize+1));  
+    setenv("VECLIB_MAXIMUM_THREADS", "1", 1);
     double * W = trainFULL(dataset,props);
     model modelo = calculatePIRWLSModel(props, dataset, W);
 
