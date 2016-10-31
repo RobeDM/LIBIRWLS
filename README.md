@@ -17,7 +17,7 @@ LIBIRWLS is an integrated library that makes use of a parallel implementation of
 
 **Parallel Iterative Re-Weighted Least Squares:** A Parallel SVM solver based on the IRWLS algorithm.
 
-**Parallel Semi-parametric Iterative Re-Weighted Least Squares:** A Parallel solver for semiparametric SVMs solver based on the IRWLS algorithm.
+**Parallel Semi-parametric Iterative Re-Weighted Least Squares:** A Parallel Semiparametric SVMs solver based on the IRWLS algorithm.
 
 For a detailed explanation of the algorithms take a look at the [web page](https://robedm.github.io/LIBIRWLS/)
 
