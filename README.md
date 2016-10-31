@@ -287,7 +287,7 @@ Options:
 * -g Gamma: Set gamma in the radial basis kernel function (default 1)
 * -c Cost: Set the SVM Cost (default 1)
 * -s Classifier_size: Size of the classifier (default 50)
-* -t Number_of_Threads: It is the number of threads in the parallel task (default 1)
+* -t Number_of_Threads: It is the number of parallel threads to solve the task (default 1)
 * -a Algorithm: Algorithm for centroids selection (default 1)
      * 0 -- Random Selection
      * 1 -- SGMA (Sparse Greedy Matrix Approximation
@@ -317,7 +317,7 @@ Options:
 * -g Gamma: Set gamma in the radial basis kernel function (default 1)
 * -c Cost: Set the SVM Cost (default 1)
 * -w Working_set_size: Size of the Least Squares Problem in every iteration (default 500)
-* -t Number_of_Threads: It is the number of threads in the parallel task (default 1)
+* -t Number_of_Threads: It is the number of parallel threads to solve the task (default 1)
 * -e eta: Stop criteria (default 0.001)
 
 Example:
@@ -332,7 +332,7 @@ To make predictions with the model in a different dataset:
     ./LIBIRWLS-predict [options] dataset_file model_file output_file
 
 Options:
-* -t Number_of_Threads: It is the number of threads in the parallel task (default 1)
+* -t Number_of_Threads: It is the number of parallel threads(default 1)
 * -s Soft output (default 0):
     * 0 Class prediction (the output is +1 or -1)
     * 1 Soft output: The output after the hard decision that decides the class (useful to use in ensembles with other algorithms).
