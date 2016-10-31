@@ -66,7 +66,9 @@ Remember: If you need sudo permission you have to use the parameter -E to keep t
         import LIBIRWLS
 
 
-### PIRWLS algorithm: It trains a SVM using a parallel IRWLS procedure. See the library [webpage](https://robedm.github.io/LIBIRWLS/) for a detailed description.
+### PIRWLS algorithm:
+
+It trains a SVM using a parallel IRWLS procedure. See the library [webpage](https://robedm.github.io/LIBIRWLS/) for a detailed description.
 
 
     model = LIBIRWLS.PIRWLStrain(data, labels, gamma=1, C=1, threads=1, workingSet=500, eta=0.001, kernel=1)
@@ -83,7 +85,9 @@ Parameters:
 * threads: It is the number of parallel threads
 * eta: Stop criteria
 
-### PSIRWLS algorithm: It trains a semiparametric SVM using a parallel IRWLS procedure. See the library [webpage](https://robedm.github.io/LIBIRWLS/) for a detailed description.
+### PSIRWLS algorithm:
+
+It trains a semiparametric SVM using a parallel IRWLS procedure. See the library [webpage](https://robedm.github.io/LIBIRWLS/) for a detailed description.
 
         model = LIBIRWLS.PSIRWLStrain(data, labels, gamma=1, C=1, threads=1, size=500, algorithm=0.001, kernel=1)
 
@@ -101,7 +105,7 @@ Parameters:
      * 0 -- Random Selection
      * 1 -- SGMA (Sparse Greedy Matrix Approximation
 
-### To classify a new dataset (the only mandatory parameters are model and data):
+### To classify a new dataset:
 
         predictions = LIBIRWLS.predict(model, data, labels=None, Threads=1, Soft=0)
 
