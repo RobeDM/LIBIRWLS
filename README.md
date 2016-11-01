@@ -151,6 +151,8 @@ A documentation of the application programming interface (API) has been created 
 
 ## Installation Instructions:
 
+If you have any installation problem you can se an example of a correct installation for Ubuntu [here](https://travis-ci.org/RobeDM/LIBIRWLS). If that doesn't solve you problem, please, report the issue [here](https://github.com/RobeDM/LIBIRWLS/issues).
+
 ### Requeriments:
 
 This software is implemented in C and requires the following libraries:
