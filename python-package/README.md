@@ -23,11 +23,7 @@ If you have manually installed ATLAS (instead of using the apt-get command), you
 
     export ATLASDIR=/path/to/atlas/
 
-After that, you can easily install this python module: 
-
-    sudo python setup.py install
-    
-Remember: If you need sudo permission you have to use the parameter -E to keep the environment variable:
+After that, you can easily install this python module (If you need sudo permission you have to use the parameter -E to keep the environment variable): 
 
     sudo -E python setupOSX.py install
     
@@ -51,11 +47,7 @@ To avoid that Cython could use any posible flag only available for clang it is b
 
     export CFLAGS=
 
-With these environment variables well defined you can install 
-
-    python setupOSX.py install
-    
-Remember: If you need sudo permission you have to use the parameter -E to keep the environment variables:
+With these environment variables well defined you can install the extension (If you need sudo permission you have to use the parameter -E to keep the environment variables):
 
     sudo -E python setupOSX.py install
 
