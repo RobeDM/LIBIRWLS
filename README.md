@@ -2,6 +2,7 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8e33396866a9466f9c131c913c62b078)](https://www.codacy.com/app/rober-diaz/LIBIRWLS?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RobeDM/LIBIRWLS&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.org/RobeDM/LIBIRWLS.svg?branch=master)](https://travis-ci.org/RobeDM/LIBIRWLS)
+[![Build Platforms](https://img.shields.io/badge/platform-OSX|Linux-lightgrey.svg)](https://travis-ci.org/RobeDM/LIBIRWLS)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Gitter](https://img.shields.io/gitter/room/badges/shields.svg)](https://gitter.im/LIBIRWLS/Lobby)
 
@@ -151,7 +152,9 @@ A documentation of the application programming interface (API) has been created 
 
 ## Installation Instructions:
 
-If you have any installation problem you can se an example of a correct installation for Ubuntu [here](https://travis-ci.org/RobeDM/LIBIRWLS). If that doesn't solve you problem, please, report the issue [here](https://github.com/RobeDM/LIBIRWLS/issues).
+If you have any installation problem you can se an example of a correct installation step by step and a demonstration of running the algorithms using the command line interface for Linux and OSX [here](https://travis-ci.org/RobeDM/LIBIRWLS).
+
+If that doesn't solve you problem, please, report the issue [here](https://github.com/RobeDM/LIBIRWLS/issues).
 
 ### Requeriments:
 
