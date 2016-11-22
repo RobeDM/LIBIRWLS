@@ -25,7 +25,7 @@ If you have manually installed ATLAS (instead of using the apt-get command), you
 
 After that, you can easily install this python module (If you need sudo permission you have to use the parameter -E to keep the environment variable): 
 
-    sudo -E python setupOSX.py install
+    sudo -E python setup.py install
     
 ### OS X
 
