@@ -24,6 +24,7 @@ For a detailed explanation of the algorithms take a look at the [web page](https
 
 ![Dimensions](https://qph.ec.quoracdn.net/main-qimg-08fe68adf9ee3e05ca806e72cbd88b54?convert_to_webp=true)
 
+
 ## Motivation
 
 SVMs are a very popular machine learning technique because they can easily create non-linear solutions by transforming the input space onto a high dimensional one where a kernel function can compute the inner product of a pair vectors. Thanks to this ability, they offer a good compromise between complexity and performance in many applications.
