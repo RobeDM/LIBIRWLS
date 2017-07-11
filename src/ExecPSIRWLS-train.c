@@ -75,33 +75,39 @@ int main(int argc, char** argv)
     char * data_file = argv[1];
     char * data_model = argv[2];
 
-    printf("\nRunning with parameters:\n");
-    printf("------------------------\n");
-    printf("Training set: %s\n",data_file);
-    printf("The model will be saved in: %s\n",data_model);
-    printf("Cost c = %f\n",props.C);
-    printf("Semiparametric size = %d\n",props.size);
+    if(props.verbose==1){
+        printf("\nRunning with parameters:\n");
+        printf("------------------------\n");
+        printf("Training set: %s\n",data_file);
+        printf("The model will be saved in: %s\n",data_model);
+        printf("Cost c = %f\n",props.C);
+        printf("Semiparametric size = %d\n",props.size);
 
-
-    if(props.kernelType == 0){
-        printf("Using linear kernel\n");
-    }else{
-        printf("Using gaussian kernel with gamma = %f\n",props.Kgamma);
-    }
-    printf("------------------------\n");
-    printf("\n");  
-	
+        if(props.kernelType == 0){
+            printf("Using linear kernel\n");
+        }else{
+            printf("Using gaussian kernel with gamma = %f\n",props.Kgamma);
+        }
+        printf("------------------------\n");
+        printf("\n");  
+    }	
 
     // Loading dataset
-    printf("\nReading dataset from file:%s\n",data_file);
+    if(props.verbose==1) printf("\nReading dataset from file:%s\n",data_file);
     FILE *In = fopen(data_file, "r+");
     if (In == NULL) {
         fprintf(stderr, "Input file with the training set not found: %s\n",data_file);
         exit(2);
     }
     fclose(In);
-    svm_dataset dataset = readTrainFile(data_file);
-    printf("Dataset Loaded\n\nTraining samples: %d\nNumber of features: %d\n\n",dataset.l,dataset.maxdim);
+
+    svm_dataset dataset;
+    if(props.file==1){
+        dataset = readTrainFile(data_file);
+    }else{
+        dataset = readTrainFileCSV(data_file,props.separator);
+    }
+    if(props.verbose==1) printf("Dataset Loaded\n\nTraining samples: %d\nNumber of features: %d\n\n",dataset.l,dataset.maxdim);
 
 
 
@@ -114,7 +120,7 @@ int main(int argc, char** argv)
     
     omp_set_num_threads(props.Threads);
 
-    printf("Selecting centroids\n");
+    if(props.verbose==1) printf("Selecting centroids\n");
     gettimeofday(&tiempo1, NULL);
 
     initMemory(props.Threads,props.size);
@@ -130,18 +136,18 @@ int main(int argc, char** argv)
     omp_set_num_threads(props.Threads);
 
 	
-    printf("\nCentroids Selected\n");
+    if(props.verbose==1) printf("\nCentroids Selected\n");
 
     double * W = IRWLSpar(dataset,centroids,props);
 
     gettimeofday(&tiempo2, NULL);
-    printf("Weights calculated in %ld miliseconds\n\n",((tiempo2.tv_sec-tiempo1.tv_sec)*1000+(tiempo2.tv_usec-tiempo1.tv_usec)/1000));
+    if(props.verbose==1) printf("Weights calculated in %ld miliseconds\n\n",((tiempo2.tv_sec-tiempo1.tv_sec)*1000+(tiempo2.tv_usec-tiempo1.tv_usec)/1000));
 
     model modelo = calculatePSIRWLSModel(props, dataset,centroids, W);
 	
     freeMemory(props.Threads);
 	
-    printf("Saving model in file: %s\n\n",data_model);	
+    if(props.verbose==1) printf("Saving model in file: %s\n\n",data_model);	
  
     FILE *Out = fopen(data_model, "wb");
     storeModel(&modelo, Out);

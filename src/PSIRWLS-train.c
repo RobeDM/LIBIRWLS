@@ -231,10 +231,12 @@ int* SGMA(svm_dataset dataset,properties props){
             
             
         }
-        
-        if(size==0) printf("Best Error Descent %f, Average of positive data is centroid %d\n",value,size);
-        if(size==1) printf("Best Error Descent %f, Average of negative data is centroid %d\n",value,size);
-        if(size>1) printf("Best Error Descent %f, Data with index %d is centroid %d\n",value,centroids[size],size);
+
+        if(props.verbose==1){ 
+            if(size==0) printf("Best Error Descent %f, Average of positive data is centroid %d\n",value,size);
+            if(size==1) printf("Best Error Descent %f, Average of negative data is centroid %d\n",value,size);
+            if(size>1) printf("Best Error Descent %f, Data with index %d is centroid %d\n",value,centroids[size],size);
+        }
 
         #pragma omp parallel default(shared) private(i)
         {
@@ -472,7 +474,7 @@ double* IRWLSpar(svm_dataset dataset, int* indexes,properties props){
         }
 
         ++iter;
-        printf("Iteration %d, nSVs %d, ||deltaW||^2/||W||^2=%f\n",iter,trueSVs,deltaW/normW);
+        if(props.verbose==1) printf("Iteration %d, nSVs %d, ||deltaW||^2/||W||^2=%f\n",iter,trueSVs,deltaW/normW);
     
         if(iter>10 && deltaW/normW>100*oldnorm) M=M/10.0;
         oldnorm=deltaW/normW;
@@ -587,6 +589,9 @@ properties parseTrainParameters(int* argc, char*** argv) {
     props.size=10;
     props.algorithm=1;
     props.kernelType=1;
+    props.file = 1;
+    props.separator = ",";
+    props.verbose = 1;
 
     int i,j;
     for (i = 1; i < *argc; ++i) {
@@ -614,6 +619,12 @@ properties parseTrainParameters(int* argc, char*** argv) {
             props.size = atoi(param_value);
         } else if (strcmp(param_name, "a") == 0) {
             props.algorithm = atoi(param_value);
+        } else if (strcmp(param_name, "f") == 0) {
+            props.file = atoi(param_value);
+        } else if (strcmp(param_name, "p") == 0) {
+            props.separator = param_value;
+        } else if (strcmp(param_name, "v") == 0) {
+            props.verbose = atoi(param_value);
         } else {
             fprintf(stderr, "Unknown parameter %s\n",param_name);
             printPSIRWLSInstructions();
@@ -652,6 +663,13 @@ void printPSIRWLSInstructions(void) {
     fprintf(stderr, "  -a Algorithm: Algorithm for centroids selection (default 1)\n");
     fprintf(stderr, "       0 -- Random Selection\n");
     fprintf(stderr, "       1 -- SGMA (Sparse Greedy Matrix Approximation)\n");
+    fprintf(stderr, "  -f file format: (default 1)\n"); 
+    fprintf(stderr, "       0 -- CSV format (comma separator)\n");
+    fprintf(stderr, "       1 -- libsvm format\n");   
+    fprintf(stderr, "  -p separator: csv separator character (default \",\" if csv format is selected)\n");    
+    fprintf(stderr, "  -v verbose: (default 1)\n");        
+    fprintf(stderr, "       0 -- No screen messages\n");
+    fprintf(stderr, "       1 -- Screen messages\n");
 }
 
 /**

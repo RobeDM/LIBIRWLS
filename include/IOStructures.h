@@ -50,6 +50,9 @@ typedef struct properties{
     int size; /**< Size of semiparametric model (if we are executing the semiparametric version). */
     int algorithm;/**< Algorithm to select the centroids of the semiparametric model. */
     double Eta; /**< Convergence criteria of the SVM. */
+    int file; /**< File format (1 libsvm, 0 csv). */
+    char *separator;/**< csv char separator. */
+    int verbose; /**< 1 print messages in the standard output, 0 silent mode. */
 }properties;
 
 
@@ -63,6 +66,9 @@ typedef struct predictProperties{
     int Labels; /**< If the dataset to test is labeled. */
     int Threads; /**< Number of threads to make the predictions on the dataset. */
     int Soft; /**< The classifier obtains Soft output or not. */
+    int file; /**< File format (1 libsvm, 0 csv). */
+    char *separator;/**< csv char separator. */
+    int verbose; /**< 1 print messages in the standard output, 0 silent mode. */
 }predictProperties;
 
 
@@ -148,6 +154,21 @@ void freeModel (model modelo);
 
 svm_dataset readTrainFile(char filename[]);
 
+/**
+ * @brief It reads a file that contains a labeled dataset in CSV format.
+ *
+ * It reads a file that contains a labeled dataset in CSV format (the label is the first column).
+ * The format si the following one:
+ * 1,5,0,0,2,6
+ * 1,2,0,1,3,2
+ * -1,5,4,0,3,1
+ * ...
+ *
+ * @param filename A string with the name of the file that contains the dataset.
+ * @return The struct with the dataset information.
+ */
+
+svm_dataset readTrainFileCSV(char filename[],char* separator);
 
 /**
  * @brief It reads a file that contains an unlabeled dataset in libsvm format.
@@ -159,10 +180,29 @@ svm_dataset readTrainFile(char filename[]);
  * ...
  *
  * @param filename A string with the name of the file that contains the dataset.
+ * @param separator The separator character of the CSV file
  * @return The struct with the dataset information.
  */
 
 svm_dataset readUnlabeledFile(char filename[]);
+
+
+/**
+ * @brief It reads a file that contains an unlabeled dataset in CSV format.
+ *
+ * It reads a file that contains an unlabeled dataset in CSV format (no label as first column).
+ * The format si the following one:
+ * 5,0,0,2,6
+ * 2,0,1,3,2
+ * 5,4,0,3,1
+ * ...
+ *
+ * @param filename A string with the name of the file that contains the dataset.
+ * @param separator The separator character of the CSV file
+ * @return The struct with the dataset information.
+ */
+
+svm_dataset readUnlabeledFileCSV(char filename[],char* separator);
 
 
 /**

@@ -305,9 +305,7 @@ double* subIRWLS(svm_dataset dataset,properties props, double *GIN, double *e, d
             if (elementGroup[i]==1) ++nS1;
             if (elementGroup[i]==3) ++nS3;
         }
-        
-        //printf("Iteration %d, SVs %d, bSVs %d, nonasigned %d, ||deltaW||^2/||W||^2=%f, Dnor %f , nor %f , Changes %d\n",iter,nS1,nS3,nonasigned,deltaW/normW,deltaW,normW,cambios);
-        
+             
         //////////////////
         //UPDATING H13
         /////////////////
@@ -374,7 +372,7 @@ double* subIRWLS(svm_dataset dataset,properties props, double *GIN, double *e, d
 
 double* trainFULL(svm_dataset dataset,properties props){
 
-    printf("\n");
+    if(props.verbose==1) printf("\n");
     int MaxWorkingSize = props.MaxSize;
     double epsilon=1e6;
     double epsilonTmp=0.0;
@@ -520,8 +518,6 @@ double* trainFULL(svm_dataset dataset,properties props){
 	    normW=normW+pow(beta[i],2.0);
 	}
 
-        //printf("El valor es %f\n",deltaW/normW);
-
         if(deltaW/normW<props.Eta){
 	    endNorm=1;
 	}
@@ -618,10 +614,8 @@ double* trainFULL(svm_dataset dataset,properties props){
 
         }
         
-        
-        //printf("ITERS SINCE BEST, %d %d %d\n",itersSinceBest,fullfill1+fullfill2+fullfill3,bestFulfill);
-        printf("%s", ".");
-        fflush(stdout);
+        if(props.verbose==1) printf("%s", ".");
+        if(props.verbose==1) fflush(stdout);
 
         //////////////////////
         // SELECT WORKING SET
@@ -667,7 +661,7 @@ double* trainFULL(svm_dataset dataset,properties props){
     free(subdataset.quadratic_value);
     free(subdataset.x);
     free(betaTmp);
-    printf("\n");
+    if(props.verbose==1) printf("\n");
   
     return betaNew;
 
@@ -692,7 +686,14 @@ void printPIRWLSInstructions(void) {
     fprintf(stderr, "  -c Cost: set SVM Cost (default 1)\n");
     fprintf(stderr, "  -t Threads: Number of threads (default 1)\n");
     fprintf(stderr, "  -w Working set size: Size of the Least Squares problem in every iteration (default 500)\n");
-    fprintf(stderr, "  -e eta: Stop criteria (default 0.001)\n");    
+    fprintf(stderr, "  -e eta: Stop criteria (default 0.001)\n");
+    fprintf(stderr, "  -f file format: (default 1)\n"); 
+    fprintf(stderr, "       0 -- CSV format (comma separator)\n");
+    fprintf(stderr, "       1 -- libsvm format\n");   
+    fprintf(stderr, "  -p separator: csv separator character (default \",\" if csv format is selected)\n");    
+    fprintf(stderr, "  -v verbose: (default 1)\n");        
+    fprintf(stderr, "       0 -- No screen messages\n");
+    fprintf(stderr, "       1 -- Screen messages\n");
 }
 
 /**
@@ -714,6 +715,9 @@ properties parseTrainPIRWLSParameters(int* argc, char*** argv) {
     props.Eta=0.001;
     props.size=10;
     props.kernelType=1;
+    props.file = 1;
+    props.separator = ",";
+    props.verbose = 1;
 
     int i,j;
     for (i = 1; i < *argc; ++i) {
@@ -739,6 +743,12 @@ properties parseTrainPIRWLSParameters(int* argc, char*** argv) {
             props.MaxSize = atoi(param_value);
         } else if (strcmp(param_name, "s") == 0) {
             props.size = atoi(param_value);
+        } else if (strcmp(param_name, "f") == 0) {
+            props.file = atoi(param_value);
+        } else if (strcmp(param_name, "p") == 0) {
+            props.separator = param_value;
+        } else if (strcmp(param_name, "v") == 0) {
+            props.verbose = atoi(param_value);
         } else {
             fprintf(stderr, "Unknown parameter %s\n",param_name);
             printPIRWLSInstructions();

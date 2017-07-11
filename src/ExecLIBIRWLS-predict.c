@@ -30,20 +30,21 @@ int main(int argc, char** argv)
     char * data_model = argv[2];
     char * output_file = argv[3];
 
-    printf("\nRunning with parameters:\n");
-    printf("------------------------\n");
-    printf("Dataset: %s\n",data_file);
-    printf("The model to use: %s\n",data_model);
-    printf("The result will be saved in: %s\n",output_file);
-    printf("flag l = %d (l = 1 for labeled datasets, l = 0 for unlabeled datasets)\n",props.Labels);
-    printf("------------------------\n");
-    printf("\n");
-
+    if(props.verbose==1){
+        printf("\nRunning with parameters:\n");
+        printf("------------------------\n");
+        printf("Dataset: %s\n",data_file);
+        printf("The model to use: %s\n",data_model);
+        printf("The result will be saved in: %s\n",output_file);
+        printf("flag l = %d (l = 1 for labeled datasets, l = 0 for unlabeled datasets)\n",props.Labels);
+        printf("------------------------\n");
+        printf("\n");
+    }
   
     model  mymodel;
     
     // Reading the trained model from the file
-    printf("\nReading trained model from file:%s\n",data_model);
+    if(props.verbose==1) printf("\nReading trained model from file:%s\n",data_model);
     FILE *In = fopen(data_model, "rb");
     if (In == NULL) {
         fprintf(stderr, "Input file with the trained model not found: %s\n",data_model);
@@ -51,38 +52,48 @@ int main(int argc, char** argv)
     }
     readModel(&mymodel, In);
     fclose(In);
-    printf("Model Loaded, it contains %d Support Vectors\n\n",mymodel.nSVs);
+    if(props.verbose==1) printf("Model Loaded, it contains %d Support Vectors\n\n",mymodel.nSVs);
 
 
     // Loading dataset
-    printf("Reading dataset from file:%s\n",data_file);
-    svm_dataset dataset;
+    if(props.verbose==1) printf("Reading dataset from file:%s\n",data_file);
+
     In = fopen(data_file, "rb");
     if (In == NULL) {
         fprintf(stderr, "Input file with the training set not found: %s\n",data_file);
         exit(2);
     }
     fclose(In);	  
+
+    svm_dataset dataset;
     if(props.Labels==0){
-        dataset=readUnlabeledFile(data_file);
+        if(props.file==1){
+            dataset=readUnlabeledFile(data_file);
+        }else{
+            dataset=readUnlabeledFileCSV(data_file,props.separator);
+        }
     }else{
-        dataset=readTrainFile(data_file);			
+        if(props.file==1){
+            dataset=readTrainFile(data_file);			
+        }else{
+            dataset=readTrainFileCSV(data_file,props.separator);	
+        }
     }
-    printf("Dataset Loaded, it contains %d samples and %d features\n\n", dataset.l,dataset.maxdim);
+    if(props.verbose==1) printf("Dataset Loaded, it contains %d samples and %d features\n\n", dataset.l,dataset.maxdim);
     
     // Set the number of openmp threads
     omp_set_num_threads(props.Threads);
 
     //Making predictions
-    printf("Classifying data...\n");
+    if(props.verbose==1) printf("Classifying data...\n");
     double *predictions;
     if (props.Soft==0){
         predictions=test(dataset,mymodel,props);
     }else{
         predictions=softTest(dataset,mymodel,props);
     }
-    printf("data classified\n");	
-    printf("\nWriting output in file: %s \n\n",output_file);
+    if(props.verbose==1) printf("data classified\n");	
+    if(props.verbose==1) printf("\nWriting output in file: %s \n\n",output_file);
     writeOutput (output_file, predictions,dataset.l);
 
     freeDataset(dataset);

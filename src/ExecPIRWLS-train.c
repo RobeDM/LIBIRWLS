@@ -72,26 +72,25 @@ int main(int argc, char** argv)
     char * data_file = argv[1];
     char * data_model = argv[2];
 
-    printf("\nRunning with parameters:\n");
-    printf("------------------------\n");
-    printf("Training set: %s\n",data_file);
-    printf("The model will be saved in: %s\n",data_model);
-    printf("Cost c = %f\n",props.C);
-    printf("Working set size = %d\n",props.MaxSize);
-    printf("Stop criteria = %f\n",props.Eta);
+    if(props.verbose==1){ 
+        printf("\nRunning with parameters:\n");
+        printf("------------------------\n");
+        printf("Training set: %s\n",data_file);
+        printf("The model will be saved in: %s\n",data_model);
+        printf("Cost c = %f\n",props.C);
+        printf("Working set size = %d\n",props.MaxSize);
+        printf("Stop criteria = %f\n",props.Eta);
 
-    if(props.kernelType == 0){
-        printf("Using linear kernel\n");
-    }else{
-        printf("Using gaussian kernel with gamma = %f\n",props.Kgamma);
+        if(props.kernelType == 0){
+            printf("Using linear kernel\n");
+        }else{
+            printf("Using gaussian kernel with gamma = %f\n",props.Kgamma);
+        }
+        printf("------------------------\n");
+        printf("\n");
     }
-    printf("------------------------\n");
-    printf("\n");
-  
-    
-	
     // Loading dataset
-    printf("\nReading dataset from file:%s\n",data_file);
+    if(props.verbose==1) printf("\nReading dataset from file:%s\n",data_file);
     FILE *In = fopen(data_file, "r+");
     if (In == NULL) {
         fprintf(stderr, "Input file with the training set not found: %s\n",data_file);
@@ -99,10 +98,14 @@ int main(int argc, char** argv)
     }
     fclose(In);
 
-    
+    svm_dataset dataset;
 
-    svm_dataset dataset = readTrainFile(data_file);
-    printf("Dataset Loaded\n\nTraining samples: %d\nNumber of features: %d\n\n",dataset.l,dataset.maxdim);
+    if(props.file==1){
+        dataset = readTrainFile(data_file);
+    }else{
+        dataset = readTrainFileCSV(data_file,props.separator);
+    }
+    if(props.verbose==1) printf("Dataset Loaded\n\nTraining samples: %d\nNumber of features: %d\n\n",dataset.l,dataset.maxdim);
 
     #ifdef OSX    
     setenv("VECLIB_MAXIMUM_THREADS", "1", 1);
@@ -111,7 +114,7 @@ int main(int argc, char** argv)
     struct timeval tiempo1, tiempo2;
     omp_set_num_threads(props.Threads);
 
-    printf("Running IRWLS\n");	
+    if(props.verbose==1) printf("Running IRWLS\n");	
     gettimeofday(&tiempo1, NULL);
 
     initMemory(props.Threads,(props.MaxSize+1));
@@ -119,11 +122,11 @@ int main(int argc, char** argv)
     freeMemory(props.Threads);
 
     gettimeofday(&tiempo2, NULL);
-    printf("\nWeights calculated in %ld miliseconds\n\n",((tiempo2.tv_sec-tiempo1.tv_sec)*1000+(tiempo2.tv_usec-tiempo1.tv_usec)/1000));
+    if(props.verbose==1) printf("\nWeights calculated in %ld miliseconds\n\n",((tiempo2.tv_sec-tiempo1.tv_sec)*1000+(tiempo2.tv_usec-tiempo1.tv_usec)/1000));
 
     model modelo = calculatePIRWLSModel(props, dataset, W);
 
-    printf("Saving model in file: %s\n\n",data_model);	 
+    if(props.verbose==1) printf("Saving model in file: %s\n\n",data_model);	 
     FILE *Out = fopen(data_model, "wb");
     storeModel(&modelo, Out);
     fclose(Out);

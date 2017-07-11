@@ -150,8 +150,13 @@ void printPredictInstructions(void) {
     fprintf(stderr, "       0 -- Obtains the class of every data (It takes values of +1 or -1).\n");
     fprintf(stderr, "       1 -- The output before the class decision (Useful to combine in ensembles with other algorithms).\n");
     fprintf(stderr, "Note:\n");
-    fprintf(stderr, "       The data set file must have the same format as the data set\n");
-    fprintf(stderr, "       given to PIRWLS-train.\n");
+    fprintf(stderr, "  -f file format: (default 1)\n"); 
+    fprintf(stderr, "       0 -- CSV format (comma separator)\n");
+    fprintf(stderr, "       1 -- libsvm format\n");   
+    fprintf(stderr, "  -p separator: csv separator character (default \",\" if csv format is selected)\n");    
+    fprintf(stderr, "  -v verbose: (default 1)\n");        
+    fprintf(stderr, "       0 -- No screen messages\n");
+    fprintf(stderr, "       1 -- Screen messages\n");
 }
 
 /**
@@ -169,6 +174,9 @@ predictProperties parsePredictParameters(int* argc, char*** argv) {
     props.Labels=0;
     props.Threads=1;
     props.Soft=0;
+    props.file = 1;
+    props.separator = ",";
+    props.verbose = 1;
 	
     int i;
     for (i = 1; i < *argc; ++i) {
@@ -183,6 +191,12 @@ predictProperties parsePredictParameters(int* argc, char*** argv) {
         
         if (strcmp(param_name, "t") == 0) {    	
             props.Threads = atof(param_value);
+        } else if (strcmp(param_name, "f") == 0) {
+            props.file = atoi(param_value);
+        } else if (strcmp(param_name, "p") == 0) {
+            props.separator = param_value;
+        } else if (strcmp(param_name, "v") == 0) {
+            props.verbose = atoi(param_value);
         } else if (strcmp(param_name, "l") == 0) {
             props.Labels = atoi(param_value);
             if(props.Labels !=0 && props.Labels !=1){

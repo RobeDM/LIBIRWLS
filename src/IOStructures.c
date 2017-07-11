@@ -274,6 +274,225 @@ svm_dataset readTrainFile(char filename[]){
 
 }
 
+
+/**
+ * @brief It reads a file that contains a labeled dataset in CSV format.
+ *
+ * It reads a file that contains a labeled dataset in CSV format (the label is the first column).
+ * The format si the following one:
+ * 1,5,0,0,2,6
+ * 1,2,0,1,3,2
+ * -1,5,4,0,3,1
+ * ...
+ *
+ * @param filename A string with the name of the file that contains the dataset.
+ * @param separator The character separator of the CSV file
+ * @return The struct with the dataset information.
+ */
+
+svm_dataset readTrainFileCSV(char filename[],char* separator){
+
+    svm_dataset dataset;
+	
+    int arraysize=256;
+
+    char *endptr;
+    char *idx, *val, *label;
+
+  	
+    if (filename == NULL){
+        fprintf(stderr, "File not specified");
+        exit(2);
+    }
+		
+    FILE* file = fopen(filename, "rb");
+    if (file == NULL) {
+        fprintf(stderr, "File not found: %s\n",filename);
+        exit(2);
+    }	
+
+    char fileline[100000];
+
+    dataset.l = 0;
+    int elements = 0;
+    dataset.sparse = 0;
+
+    int maxindexDS = 0;
+    int index;
+    char *p;
+    char *end;
+    double value;
+
+    while (fgets(fileline, 100000, file) != NULL){
+
+        p = strtok(fileline,separator);
+
+        index=0;
+
+        while(1){
+
+            index++;
+            p = strtok(NULL,separator);
+
+            if(p == NULL || *p == '\n') break;
+            else if(index>maxindexDS) maxindexDS=index;
+           
+            value = strtod(p, &end);
+            if(value != 0.0){                
+                ++elements;
+            }
+        }
+        ++elements;
+        ++dataset.l;
+    }
+
+    elements=elements+2*(maxindexDS+2);
+    double *meanPositives = (double *) calloc(maxindexDS+1,sizeof(double));
+    double *meanNegatives = (double *) calloc(maxindexDS+1,sizeof(double));
+    double sumPositives=0.0;
+    double sumNegatives=0.0;
+
+    rewind(file);
+
+    dataset.y = (double *) calloc(dataset.l+2,sizeof(double));
+    dataset.quadratic_value = (double *) calloc(dataset.l+2,sizeof(double));
+    dataset.x = (svm_sample **) calloc(dataset.l+2,sizeof(svm_sample *));
+    dataset.features = (svm_sample *) calloc(elements,sizeof(svm_sample));
+    dataset.maxdim=0;
+
+    int max_index = 0;
+    int i=0;
+    int j=0;
+    int dm=0;
+    int inst_max_index;
+    int nerrno;
+
+    for(i=0;i<dataset.l;i++){
+
+        inst_max_index = -1;
+        if (fgets(fileline, 100000, file)== NULL){
+            fprintf(stderr, "Error reading data file\n");
+            exit(2);
+        }
+        
+        dataset.x[i] = &dataset.features[j];
+	label = strtok(fileline,separator);
+
+        if(label == NULL){
+            fprintf(stderr, "Wrong file format\n");
+            exit(2);
+        }
+
+        dataset.y[i] = strtod(label,&endptr);
+
+        if (dataset.y[i]==1.0){
+            sumPositives=sumPositives+1;
+        }else{
+            sumNegatives=sumNegatives+1;
+        }
+
+        if(endptr == label || *endptr != '\0'){
+            fprintf(stderr, "Wrong file format\n");
+            exit(2);
+        }
+
+        dm = 0;
+        index=0;
+
+        while(1){
+
+            index++;
+            val = strtok(NULL,separator);
+
+            if(val == NULL) break;
+
+            value = strtod(val, &end);
+
+            if(value != 0.0){
+
+                nerrno = 0;
+                dataset.features[j].index = index;
+
+                if(endptr == idx || nerrno != 0 || *endptr != '\0' || dataset.features[j].index <= inst_max_index){
+                    fprintf(stderr, "Wrong file format\n");
+                    exit(2);
+                }else{
+                    inst_max_index = dataset.features[j].index;
+                }
+
+
+                if(dataset.features[dm].index != dataset.features[j].index){
+                    dataset.sparse=1;
+                }
+
+                nerrno = 0;
+                dataset.features[j].value = strtod(val,&endptr);
+
+                if (dataset.y[i]==1.0){
+                    meanPositives[dataset.features[j].index] += dataset.features[j].value;
+                }else{
+                    meanNegatives[dataset.features[j].index] += dataset.features[j].value;
+                }
+
+                dataset.quadratic_value[i] += pow(strtod(val,&endptr),2);
+                if(endptr == val || nerrno != 0 || (*endptr != '\0' && !isspace(*endptr))){
+                    fprintf(stderr, "Wrong file format\n");
+                    exit(2);
+                }
+                ++dm;
+                ++j;
+            }
+        }
+
+        if(inst_max_index > max_index){
+            max_index = inst_max_index;
+        }
+
+        dataset.features[j++].index = -1;
+
+
+    }
+
+    dataset.y[dataset.l]=1.0;
+    dataset.x[dataset.l] = &dataset.features[j];
+    for (i=0;i<=maxindexDS;i++){
+        if (meanPositives[i] != 0.0){
+            dataset.features[j].index = i;
+            dataset.features[j].value = meanPositives[i]/sumPositives;
+            dataset.quadratic_value[dataset.l] += pow(meanPositives[i]/sumPositives,2);
+            ++j;
+        }
+    }
+    
+    dataset.features[j].index = -1;
+    ++j;
+
+
+    dataset.y[dataset.l+1]=-1.0;
+    dataset.x[dataset.l+1] = &dataset.features[j];
+    for (i=0;i<=maxindexDS;i++){
+        if (meanNegatives[i] != 0.0){
+            dataset.features[j].index = i;
+            dataset.features[j].value = meanNegatives[i]/sumNegatives;
+            dataset.quadratic_value[dataset.l+1] += pow(meanNegatives[i]/sumPositives,2);
+            ++j;
+        }
+    }
+    
+    dataset.features[j].index = -1;
+    ++j;
+
+    dataset.maxdim=max_index;
+    fclose(file);
+
+    free(meanPositives);
+    free(meanNegatives);
+
+    return dataset;
+
+}
+
+
 /**
  * @brief It reads a file that contains an unlabeled dataset in libsvm format.
  *
@@ -404,6 +623,144 @@ svm_dataset readUnlabeledFile(char filename[]){
     return dataset;
 
 }
+
+/**
+ * @brief It reads a file that contains an unlabeled dataset in CSV format.
+ *
+ * It reads a file that contains an unlabeled dataset in CSV format (no label as first column).
+ * The format si the following one:
+ * 5,0,0,2,6
+ * 2,0,1,3,2
+ * 5,4,0,3,1
+ * ...
+ *
+ * @param filename A string with the name of the file that contains the dataset.
+ * @param separator The separator character of the CSV file
+ * @return The struct with the dataset information.
+ */
+
+svm_dataset readUnlabeledFileCSV(char filename[],char* separator){
+
+    svm_dataset dataset;
+	
+    int arraysize=256;
+  	
+    if (filename == NULL){
+        fprintf(stderr, "File not specified");
+        exit(2);
+    }
+		
+    FILE* file = fopen(filename, "r");
+    if (file == NULL) {
+        fprintf(stderr, "File not found: %s\n",filename);
+        exit(2);
+    }	
+
+    char fileline[100000];
+
+    dataset.l = 0;
+    int elements = 0;
+    dataset.sparse = 0;
+    double value;
+    char *end;
+
+    while (fgets(fileline, 100000, file) != NULL){
+
+        char *p = strtok(fileline,separator);
+        value = strtod(p, &end);
+        if (value != 0.0) ++elements;
+
+        while(1){
+            p = strtok(NULL,separator);
+            if(p == NULL || *p == '\n') break;
+            value = strtod(p, &end);
+            if (value != 0.0) ++elements;
+        }
+
+        ++elements;
+        ++dataset.l;
+
+    }
+    printf("Num Elements %d\n",elements);
+    rewind(file);
+    
+    dataset.y = (double *) calloc(dataset.l,sizeof(double));
+    dataset.quadratic_value = (double *) calloc(dataset.l,sizeof(double));
+    dataset.x = (svm_sample **) calloc(dataset.l,sizeof(svm_sample *));
+    dataset.features = (svm_sample *) calloc(elements,sizeof(svm_sample));
+    dataset.maxdim=0;
+
+    int max_index = 0;
+    int i=0;
+    int j=0;
+    char *endptr;
+    char *idx, *val, *label;
+    int inst_max_index;
+    int nerrno;
+    int index;
+
+    for(i=0;i<dataset.l;i++){
+
+        inst_max_index = -1;
+        if (fgets(fileline, 100000, file)== NULL){
+            fprintf(stderr, "Error reading data file\n");
+            exit(2);
+        }
+
+        dataset.x[i] = &dataset.features[j];
+
+        dataset.y[i] = 0;
+
+        val = strtok(NULL,separator);
+
+        index=0;
+
+        while(1){
+
+            index++;
+
+            if(val == NULL) break;
+
+            value = strtod(val,&endptr);
+
+            if (value != 0.0){
+
+                dataset.features[j].index = index;
+
+                if(endptr == idx || *endptr != '\0' || dataset.features[j].index <= inst_max_index){
+                    fprintf(stderr, "Wrong file format\n");
+                    exit(2);
+                }else{
+                    inst_max_index = dataset.features[j].index;
+                }
+
+                dataset.features[j].value = value;
+                dataset.quadratic_value[i] += pow(value,2);
+
+                if(endptr == val ||  (*endptr != '\0' && !isspace(*endptr))){
+                    fprintf(stderr, "Wrong file format\n");
+                    exit(2);
+                }
+                ++j;
+            }
+            val = strtok(NULL,separator);
+
+        }
+
+        if(inst_max_index > max_index){
+            max_index = inst_max_index;
+        }
+
+        dataset.features[j++].index = -1;
+
+    }
+
+    dataset.maxdim=max_index;
+    fclose(file);
+    return dataset;
+
+}
+
 
 /**
  * @brief It stores a trained model into a file.
