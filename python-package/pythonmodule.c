@@ -74,15 +74,16 @@ static PyObject *predict (PyObject *dummy, PyObject *args, PyObject *kwds)
     predictProperties props;
     props.Threads=1;
     props.Soft=0;
+    props.verbose=1;
     svm_dataset dataset;
 
-    static char *kwlist[] = {"classifier", "data", "labels", "threads", "Soft", NULL};
+    static char *kwlist[] = {"classifier", "data", "labels", "threads", "Soft","verbose", NULL};
 
     PyObject *pymodel=NULL, *arg1=NULL, *arr1=NULL, *arg2=NULL, *arr2=NULL;
     props.Threads=1;
     props.Soft=0;
         
-    if (!PyArg_ParseTupleAndKeywords(args,kwds, "OO|Oii",kwlist, &pymodel,&arg1,&arg2,&props.Threads,&props.Soft))
+    if (!PyArg_ParseTupleAndKeywords(args,kwds, "OO|Oiii",kwlist, &pymodel,&arg1,&arg2,&props.Threads,&props.Soft,&props.verbose))
     return NULL;
 
     model *modelo;
@@ -382,12 +383,13 @@ PSIRWLStrain (PyObject *dummy, PyObject *args, PyObject *kwds)
     props.size=10;
     props.algorithm=0;
     props.kernelType=1;
+    props.verbose=1;
     
     // List of keywords parameters.
-    static char *kwlist[] = {"data","labels","gamma", "C", "threads", "size", "algorithm", "kernel", NULL};
+    static char *kwlist[] = {"data","labels","gamma", "C", "threads", "size", "algorithm", "kernel","verbose", NULL};
 
     // It parses the parameters
-    if (!PyArg_ParseTupleAndKeywords(args,kwds, "OO|ddiiii", kwlist, &arg1, &arg2, &props.Kgamma, &props.C, &props.Threads, &props.size, &props.algorithm, &props.kernelType))
+    if (!PyArg_ParseTupleAndKeywords(args,kwds, "OO|ddiiiii", kwlist, &arg1, &arg2, &props.Kgamma, &props.C, &props.Threads, &props.size, &props.algorithm, &props.kernelType,&props.verbose))
     return NULL;  
 
     // Obtaining the dataset
@@ -461,12 +463,13 @@ PIRWLStrain (PyObject *dummy, PyObject *args, PyObject *kwds)
     props.Eta=0.001;
     props.size=10;
     props.kernelType=1;
-    
+    props.verbose=1;
+
     //List of keyword parameters.
-    static char *kwlist[] = {"data","labels","gamma", "C", "threads", "workingSet", "eta", "kernel", NULL};
+    static char *kwlist[] = {"data","labels","gamma", "C", "threads", "workingSet", "eta", "kernel","verbose", NULL};
 
     //It parses the parameters
-    if (!PyArg_ParseTupleAndKeywords(args,kwds, "OO|ddiidi",kwlist,&arg1,&arg2,&props.Kgamma,&props.C,&props.Threads,&props.MaxSize,&props.Eta,&props.kernelType))
+    if (!PyArg_ParseTupleAndKeywords(args,kwds, "OO|ddiidii",kwlist,&arg1,&arg2,&props.Kgamma,&props.C,&props.Threads,&props.MaxSize,&props.Eta,&props.kernelType,&props.verbose))
     return NULL;  
 
     //Obtaining the numpy dataset

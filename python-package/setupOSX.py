@@ -43,7 +43,7 @@ ext_modules = [
 
 setup(
         name = 'LIBIRWLS',
-        version = '2.0',
+        version = '2.1',
         description="A Parallel IRWLS procedure for SVMs and Semiparametric SVMs",
         install_requires=[
             'numpy',
