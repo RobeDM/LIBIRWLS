@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['python_20extension',['PYTHON EXTENSION',['../d6/d88/md_LIBIRWLS_python-package_README.html',1,'']]],
   ['parallelalgorithms_2ec',['ParallelAlgorithms.c',['../de/d09/ParallelAlgorithms_8c.html',1,'']]],
   ['parallelalgorithms_2eh',['ParallelAlgorithms.h',['../d0/d98/ParallelAlgorithms_8h.html',1,'']]],
   ['parallelchol',['ParallelChol',['../d0/d98/ParallelAlgorithms_8h.html#aedc9a05cc25e789d22135eda90b8d22c',1,'ParallelAlgorithms.h']]],

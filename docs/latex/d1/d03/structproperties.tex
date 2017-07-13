@@ -27,6 +27,12 @@ int \hyperlink{structproperties_a1694aebbbdd904f9b0e5faca725966b6}{size}
 int \hyperlink{structproperties_aa0ba665a115d2e69811c694bc1af5096}{algorithm}
 \item 
 double \hyperlink{structproperties_abd91deb543a31a6a1f75892af7cf95c8}{Eta}
+\item 
+int \hyperlink{structproperties_a184d36a53db3e72b771bde8bd8e782f9}{file}
+\item 
+char $\ast$ \hyperlink{structproperties_a0d357070dcbbf50ac0a7ef0fdeaad80a}{separator}
+\item 
+int \hyperlink{structproperties_a641ab2809e565e16086ee64e924cbd63}{verbose}
 \end{DoxyCompactItemize}
 
 
@@ -54,7 +60,13 @@ C parameter of the S\+VM cost function. \hypertarget{structproperties_abd91deb54
 \subsubsection{\texorpdfstring{Eta}{Eta}}
 {\ttfamily double properties\+::\+Eta}
 
-Convergence criteria of the S\+VM. \hypertarget{structproperties_a2cb295bd30c81b5bec52b79e67106881}{}\label{structproperties_a2cb295bd30c81b5bec52b79e67106881} 
+Convergence criteria of the S\+VM. \hypertarget{structproperties_a184d36a53db3e72b771bde8bd8e782f9}{}\label{structproperties_a184d36a53db3e72b771bde8bd8e782f9} 
+\index{properties@{properties}!file@{file}}
+\index{file@{file}!properties@{properties}}
+\subsubsection{\texorpdfstring{file}{file}}
+{\ttfamily int properties\+::file}
+
+File format (1 libsvm, 0 csv). \hypertarget{structproperties_a2cb295bd30c81b5bec52b79e67106881}{}\label{structproperties_a2cb295bd30c81b5bec52b79e67106881} 
 \index{properties@{properties}!kernel\+Type@{kernel\+Type}}
 \index{kernel\+Type@{kernel\+Type}!properties@{properties}}
 \subsubsection{\texorpdfstring{kernel\+Type}{kernelType}}
@@ -72,7 +84,13 @@ Gamma parameter of the kernel function. \hypertarget{structproperties_a42219768d
 \subsubsection{\texorpdfstring{Max\+Size}{MaxSize}}
 {\ttfamily int properties\+::\+Max\+Size}
 
-Maximum size of the active set to calculate the S\+VM. \hypertarget{structproperties_a1694aebbbdd904f9b0e5faca725966b6}{}\label{structproperties_a1694aebbbdd904f9b0e5faca725966b6} 
+Maximum size of the active set to calculate the S\+VM. \hypertarget{structproperties_a0d357070dcbbf50ac0a7ef0fdeaad80a}{}\label{structproperties_a0d357070dcbbf50ac0a7ef0fdeaad80a} 
+\index{properties@{properties}!separator@{separator}}
+\index{separator@{separator}!properties@{properties}}
+\subsubsection{\texorpdfstring{separator}{separator}}
+{\ttfamily char$\ast$ properties\+::separator}
+
+csv char separator. \hypertarget{structproperties_a1694aebbbdd904f9b0e5faca725966b6}{}\label{structproperties_a1694aebbbdd904f9b0e5faca725966b6} 
 \index{properties@{properties}!size@{size}}
 \index{size@{size}!properties@{properties}}
 \subsubsection{\texorpdfstring{size}{size}}
@@ -84,7 +102,13 @@ Size of semiparametric model (if we are executing the semiparametric version). \
 \subsubsection{\texorpdfstring{Threads}{Threads}}
 {\ttfamily int properties\+::\+Threads}
 
-Number of threads to parallelize the operations. 
+Number of threads to parallelize the operations. \hypertarget{structproperties_a641ab2809e565e16086ee64e924cbd63}{}\label{structproperties_a641ab2809e565e16086ee64e924cbd63} 
+\index{properties@{properties}!verbose@{verbose}}
+\index{verbose@{verbose}!properties@{properties}}
+\subsubsection{\texorpdfstring{verbose}{verbose}}
+{\ttfamily int properties\+::verbose}
+
+1 print messages in the standard output, 0 silent mode. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

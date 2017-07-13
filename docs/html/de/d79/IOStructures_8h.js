@@ -14,7 +14,9 @@ var IOStructures_8h =
     [ "freeModel", "de/d79/IOStructures_8h.html#ae5341933172e53ce4cdc1a2bb1eb003a", null ],
     [ "readModel", "de/d79/IOStructures_8h.html#a39db6a02819bd37baf33f195ab81d02e", null ],
     [ "readTrainFile", "de/d79/IOStructures_8h.html#a8edb4ba3a828ebfd3f315794c1fa5936", null ],
+    [ "readTrainFileCSV", "de/d79/IOStructures_8h.html#a3eef60cb0ce45ebe375cb0f9cad91a30", null ],
     [ "readUnlabeledFile", "de/d79/IOStructures_8h.html#a55bd770c8b94fb281d835b8d96fab13d", null ],
+    [ "readUnlabeledFileCSV", "de/d79/IOStructures_8h.html#ab7bf18530f52bae1d845e6c5d0f2b7bd", null ],
     [ "storeModel", "de/d79/IOStructures_8h.html#a7fb93dbcd30190fa467ca0ad00a99568", null ],
     [ "writeOutput", "de/d79/IOStructures_8h.html#a1d182f217a275e4236bc3ef5f9904895", null ]
 ];

@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "LIBIRWLS", "index.html", [
+    [ "PYTHON EXTENSION", "d6/d88/md_LIBIRWLS_python-package_README.html", null ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],

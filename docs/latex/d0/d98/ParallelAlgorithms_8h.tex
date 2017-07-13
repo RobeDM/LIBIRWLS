@@ -10,6 +10,8 @@ Functions to perform parallel linear algebra tasks.
 \item 
 void \hyperlink{ParallelAlgorithms_8h_aa6df8c3f4f455d5692b3cb220fc205c7}{init\+Memory} (int Threads, int size)
 \begin{DoxyCompactList}\small\item\em Function to allocate auxiliar memory to be used in the algebra operations. \end{DoxyCompactList}\item 
+void \hyperlink{ParallelAlgorithms_8h_a04fd70e0b3d3b3e3bec645c87e0d4779}{free\+Memory} (int Threads)
+\begin{DoxyCompactList}\small\item\em Function to free auxiliar memory to be used in the algebra operations. \end{DoxyCompactList}\item 
 void \hyperlink{ParallelAlgorithms_8h_a2f2bfa1b3a76a0a0bb0c1db793205ff2}{update\+Memory} (int Threads, int size)
 \begin{DoxyCompactList}\small\item\em Function to update auxiliar memory to be used in the algebra operations. \end{DoxyCompactList}\item 
 void \hyperlink{ParallelAlgorithms_8h_abc5ce35fa5e4a39916b37ec82708c7ee}{get\+Sub\+Matrix} (double $\ast$matrix, int size1, int size2, int O1, int O2, double $\ast$A, int size3, int size4, int n\+Cores)
@@ -42,6 +44,26 @@ Roberto Diaz Morales
 
 
 \subsection{Function Documentation}
+\hypertarget{ParallelAlgorithms_8h_a04fd70e0b3d3b3e3bec645c87e0d4779}{}\label{ParallelAlgorithms_8h_a04fd70e0b3d3b3e3bec645c87e0d4779} 
+\index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!free\+Memory@{free\+Memory}}
+\index{free\+Memory@{free\+Memory}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}
+\subsubsection{\texorpdfstring{free\+Memory()}{freeMemory()}}
+{\ttfamily void free\+Memory (\begin{DoxyParamCaption}\item[{int}]{Threads }\end{DoxyParamCaption})}
+
+
+
+Function to free auxiliar memory to be used in the algebra operations. 
+
+The parallel lineal algebra functions of this module require some memory for every thead to allocate temporal results. This function must be called after any other function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Threads} & The number of threads to parallelize the linear algebra functions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{ParallelAlgorithms_8h_a2f2bfa1b3a76a0a0bb0c1db793205ff2}{update\+Memory()} 
+\end{DoxySeeAlso}
 \hypertarget{ParallelAlgorithms_8h_abc5ce35fa5e4a39916b37ec82708c7ee}{}\label{ParallelAlgorithms_8h_abc5ce35fa5e4a39916b37ec82708c7ee} 
 \index{Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}!get\+Sub\+Matrix@{get\+Sub\+Matrix}}
 \index{get\+Sub\+Matrix@{get\+Sub\+Matrix}!Parallel\+Algorithms.\+h@{Parallel\+Algorithms.\+h}}

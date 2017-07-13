@@ -141,9 +141,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a8edb4ba3a828ebfd3f315794c1fa5936"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d79/IOStructures_8h.html#a8edb4ba3a828ebfd3f315794c1fa5936">readTrainFile</a> (char filename[])</td></tr>
 <tr class="memdesc:a8edb4ba3a828ebfd3f315794c1fa5936"><td class="mdescLeft">&#160;</td><td class="mdescRight">It reads a file that contains a labeled dataset in libsvm format.  <a href="#a8edb4ba3a828ebfd3f315794c1fa5936">More...</a><br /></td></tr>
 <tr class="separator:a8edb4ba3a828ebfd3f315794c1fa5936"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3eef60cb0ce45ebe375cb0f9cad91a30"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d79/IOStructures_8h.html#a3eef60cb0ce45ebe375cb0f9cad91a30">readTrainFileCSV</a> (char filename[], char *separator)</td></tr>
+<tr class="memdesc:a3eef60cb0ce45ebe375cb0f9cad91a30"><td class="mdescLeft">&#160;</td><td class="mdescRight">It reads a file that contains a labeled dataset in CSV format.  <a href="#a3eef60cb0ce45ebe375cb0f9cad91a30">More...</a><br /></td></tr>
+<tr class="separator:a3eef60cb0ce45ebe375cb0f9cad91a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55bd770c8b94fb281d835b8d96fab13d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d79/IOStructures_8h.html#a55bd770c8b94fb281d835b8d96fab13d">readUnlabeledFile</a> (char filename[])</td></tr>
 <tr class="memdesc:a55bd770c8b94fb281d835b8d96fab13d"><td class="mdescLeft">&#160;</td><td class="mdescRight">It reads a file that contains an unlabeled dataset in libsvm format.  <a href="#a55bd770c8b94fb281d835b8d96fab13d">More...</a><br /></td></tr>
 <tr class="separator:a55bd770c8b94fb281d835b8d96fab13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7bf18530f52bae1d845e6c5d0f2b7bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d79/IOStructures_8h.html#ab7bf18530f52bae1d845e6c5d0f2b7bd">readUnlabeledFileCSV</a> (char filename[], char *separator)</td></tr>
+<tr class="memdesc:ab7bf18530f52bae1d845e6c5d0f2b7bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">It reads a file that contains an unlabeled dataset in CSV format.  <a href="#ab7bf18530f52bae1d845e6c5d0f2b7bd">More...</a><br /></td></tr>
+<tr class="separator:ab7bf18530f52bae1d845e6c5d0f2b7bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fb93dbcd30190fa467ca0ad00a99568"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d79/IOStructures_8h.html#a7fb93dbcd30190fa467ca0ad00a99568">storeModel</a> (<a class="el" href="../../dc/d1b/structmodel.html">model</a> *mod, FILE *Output)</td></tr>
 <tr class="memdesc:a7fb93dbcd30190fa467ca0ad00a99568"><td class="mdescLeft">&#160;</td><td class="mdescRight">It stores a trained model into a file.  <a href="#a7fb93dbcd30190fa467ca0ad00a99568">More...</a><br /></td></tr>
 <tr class="separator:a7fb93dbcd30190fa467ca0ad00a99568"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -362,6 +368,44 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a3eef60cb0ce45ebe375cb0f9cad91a30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3eef60cb0ce45ebe375cb0f9cad91a30">&sect;&nbsp;</a></span>readTrainFileCSV()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a> readTrainFileCSV </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>filename</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>separator</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>It reads a file that contains a labeled dataset in CSV format. </p>
+<p>It reads a file that contains a labeled dataset in CSV format (the label is the first column). The format si the following one: 1,5,0,0,2,6 1,2,0,1,3,2 -1,5,4,0,3,1 ...</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>A string with the name of the file that contains the dataset. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The struct with the dataset information. </dd></dl>
+
+</div>
+</div>
 <a id="a55bd770c8b94fb281d835b8d96fab13d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a55bd770c8b94fb281d835b8d96fab13d">&sect;&nbsp;</a></span>readUnlabeledFile()</h2>
 
@@ -383,6 +427,46 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">filename</td><td>A string with the name of the file that contains the dataset. </td></tr>
+    <tr><td class="paramname">separator</td><td>The separator character of the CSV file </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The struct with the dataset information. </dd></dl>
+
+</div>
+</div>
+<a id="ab7bf18530f52bae1d845e6c5d0f2b7bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7bf18530f52bae1d845e6c5d0f2b7bd">&sect;&nbsp;</a></span>readUnlabeledFileCSV()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/d6e/structsvm__dataset.html">svm_dataset</a> readUnlabeledFileCSV </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>filename</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>separator</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>It reads a file that contains an unlabeled dataset in CSV format. </p>
+<p>It reads a file that contains an unlabeled dataset in CSV format (no label as first column). The format si the following one: 5,0,0,2,6 2,0,1,3,2 5,4,0,3,1 ...</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>A string with the name of the file that contains the dataset. </td></tr>
+    <tr><td class="paramname">separator</td><td>The separator character of the CSV file </td></tr>
   </table>
   </dd>
 </dl>

@@ -96,6 +96,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aa6df8c3f4f455d5692b3cb220fc205c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d98/ParallelAlgorithms_8h.html#aa6df8c3f4f455d5692b3cb220fc205c7">initMemory</a> (int Threads, int size)</td></tr>
 <tr class="memdesc:aa6df8c3f4f455d5692b3cb220fc205c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to allocate auxiliar memory to be used in the algebra operations.  <a href="#aa6df8c3f4f455d5692b3cb220fc205c7">More...</a><br /></td></tr>
 <tr class="separator:aa6df8c3f4f455d5692b3cb220fc205c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04fd70e0b3d3b3e3bec645c87e0d4779"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d98/ParallelAlgorithms_8h.html#a04fd70e0b3d3b3e3bec645c87e0d4779">freeMemory</a> (int Threads)</td></tr>
+<tr class="memdesc:a04fd70e0b3d3b3e3bec645c87e0d4779"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to free auxiliar memory to be used in the algebra operations.  <a href="#a04fd70e0b3d3b3e3bec645c87e0d4779">More...</a><br /></td></tr>
+<tr class="separator:a04fd70e0b3d3b3e3bec645c87e0d4779"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f2bfa1b3a76a0a0bb0c1db793205ff2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d98/ParallelAlgorithms_8h.html#a2f2bfa1b3a76a0a0bb0c1db793205ff2">updateMemory</a> (int Threads, int size)</td></tr>
 <tr class="memdesc:a2f2bfa1b3a76a0a0bb0c1db793205ff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to update auxiliar memory to be used in the algebra operations.  <a href="#a2f2bfa1b3a76a0a0bb0c1db793205ff2">More...</a><br /></td></tr>
 <tr class="separator:a2f2bfa1b3a76a0a0bb0c1db793205ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,6 +128,34 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Roberto Diaz Morales </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>23 Aug 2016 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a04fd70e0b3d3b3e3bec645c87e0d4779"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04fd70e0b3d3b3e3bec645c87e0d4779">&sect;&nbsp;</a></span>freeMemory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeMemory </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Threads</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to free auxiliar memory to be used in the algebra operations. </p>
+<p>The parallel lineal algebra functions of this module require some memory for every thead to allocate temporal results. This function must be called after any other function.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Threads</td><td>The number of threads to parallelize the linear algebra functions. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d0/d98/ParallelAlgorithms_8h.html#a2f2bfa1b3a76a0a0bb0c1db793205ff2" title="Function to update auxiliar memory to be used in the algebra operations. ">updateMemory()</a> </dd></dl>
+
+</div>
+</div>
 <a id="abc5ce35fa5e4a39916b37ec82708c7ee"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abc5ce35fa5e4a39916b37ec82708c7ee">&sect;&nbsp;</a></span>getSubMatrix()</h2>
 

@@ -17,6 +17,12 @@ int \hyperlink{structpredictProperties_a580276e3e15305d5ac16d9ce0eb9b20a}{Labels
 int \hyperlink{structpredictProperties_a602116e0d46424243cb4c971c03695e1}{Threads}
 \item 
 int \hyperlink{structpredictProperties_a3af58f4dd3147f2896e024e89307f7ac}{Soft}
+\item 
+int \hyperlink{structpredictProperties_ae5f93424df7baeb996fd323233a05cac}{file}
+\item 
+char $\ast$ \hyperlink{structpredictProperties_a46ba29899b9f858272e17856bbc35876}{separator}
+\item 
+int \hyperlink{structpredictProperties_acd0a668ce39a7201277c247ac177a48f}{verbose}
 \end{DoxyCompactItemize}
 
 
@@ -26,13 +32,25 @@ Testing parameters of the I\+R\+W\+LS procedures.
 This struct stores the testing parameters of the I\+R\+W\+LS procedures. 
 
 \subsection{Field Documentation}
-\hypertarget{structpredictProperties_a580276e3e15305d5ac16d9ce0eb9b20a}{}\label{structpredictProperties_a580276e3e15305d5ac16d9ce0eb9b20a} 
+\hypertarget{structpredictProperties_ae5f93424df7baeb996fd323233a05cac}{}\label{structpredictProperties_ae5f93424df7baeb996fd323233a05cac} 
+\index{predict\+Properties@{predict\+Properties}!file@{file}}
+\index{file@{file}!predict\+Properties@{predict\+Properties}}
+\subsubsection{\texorpdfstring{file}{file}}
+{\ttfamily int predict\+Properties\+::file}
+
+File format (1 libsvm, 0 csv). \hypertarget{structpredictProperties_a580276e3e15305d5ac16d9ce0eb9b20a}{}\label{structpredictProperties_a580276e3e15305d5ac16d9ce0eb9b20a} 
 \index{predict\+Properties@{predict\+Properties}!Labels@{Labels}}
 \index{Labels@{Labels}!predict\+Properties@{predict\+Properties}}
 \subsubsection{\texorpdfstring{Labels}{Labels}}
 {\ttfamily int predict\+Properties\+::\+Labels}
 
-If the dataset to test is labeled. \hypertarget{structpredictProperties_a3af58f4dd3147f2896e024e89307f7ac}{}\label{structpredictProperties_a3af58f4dd3147f2896e024e89307f7ac} 
+If the dataset to test is labeled. \hypertarget{structpredictProperties_a46ba29899b9f858272e17856bbc35876}{}\label{structpredictProperties_a46ba29899b9f858272e17856bbc35876} 
+\index{predict\+Properties@{predict\+Properties}!separator@{separator}}
+\index{separator@{separator}!predict\+Properties@{predict\+Properties}}
+\subsubsection{\texorpdfstring{separator}{separator}}
+{\ttfamily char$\ast$ predict\+Properties\+::separator}
+
+csv char separator. \hypertarget{structpredictProperties_a3af58f4dd3147f2896e024e89307f7ac}{}\label{structpredictProperties_a3af58f4dd3147f2896e024e89307f7ac} 
 \index{predict\+Properties@{predict\+Properties}!Soft@{Soft}}
 \index{Soft@{Soft}!predict\+Properties@{predict\+Properties}}
 \subsubsection{\texorpdfstring{Soft}{Soft}}
@@ -44,7 +62,13 @@ The classifier obtains Soft output or not. \hypertarget{structpredictProperties_
 \subsubsection{\texorpdfstring{Threads}{Threads}}
 {\ttfamily int predict\+Properties\+::\+Threads}
 
-Number of threads to make the predictions on the dataset. 
+Number of threads to make the predictions on the dataset. \hypertarget{structpredictProperties_acd0a668ce39a7201277c247ac177a48f}{}\label{structpredictProperties_acd0a668ce39a7201277c247ac177a48f} 
+\index{predict\+Properties@{predict\+Properties}!verbose@{verbose}}
+\index{verbose@{verbose}!predict\+Properties@{predict\+Properties}}
+\subsubsection{\texorpdfstring{verbose}{verbose}}
+{\ttfamily int predict\+Properties\+::verbose}
+
+1 print messages in the standard output, 0 silent mode. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

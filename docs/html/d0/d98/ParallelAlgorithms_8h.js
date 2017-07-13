@@ -1,5 +1,6 @@
 var ParallelAlgorithms_8h =
 [
+    [ "freeMemory", "d0/d98/ParallelAlgorithms_8h.html#a04fd70e0b3d3b3e3bec645c87e0d4779", null ],
     [ "getSubMatrix", "d0/d98/ParallelAlgorithms_8h.html#abc5ce35fa5e4a39916b37ec82708c7ee", null ],
     [ "initMemory", "d0/d98/ParallelAlgorithms_8h.html#aa6df8c3f4f455d5692b3cb220fc205c7", null ],
     [ "ParallelChol", "d0/d98/ParallelAlgorithms_8h.html#aedc9a05cc25e789d22135eda90b8d22c", null ],

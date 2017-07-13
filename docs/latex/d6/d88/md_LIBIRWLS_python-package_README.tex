@@ -1,0 +1,141 @@
+To use this module you must have the libraries numpy and Cython installed in python.
+
+
+\begin{DoxyItemize}
+\item \href{http://cython.org/}{\tt Cython}
+\item \href{http://www.numpy.org/}{\tt Numpy}
+\end{DoxyItemize}
+
+You can install very easily both libraries using the command \href{https://pip.pypa.io/en/stable/}{\tt pip}.
+
+\subsection*{Installation Instructions\+:}
+
+\subsubsection*{Requeriments\+:}
+
+You need to build the application before installing the python extension. To do that follow the instructions in the main R\+E\+A\+D\+M\+E.\+md file.
+
+\subsubsection*{Windows}
+
+Currently this python extension is still not available for Windows operating systems.
+
+\subsubsection*{Installation Linux, Unix}
+
+If you have manually installed A\+T\+L\+AS (instead of using the apt-\/get command), you must tell the installation directory by defining the environment variable A\+T\+L\+A\+S\+D\+IR\+: \begin{DoxyVerb}export ATLASDIR=/path/to/atlas/
+\end{DoxyVerb}
+
+
+After that, you can easily install this python module (If you need sudo permission you have to use the parameter -\/E to keep the environment variable)\+: \begin{DoxyVerb}sudo -E python setup.py install
+\end{DoxyVerb}
+
+
+\subsubsection*{OS X}
+
+You must define some enviroment variables\+:
+
+CC to tell the compiler (use the same compiler that you use to compile the command line app). For example, in the case of gcc 6 installed with homebrew\+: \begin{DoxyVerb}export CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6
+\end{DoxyVerb}
+
+
+Only if veclib is not in the default directory you must define the environment variable V\+E\+C\+L\+I\+B\+D\+IR telling where veclib is\+: \begin{DoxyVerb}export VECLIBDIR=/path/to/veclib
+\end{DoxyVerb}
+
+
+Your compiler has the openmp functions in the libgomp library, you must define an enviroment variable called L\+I\+B\+G\+O\+M\+P\+\_\+\+P\+A\+TH telling where is the file libgomp.\+a in the lib directory of your compiler. In the case of gcc 6 installed with homebrew\+: \begin{DoxyVerb}export LIBGOMP_PATH=/usr/local/Cellar/gcc/6.2.0/lib/gcc/6/libgomp.a
+\end{DoxyVerb}
+
+
+To avoid that Cython could use any posible flag only available for clang it is better to set the C\+F\+L\+A\+GS environment variable to an empty value\+: \begin{DoxyVerb}export CFLAGS=
+\end{DoxyVerb}
+
+
+With these environment variables well defined you can install the extension (If you need sudo permission you have to use the parameter -\/E to keep the environment variables)\+: \begin{DoxyVerb}sudo -E python setupOSX.py install
+\end{DoxyVerb}
+
+
+\subsection*{R\+U\+N\+N\+I\+NG\+:}
+
+\subsubsection*{Import this library\+:}
+
+\begin{DoxyVerb}    import LIBIRWLS
+\end{DoxyVerb}
+
+
+\subsubsection*{P\+I\+R\+W\+LS algorithm\+:}
+
+It trains a S\+VM using a parallel I\+R\+W\+LS procedure. See the library \href{https://robedm.github.io/LIBIRWLS/}{\tt webpage} for a detailed description.
+
+\begin{DoxyVerb}model = LIBIRWLS.PIRWLStrain(data, labels, gamma=1, C=1, threads=1, workingSet=500, eta=0.001, kernel=1)
+\end{DoxyVerb}
+
+
+Parameters\+:
+\begin{DoxyItemize}
+\item data\+: Training set (numpy 2d array)
+\item labels\+: Training set labels (the label of every training data numpy array with values +1 and -\/1)
+\item kernel\+: kernel type\+:
+\begin{DoxyItemize}
+\item 0 for Linear kernel u\textquotesingle{}{\itshape v}
+\item {\itshape 1 for radial basis function exp(-\/gamma}$\vert$u-\/v$\vert$$^\wedge$2)
+\end{DoxyItemize}
+\item gamma\+: gamma in the radial basis kernel function
+\item C\+: S\+VM Cost
+\item working\+Set\+: Size of the Least Squares Problem in every iteration
+\item threads\+: It is the number of parallel threads
+\item eta\+: Stop criteria
+\end{DoxyItemize}
+
+\subsubsection*{P\+S\+I\+R\+W\+LS algorithm\+:}
+
+It trains a semiparametric S\+VM using a parallel I\+R\+W\+LS procedure. See the library \href{https://robedm.github.io/LIBIRWLS/}{\tt webpage} for a detailed description. \begin{DoxyVerb}    model = LIBIRWLS.PSIRWLStrain(data, labels, gamma=1, C=1, threads=1, size=500, algorithm=0.001, kernel=1)
+\end{DoxyVerb}
+
+
+Parameters\+:
+\begin{DoxyItemize}
+\item data\+: Training set (numpy 2d array)
+\item labels\+: Training set labels (the label of every training data numpy array with values +1 and -\/1)
+\item kernel\+: kernel type\+:
+\begin{DoxyItemize}
+\item 0 for Linear kernel u\textquotesingle{}{\itshape v}
+\item {\itshape 1 for radial basis function exp(-\/gamma}$\vert$u-\/v$\vert$$^\wedge$2)
+\end{DoxyItemize}
+\item gamma\+: gamma in the radial basis kernel function
+\item C\+: S\+VM Cost
+\item threads\+: It is the number of parallel threads
+\item size\+: Size of the classifier
+\item algorithm\+: Algorithm for centroids selection
+\begin{DoxyItemize}
+\item 0 -- Random Selection
+\item 1 -- S\+G\+MA (Sparse Greedy Matrix Approximation
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsubsection*{To classify a new dataset\+:}
+
+\begin{DoxyVerb}    predictions = LIBIRWLS.predict(model, data, labels=None, Threads=1, Soft=0)
+\end{DoxyVerb}
+
+
+Parameters\+:
+\begin{DoxyItemize}
+\item model\+: A model obtained using P\+I\+R\+W\+LS or P\+S\+I\+R\+W\+LS.
+\item data\+: A dataset to classify.
+\item labels\+: dataset labels (optional)
+\item Threads\+: It is the number of parallel threads
+\item Soft\+:
+\begin{DoxyItemize}
+\item 0 Class prediction (the output is +1 or -\/1)
+\item 1 Soft output\+: The output after the hard decision that decides the class (useful to use in ensembles with other algorithms).
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsubsection*{To save a model in a file\+:}
+
+\begin{DoxyVerb}    LIBIRWLS.save(model, filename)
+\end{DoxyVerb}
+
+
+\subsubsection*{To save a model in a file\+:}
+
+\begin{DoxyVerb}    model = LIBIRWLS.load(filename)\end{DoxyVerb}
+ 
