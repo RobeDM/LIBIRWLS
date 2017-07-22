@@ -20,7 +20,7 @@ install:
     - if [ "$TRAVIS_OS_NAME" = "osx" ]; then make OSX=1 CC=gcc-6; fi
     
 script:    
-    - (cd demo/; ./demoIRWLS.sh)
+    - (cd demo/; ./demoLIBIRWLS.sh)
 
   
   
