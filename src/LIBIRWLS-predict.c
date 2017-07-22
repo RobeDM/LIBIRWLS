@@ -138,9 +138,9 @@ double *test(svm_dataset dataset, model mymodel,predictProperties props){
  */
 
 void printPredictInstructions(void) {
-    fprintf(stderr, "LIBIRWLS-predict: This software predicts the label of a SVM given a data set of samples and a model obtained with PIRWLS-train or PSIRWLS-train");
+    fprintf(stderr, "LIBIRWLS-predict: This software predicts the label of a SVM given a data set of samples and a model obtained with full-train or budgeted-train");
     fprintf(stderr, "and store the results in an output file.\n\n");
-    fprintf(stderr, "Usage: PSIRWLS-predict [options] data_set_file model_file output_file\n\n");
+    fprintf(stderr, "Usage: LIBIRWLS-predict [options] data_set_file model_file output_file\n\n");
     fprintf(stderr, "Options:\n");
     fprintf(stderr, "  -t Number of Threads: (default 1)\n");
     fprintf(stderr, "  -l type of data set: (default 0)\n");
@@ -149,7 +149,6 @@ void printPredictInstructions(void) {
     fprintf(stderr, "  -s Soft output: (default 0)\n");
     fprintf(stderr, "       0 -- Obtains the class of every data (It takes values of +1 or -1).\n");
     fprintf(stderr, "       1 -- The output before the class decision (Useful to combine in ensembles with other algorithms).\n");
-    fprintf(stderr, "Note:\n");
     fprintf(stderr, "  -f file format: (default 1)\n"); 
     fprintf(stderr, "       0 -- CSV format (comma separator)\n");
     fprintf(stderr, "       1 -- libsvm format\n");   

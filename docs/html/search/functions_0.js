@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['calculatepirwlsmodel',['calculatePIRWLSModel',['../df/d51/PIRWLS-train_8h.html#aeaa2f3c1d0f757826017dae7a83d7f8a',1,'PIRWLS-train.h']]],
-  ['calculatepsirwlsmodel',['calculatePSIRWLSModel',['../d1/dd0/PSIRWLS-train_8h.html#a71b4329438bbf3210414315619f7b804',1,'PSIRWLS-train.h']]]
+  ['calculatebudgetedmodel',['calculateBudgetedModel',['../d4/d49/budgeted-train_8h.html#a380a6e19ae274a3df7720a3305ce8d8c',1,'budgeted-train.h']]],
+  ['calculatefullmodel',['calculateFULLModel',['../d3/dd5/full-train_8h.html#ace419c291424f97063310fc91332814e',1,'full-train.h']]]
 ];

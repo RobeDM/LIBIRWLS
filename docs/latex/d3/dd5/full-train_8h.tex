@@ -1,0 +1,175 @@
+\hypertarget{full-train_8h}{}\section{L\+I\+B\+I\+R\+W\+L\+S/include/full-\/train.h File Reference}
+\label{full-train_8h}\index{L\+I\+B\+I\+R\+W\+L\+S/include/full-\/train.\+h@{L\+I\+B\+I\+R\+W\+L\+S/include/full-\/train.\+h}}
+
+
+Functions to train a full S\+VM using the I\+R\+W\+LS algorithm.  
+
+
+{\ttfamily \#include \char`\"{}I\+O\+Structures.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int $\ast$ \hyperlink{full-train_8h_a9e75aabe599f48c66cbda89320d68a71}{rpermute} (int n)
+\begin{DoxyCompactList}\small\item\em Random permutation of n elements. \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{full-train_8h_af736cb71af5e7e4cb062977793905f4d}{sub\+I\+R\+W\+LS} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, \hyperlink{structproperties}{properties} props, double $\ast$G\+IN, double $\ast$e, double $\ast$beta)
+\begin{DoxyCompactList}\small\item\em I\+R\+W\+LS procedure on a Working Set. \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{full-train_8h_ad719770a7de382211555ba831af2ea28}{train\+F\+U\+LL} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, \hyperlink{structproperties}{properties} props)
+\begin{DoxyCompactList}\small\item\em It trains a full S\+VM with a training set. \end{DoxyCompactList}\item 
+void \hyperlink{full-train_8h_ab5adf9258f0268e7daead3642e1d911a}{print\+F\+U\+L\+L\+Instructions} (void)
+\begin{DoxyCompactList}\small\item\em Print Instructions. \end{DoxyCompactList}\item 
+\hyperlink{structproperties}{properties} \hyperlink{full-train_8h_a95d1fd5c95857701272b74eb9b0aed4e}{parse\+Train\+F\+U\+L\+L\+Parameters} (int $\ast$argc, char $\ast$$\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em It parses the command line. \end{DoxyCompactList}\item 
+\hyperlink{structmodel}{model} \hyperlink{full-train_8h_ace419c291424f97063310fc91332814e}{calculate\+F\+U\+L\+L\+Model} (\hyperlink{structproperties}{properties} props, \hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, double $\ast$beta)
+\begin{DoxyCompactList}\small\item\em It converts the result into a model struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions to train a full S\+VM using the I\+R\+W\+LS algorithm. 
+
+For a detailed description of the algorithm and its parameters read the following paper\+: ~\newline
+ Pérez-\/\+Cruz, F., Alarcón-\/\+Diana, P. L., Navia-\/\+Vázquez, A., \& Artés-\/\+Rodríguez, A. (2001). Fast Training of Support Vector Classifiers. In Advances in Neural Information Processing Systems (pp. 734-\/740)
+
+For a detailed description about the parallelization read the following paper\+: ~\newline
+Díaz-\/\+Morales, R., \& Navia-\/\+Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-\/186.
+
+\begin{DoxyAuthor}{Author}
+Roberto Diaz Morales 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+23 Aug 2016 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{full-train_8h_ace419c291424f97063310fc91332814e}{}\label{full-train_8h_ace419c291424f97063310fc91332814e} 
+\index{full-\/train.\+h@{full-\/train.\+h}!calculate\+F\+U\+L\+L\+Model@{calculate\+F\+U\+L\+L\+Model}}
+\index{calculate\+F\+U\+L\+L\+Model@{calculate\+F\+U\+L\+L\+Model}!full-\/train.\+h@{full-\/train.\+h}}
+\subsubsection{\texorpdfstring{calculate\+F\+U\+L\+L\+Model()}{calculateFULLModel()}}
+{\ttfamily \hyperlink{structmodel}{model} calculate\+F\+U\+L\+L\+Model (\begin{DoxyParamCaption}\item[{\hyperlink{structproperties}{properties}}]{props,  }\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{dataset,  }\item[{double $\ast$}]{beta }\end{DoxyParamCaption})}
+
+
+
+It converts the result into a model struct. 
+
+After the training of a S\+VM using the I\+R\+W\+LS procedure, this function build a struct with the information and returns it.
+
+
+\begin{DoxyParams}{Parameters}
+{\em props} & The training parameters. \\
+\hline
+{\em dataset} & The training set. \\
+\hline
+{\em beta} & The weights of the classifier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The struct that storages all the information of the classifier. 
+\end{DoxyReturn}
+\hypertarget{full-train_8h_a95d1fd5c95857701272b74eb9b0aed4e}{}\label{full-train_8h_a95d1fd5c95857701272b74eb9b0aed4e} 
+\index{full-\/train.\+h@{full-\/train.\+h}!parse\+Train\+F\+U\+L\+L\+Parameters@{parse\+Train\+F\+U\+L\+L\+Parameters}}
+\index{parse\+Train\+F\+U\+L\+L\+Parameters@{parse\+Train\+F\+U\+L\+L\+Parameters}!full-\/train.\+h@{full-\/train.\+h}}
+\subsubsection{\texorpdfstring{parse\+Train\+F\+U\+L\+L\+Parameters()}{parseTrainFULLParameters()}}
+{\ttfamily \hyperlink{structproperties}{properties} parse\+Train\+F\+U\+L\+L\+Parameters (\begin{DoxyParamCaption}\item[{int $\ast$}]{argc,  }\item[{char $\ast$$\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+It parses the command line. 
+
+It parses input command line to extract the parameters. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of words of the command line. \\
+\hline
+{\em argv} & The list of words of the command line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A struct that contains the values of the training parameters. 
+\end{DoxyReturn}
+\hypertarget{full-train_8h_ab5adf9258f0268e7daead3642e1d911a}{}\label{full-train_8h_ab5adf9258f0268e7daead3642e1d911a} 
+\index{full-\/train.\+h@{full-\/train.\+h}!print\+F\+U\+L\+L\+Instructions@{print\+F\+U\+L\+L\+Instructions}}
+\index{print\+F\+U\+L\+L\+Instructions@{print\+F\+U\+L\+L\+Instructions}!full-\/train.\+h@{full-\/train.\+h}}
+\subsubsection{\texorpdfstring{print\+F\+U\+L\+L\+Instructions()}{printFULLInstructions()}}
+{\ttfamily void print\+F\+U\+L\+L\+Instructions (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Print Instructions. 
+
+It shows the full-\/train command line instructions in the standard output. \hypertarget{full-train_8h_a9e75aabe599f48c66cbda89320d68a71}{}\label{full-train_8h_a9e75aabe599f48c66cbda89320d68a71} 
+\index{full-\/train.\+h@{full-\/train.\+h}!rpermute@{rpermute}}
+\index{rpermute@{rpermute}!full-\/train.\+h@{full-\/train.\+h}}
+\subsubsection{\texorpdfstring{rpermute()}{rpermute()}}
+{\ttfamily int$\ast$ rpermute (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Random permutation of n elements. 
+
+It crates a random permutation of n elements.
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The number of elementos in the permutation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The permutation. 
+\end{DoxyReturn}
+\hypertarget{full-train_8h_af736cb71af5e7e4cb062977793905f4d}{}\label{full-train_8h_af736cb71af5e7e4cb062977793905f4d} 
+\index{full-\/train.\+h@{full-\/train.\+h}!sub\+I\+R\+W\+LS@{sub\+I\+R\+W\+LS}}
+\index{sub\+I\+R\+W\+LS@{sub\+I\+R\+W\+LS}!full-\/train.\+h@{full-\/train.\+h}}
+\subsubsection{\texorpdfstring{sub\+I\+R\+W\+L\+S()}{subIRWLS()}}
+{\ttfamily double$\ast$ sub\+I\+R\+W\+LS (\begin{DoxyParamCaption}\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{dataset,  }\item[{\hyperlink{structproperties}{properties}}]{props,  }\item[{double $\ast$}]{G\+IN,  }\item[{double $\ast$}]{e,  }\item[{double $\ast$}]{beta }\end{DoxyParamCaption})}
+
+
+
+I\+R\+W\+LS procedure on a Working Set. 
+
+For a detailed description of the algorithm and its parameters read the following paper\+: ~\newline
+ Pérez-\/\+Cruz, F., Alarcón-\/\+Diana, P. L., Navia-\/\+Vázquez, A., \& Artés-\/\+Rodríguez, A. (2001). Fast Training of Support Vector Classifiers. In Advances in Neural Information Processing Systems (pp. 734-\/740)
+
+For a detailed description about the parallelization read the following paper\+: ~\newline
+Díaz-\/\+Morales, R., \& Navia-\/\+Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-\/186.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The training dataset. \\
+\hline
+{\em props} & The strut of training properties. \\
+\hline
+{\em G\+IN} & The classification effect of the inactive set. \\
+\hline
+{\em e} & The current error on every training data. \\
+\hline
+{\em beta} & The bias term of the classification function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new weights vector of the classifier. 
+\end{DoxyReturn}
+\hypertarget{full-train_8h_ad719770a7de382211555ba831af2ea28}{}\label{full-train_8h_ad719770a7de382211555ba831af2ea28} 
+\index{full-\/train.\+h@{full-\/train.\+h}!train\+F\+U\+LL@{train\+F\+U\+LL}}
+\index{train\+F\+U\+LL@{train\+F\+U\+LL}!full-\/train.\+h@{full-\/train.\+h}}
+\subsubsection{\texorpdfstring{train\+F\+U\+L\+L()}{trainFULL()}}
+{\ttfamily double$\ast$ train\+F\+U\+LL (\begin{DoxyParamCaption}\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{dataset,  }\item[{\hyperlink{structproperties}{properties}}]{props }\end{DoxyParamCaption})}
+
+
+
+It trains a full S\+VM with a training set. 
+
+For a detailed description of the algorithm and its parameters read the following paper\+: ~\newline
+ Pérez-\/\+Cruz, F., Alarcón-\/\+Diana, P. L., Navia-\/\+Vázquez, A., \& Artés-\/\+Rodríguez, A. (2001). Fast Training of Support Vector Classifiers. In Advances in Neural Information Processing Systems (pp. 734-\/740)
+
+For a detailed description about the parallelization read the following paper\+: ~\newline
+Díaz-\/\+Morales, R., \& Navia-\/\+Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-\/186.
+
+It trains a full S\+VM using a training set and the training parameters. 
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The training set. \\
+\hline
+{\em props} & The values of the training parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The weights of every Support Vector of the S\+VM. 
+\end{DoxyReturn}

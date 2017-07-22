@@ -31,21 +31,21 @@ ifdef ATLASDIR
     LIBRARYPATH = -L$(ATLASDIR)/lib/
 endif
 
-COMMONOBJ := $(BUILDFOLDER)/ParallelAlgorithms.o $(BUILDFOLDER)/IOStructures.o $(BUILDFOLDER)/kernels.o $(BUILDFOLDER)/LIBIRWLS-predict.o $(BUILDFOLDER)/PSIRWLS-train.o $(BUILDFOLDER)/PIRWLS-train.o
+COMMONOBJ := $(BUILDFOLDER)/ParallelAlgorithms.o $(BUILDFOLDER)/IOStructures.o $(BUILDFOLDER)/kernels.o $(BUILDFOLDER)/LIBIRWLS-predict.o $(BUILDFOLDER)/budgeted-train.o $(BUILDFOLDER)/full-train.o
 
-all: LIBIRWLS-predict PIRWLS-train PSIRWLS-train
+all: LIBIRWLS-predict full-train budgeted-train
 
-PIRWLS-train: $(BUILDFOLDER)/ExecPIRWLS-train.o $(COMMONOBJ)
-	@echo " Linking PIRWLS-train"
+full-train: $(BUILDFOLDER)/Exec-full-train.o $(COMMONOBJ)
+	@echo " Linking full-train"
 	mkdir -p $(BINFOLDER)
 	@echo " $(CC) $(CCOPTION) $^ -o $(BINFOLDER)/$@ $(INCLUDEPATH) $(LIBRARYPATH) $(LIBS)"; $(CC) $(CCOPTION) $^ -o $(BINFOLDER)/$@ $(INCLUDEPATH) $(LIBRARYPATH) $(LIBS) 
 
-PSIRWLS-train: $(BUILDFOLDER)/ExecPSIRWLS-train.o $(COMMONOBJ)
-	@echo " Linking PSIRWLS-train"
+budgeted-train: $(BUILDFOLDER)/Exec-budgeted-train.o $(COMMONOBJ)
+	@echo " Linking budgeted-train"
 	mkdir -p $(BINFOLDER)
 	@echo " $(CC) $(CCOPTION) $^ -o $(BINFOLDER)/$@ $(INCLUDEPATH) $(LIBRARYPATH) $(LIBS)"; $(CC) $(CCOPTION) $^ -o $(BINFOLDER)/$@ $(INCLUDEPATH) $(LIBRARYPATH) $(LIBS)
 
-LIBIRWLS-predict: $(BUILDFOLDER)/ExecLIBIRWLS-predict.o $(COMMONOBJ)
+LIBIRWLS-predict: $(BUILDFOLDER)/Exec-LIBIRWLS-predict.o $(COMMONOBJ)
 	@echo " Linking LIBIRWLS-predict"
 	mkdir -p $(BINFOLDER)
 	@echo " $(CC) $(CCOPTION) $^ -o $(BINFOLDER)/LIBIRWLS-predict $(INCLUDEPATH) $(LIBRARYPATH) $(LIBS)"; $(CC) $(CCOPTION) $^ -o $(BINFOLDER)/LIBIRWLS-predict $(INCLUDEPATH) $(LIBRARYPATH) $(LIBS)

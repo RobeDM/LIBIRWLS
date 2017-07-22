@@ -5,5 +5,5 @@ var searchData=
   ['initmemory',['initMemory',['../d0/d98/ParallelAlgorithms_8h.html#aa6df8c3f4f455d5692b3cb220fc205c7',1,'ParallelAlgorithms.h']]],
   ['iostructures_2ec',['IOStructures.c',['../dc/dfc/IOStructures_8c.html',1,'']]],
   ['iostructures_2eh',['IOStructures.h',['../de/d79/IOStructures_8h.html',1,'']]],
-  ['irwlspar',['IRWLSpar',['../d1/dd0/PSIRWLS-train_8h.html#ad51d9a46645ad0b0bedb1113a3807d24',1,'PSIRWLS-train.h']]]
+  ['irwlspar',['IRWLSpar',['../d4/d49/budgeted-train_8h.html#ad51d9a46645ad0b0bedb1113a3807d24',1,'budgeted-train.h']]]
 ];

@@ -36,8 +36,8 @@
 #include "Python.h"
 #include "numpy/arrayobject.h"
 #include "IOStructures.h"
-#include "PIRWLS-train.h"
-#include "PSIRWLS-train.h"
+#include "full-train.h"
+#include "budgeted-train.h"
 #include "ParallelAlgorithms.h"
 #include "LIBIRWLS-predict.h"
 #include <omp.h>
@@ -356,9 +356,9 @@ svm_dataset numpy2datasetWithAverage(PyObject *arr1,PyObject *arr2){
 }
 
 /**
- * @brief Python extension of the PSIRWLS algorithm.
+ * @brief Python extension of the budgeted SVM training procedure using the parallel IRWLS algorithm.
  *
- * This is the function of the python extension to train a model using the PSIRWLS algorithm.
+ * This is the function of the python extension to train a budgeted SVM using the parallel IRWLS algorithm.
  *
  * @param dummy First parameter of the function.
  * @param args Argument values of the function parameters.
@@ -367,7 +367,7 @@ svm_dataset numpy2datasetWithAverage(PyObject *arr1,PyObject *arr2){
  */
 
 static PyObject*
-PSIRWLStrain (PyObject *dummy, PyObject *args, PyObject *kwds)
+budgeted_train (PyObject *dummy, PyObject *args, PyObject *kwds)
 {
 
     // Pointers to store the dataset
@@ -415,10 +415,10 @@ PSIRWLStrain (PyObject *dummy, PyObject *args, PyObject *kwds)
         centroids=SGMA(dataset,props);
     }
 
-    // Using the PSIRWLS algorithm
+    // Using the IRWLS algorithm
     omp_set_num_threads(props.Threads);
     double * W = IRWLSpar(dataset,centroids,props);
-    model modelo = calculatePSIRWLSModel(props, dataset,centroids, W);
+    model modelo = calculateBudgetedModel(props, dataset,centroids, W);
 
     // Decref the created python objects
     Py_DECREF(arr1);
@@ -437,9 +437,9 @@ PSIRWLStrain (PyObject *dummy, PyObject *args, PyObject *kwds)
 }
 
 /**
- * @brief Python extension of the PIRWLS algorithm.
+ * @brief Python extension of the SVM training procedure using the parallel IRWLS algorithm.
  *
- * This is the function of the python extension to train a model using the PIRWLS algorithm.
+ * This is the function of the python extension to train a SVM using the parallel IRWLS algorithm.
  *
  * @param dummy First parameter of the function.
  * @param args Argument values of the function parameters.
@@ -448,7 +448,7 @@ PSIRWLStrain (PyObject *dummy, PyObject *args, PyObject *kwds)
  */
 
 static PyObject*
-PIRWLStrain (PyObject *dummy, PyObject *args, PyObject *kwds)
+full_train (PyObject *dummy, PyObject *args, PyObject *kwds)
 {
 
     //Pointers to store the dataset
@@ -484,11 +484,11 @@ PIRWLStrain (PyObject *dummy, PyObject *args, PyObject *kwds)
     //Transforming the numpy dataset to our format.
     svm_dataset dataset = numpy2dataset(arr1, arr2);
 
-    //Using the PIRWLS algorithm
+    //Using the IRWLS algorithm
     initMemory(props.Threads,(props.MaxSize+1));  
     setenv("VECLIB_MAXIMUM_THREADS", "1", 1);
     double * W = trainFULL(dataset,props);
-    model modelo = calculatePIRWLSModel(props, dataset, W);
+    model modelo = calculateFULLModel(props, dataset, W);
 
     //Decref the created python objects
     Py_DECREF(arr1);

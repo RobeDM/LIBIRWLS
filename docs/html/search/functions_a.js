@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['test',['test',['../db/d3d/LIBIRWLS-predict_8h.html#ae3fc6988def0487bb4bb47b759ba3d0b',1,'LIBIRWLS-predict.h']]],
-  ['trainfull',['trainFULL',['../df/d51/PIRWLS-train_8h.html#ad719770a7de382211555ba831af2ea28',1,'PIRWLS-train.h']]]
+  ['sgma',['SGMA',['../d4/d49/budgeted-train_8h.html#a50a6e1f36a010feb91db9b9b38679948',1,'budgeted-train.h']]],
+  ['softtest',['softTest',['../db/d3d/LIBIRWLS-predict_8h.html#a47a2cacfccb7e9f9ef8b273b5d5a7498',1,'LIBIRWLS-predict.h']]],
+  ['storemodel',['storeModel',['../de/d79/IOStructures_8h.html#a7fb93dbcd30190fa467ca0ad00a99568',1,'IOStructures.h']]],
+  ['subirwls',['subIRWLS',['../d3/dd5/full-train_8h.html#af736cb71af5e7e4cb062977793905f4d',1,'full-train.h']]]
 ];

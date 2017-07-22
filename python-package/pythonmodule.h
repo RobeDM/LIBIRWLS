@@ -105,10 +105,11 @@ svm_dataset numpy2dataset(PyObject *arr1,PyObject *arr2);
  */
 
 svm_dataset numpy2datasetWithAverage(PyObject *arr1,PyObject *arr2);
+
 /**
- * @brief Python extension of the PSIRWLS algorithm.
+ * @brief Python extension of the budgeted SVM training procedure using the parallel IRWLS algorithm.
  *
- * This is the function of the python extension to train a model using the PSIRWLS algorithm.
+ * This is the function of the python extension to train a budgeted SVM using the parallel IRWLS algorithm.
  *
  * @param dummy First parameter of the function.
  * @param args Argument values of the function parameters.
@@ -117,12 +118,12 @@ svm_dataset numpy2datasetWithAverage(PyObject *arr1,PyObject *arr2);
  */
 
 static PyObject*
-PSIRWLStrain (PyObject *dummy, PyObject *args, PyObject *kwds);
+budgeted_train (PyObject *dummy, PyObject *args, PyObject *kwds);
 
 /**
- * @brief Python extension of the PIRWLS algorithm.
+ * @brief Python extension of the SVM training procedure using the parallel IRWLS algorithm.
  *
- * This is the function of the python extension to train a model using the PIRWLS algorithm.
+ * This is the function of the python extension to train a SVM using the parallel IRWLS algorithm.
  *
  * @param dummy First parameter of the function.
  * @param args Argument values of the function parameters.
@@ -131,7 +132,7 @@ PSIRWLStrain (PyObject *dummy, PyObject *args, PyObject *kwds);
  */
 
 static PyObject*
-PIRWLStrain (PyObject *dummy, PyObject *args, PyObject *kwds);
+full_train (PyObject *dummy, PyObject *args, PyObject *kwds);
 
 
 /**
@@ -142,8 +143,8 @@ PIRWLStrain (PyObject *dummy, PyObject *args, PyObject *kwds);
 
 static PyMethodDef LIBIRWLSMethods[] = {
     {"load", (PyCFunction)load, METH_VARARGS|METH_KEYWORDS, "It loads a model from a file"},
-    {"PIRWLStrain", (PyCFunction)PIRWLStrain, METH_VARARGS|METH_KEYWORDS, "It trains a model using the PIRWLS algorithm"},
-    {"PSIRWLStrain", (PyCFunction)PSIRWLStrain, METH_VARARGS|METH_KEYWORDS, "It trains a model using the PSIRWLS algorithm"},
+    {"full_train", (PyCFunction)full_train, METH_VARARGS|METH_KEYWORDS, "It trains a SVM using the parallel IRWLS procedure"},
+    {"budgeted_train", (PyCFunction)budgeted_train, METH_VARARGS|METH_KEYWORDS, "It trains a budgeted SVM using the parallel IRWLS procedure"},
     {"save", (PyCFunction)save, METH_VARARGS|METH_KEYWORDS, "It saves a model in a file"},
     {"predict", (PyCFunction)predict, METH_VARARGS|METH_KEYWORDS, "Predictions using a trained model"},
     { NULL, NULL, 0, NULL}

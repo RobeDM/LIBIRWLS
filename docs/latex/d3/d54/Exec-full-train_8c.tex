@@ -1,0 +1,42 @@
+\hypertarget{Exec-full-train_8c}{}\section{L\+I\+B\+I\+R\+W\+L\+S/src/\+Exec-\/full-\/train.c File Reference}
+\label{Exec-full-train_8c}\index{L\+I\+B\+I\+R\+W\+L\+S/src/\+Exec-\/full-\/train.\+c@{L\+I\+B\+I\+R\+W\+L\+S/src/\+Exec-\/full-\/train.\+c}}
+
+
+Main command to train a full S\+VM using the parallel I\+R\+W\+LS procedure.  
+
+
+{\ttfamily \#include $<$omp.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include $<$sys/time.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Parallel\+Algorithms.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}full-\/train.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}kernels.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{Exec-full-train_8c_a3c04138a5bfe5d72780bb7e82a18e627}{}\label{Exec-full-train_8c_a3c04138a5bfe5d72780bb7e82a18e627} 
+int \hyperlink{Exec-full-train_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Is the main function to build the executable file to train a full S\+VM using the parallel I\+R\+W\+LS procedure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Main command to train a full S\+VM using the parallel I\+R\+W\+LS procedure. 
+
+For a detailed description of the algorithm and its parameters read the following paper\+: ~\newline
+ Pérez-\/\+Cruz, F., Alarcón-\/\+Diana, P. L., Navia-\/\+Vázquez, A., \& Artés-\/\+Rodríguez, A. (2001). Fast Training of Support Vector Classifiers. In Advances in Neural Information Processing Systems (pp. 734-\/740)
+
+For a detailed description about the parallelization read the following paper\+: ~\newline
+Díaz-\/\+Morales, R., \& Navia-\/\+Vázquez, Á. (2016). Efficient parallel implementation of kernel methods. Neurocomputing, 191, 175-\/186.
+
+\begin{DoxyAuthor}{Author}
+Roberto Diaz Morales 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+23 Aug 2016 
+\end{DoxyDate}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{full-train_8h}{full-\/train.\+h} 
+\end{DoxySeeAlso}

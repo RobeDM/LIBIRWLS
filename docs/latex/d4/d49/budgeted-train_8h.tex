@@ -1,0 +1,151 @@
+\hypertarget{budgeted-train_8h}{}\section{L\+I\+B\+I\+R\+W\+L\+S/include/budgeted-\/train.h File Reference}
+\label{budgeted-train_8h}\index{L\+I\+B\+I\+R\+W\+L\+S/include/budgeted-\/train.\+h@{L\+I\+B\+I\+R\+W\+L\+S/include/budgeted-\/train.\+h}}
+
+
+Functions to train a budgeted S\+VM using the I\+R\+W\+LS algorithm.  
+
+
+{\ttfamily \#include \char`\"{}I\+O\+Structures.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int $\ast$ \hyperlink{budgeted-train_8h_aa6c8aa8b86b7a0647cc679408c310cd3}{random\+Centroids} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, \hyperlink{structproperties}{properties} props)
+\begin{DoxyCompactList}\small\item\em Random selection of centroids for the budgeted model. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{budgeted-train_8h_a50a6e1f36a010feb91db9b9b38679948}{S\+G\+MA} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, \hyperlink{structproperties}{properties} props)
+\begin{DoxyCompactList}\small\item\em Sparse Greedy Matrix Approximation algorithm. \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{budgeted-train_8h_ad51d9a46645ad0b0bedb1113a3807d24}{I\+R\+W\+L\+Spar} (\hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, int $\ast$indexes, \hyperlink{structproperties}{properties} props)
+\begin{DoxyCompactList}\small\item\em Iterative Re-\/\+Weighted Least Squares Algorithm. \end{DoxyCompactList}\item 
+void \hyperlink{budgeted-train_8h_a9888789b1c3595806cf34f033fb2aff9}{print\+Budgeted\+Instructions} (void)
+\begin{DoxyCompactList}\small\item\em Print Instructions. \end{DoxyCompactList}\item 
+\hyperlink{structproperties}{properties} \hyperlink{budgeted-train_8h_a67566f6fd6aec7278ca360186af4e91b}{parse\+Train\+Parameters} (int $\ast$argc, char $\ast$$\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em It parses input command line to extract the parameters of the budgeted algorithm. \end{DoxyCompactList}\item 
+\hyperlink{structmodel}{model} \hyperlink{budgeted-train_8h_a380a6e19ae274a3df7720a3305ce8d8c}{calculate\+Budgeted\+Model} (\hyperlink{structproperties}{properties} props, \hyperlink{structsvm__dataset}{svm\+\_\+dataset} dataset, int $\ast$centroids, double $\ast$beta)
+\begin{DoxyCompactList}\small\item\em It converts the result of the budgeted algorithm into a model struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions to train a budgeted S\+VM using the I\+R\+W\+LS algorithm. 
+
+\begin{DoxyAuthor}{Author}
+Roberto Diaz Morales 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+23 Aug 2016 Functions to train a budgeted S\+VM using the I\+R\+W\+LS algorithm. 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{budgeted-train_8h_a380a6e19ae274a3df7720a3305ce8d8c}{}\label{budgeted-train_8h_a380a6e19ae274a3df7720a3305ce8d8c} 
+\index{budgeted-\/train.\+h@{budgeted-\/train.\+h}!calculate\+Budgeted\+Model@{calculate\+Budgeted\+Model}}
+\index{calculate\+Budgeted\+Model@{calculate\+Budgeted\+Model}!budgeted-\/train.\+h@{budgeted-\/train.\+h}}
+\subsubsection{\texorpdfstring{calculate\+Budgeted\+Model()}{calculateBudgetedModel()}}
+{\ttfamily \hyperlink{structmodel}{model} calculate\+Budgeted\+Model (\begin{DoxyParamCaption}\item[{\hyperlink{structproperties}{properties}}]{props,  }\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{dataset,  }\item[{int $\ast$}]{centroids,  }\item[{double $\ast$}]{beta }\end{DoxyParamCaption})}
+
+
+
+It converts the result of the budgeted algorithm into a model struct. 
+
+It converts the result into a model struct.
+
+
+\begin{DoxyParams}{Parameters}
+{\em props} & The training parameters. \\
+\hline
+{\em dataset} & The training set. \\
+\hline
+{\em centroids} & of the selected centroids by the S\+G\+MA algorithm. \\
+\hline
+{\em beta} & The weights of every centroid obtained with the I\+R\+W\+LS algorithm. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The struct that storages all the information of the classifier. 
+\end{DoxyReturn}
+\hypertarget{budgeted-train_8h_ad51d9a46645ad0b0bedb1113a3807d24}{}\label{budgeted-train_8h_ad51d9a46645ad0b0bedb1113a3807d24} 
+\index{budgeted-\/train.\+h@{budgeted-\/train.\+h}!I\+R\+W\+L\+Spar@{I\+R\+W\+L\+Spar}}
+\index{I\+R\+W\+L\+Spar@{I\+R\+W\+L\+Spar}!budgeted-\/train.\+h@{budgeted-\/train.\+h}}
+\subsubsection{\texorpdfstring{I\+R\+W\+L\+Spar()}{IRWLSpar()}}
+{\ttfamily double$\ast$ I\+R\+W\+L\+Spar (\begin{DoxyParamCaption}\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{dataset,  }\item[{int $\ast$}]{indexes,  }\item[{\hyperlink{structproperties}{properties}}]{props }\end{DoxyParamCaption})}
+
+
+
+Iterative Re-\/\+Weighted Least Squares Algorithm. 
+
+I\+R\+W\+LS procedure to obtain the weights of the budgeted model. 
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The training set. \\
+\hline
+{\em indexes} & The indexes of the centroids selected by the S\+G\+MA algorithm. \\
+\hline
+{\em props} & The struct with the training parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The weights of every centroid. 
+\end{DoxyReturn}
+\hypertarget{budgeted-train_8h_a67566f6fd6aec7278ca360186af4e91b}{}\label{budgeted-train_8h_a67566f6fd6aec7278ca360186af4e91b} 
+\index{budgeted-\/train.\+h@{budgeted-\/train.\+h}!parse\+Train\+Parameters@{parse\+Train\+Parameters}}
+\index{parse\+Train\+Parameters@{parse\+Train\+Parameters}!budgeted-\/train.\+h@{budgeted-\/train.\+h}}
+\subsubsection{\texorpdfstring{parse\+Train\+Parameters()}{parseTrainParameters()}}
+{\ttfamily \hyperlink{structproperties}{properties} parse\+Train\+Parameters (\begin{DoxyParamCaption}\item[{int $\ast$}]{argc,  }\item[{char $\ast$$\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+It parses input command line to extract the parameters of the budgeted algorithm. 
+
+It parses input command line to extract the parameters. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of words of the command line. \\
+\hline
+{\em argv} & The list of words of the command line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A struct that contains the values of the training parameters of the budgeted algorithm. 
+\end{DoxyReturn}
+\hypertarget{budgeted-train_8h_a9888789b1c3595806cf34f033fb2aff9}{}\label{budgeted-train_8h_a9888789b1c3595806cf34f033fb2aff9} 
+\index{budgeted-\/train.\+h@{budgeted-\/train.\+h}!print\+Budgeted\+Instructions@{print\+Budgeted\+Instructions}}
+\index{print\+Budgeted\+Instructions@{print\+Budgeted\+Instructions}!budgeted-\/train.\+h@{budgeted-\/train.\+h}}
+\subsubsection{\texorpdfstring{print\+Budgeted\+Instructions()}{printBudgetedInstructions()}}
+{\ttfamily void print\+Budgeted\+Instructions (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Print Instructions. 
+
+It shows budgeted-\/train command line instructions in the standard output. \hypertarget{budgeted-train_8h_aa6c8aa8b86b7a0647cc679408c310cd3}{}\label{budgeted-train_8h_aa6c8aa8b86b7a0647cc679408c310cd3} 
+\index{budgeted-\/train.\+h@{budgeted-\/train.\+h}!random\+Centroids@{random\+Centroids}}
+\index{random\+Centroids@{random\+Centroids}!budgeted-\/train.\+h@{budgeted-\/train.\+h}}
+\subsubsection{\texorpdfstring{random\+Centroids()}{randomCentroids()}}
+{\ttfamily int$\ast$ random\+Centroids (\begin{DoxyParamCaption}\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{dataset,  }\item[{\hyperlink{structproperties}{properties}}]{props }\end{DoxyParamCaption})}
+
+
+
+Random selection of centroids for the budgeted model. 
+
+It creates a random permutation and selects the first elements to be the indexes of the centroids of the budgeted model.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The training set. \\
+\hline
+{\em props} & The struct with the training parameters. \\
+\hline
+\end{DoxyParams}
+\hypertarget{budgeted-train_8h_a50a6e1f36a010feb91db9b9b38679948}{}\label{budgeted-train_8h_a50a6e1f36a010feb91db9b9b38679948} 
+\index{budgeted-\/train.\+h@{budgeted-\/train.\+h}!S\+G\+MA@{S\+G\+MA}}
+\index{S\+G\+MA@{S\+G\+MA}!budgeted-\/train.\+h@{budgeted-\/train.\+h}}
+\subsubsection{\texorpdfstring{S\+G\+M\+A()}{SGMA()}}
+{\ttfamily int$\ast$ S\+G\+MA (\begin{DoxyParamCaption}\item[{\hyperlink{structsvm__dataset}{svm\+\_\+dataset}}]{dataset,  }\item[{\hyperlink{structproperties}{properties}}]{props }\end{DoxyParamCaption})}
+
+
+
+Sparse Greedy Matrix Approximation algorithm. 
+
+Sparse Greedy Matrix Approximation algorithm to select the basis elements of the budgeted model. 
+\begin{DoxyParams}{Parameters}
+{\em dataset} & The training set. \\
+\hline
+{\em props} & The struct with the training parameters. \\
+\hline
+\end{DoxyParams}

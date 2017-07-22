@@ -35,23 +35,23 @@ Xtr=Xtr.todense()
 Xtst=Xtst.todense()
 print " "
 print "*************************************************"
-print "* RUNNING SVM (PIRWLS algorithm) USING 1 THREAD *"
+print "* RUNNING FULL SVM USING 1 THREAD               *"
 print "*************************************************"
 
 
 start = time.time()
-model = LIBIRWLS.PIRWLStrain(Xtr, Ytr, gamma=0.001, C=1000, threads=1,verbose=0)
+model = LIBIRWLS.full_train(Xtr, Ytr, gamma=0.001, C=1000, threads=1,verbose=1)
 end = time.time()
 print "Training time",(end - start)
 predictions = LIBIRWLS.predict(model, Xtst, threads=1)
 print "Accuracy", accuracy_score(Ytst, predictions)
 print " "
 print "*************************************************"
-print "* RUNNING SVM (PIRWLS algorithm) USING 2 THREAD *"
+print "* RUNNING FULL SVM USING 2 THREADS              *"
 print "*************************************************"
 
 start = time.time()
-model = LIBIRWLS.PIRWLStrain(Xtr, Ytr, gamma=0.001, C=1000, threads=2,verbose=0)
+model = LIBIRWLS.full_train(Xtr, Ytr, gamma=0.001, C=1000, threads=2,verbose=1)
 end = time.time()
 print "Training time",(end - start)
 predictions = LIBIRWLS.predict(model, Xtst, threads=2)
@@ -59,11 +59,11 @@ print "Accuracy", accuracy_score(Ytst, predictions)
 
 print " "
 print "********************************************************"
-print "* RUNNING SEMIPARAMETRIC SVM (PSIRWLS) USING 1 THREADS *"
+print "* TRAINING BUDGETED SVM USING 1 THREAD                 *"
 print "********************************************************"
 
 start = time.time()
-model = LIBIRWLS.PSIRWLStrain(Xtr, Ytr, gamma=0.0001, C=1000, size=75, threads=1,verbose=0)
+model = LIBIRWLS.budgeted_train(Xtr, Ytr, gamma=0.0001, C=1000, size=75, threads=1,verbose=1)
 end = time.time()
 print "Training time",(end - start)
 predictions = LIBIRWLS.predict(model, Xtst, threads=1)
@@ -71,11 +71,11 @@ print "Accuracy", accuracy_score(Ytst, predictions)
 
 print " "
 print "********************************************************"
-print "* RUNNING SEMIPARAMETRIC SVM (PSIRWLS) USING 2 THREADS *"
+print "* RUNNING BUDGETED SVM USING 2 THREADS                 *"
 print "********************************************************"
 
 start = time.time()
-model = LIBIRWLS.PSIRWLStrain(Xtr, Ytr, gamma=0.0001, C=1000, size=75, threads=2,verbose=0)
+model = LIBIRWLS.budgeted_train(Xtr, Ytr, gamma=0.0001, C=1000, size=75, threads=2,verbose=1)
 end = time.time()
 print "Training time",(end - start)
 predictions = LIBIRWLS.predict(model, Xtst, threads=2)

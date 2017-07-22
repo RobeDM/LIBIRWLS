@@ -1,10 +1,14 @@
 var searchData=
 [
-  ['randomcentroids',['randomCentroids',['../d1/dd0/PSIRWLS-train_8h.html#aa6c8aa8b86b7a0647cc679408c310cd3',1,'PSIRWLS-train.h']]],
-  ['readmodel',['readModel',['../de/d79/IOStructures_8h.html#a39db6a02819bd37baf33f195ab81d02e',1,'IOStructures.h']]],
-  ['readtrainfile',['readTrainFile',['../de/d79/IOStructures_8h.html#a8edb4ba3a828ebfd3f315794c1fa5936',1,'IOStructures.h']]],
-  ['readtrainfilecsv',['readTrainFileCSV',['../de/d79/IOStructures_8h.html#a3eef60cb0ce45ebe375cb0f9cad91a30',1,'IOStructures.h']]],
-  ['readunlabeledfile',['readUnlabeledFile',['../de/d79/IOStructures_8h.html#a55bd770c8b94fb281d835b8d96fab13d',1,'IOStructures.h']]],
-  ['readunlabeledfilecsv',['readUnlabeledFileCSV',['../de/d79/IOStructures_8h.html#ab7bf18530f52bae1d845e6c5d0f2b7bd',1,'IOStructures.h']]],
-  ['rpermute',['rpermute',['../df/d51/PIRWLS-train_8h.html#a9e75aabe599f48c66cbda89320d68a71',1,'PIRWLS-train.h']]]
+  ['parallelchol',['ParallelChol',['../d0/d98/ParallelAlgorithms_8h.html#aedc9a05cc25e789d22135eda90b8d22c',1,'ParallelAlgorithms.h']]],
+  ['parallellinearsystem',['ParallelLinearSystem',['../d0/d98/ParallelAlgorithms_8h.html#acd578bbef8ed7d2c5b301d858d6e54cf',1,'ParallelAlgorithms.h']]],
+  ['parallelvectormatrix',['ParallelVectorMatrix',['../d0/d98/ParallelAlgorithms_8h.html#aa173cc47a2219bbaff08572bab6de056',1,'ParallelAlgorithms.h']]],
+  ['parallelvectormatrixt',['ParallelVectorMatrixT',['../d0/d98/ParallelAlgorithms_8h.html#a043ebcb9d7b0843551be9bda4a518f61',1,'ParallelAlgorithms.h']]],
+  ['parsepredictparameters',['parsePredictParameters',['../db/d3d/LIBIRWLS-predict_8h.html#a186e63263bf147110137e90adafcb8c7',1,'LIBIRWLS-predict.h']]],
+  ['parsetrainfullparameters',['parseTrainFULLParameters',['../d3/dd5/full-train_8h.html#a95d1fd5c95857701272b74eb9b0aed4e',1,'full-train.h']]],
+  ['parsetrainparameters',['parseTrainParameters',['../d4/d49/budgeted-train_8h.html#a67566f6fd6aec7278ca360186af4e91b',1,'budgeted-train.h']]],
+  ['printbudgetedinstructions',['printBudgetedInstructions',['../d4/d49/budgeted-train_8h.html#a9888789b1c3595806cf34f033fb2aff9',1,'budgeted-train.h']]],
+  ['printfullinstructions',['printFULLInstructions',['../d3/dd5/full-train_8h.html#ab5adf9258f0268e7daead3642e1d911a',1,'full-train.h']]],
+  ['printpredictinstructions',['printPredictInstructions',['../db/d3d/LIBIRWLS-predict_8h.html#ab8c1148238200e9d917c15c40e1fe7e5',1,'LIBIRWLS-predict.h']]],
+  ['putsubmatrix',['putSubMatrix',['../d0/d98/ParallelAlgorithms_8h.html#a99121d09a1719aa7f13fc1564adbf0f8',1,'ParallelAlgorithms.h']]]
 ];

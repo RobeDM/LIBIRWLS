@@ -15,8 +15,8 @@ ext_modules = [
             include_dirs=['.','../include/',np.get_include()],
             sources = ['pythonmodule.c'],
             extra_objects = ['../build/LIBIRWLS-predict.o',
-                '../build/PIRWLS-train.o',
-                '../build/PSIRWLS-train.o',
+                '../build/full-train.o',
+                '../build/budgeted-train.o',
                 '../build/IOStructures.o',
                 '../build/ParallelAlgorithms.o',
                 '../build/kernels.o'
@@ -29,8 +29,8 @@ ext_modules = [
 
 setup(
         name = 'LIBIRWLS',
-        version = '2.1',
-        description="A Parallel IRWLS procedure for SVMs and Semiparametric SVMs",
+        version = '3.0',
+        description="A Parallel IRWLS procedure for SVMs and budgeted SVMs",
         install_requires=[
             'numpy',
             'scipy',
