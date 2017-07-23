@@ -74,9 +74,10 @@ The structure of this library is as follows:
     +-- data/
     |
     +-- demo/
-    |   +-- demoIRWLS.sh
-    |   +-- demoIRWLSWin32.bat
-    |   +-- demoIRWLSWin64.bat
+    |   +-- demoLIBIRWLS.sh
+    |   +-- demoLIBIRWLSWin32.bat
+    |   +-- demoLIBIRWLSWin64.bat
+    |   +-- demoPythonModule.bat
     |
     +-- docs/
     |   |
@@ -103,21 +104,24 @@ The structure of this library is as follows:
     +-- src/
     |   +-- IOStructures.c
     |   +-- LIBIRWLS-predict.c
-    |   +-- PIRWLS-train.c
-    |   +-- PSIRWLS-train.c
+    |   +-- full-train.c
+    |   +-- budgeted-train.c
+    |   +-- Exec-LIBIRWLS-predict.c
+    |   +-- Exec-full-train.c
+    |   +-- Exec-budgeted-train.c
     |   +-- ParallelAlgorithms.c
     |   +-- kernels.c
     |
     +-- windows/
         |
         +--Win32
-        |  +-- PIRWLS-train.exe
-        |  +-- PSIRWLS-train.exe
+        |  +-- full-train.exe
+        |  +-- budgeted-train.exe
         |  +-- LIBIRWLS-predict.exe
         |
         +--Win64
-           +-- PIRWLS-train.exe
-           +-- PSIRWLS-train.exe
+           +-- full-train.exe
+           +-- budgeted-train.exe
            +-- LIBIRWLS-predict.exe
 
 
