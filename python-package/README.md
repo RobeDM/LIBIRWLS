@@ -58,12 +58,12 @@ With these environment variables well defined you can install the extension (If 
         import LIBIRWLS
 
 
-### PIRWLS algorithm:
+### SVM:
 
-It trains a SVM using a parallel IRWLS procedure. See the library [webpage](https://robedm.github.io/LIBIRWLS/) for a detailed description.
+To train a SVM using a parallel IRWLS procedure. See the library [webpage](https://robedm.github.io/LIBIRWLS/) for a detailed description.
 
 
-    model = LIBIRWLS.PIRWLStrain(data, labels, gamma=1, C=1, threads=1, workingSet=500, eta=0.001, kernel=1)
+    model = LIBIRWLS.full_train(data, labels, gamma=1, C=1, threads=1, workingSet=500, eta=0.001, kernel=1, verbose=1)
 
 Parameters:
 * data: Training set (numpy 2d array)
@@ -76,12 +76,14 @@ Parameters:
 * workingSet: Size of the Least Squares Problem in every iteration
 * threads: It is the number of parallel threads
 * eta: Stop criteria
+* verbose (default 1):
+    * 0 = Silen mode, no screen messages
+    * 1 = Screen messages
 
-### PSIRWLS algorithm:
+### Budgeted SVM:
+To train a budgeted SVM using a parallel IRWLS procedure. See the library [webpage](https://robedm.github.io/LIBIRWLS/) for a detailed description:
 
-It trains a semiparametric SVM using a parallel IRWLS procedure. See the library [webpage](https://robedm.github.io/LIBIRWLS/) for a detailed description.
-
-        model = LIBIRWLS.PSIRWLStrain(data, labels, gamma=1, C=1, threads=1, size=500, algorithm=0.001, kernel=1)
+        model = LIBIRWLS.budgeted_train(data, labels, gamma=1, C=1, threads=1, size=500, algorithm=0.001, kernel=1, verbose = 1)
 
 Parameters:
 * data: Training set (numpy 2d array)
@@ -96,6 +98,11 @@ Parameters:
 * algorithm: Algorithm for centroids selection
      * 0 -- Random Selection
      * 1 -- SGMA (Sparse Greedy Matrix Approximation
+* verbose (default 1):
+    * 0 = Silen mode, no screen messages
+    * 1 = Screen messages
+
+
 
 ### To classify a new dataset:
 
