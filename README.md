@@ -14,11 +14,10 @@
 
 ## Description
 
-LIBIRWLS is an integrated library that makes use of a parallel implementation of the Iterative Re-Weighted Least Squares (IRWLS) procedure for solving the quadratic programmig (QP) problem that arises during the training of Support Vector Machines (SVMs). It implements the functions to run two different algorithms:
+LIBIRWLS is an integrated library that incorporates a parallel implementation of the Iterative Re-Weighted Least Squares (IRWLS) procedure, an alternative to quadratic programming (QP), for training of Support Vector Machines (SVMs). Although there are several methods for SVM training, the number of parallel libraries is very reduced. In particular, this library contains solutions to solve either full or budgeted SVMs making use of shared memory parallelization techniques:
 
-**Parallel Iterative Re-Weighted Least Squares:** A Parallel SVM solver based on the IRWLS algorithm.
-
-**Parallel Semi-parametric Iterative Re-Weighted Least Squares:** A Parallel Semiparametric SVMs solver based on the IRWLS algorithm.
+**A parallel SVM training procedure based on the IRWLS algorithm.**
+**A parallel budgeted SVMs solver based on the IRWLS algorithm.**
 
 For a detailed explanation of the algorithms take a look at the [web page](https://robedm.github.io/LIBIRWLS/)
 
@@ -30,13 +29,13 @@ SVMs are a very popular machine learning technique because they can easily creat
 
 SVMs have two main limitations. The first problem is related to their non-parametric nature. The complexity of the classifier is not limited and depends on the number of Support Vectors (SVs) after training. If the number of SVs is very large we may obtain a very slow classifier when processing new samples. The second problem is the run time associated to the training procedure that may be excessive for large datasets.
 
-To face these problems, we can make use of parallel computing, thus reducing the run time of the training procedure or we can use semi-parametric approximations than can limit the complexity of the model in advance, which directly implies a faster classifier.
+To face these problems, we can make use of parallel computing, thus reducing the run time of the training procedure or we can use budgeted approximations than can limit the complexity of the model in advance, which directly implies a faster classifier.
 
-The above situation motivated us to develop "LIBIRWLS", an integrated library based on a parallel implementation of the IRWLS procedure to solve non-linear SVMs and semi-parametric SVMs. This library is implemented in C, supports a wide range of platforms and also provides detailed information about its programming interface and dependencies.
+The above situation motivated us to develop "LIBIRWLS", an integrated library based on a parallel implementation of the IRWLS procedure to solve non-linear SVMs, either full and budgeted. This library is implemented in C, supports a wide range of platforms and also provides detailed information about its programming interface and dependencies.
 
 ## License: MIT License
 
-Copyright (c) 2015-2016 Roberto Diaz Morales, Ángel Navia Vázquez
+Copyright (c) 2015-2017 Roberto Diaz Morales, Ángel Navia Vázquez
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -277,7 +276,7 @@ If you want to obtain an optimized performance the software must be compiled and
 For testing purposes, the folder demo contains a .bat windows demo script and a Unix .sh demo script that download a sample dataset from the libsvm repository and runs the executable files.
 
 
-#### Training using the PSIRWLS algorithm:
+#### Training a budgeted SVM:
 
 The algorithm is described in this paper:
 
@@ -285,7 +284,7 @@ Díaz-Morales, R., & Navia-Vázquez, Á. (2016). Efficient parallel implementati
 
 To train the algorithm and create the model:
 
-    ./PSIRWLS-train [options] training_set_file model_file
+    ./budgeted-train [options] training_set_file model_file
 
 training_set_file: Training set in LibSVM format
 model_file: File where the classifier will be stored
@@ -299,13 +298,20 @@ Options:
 * -a Algorithm: Algorithm for centroids selection (default 1)
      * 0 -- Random Selection
      * 1 -- SGMA (Sparse Greedy Matrix Approximation
-
+* -f File format (see datasets, default 1):
+    * 0 = CSV format
+    * 1 = libsvm format
+* -p separator: csv separator character (only applicable if CSV format is selected, default ",")
+* -v verbose (default 1):
+    * 0 = Silen mode, no screen messages
+    * 1 = Screen messages
+    
 Example:
 
-    ./PSIRWLS-train -g 0.001 -c 1000 -t 4 -s 150 training_set_file.txt model_file.mod
+    ./budgeted-train -g 0.001 -c 1000 -t 4 -s 150 training_set_file.txt model_file.mod
 
 
-#### Training using the PIRWLS algorithm:
+#### Training a SVM:
 
 The algorithm is described in this paper:
 
@@ -313,7 +319,7 @@ Morales, R. D., & Vázquez, Á. N. (2016). Improving the efficiency of IRWLS SVM
 
 To train the algorithm and create the model:
 
-    ./PIRWLS-train [options] training_set_file model_file
+    ./full-train [options] training_set_file model_file
 
 training_set_file: Training set in LibSVM format
 model_file: File where the classifier will be stored
@@ -327,10 +333,17 @@ Options:
 * -w Working_set_size: Size of the Least Squares Problem in every iteration (default 500)
 * -t Number_of_Threads: It is the number of parallel threads to solve the task (default 1)
 * -e eta: Stop criteria (default 0.001)
+* -f File format (see datasets, default 1):
+    * 0 = CSV format
+    * 1 = libsvm format
+* -p separator: csv separator character (only applicable if CSV format is selected, default ",")
+* -v verbose (default 1):
+    * 0 = Silen mode, no screen messages
+    * 1 = Screen messages
 
 Example:
 
-    ./PIRWLS-train -g 0.001 -c 1000 -t 4 training_set_file.txt model_file.mod
+    ./full-train -g 0.001 -c 1000 -t 4 training_set_file.txt model_file.mod
 
 
 #### Test:
@@ -347,31 +360,23 @@ Options:
 * -l Labeled:  (default 0)
     * 1 if the dataset is labeled (shows accuracy)
     * 0 if the dataset is unlabeled
+* -f File format (see datasets, default 1):
+    * 0 = CSV format
+    * 1 = libsvm format
+* -p separator: csv separator character (only applicable if CSV format is selected, default ",")
+* -v verbose (default 1):
+    * 0 = Silen mode, no screen messages
+    * 1 = Screen messages
+
+
 
 Example:
 
-    ./PIRWLS-predict -t 4 -l 1 dataset_file.txt model_file.mod output_file.txt
+    ./LIBIRWLS-predict -t 4 -l 1 dataset_file.txt model_file.mod output_file.txt
 
 ### Input file format:
 
-The dataset must be provided in LibSVM format, labeled to train the model and labeled or unlabeled for predictions (using the -l option in the PIRWLS-predict command to tell if the file is labeled or unlabeled):
-
-
-Labeled example:
-
-~~~~
-+1 1:5 7:2 15:6
-+1 1:5 7:2 15:6 23:1
--1 2:4 3:2 10:6 11:4
-~~~~
-
-Unlabeled example:
-
-~~~~
-1:5 7:2 15:6
-1:5 7:2 15:6 23:1
-2:4 3:2 10:6 11:4
-~~~~
+The dataset must be provided in LibSVM or CSV format. For a detailed explanation of the input files take a look at the [web page](https://robedm.github.io/LIBIRWLS/examplesFiles.html) 
 
 ## Python module:
 
