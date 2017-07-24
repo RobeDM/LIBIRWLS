@@ -116,6 +116,9 @@ Parameters:
 * Soft:
     * 0 Class prediction (the output is +1 or -1)
     * 1 Soft output: The output after the hard decision that decides the class (useful to use in ensembles with other algorithms).
+* verbose (default 1):
+    * 0 = Silen mode, no screen messages
+    * 1 = Screen messages
 
 
 ### To save a model in a file:
