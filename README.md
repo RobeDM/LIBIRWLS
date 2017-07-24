@@ -17,6 +17,7 @@
 LIBIRWLS is an integrated library that incorporates a parallel implementation of the Iterative Re-Weighted Least Squares (IRWLS) procedure, an alternative to quadratic programming (QP), for training of Support Vector Machines (SVMs). Although there are several methods for SVM training, the number of parallel libraries is very reduced. In particular, this library contains solutions to solve either full or budgeted SVMs making use of shared memory parallelization techniques:
 
 **A parallel SVM training procedure based on the IRWLS algorithm.**
+
 **A parallel budgeted SVMs solver based on the IRWLS algorithm.**
 
 For a detailed explanation of the algorithms take a look at the [web page](https://robedm.github.io/LIBIRWLS/)
