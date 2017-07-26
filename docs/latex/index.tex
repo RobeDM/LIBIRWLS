@@ -1,10 +1,24 @@
 \subsection*{Description\+: }
 
-L\+I\+B\+I\+R\+W\+LS is an integrated parallel library for Support Vector Machines (S\+V\+Ms) that makes use of the I\+R\+W\+LS procedure. It implements the functions to run two different algorithms\+:
+L\+I\+B\+I\+R\+W\+LS is an integrated library that incorporates a parallel implementation of the Iterative Re-\/\+Weighted Least Squares (I\+R\+W\+LS) procedure, an alternative to quadratic programming (QP), for training of Support Vector Machines (S\+V\+Ms). Although there are several methods for S\+VM training, the number of parallel libraries is very reduced. In particular, this library contains solutions to solve either full or budgeted S\+V\+Ms making use of shared memory parallelization techniques\+:
 
-{\bfseries Parallel Iterative Re-\/\+Weighted Least Squares\+:} A Parallel S\+VM solver based on the I\+R\+W\+LS algorithm
+{\bfseries A parallel S\+VM training procedure based on the I\+R\+W\+LS algorithm.}
 
-{\bfseries Parallel Semi-\/parametric Iterative Re-\/\+Weighted Least Squares\+:} A Parallel solver for semiparametric S\+V\+Ms solver based on the I\+R\+W\+LS algorithm
+{\bfseries A parallel budgeted S\+V\+Ms solver based on the I\+R\+W\+LS algorithm.}
+
+For a detailed explanation of the algorithms take a look at the \href{https://robedm.github.io/LIBIRWLS/}{\tt web page}
+
+
+
+\subsection*{Motivation }
+
+S\+V\+Ms are a very popular machine learning technique because they can easily create non-\/linear solutions by transforming the input space onto a high dimensional one where a kernel function can compute the inner product of a pair vectors. Thanks to this ability, they offer a good compromise between complexity and performance in many applications.
+
+S\+V\+Ms have two main limitations. The first problem is related to their non-\/parametric nature. The complexity of the classifier is not limited and depends on the number of Support Vectors (S\+Vs) after training. If the number of S\+Vs is very large we may obtain a very slow classifier when processing new samples. The second problem is the run time associated to the training procedure that may be excessive for large datasets.
+
+To face these problems, we can make use of parallel computing, thus reducing the run time of the training procedure or we can use budgeted approximations than can limit the complexity of the model in advance, which directly implies a faster classifier.
+
+The above situation motivated us to develop \char`\"{}\+L\+I\+B\+I\+R\+W\+L\+S\char`\"{}, an integrated library based on a parallel implementation of the I\+R\+W\+LS procedure to solve non-\/linear S\+V\+Ms, either full and budgeted. This library is implemented in C, supports a wide range of platforms and also provides detailed information about its programming interface and dependencies.
 
 \subsection*{Requirements\+: }
 
@@ -12,17 +26,13 @@ This software is implemented in C and requires the following libraries\+:
 
 
 \begin{DoxyItemize}
-\item \href{http://openmp.org/wp/}{\tt Open\+MP} To parallelize the software
-\item A Linear Algebra Package that implements the B\+L\+AS and Lapack standard routines, this software has been tested on two alternatives\+:
-\begin{DoxyItemize}
-\item \href{http://www.netlib.org/blas/}{\tt B\+L\+AS} and \href{http://www.netlib.org/lapack/}{\tt L\+A\+P\+A\+CK}
-\item \href{https://software.intel.com/en-us/intel-mkl}{\tt M\+KL}
-\end{DoxyItemize}
+\item \href{http://openmp.org/wp/}{\tt Open\+MP} To parallelize the software.
+\item \href{http://math-atlas.sourceforge.net/}{\tt A\+T\+L\+AS}\+: Linear algebra package with standard routines that contains optimized B\+L\+AS and L\+A\+P\+A\+CK implementations.
 \end{DoxyItemize}
 
 \subsection*{License\+: M\+IT License }
 
-Copyright (c) 2015-\/2016 Roberto Diaz Morales, Ángel Navia Vázquez
+Copyright (c) 2015-\/2017 Roberto Diaz Morales, Ángel Navia Vázquez
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\+Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+:
 
