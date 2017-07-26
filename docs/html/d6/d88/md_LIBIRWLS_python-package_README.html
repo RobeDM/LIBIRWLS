@@ -107,9 +107,9 @@ $(document).ready(function(){initNavTree('d6/d88/md_LIBIRWLS_python-package_READ
 </pre><h2>RUNNING:</h2>
 <h3>Import this library:</h3>
 <pre class="fragment">    import LIBIRWLS
-</pre><h3>PIRWLS algorithm:</h3>
-<p>It trains a SVM using a parallel IRWLS procedure. See the library <a href="https://robedm.github.io/LIBIRWLS/">webpage</a> for a detailed description.</p>
-<pre class="fragment">model = LIBIRWLS.PIRWLStrain(data, labels, gamma=1, C=1, threads=1, workingSet=500, eta=0.001, kernel=1)
+</pre><h3>SVM:</h3>
+<p>To train a SVM using a parallel IRWLS procedure. See the library <a href="https://robedm.github.io/LIBIRWLS/">webpage</a> for a detailed description.</p>
+<pre class="fragment">model = LIBIRWLS.full_train(data, labels, gamma=1, C=1, threads=1, workingSet=500, eta=0.001, kernel=1, verbose=1)
 </pre><p>Parameters:</p><ul>
 <li>data: Training set (numpy 2d array)</li>
 <li>labels: Training set labels (the label of every training data numpy array with values +1 and -1)</li>
@@ -123,9 +123,14 @@ $(document).ready(function(){initNavTree('d6/d88/md_LIBIRWLS_python-package_READ
 <li>workingSet: Size of the Least Squares Problem in every iteration</li>
 <li>threads: It is the number of parallel threads</li>
 <li>eta: Stop criteria</li>
+<li>verbose (default 1):<ul>
+<li>0 = Silen mode, no screen messages</li>
+<li>1 = Screen messages</li>
 </ul>
-<h3>PSIRWLS algorithm:</h3>
-<p>It trains a semiparametric SVM using a parallel IRWLS procedure. See the library <a href="https://robedm.github.io/LIBIRWLS/">webpage</a> for a detailed description. </p><pre class="fragment">    model = LIBIRWLS.PSIRWLStrain(data, labels, gamma=1, C=1, threads=1, size=500, algorithm=0.001, kernel=1)
+</li>
+</ul>
+<h3>Budgeted SVM:</h3>
+<p>To train a budgeted SVM using a parallel IRWLS procedure. See the library <a href="https://robedm.github.io/LIBIRWLS/">webpage</a> for a detailed description: </p><pre class="fragment">    model = LIBIRWLS.budgeted_train(data, labels, gamma=1, C=1, threads=1, size=500, algorithm=0.001, kernel=1, verbose = 1)
 </pre><p>Parameters:</p><ul>
 <li>data: Training set (numpy 2d array)</li>
 <li>labels: Training set labels (the label of every training data numpy array with values +1 and -1)</li>
@@ -143,6 +148,11 @@ $(document).ready(function(){initNavTree('d6/d88/md_LIBIRWLS_python-package_READ
 <li>1 &ndash; SGMA (Sparse Greedy Matrix Approximation</li>
 </ul>
 </li>
+<li>verbose (default 1):<ul>
+<li>0 = Silen mode, no screen messages</li>
+<li>1 = Screen messages</li>
+</ul>
+</li>
 </ul>
 <h3>To classify a new dataset:</h3>
 <pre class="fragment">    predictions = LIBIRWLS.predict(model, data, labels=None, Threads=1, Soft=0)
@@ -154,6 +164,11 @@ $(document).ready(function(){initNavTree('d6/d88/md_LIBIRWLS_python-package_READ
 <li>Soft:<ul>
 <li>0 Class prediction (the output is +1 or -1)</li>
 <li>1 Soft output: The output after the hard decision that decides the class (useful to use in ensembles with other algorithms).</li>
+</ul>
+</li>
+<li>verbose (default 1):<ul>
+<li>0 = Silen mode, no screen messages</li>
+<li>1 = Screen messages</li>
 </ul>
 </li>
 </ul>
