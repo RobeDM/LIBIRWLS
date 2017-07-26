@@ -60,11 +60,11 @@ With these environment variables well defined you can install the extension (If 
 \end{DoxyVerb}
 
 
-\subsubsection*{P\+I\+R\+W\+LS algorithm\+:}
+\subsubsection*{S\+VM\+:}
 
-It trains a S\+VM using a parallel I\+R\+W\+LS procedure. See the library \href{https://robedm.github.io/LIBIRWLS/}{\tt webpage} for a detailed description.
+To train a S\+VM using a parallel I\+R\+W\+LS procedure. See the library \href{https://robedm.github.io/LIBIRWLS/}{\tt webpage} for a detailed description.
 
-\begin{DoxyVerb}model = LIBIRWLS.PIRWLStrain(data, labels, gamma=1, C=1, threads=1, workingSet=500, eta=0.001, kernel=1)
+\begin{DoxyVerb}model = LIBIRWLS.full_train(data, labels, gamma=1, C=1, threads=1, workingSet=500, eta=0.001, kernel=1, verbose=1)
 \end{DoxyVerb}
 
 
@@ -82,11 +82,16 @@ Parameters\+:
 \item working\+Set\+: Size of the Least Squares Problem in every iteration
 \item threads\+: It is the number of parallel threads
 \item eta\+: Stop criteria
+\item verbose (default 1)\+:
+\begin{DoxyItemize}
+\item 0 = Silen mode, no screen messages
+\item 1 = Screen messages
+\end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsubsection*{P\+S\+I\+R\+W\+LS algorithm\+:}
+\subsubsection*{Budgeted S\+VM\+:}
 
-It trains a semiparametric S\+VM using a parallel I\+R\+W\+LS procedure. See the library \href{https://robedm.github.io/LIBIRWLS/}{\tt webpage} for a detailed description. \begin{DoxyVerb}    model = LIBIRWLS.PSIRWLStrain(data, labels, gamma=1, C=1, threads=1, size=500, algorithm=0.001, kernel=1)
+To train a budgeted S\+VM using a parallel I\+R\+W\+LS procedure. See the library \href{https://robedm.github.io/LIBIRWLS/}{\tt webpage} for a detailed description\+: \begin{DoxyVerb}    model = LIBIRWLS.budgeted_train(data, labels, gamma=1, C=1, threads=1, size=500, algorithm=0.001, kernel=1, verbose = 1)
 \end{DoxyVerb}
 
 
@@ -108,6 +113,11 @@ Parameters\+:
 \item 0 -- Random Selection
 \item 1 -- S\+G\+MA (Sparse Greedy Matrix Approximation
 \end{DoxyItemize}
+\item verbose (default 1)\+:
+\begin{DoxyItemize}
+\item 0 = Silen mode, no screen messages
+\item 1 = Screen messages
+\end{DoxyItemize}
 \end{DoxyItemize}
 
 \subsubsection*{To classify a new dataset\+:}
@@ -126,6 +136,11 @@ Parameters\+:
 \begin{DoxyItemize}
 \item 0 Class prediction (the output is +1 or -\/1)
 \item 1 Soft output\+: The output after the hard decision that decides the class (useful to use in ensembles with other algorithms).
+\end{DoxyItemize}
+\item verbose (default 1)\+:
+\begin{DoxyItemize}
+\item 0 = Silen mode, no screen messages
+\item 1 = Screen messages
 \end{DoxyItemize}
 \end{DoxyItemize}
 
