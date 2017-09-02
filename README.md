@@ -175,38 +175,47 @@ This software is implemented in C and requires the following libraries:
 
     The Advanced Package Tool, or APT, is a free software user interface that works with core libraries to handle the installation and removal of software on some Linux distributions. If gcc is not installed, use the following command line:
 
-        sudo apt-get install build-essential
+```sh
+sudo apt-get install build-essential
+```
 
     To install the linear algebra routines of ATLAS use the following command line:
 
-        sudo apt-get install libatlas-base-dev
+```sh
+sudo apt-get install libatlas-base-dev
+```
 
  - If you have any Linux or Unix distribution with no apt-get support you need to download ATLAS from the [official repository] (https://sourceforge.net/projects/math-atlas/files/) and install it following the instructions that are detailed in the file INSTALL.txt. If you are impatient, for a basic installation on a 64 bits computer, this is the basic outline:
 
-        bzip2 -d atlas3.10.2.tar.bz2
-        tar -xvf atlas3.10.2.tar.bz2
-        cd ATLAS
-        mkdir my_build_dir
-        cd my_build_dir
-        ../configure -b 64 --prefix=/installation/directory ! Tell the installation directory
-        make                                                ! tune and compile library
-        make check                                          ! perform sanity tests
-        make ptcheck                                        ! checks of threaded code for multiprocessor systems
-        make time                                           ! provide performance summary as % of clock rate
-        make install                                        ! copy the library in the installation directory
+```sh
+bzip2 -d atlas3.10.2.tar.bz2
+tar -xvf atlas3.10.2.tar.bz2
+cd ATLAS
+mkdir my_build_dir
+cd my_build_dir
+../configure -b 64 --prefix=/installation/directory ! Tell the installation directory
+make                                                ! tune and compile library
+make check                                          ! perform sanity tests
+make ptcheck                                        ! checks of threaded code for multiprocessor systems
+make time                                           ! provide performance summary as % of clock rate
+make install                                        ! copy the library in the installation directory
+```
 
 #### Compiling:
 
 You need to run make in the library folder to build LIBIRWLS. If you have installed atlas using apt-get:
 
-    cd LIBIRWLS
-    make
+```sh
+cd LIBIRWLS
+make
+```
 
 If you have manually installed ATLAS, you must tell the installation directory.
 
-    cd LIBIRWLS
-    make ATLASDIR=/installation/directory 
-
+```sh
+cd LIBIRWLS
+make ATLASDIR=/installation/directory 
+```
 
 ### Mac OS X
 
@@ -216,32 +225,42 @@ The default compiler in OS X is clang. It currently doesn't works with openmp. Y
 
  - Homebrew: Install homebrew using the following command line:
 
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```sh
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
 
     and then install gcc using the command line:
 
-        brew install gcc --without-multilib
+```sh
+brew install gcc --without-multilib
+```
 
  - Macports: Download and Install macports from [https://www.macports.org/](https://www.macports.org/) and install gcc using the following command line:
 
-        sudo port install gcc49
-
+```sh
+sudo port install gcc49
+```
 
 #### Dependencies:
 
 OS X has its own accelerated algebra standard routines. The name of this library is veclib and it is composed by two files:
 
-        libBLAS.dylib
-        libLAPACK.dylib
-    
+```sh
+libBLAS.dylib
+libLAPACK.dylib
+```
+
 These files are in the directory:
 
-        /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/
+```sh
+/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/
+```
 
 This library will look for the library in that directory. Check that both files are there. If they are in a diferent path, look for them using the command "find" and note the folder for the next step:
 
-        sudo find / -name "libBLAS.dylib" 
-
+```sh
+sudo find / -name "libBLAS.dylib" 
+```
 
 #### Compiling:
 
@@ -255,13 +274,17 @@ For example:
 
  - If you have installed gcc 6 using Homebrew:
 
-        cd LIBIRWLS
-        make OSX=1 CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6
+```sh
+cd LIBIRWLS
+make OSX=1 CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6
+```
 
  - If you have installed gcc 6 using Homebrew and veclib is in a different directory called /veclib/directory then:
 
-        cd LIBIRWLS
-        make OSX=1 CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6 VECLIBDIR=/veclib/directory
+```sh
+cd LIBIRWLS
+make OSX=1 CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6 VECLIBDIR=/veclib/directory
+```
 
 ### Windows
 
@@ -285,7 +308,9 @@ Díaz-Morales, R., & Navia-Vázquez, Á. (2016). Efficient parallel implementati
 
 To train the algorithm and create the model:
 
-    ./budgeted-train [options] training_set_file model_file
+```sh
+./budgeted-train [options] training_set_file model_file
+```
 
 training_set_file: Training set in LibSVM format
 model_file: File where the classifier will be stored
@@ -309,8 +334,9 @@ Options:
     
 Example:
 
-    ./budgeted-train -g 0.001 -c 1000 -t 4 -s 150 training_set_file.txt model_file.mod
-
+```sh
+./budgeted-train -g 0.001 -c 1000 -t 4 -s 150 training_set_file.txt model_file.mod
+```
 
 #### Training a SVM:
 
@@ -320,7 +346,9 @@ Morales, R. D., & Vázquez, Á. N. (2016). Improving the efficiency of IRWLS SVM
 
 To train the algorithm and create the model:
 
-    ./full-train [options] training_set_file model_file
+```sh
+./full-train [options] training_set_file model_file
+```
 
 training_set_file: Training set in LibSVM format
 model_file: File where the classifier will be stored
@@ -344,14 +372,17 @@ Options:
 
 Example:
 
-    ./full-train -g 0.001 -c 1000 -t 4 training_set_file.txt model_file.mod
-
+```sh
+./full-train -g 0.001 -c 1000 -t 4 training_set_file.txt model_file.mod
+```
 
 #### Test:
 
 To make predictions with the model in a different dataset:
 
-    ./LIBIRWLS-predict [options] dataset_file model_file output_file
+```sh
+./LIBIRWLS-predict [options] dataset_file model_file output_file
+```
 
 Options:
 * -t Number_of_Threads: It is the number of parallel threads(default 1)
@@ -373,7 +404,9 @@ Options:
 
 Example:
 
-    ./LIBIRWLS-predict -t 4 -l 1 dataset_file.txt model_file.mod output_file.txt
+```sh
+./LIBIRWLS-predict -t 4 -l 1 dataset_file.txt model_file.mod output_file.txt
+```
 
 ### Input file format:
 
