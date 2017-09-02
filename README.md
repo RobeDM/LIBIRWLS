@@ -229,7 +229,7 @@ The default compiler in OS X is clang. It currently doesn't works with openmp. Y
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-    and then install gcc using the command line:
+and then install gcc using the command line:
 
 ```sh
 brew install gcc --without-multilib
