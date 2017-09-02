@@ -21,49 +21,65 @@ Currently this python extension is still not available for Windows operating sys
 
 If you have manually installed ATLAS (instead of using the apt-get command), you must tell the installation directory by defining the environment variable ATLASDIR:
 
-    export ATLASDIR=/path/to/atlas/
+```
+export ATLASDIR=/path/to/atlas/
+```
 
 After that, you can easily install this python module (If you need sudo permission you have to use the parameter -E to keep the environment variable): 
 
-    sudo -E python setup.py install
-    
+```
+sudo -E python setup.py install
+```
+
 ### OS X
 
 You must define some enviroment variables:
 
 CC to tell the compiler (use the same compiler that you use to compile the command line app). For example, in the case of gcc 6 installed with homebrew:
 
-    export CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6
-    
+```
+export CC=/usr/local/Cellar/gcc/6.2.0/bin/gcc-6
+```
+
 Only if veclib is not in the default directory you must define the environment variable VECLIBDIR telling where veclib is:
 
-    export VECLIBDIR=/path/to/veclib
+```
+export VECLIBDIR=/path/to/veclib
+```
 
 Your compiler has the openmp functions in the libgomp library, you must define an enviroment variable called LIBGOMP_PATH telling where is the file libgomp.a in the lib directory of your compiler. In the case of gcc 6 installed with homebrew: 
 
-    export LIBGOMP_PATH=/usr/local/Cellar/gcc/6.2.0/lib/gcc/6/libgomp.a
-    
+```
+export LIBGOMP_PATH=/usr/local/Cellar/gcc/6.2.0/lib/gcc/6/libgomp.a
+```    
+
 To avoid that Cython could use any posible flag only available for clang it is better to set the CFLAGS environment variable to an empty value:
 
-    export CFLAGS=
+```
+export CFLAGS=
+```
 
 With these environment variables well defined you can install the extension (If you need sudo permission you have to use the parameter -E to keep the environment variables):
 
-    sudo -E python setupOSX.py install
+```
+sudo -E python setupOSX.py install
+```
 
 ## RUNNING:
 
 ### Import this library:
 
-        import LIBIRWLS
-
+```Python
+import LIBIRWLS
+```
 
 ### SVM:
 
 To train a SVM using a parallel IRWLS procedure. See the library [webpage](https://robedm.github.io/LIBIRWLS/) for a detailed description.
 
-
-    model = LIBIRWLS.full_train(data, labels, gamma=1, C=1, threads=1, workingSet=500, eta=0.001, kernel=1, verbose=1)
+```
+model = LIBIRWLS.full_train(data, labels, gamma=1, C=1, threads=1, workingSet=500, eta=0.001, kernel=1, verbose=1)
+```
 
 Parameters:
 * data: Training set (numpy 2d array)
@@ -83,7 +99,9 @@ Parameters:
 ### Budgeted SVM:
 To train a budgeted SVM using a parallel IRWLS procedure. See the library [webpage](https://robedm.github.io/LIBIRWLS/) for a detailed description:
 
-        model = LIBIRWLS.budgeted_train(data, labels, gamma=1, C=1, threads=1, size=500, algorithm=0.001, kernel=1, verbose = 1)
+```
+model = LIBIRWLS.budgeted_train(data, labels, gamma=1, C=1, threads=1, size=500, algorithm=0.001, kernel=1, verbose = 1)
+```
 
 Parameters:
 * data: Training set (numpy 2d array)
@@ -106,7 +124,9 @@ Parameters:
 
 ### To classify a new dataset:
 
-        predictions = LIBIRWLS.predict(model, data, labels=None, Threads=1, Soft=0)
+```
+predictions = LIBIRWLS.predict(model, data, labels=None, Threads=1, Soft=0)
+```
 
 Parameters:
 * model: A model obtained using PIRWLS or PSIRWLS.
@@ -122,8 +142,9 @@ Parameters:
 
 
 ### To save a model in a file:
-
-        LIBIRWLS.save(model, filename)
+```
+LIBIRWLS.save(model, filename)
+```
 
 ### To save a model in a file:
 ```
