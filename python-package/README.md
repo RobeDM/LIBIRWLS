@@ -126,8 +126,8 @@ Parameters:
         LIBIRWLS.save(model, filename)
 
 ### To save a model in a file:
-
-        model = LIBIRWLS.load(filename)
-
+```
+model = LIBIRWLS.load(filename)
+´´´
 
 
